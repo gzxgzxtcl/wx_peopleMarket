@@ -1,27 +1,26 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/recommend/recommend",
-    "pages/oneself/oneself"
+    "pages/information/information",
+    "pages/oneself/oneself",
+    "pages/map/map"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTitleText": "全民营销",
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "color": "#909193",
-    "selectedColor": "#09bb0a",
-    "backgroundColor": "#fff",
+    "color": "#7F8389",
+    "selectedColor": "#20A0FF",
+    "backgroundColor": "#F7F7FA",
+    "borderStyle":"black",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页"
-      },
-      {
-        "pagePath": "pages/recommend/recommend",
-        "text": "推荐"
       },
       {
         "pagePath": "pages/oneself/oneself",
