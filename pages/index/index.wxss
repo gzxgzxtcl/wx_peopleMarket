@@ -1,21 +1,225 @@
 /**index.wxss**/
-.userinfo {
+.container{
+  margin: 0;
+  padding: 0;
+  background: #f9fbff;
+}
+.city-sel{
   display: flex;
-  flex-direction: column;
+  width: 100%;
+  height: 80rpx;
+  justify-content: space-between;
   align-items: center;
+  background: #ffffff;
+
+}
+.city-sel .left-city{
+  display: flex;
+  font-size: 32rpx;
+  font-family: 'PingFang-SC-Medium';
+  letter-spacing: 0.28rpx;
+  padding-left: 20rpx;
+}
+.city-sel .left-city view{
+  margin-right: 11rpx;
+}
+.city-sel .right-check{
+  font-family: 'PingFang-SC-Medium';
+  font-size: 24rpx;
+  color: #8D91A2;
+  display: flex;
+}
+.city-sel .right-check view{
+  margin-right: 20rpx;
+  margin-left: 10rpx;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
+swiper{
+  width: 100%;
+  height: 400rpx;
+}
+swiper image{
+  width: 100%;
+  height: 100%;
+}
+.dot{
+  width: 120rpx;
+  height: 30rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  top: -300rpx;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  z-index: 30;
+}
+.dot view{
+  width: 16rpx;
+  height: 16rpx;
+  border: 2rpx solid #000000;
+  background: #ffffff;
   border-radius: 50%;
 }
+.dot .active{
+  border: 2rpx solid #ffffff;
+  background: #000000;
+} 
 
-.userinfo-nickname {
-  color: #aaa;
+ .gongneng-box{
+  position: relative;
+  width: 100%;
+  height: 100rpx; 
+} 
+.goneneng{
+  width:685rpx;
+  height: 160rpx;
+  display: flex;
+  position: relative;
+  top: -50rpx;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  justify-content: space-around;
+  border-radius: 16rpx;
+  background: #ffffff;
+  box-shadow: 0 0.5rpx 0.5rpx 0.5rpx #eeeeee;
+}
+.goneneng view{
+  width: 98rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-family: "PingFang-SC-Medium";
+  color: #8D91A2;
+  font-size: 24rpx; 
+  background: pink；
+}
+.goneneng view image{
+  width: 80%;
+  height: 50%;
+  background: pink;
 }
 
-.usermotto {
-  margin-top: 200px;
+.hours{
+  width: 100%;
+  height: 44rpx;
+  font-family: "PingFang-SC-Medium";
+  font-size: 32rpx;
+  color: #333333;
+  letter-spacing: 0.28rpx;
+  padding: 30rpx 0 30rpx 30rpx;
+  display: flex;
+}
+
+.hours-list{
+  width: 658rpx;
+}
+.hours-list .img{
+  width: 100%;
+  height: 328rpx;
+  border-radius: 14rpx;
+}
+.hours-list .img image{
+  width: 100%;
+  height: 100%;
+  background: pink;
+  border-radius: 14rpx;
+}
+
+.hours-list .hours-info{
+  width:  658rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.hours-list .left-info{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 50%;
+  justify-content: space-around;
+  padding-right: 26rpx;
+}
+
+.hours-list .hours-name{
+  display: flex;
+  align-items: center;
+}
+.hours-list .hours-name>text{
+  font-family: 'PingFang-SC-Medium';
+  font-size: 28rpx;
+  color: #333333;
+   margin-right: 16rpx;
+}
+.hours-list .youhui{
+  font-family: 'PingFangTC';
+  font-size: 18rpx;
+  color: #ffffff;
+  display: flex;
+}
+.hours-list .youhui text{
+  background: #20A0FF 60%;
+}
+.hours-list .youhui .t1{
+  display: block;
+  padding: 0 2rpx 0 11rpx;
+  border-radius: 4rpx;
+}
+.hours-list .youhui .t2{
+  padding: 0 3rpx 0 2rpx;
+  border-radius: 4rpx;
+  display: block;
+  margin-right: 10rpx;
+}
+.hours-list .youhui .t3{
+  padding: 0 1rpx 0 11rpx;
+  border-radius: 4rpx;
+  display: block;
+}
+
+.hours-list .tag{
+  display: flex;
+}
+.hours-list .tag text{
+  display: block;
+  padding: 0 10rpx;
+  margin: 0 10rpx 0 0;
+  border-radius: 4rpx;
+  border: 1rpx solid #979797; 
+  font-family: 'PingFangTC-Light';
+  font-size: 20rpx;
+  color: #333333;
+  line-height: 28rpx;
+  letter-spacing: 0.2rpx;
+  text-align: center;
+}
+
+.hours-list .right-info{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex: 1;
+  justify-content: space-around;
+  padding-left: 30rpx;
+}
+.hours-list .right-info .price{
+  font-family: 'PingFangTC-Regular';
+  font-size: 24rpx;
+  color: #999999;
+  letter-spacing: 0.24rpx;
+}
+.hours-list .right-info .price text:first-child{
+  color: #FB1414;
+}
+.hours-list .right-info .hours-address{
+  font-family: 'PingFangTC-Light';
+  font-size: 20rpx;
+  color: #333333;
 }

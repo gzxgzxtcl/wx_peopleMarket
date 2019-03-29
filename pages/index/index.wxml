@@ -1,14 +1,88 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+    <!-- header -->
+   <view class='city-sel'>
+    <view class='left-city'>
+      <view class='left-icon'>0</view>
+      <text>深圳</text>
+    </view>
+    <view class='right-check' bindtap='changeCity'>
+      <text>切换城市</text>
+      <view class='right-icon'>></view>
+    </view>
+   </view>
+<!-- banner -->
+<view class='dot'>
+    <view wx:for="{{imgUrls}}" wx:key="{{index}}" class="{{swiperCurrent==index?'active':''}}" bindtap='changeImg' data-index='{{index}}'></view>
+</view>
+<swiper
+  autoplay="{{autoplay}}"
+  interval="{{interval}}"
+  duration="{{duration}}"
+  current="{{swiperCurrent}}"
+  bindchange="swiperChange"
+>
+  <block wx:for="{{imgUrls}}" wx:key='{{index}}'>
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" width="355" height="150" />
+    </swiper-item>
+  </block>
+</swiper>
+
+<!-- 功能 -->
+  <view class='gongneng-box'>
+    <view  class='goneneng'>
+      <view class='gn1'>
+        <image src=''></image>
+        <text>我要推荐</text>
+      </view>
+      <view class='gn2'>
+        <image src=''></image>
+        <text>我的客户</text>
+      </view>
+      <view class='gn3'>
+        <image src=''></image>
+        <text>优惠券</text>
+      </view>
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-  <button bindtap='pageTo'>地图</button>
+   
+   <!-- 楼盘信息标题 -->
+   <view class='hours'>
+    <text>楼盘信息</text>
+   </view>
+  <!-- 楼盘详情 -->
+   <view class='hours-list'>
+    <view class='img'>
+      <image src='https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'></image>
+    </view>
+    <view class='hours-info'>
+      <view class='left-info'>
+        <view class='hours-name'>
+          <text>中海天钻</text>
+          <view class='youhui'>
+            <text class='t1'>9.8折</text>
+            <text class='t2'>领</text>
+            <text class='t3'>最高奖励1%</text>
+          </view>
+        </view>
+        <view class='tag'>
+          <text>市中心</text>
+          <text>学区房</text>
+          <text>紧邻地铁</text>
+        </view>
+      </view>
+      <view class='right-info'>
+        <view class='price'>主力均价：
+          <text>98000</text>
+          <text>元/㎡</text>
+        </view>
+        <view class='hours-address'>
+          <text class='hours-address-icon'>0</text>
+          <text>罗湖区</text>
+        </view>
+      </view>
+    </view>
+   </view>
+
 </view>

@@ -8,8 +8,8 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "全民营销",
+    "navigationBarBackgroundColor": "#f9fbff",
+    "navigationBarTitleText": "中海全民营销",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
