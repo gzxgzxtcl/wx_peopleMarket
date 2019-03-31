@@ -1,9 +1,10 @@
 {
   "pages": [
+      "pages/oneself/oneself",
     "pages/index/index",
     "pages/recommend/recommend",
     "pages/information/information",
-    "pages/oneself/oneself",
+  
     "pages/map/map"
   ],
   "window": {
@@ -16,7 +17,7 @@
     "color": "#7F8389",
     "selectedColor": "#20A0FF",
     "backgroundColor": "#F7F7FA",
-    "borderStyle":"black",
+    "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/index/index",
@@ -27,5 +28,6 @@
         "text": "我的"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
