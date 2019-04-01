@@ -1,4 +1,6 @@
 /**index.wxss**/
+@import '../../utils/icon.wxss';
+
 .container{
   margin: 0;
   padding: 0;
@@ -11,7 +13,6 @@
   justify-content: space-between;
   align-items: center;
   background: #ffffff;
-
 }
 .city-sel .left-city{
   display: flex;
@@ -22,6 +23,8 @@
 }
 .city-sel .left-city view{
   margin-right: 11rpx;
+  color: #1ca1ff;
+  font-size: 39.6rpx;
 }
 .city-sel .right-check{
   font-family: 'PingFang-SC-Medium';
@@ -32,6 +35,8 @@
 .city-sel .right-check view{
   margin-right: 20rpx;
   margin-left: 10rpx;
+  margin-top: 5rpx;
+  font-size: 25rpx;
 }
 
 swiper{
@@ -49,12 +54,9 @@ swiper image{
   justify-content: space-around;
   align-items: center;
   position: absolute;
-  top: -300rpx;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  top: 32%;
   margin: auto;
-  z-index: 30;
+  z-index: 30; 
 }
 .dot view{
   width: 16rpx;
@@ -222,4 +224,7 @@ swiper image{
   font-family: 'PingFangTC-Light';
   font-size: 20rpx;
   color: #333333;
+}
+.hours-list .right-info .hours-address .hours-address-icon{
+  font-size: 20rpx;
 }

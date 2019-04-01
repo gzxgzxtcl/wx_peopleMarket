@@ -1,2 +1,206 @@
 <!--pages/information/information.wxml-->
-<text>pages/information/information.wxml</text>
+<view class='information'>
+  <!-- banner图 -->
+  <view class='num'>1<text></text>/5</view>
+  <swiper
+  autoplay="{{autoplay}}"
+  interval="{{interval}}"
+  duration="{{duration}}"
+  >
+    <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" width="355" height="150" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 详情 -->
+  <view class='info'>
+    <view class='name-money'>
+      <view class='name'>
+        <text>中海天钻</text>
+        <view>待售</view>
+      </view>
+      <view class='money'>
+        <view>主力均价:</view>
+        <text class='hours-money'>98000</text>
+        <view>元/㎡</view>
+        <view></view>
+      </view>
+    </view>
+    <!-- 标签 -->
+    <view class='tag'>
+      <view>市中心</view>
+      <view>学区房</view>
+      <view>紧邻地铁</view>
+      <view>南北通透</view>
+      <view>智慧社区</view>
+    </view>
+    <!-- 地址 -->
+    <view class='address'>
+      <view class='add1'>
+        <text class='title1'>售楼处地址</text>
+        <text class='title2'>罗湖-菜屋围-滨河路1005路中..</text>
+        <view>导航<text>></text></view>
+      </view>
+      <view class='add2'>
+        <text class='title1'>售楼处地址</text>
+        <text class='title2'>罗湖-菜屋围-滨河路1005路中..</text>
+        <view>导航<text>></text></view>
+      </view>
+    </view>
+    <!-- 优惠 -->
+    <view class='youhui'>
+      <view>折</view>
+      <text>3月31日前认筹享受98折</text>
+    </view>
+    <!-- 房型 -->
+    <view class='hours-type'>
+      <view class='top'>
+        <view>房</view>
+        <text>主力房型</text>
+      </view>
+      <view class='bottom-list'>
+        <view class='type type1'>
+          <text>公寓</text>
+          <text>50-80平米</text>
+          <text>（一房一厅 二房一厅）</text>
+        </view>
+        <view class='type type2'>
+          <text>高层</text>
+          <text>80-180平米</text>
+          <text>（二房一厅 三房二厅）</text>
+        </view>
+        <view class='type type3'>
+          <text>别墅</text>
+          <text>180-360平米</text>
+          <text>（五房二厅 六房三厅）</text>
+        </view>
+      </view>
+    </view> 
+    <!-- 楼盘亮点 -->
+    <view class='hours-lightspot'>
+      <text class='title'>楼盘点亮</text>
+      <view class='overview'>
+        <text>亮点概述</text>
+        <text>首创5M智慧健康社区；60分钟直达香港</text>
+      </view>
+      <view class='other-list'>
+        <view class='other-list-item'>
+          <text>地铁交通</text>
+          <view class='tip'>距离庆盛约15分钟车程，步行5分钟到鱼窝头公交总站s</view>
+        </view>
+        <view class='other-list-item'>
+          <text>医疗配套</text>
+          <view class='tip'>鱼窝头医院和东涌医院</view>
+        </view>
+        <view class='other-list-item'>
+          <text>购物消费</text>
+          <view class='tip'>东涌天汇百货，南沙万达广场</view>
+        </view>
+        <view class='other-list-item'>
+          <text>文化教育</text>
+          <view class='tip'>鱼窝头中学，东涌中学</view>
+        </view>
+        <view class='look-all'>
+          <text>查看全部</text>
+          <text class='iconfont iconxiajiantou'></text>
+        </view>
+      </view>
+    </view>
+    <!-- 户型 -->
+    <view class='huxing'>
+      <view class='top'>
+        <text>户型（2）</text>
+        <view>查看全部<text class='iconfont iconjiantou'></text></view>
+      </view>
+      <view class='tip'>
+        <text>98m² 舒适两居室</text>
+      </view>
+      <view class='img'>
+        <image src='https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'></image>
+        <view class='explain'>
+            <text class='totle'>暂无定价</text>
+            <text>户型优势</text>
+            <view>28m²大阳台</view>
+            <view>黄金地段</view>
+            <view>海景房</view>
+        </view>
+      </view>
+    </view>
+    <!-- 楼盘图 --> 
+    <view class='hours-imgs'>
+      <text class='title'>楼盘图</text>
+      <view class='img-list'>
+        <text>效果图（6）</text>
+        <view class="section section_gap">
+          <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
+            <view class='imgs' >
+              <image wx:for='{{imgUrls}}' wx:key="{{index}}" src='{{item}}' ></image>
+            </view>
+           </scroll-view>
+        </view>
+      </view>
+      <view class='img-list'>
+        <text>配套图（8）</text>
+        <view class="section section_gap">
+          <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
+            <view class='imgs'>
+              <image wx:for='{{imgUrls}}' wx:key="{{index}}" src='{{item}}' ></image>
+            </view>
+           </scroll-view>
+        </view>
+      </view>
+      <view class='img-list'>
+        <text>规划图（8）</text>
+        <view class="section section_gap">
+          <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
+            <view class='imgs'>
+              <image wx:for='{{imgUrls}}' wx:key="{{index}}" src='{{item}}' ></image>
+            </view>
+           </scroll-view>
+        </view>
+      </view> 
+    </view>
+    <!-- 项目详情 -->
+    <view class='product-detail'>
+      <text class='title'>项目详情</text>
+      <view class='detail-list'>
+        <view class='list1'>
+          <text class='txt1'>开发商</text>
+          <text class='txt2'>南昌市海欣房地产开发建设有限公司</text>
+        </view>
+        <view class='list2'>
+          <text class='txt1'>物业公司</text>
+          <text class='txt2'>深圳中海物业管理有限公司</text>
+        </view>
+        <view class='list3'>
+          <text class='txt1'>开盘时间</text>
+          <text class='txt2'>2019年5月10日</text>
+        </view>
+        <view class='list4'>
+          <text class='txt1'>交房时间</text>
+          <text class='txt2'>2021年10月1日</text>
+        </view>
+        <view class='list5'>
+          <text class='txt1'>产权年限</text>
+          <text class='txt2'>70年</text>
+        </view>
+        <view class='list6'>
+          <text class='txt1'>产品类型</text>
+          <text class='txt2'>高层</text>
+        </view>
+        <view class='list7'>
+          <text class='txt1'>装修状态</text>
+          <text class='txt2'>毛坯</text>
+        </view>
+        <view class='list8'>
+          <text class='txt1'>物业费</text>
+          <text class='txt2'>暂无资料</text>
+        </view>
+        
+      </view>
+    </view>
+
+
+  </view> 
+</view>
