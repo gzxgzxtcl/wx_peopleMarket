@@ -1,2 +1,51 @@
 <!--pages/recommend/recommend.wxml-->
-<text>pages/recommend/recommend.wxml</text>
+<view>
+  <ul class='list'>
+    <li>
+      <span class='title required'>客户姓名</span>
+      <span class="inp">
+        <input placeholder-class="phcolor" type='text' placeholder="请输入姓名" />
+      </span>
+    </li>
+    <li>
+      <span class='title required'>性别</span>
+      <span class="">
+      </span>
+    </li>
+    <li>
+      <span class='title required'>客户电话</span>
+      <span class="inp">
+        <input placeholder-class="phcolor" type='text' placeholder="请输入客户电话" />
+      </span>
+    </li>
+    <li>
+      <span class='title required'>城市</span>
+      <span class="inp">
+        <input placeholder-class="phcolor" type='text' placeholder="请选择城市" />
+      </span>
+    </li>
+    <li>
+      <span class='title required'>推荐楼盘</span>
+      <span class="inp">
+        <input placeholder-class="phcolor" type='text' placeholder="请选择" />
+      </span>
+    </li>
+    <li style="height:200rpx;margin-top:20rpx;margin-bottom:40rpx">
+      <textarea class='textsty' style='' placeholder="请输入客户相关描述，如意向户型、面积等" />
+    </li>
+    <li>
+      <span class='title'>推荐人</span>
+      <span class="">赵王章</span>
+    </li>
+    <li>
+      <span class='title'>推荐人电话</span>
+      <span class="">1860008888</span>
+    </li>
+    <li>
+      <span class='title'>推荐身份</span>
+      <span class=""></span>
+    </li>
+  </ul>
+
+  <button class='bindSub'>确认推荐</button>
+</view>
