@@ -20,7 +20,6 @@
 swiper{
   width: 810rpx;
   height: 403rpx;
-  background: pink;
 }
 swiper image{
   width: 100%;
@@ -29,24 +28,22 @@ swiper image{
 
 /* 详情样式 */
 .info{
-  background: pink;
   margin-top: -40rpx;
   border-radius: 20rpx 20rpx 0 0;
   position: relative;
   overflow: hidden;
   padding-left: 40rpx;
   padding-right: 40rpx;
+  background: #ffffff;
 }
 .info .name-money{
   height: 56rpx;
   margin-top: 28rpx;
-  background: yellow;
   display: flex;
   align-items: center; 
 }
 .info .name-money .name{
   width: 50%;
-  background: greenyellow;
   display: flex;
   align-items: flex-end;
 }
@@ -67,10 +64,10 @@ swiper image{
   border-radius: 4rpx;
   margin-left: 20rpx;
   margin-bottom: 8rpx;
+  color: #ffffff;
 }
 .info .name-money .money{
   width: 50%;
-  background: blue;
   display: flex;
   align-items: flex-end;
   padding-left: 5rpx;
@@ -81,8 +78,9 @@ swiper image{
   font-size: 24rpx;
   font-family: 'PingFangTC-Regular';
   color: #999999;
+  margin-right: 14rpx;
 }
-.info .name-money .money view .hours-money{
+.info .name-money .money .hours-money{
   font-size: 32rpx;
   font-family: 'PingFangTC-Regular';
   color: #20A0FF;
@@ -121,14 +119,12 @@ swiper image{
 /* 地址样式 */
 .info .address{
   height: 100rpx;
-  background: yellow;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .info .address>view{
   height: 40rpx;
-  background: greenyellow;
   display: flex;
 }
 .info .address .title1{
@@ -158,6 +154,11 @@ swiper image{
   color: #8D91A2;
   font-size: 24rpx;
   font-family: 'PingFang-SC-Medium';
+  margin-right: 7rpx;
+}
+.info .address view image{
+  width: 10rpx;
+  height: 20rpx;
 }
 
 /* 优惠样式 */
@@ -203,7 +204,6 @@ swiper image{
   height: 100rpx;
   display: flex;
   align-items: center;
-  background: yellow;
 }
 .info .hours-type .top view{
   width: 53rpx;
@@ -225,7 +225,6 @@ swiper image{
   font-family: 'PingFang-SC-Medium';
 }
 .info .hours-type .bottom-list{
-  background: greenyellow;
   padding-left: 40rpx;
 }
 .info .hours-type .bottom-list .type{
@@ -249,17 +248,12 @@ swiper image{
   color: #8D91A2;
 }
 /* 楼盘亮点样式 */
-.info .hours-lightspot{
-  background: yellow;
-}
 .info .hours-lightspot .title{
   font-size: 36rpx;
   font-family: 'PingFang-SC-Medium';
   color: #111111;
-  background: green;
 }
 .info .hours-lightspot .overview{
-  background: lightcyan;
   height: 86rpx;
   padding-left: 32rpx;
   display: flex;
@@ -287,7 +281,6 @@ swiper image{
   color: #8D91A2;
 }
 .info .hours-lightspot .other-list{
-  background: greenyellow;
   padding-left: 32rpx;
   margin-top: 40rpx;
   display: flex;
@@ -296,7 +289,6 @@ swiper image{
 }
 .info .hours-lightspot .other-list .other-list-item{
   width: 280rpx;
-  background: lightgray;
   margin-bottom: 40rpx;
 }
 .info .hours-lightspot .other-list .other-list-item text{
@@ -314,7 +306,7 @@ swiper image{
 .info .hours-lightspot .look-all{
   width: 100%;
   height: 46rpx;
-  background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.7), rgba(255,255,255,1));
+  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.7), rgba(255,255,255,1));
   font-size: 24rpx;
   font-family: 'PingFang-SC-Medium';
   color: #8D91A2 ;
@@ -328,14 +320,12 @@ swiper image{
 
 /* 户型样式 */
 .info .huxing{
-  background: yellow;
   margin-top: 40rpx;
 }
 .info .huxing .top{
   height: 50rpx;
   display: flex;
   align-items: center;
-  background: blueviolet;
   justify-content: space-between;
 }
 .info .huxing .top>text{
@@ -348,7 +338,6 @@ swiper image{
   font-size: 24rpx;
   font-family: 'PingFang-SC-Medium';
   color: #8D91A2 ;
-  background: lightgreen;
   display: flex;
   align-items: center;
 }
@@ -358,7 +347,6 @@ swiper image{
 }
 .info .huxing .tip{
   height: 40rpx;
-  background: greenyellow;
   font-size: 28rpx;
   color: #111111;
   font-family: 'PingFangTC-Medium';
@@ -367,7 +355,6 @@ swiper image{
 }
 .info .huxing .img{
   height: 332rpx;
-  background: green;
   margin-top: 32rpx;
   display: flex;
 }
@@ -379,7 +366,6 @@ swiper image{
 .info .huxing .img .explain{
   height: 100%;
   padding-left: 18rpx;
-  background: greenyellow;
 }
 .info .huxing .img .explain .totle{
   display: block;
@@ -419,7 +405,6 @@ swiper image{
 }
 .info .hours-imgs .img-list{
   height: 380rpx;
-  background: greenyellow;
   display: flex;
   flex-direction: column;
   margin-top: 20rpx;
@@ -430,13 +415,11 @@ swiper image{
   font-size: 28rpx;
   font-family: 'PingFang-SC-Medium';
   color: #333333;
-  background: red;
   margin-bottom: 12rpx;
 }
 .info .hours-imgs .img-list .imgs{
   width: 2000rpx;
   height: 328rpx;
-  background: lightseagreen;
   display: flex;
   flex-wrap: nowrap;
   overflow: hidden;
@@ -450,11 +433,121 @@ swiper image{
 }
 /* 项目详情样式 */
 .info .product-detail{
-  background: greenyellow;
   margin-top: 40rpx;
 }
 .info .product-detail .title{
-  font-size: 18rpx;
+  display: block;
+  font-size: 36rpx;
   color: #111111;
   font-family: 'PingFang-SC-Medium';
+  margin-bottom: 32rpx;
+}
+.info .product-detail .detail-list>view{
+  height: 40rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+}
+.info .product-detail .detail-list>view:last-child{
+  margin: 0;
+}
+.info .product-detail .detail-list .txt1{
+  display: block;
+  width: 116rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 28rpx;
+  color: #333333;
+  font-family: 'PingFang-SC-Medium';
+  margin-right: 30rpx;
+}
+.info .product-detail .detail-list .txt2{
+  display: block;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 24rpx;
+  color: #8D91A2 ;
+  font-family: 'PingFang-SC-Medium';
+}
+.info .product-detail .hr{
+  margin-top: 30rpx;
+  height: 2rpx;
+  width: 100%;
+  background: #E5E5E5;
+}
+/* 免责条款样式 */
+.info .no-duty{
+  width: 100%;
+  font-size: 24rpx;
+  font-family: 'PingFang-SC-Medium';
+  color: #8D91A2;
+  margin-top:30rpx; 
+  margin-bottom: 44rpx;
+}
+.info .no-duty view{
+  float: left;
+}
+.info .no-duty text{
+  overflow-wrap:break-word;
+}
+/* 底部tabbar样式 */
+.info .tabar{
+  height: 108rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.info .tabar .attention,.info .tabar .share{
+  display: flex;
+  flex-direction: column;
+  width: 50rpx;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 24rpx;
+  font-family: 'PingFang-SC-Medium';
+  color: #8D91A2;
+}
+.info .tabar .attention{
+  margin-left: 34rpx;
+  margin-right: 60rpx;
+}
+.info .tabar .connect{
+  width: 400rpx;
+  height: 80rpx;
+  background: #20A0FF;
+  color: #ffffff;
+  font-size:30rpx;
+  font-family: 'PingFangTC-Regular';
+  line-height: 80rpx;
+  text-align: center; 
+  border-radius: 16rpx;
+  margin-left: 70rpx;
+}
+/* 悬浮窗样式 */
+.info .floating{
+  width: 50rpx;
+  height: 200rpx;
+  background: rgba(32,160,255,0.8);
+  border-radius: 4rpx;
+  padding: 0 24rpx 0 26rpx;
+  color: #ffffff;
+  position: absolute;
+  bottom: 180rpx;
+  right: 30rpx;
+}
+.info .floating>view:first-child{
+  padding-top: 18rpx;
+  height: 82rpx;
+  font-family: 'PingFangTC-Regular';
+  font-size: 24rpx;
+  border-bottom: 2rpx solid #ffffff;
+}
+.info .floating>view:last-child{
+  height: 82rpx;
+  font-family: 'PingFangTC-Regular';
+  font-size: 24rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
