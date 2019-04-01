@@ -1,3 +1,22 @@
 <!--pages/oneself/oneself.wxml-->
-<text>pages/oneself/oneself.wxml</text>
-<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">sss</button>
+<view class='headInfo'>
+  <view>
+    <open-data class='userAvatar' type="userAvatarUrl"></open-data>
+  </view>
+  <view>
+    <view>
+      <open-data class='userNickName' type="userNickName"></open-data>
+    </view>
+    <view class='userTp'>独立经济人</view>
+  </view>
+</view>
+<view>
+  <ul class='controlList'>
+    <li style='margin-top:20rpx;'>我的推荐</li>
+    <li>我的优惠券</li>
+    <li>我的关注</li>
+    <li style='border-bottom: 1rpx solid #e6e6e6;' data-url='../bindUser/bindUser' bindtap='pageTobind'>绑定用户</li>
+    <li style='margin-top:20rpx;border-bottom: 1rpx solid #e6e6e6;' data-url='../setting/setting' bindtap='pageTobind'>设置</li>
+  </ul>
+</view>
+<!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">sss</button> -->

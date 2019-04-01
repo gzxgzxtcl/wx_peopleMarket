@@ -1,10 +1,11 @@
 {
   "pages": [
-      "pages/oneself/oneself",
     "pages/index/index",
     "pages/recommend/recommend",
     "pages/information/information",
-  
+    "pages/oneself/oneself",
+    "pages/bindUser/bindUser",
+    "pages/setting/setting",
     "pages/map/map"
   ],
   "window": {
@@ -20,14 +21,17 @@
     "borderStyle": "black",
     "list": [
       {
+        "iconPath": "images/home1.png",
+        "selectedIconPath": "images/home2.png",
         "pagePath": "pages/index/index",
         "text": "首页"
       },
       {
+        "iconPath": "images/self1.png",
+        "selectedIconPath": "images/self2.png",
         "pagePath": "pages/oneself/oneself",
         "text": "我的"
       }
     ]
-  },
-  "sitemapLocation": "sitemap.json"
+  }
 }
