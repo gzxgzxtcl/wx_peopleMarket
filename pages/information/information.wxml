@@ -40,12 +40,12 @@
       <view class='add1'>
         <text class='title1'>售楼处地址</text>
         <text class='title2'>罗湖-菜屋围-滨河路1005路中..</text>
-        <view>导航<text>></text></view>
+        <view>导航<image src='../../icon/项目详情/右.png'></image></view>
       </view>
       <view class='add2'>
         <text class='title1'>售楼处地址</text>
         <text class='title2'>罗湖-菜屋围-滨河路1005路中..</text>
-        <view>导航<text>></text></view>
+        <view>导航<image src='../../icon/项目详情/右.png'></image></view>
       </view>
     </view>
     <!-- 优惠 -->
@@ -196,11 +196,35 @@
         <view class='list8'>
           <text class='txt1'>物业费</text>
           <text class='txt2'>暂无资料</text>
-        </view>
-        
+        </view> 
+      </view>
+      <view class='hr'></view>
+    </view>
+    <!-- 免责条款 -->
+    <view class='no-duty'>
+      <view>免责条款:</view>  <text>***************************************************************************************************************************************************************************************************************************</text>
+    </view>
+    <!-- 底部tabar -->
+    <view class='tabar'>
+      <view class='attention'>
+        <text>图</text>
+        <text>关注</text>
+      </view>
+      <view class='share'>
+        <text>图</text>
+        <text>分享</text>
+      </view>
+      <view class='connect'>
+        联系我们
       </view>
     </view>
-
-
+    <!-- 悬浮窗 -->
+    <view class='floating'>
+      <view>佣金规则</view>
+      <view>
+        <view class='icon'>图</view>
+        <text>推荐</text>
+      </view>
+    </view>
   </view> 
 </view>

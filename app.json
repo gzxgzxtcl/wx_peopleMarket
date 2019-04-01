@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/information/information",
     "pages/index/index",
     "pages/recommend/recommend",
-    "pages/information/information",
+
     "pages/oneself/oneself",
     "pages/bindUser/bindUser",
     "pages/setting/setting",
