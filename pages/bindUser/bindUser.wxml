@@ -1,0 +1,38 @@
+<!--pages/bindUser/bindUser.wxml-->
+<view>
+  <ul class='bindList'>
+    <li>
+      <span class='title'>业主类型</span>
+      <!-- <span style='float:right;color:#B2B2B2;'>请选择业主类型</span> -->
+      <span style='float:right;color:#B2B2B2;'>
+        <picker mode="selector" bindchange="bindPickerChange" range-key="name" value='{{arrayIndex}}' range="{{array}}">
+          <view class="picker">
+            <!-- 请选择业主类型 -->
+            {{array[arrayIndex].name}}
+          </view>
+        </picker>
+      </span>
+
+    </li>
+    <li>
+      <span class='title'>姓名</span>
+      <span class="inp">
+        <input placeholder-class="phcolor" type='text' placeholder="请输入姓名" />
+      </span>
+    </li>
+    <li>
+      <span class='title'>身份证号</span>
+      <span class="inp">
+        <input placeholder-class="phcolor" type='idcard' placeholder="请输入身份证号" />
+      </span>
+    </li>
+    <li>
+      <span class='title'>手机号</span>
+      <span class="inp">
+        <input placeholder-class="phcolor" type='number' placeholder="请输入手机号" />
+      </span>
+    </li>
+  </ul>
+
+  <button class='bindSub'>确定</button>
+</view>
