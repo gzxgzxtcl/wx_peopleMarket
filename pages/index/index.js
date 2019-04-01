@@ -30,6 +30,13 @@ Page({
   swiperChange(e){  
     this.setData({ swiperCurrent: e.detail.current})
   },
+//跳转详情页
+  goInformation(){
+    wx.navigateTo({
+      url: '../information/information'
+    })
+  },
+
   onLoad: function() {
 
   },

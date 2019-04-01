@@ -1,1 +1,460 @@
 /* pages/information/information.wxss */
+@import '../../utils/icon.wxss';
+
+.information .num{
+  background: #000000;
+  width: 50rpx;
+  height: 24rpx;
+  font-size: 18rpx;
+  font-family: 'PingFangTC';
+  text-align: center;
+  line-height: 24rpx;
+  color: #ffffff;
+  border-radius: 12rpx;
+  position: absolute;
+  z-index: 30;
+  right: 24rpx;
+  top: 308rpx;
+}
+
+swiper{
+  width: 810rpx;
+  height: 403rpx;
+  background: pink;
+}
+swiper image{
+  width: 100%;
+  height: 100%;
+}
+
+/* 详情样式 */
+.info{
+  background: pink;
+  margin-top: -40rpx;
+  border-radius: 20rpx 20rpx 0 0;
+  position: relative;
+  overflow: hidden;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+}
+.info .name-money{
+  height: 56rpx;
+  margin-top: 28rpx;
+  background: yellow;
+  display: flex;
+  align-items: center; 
+}
+.info .name-money .name{
+  width: 50%;
+  background: greenyellow;
+  display: flex;
+  align-items: flex-end;
+}
+.info .name-money .name text{
+  font-family: 'PingFang-SC-Medium';
+  font-size: 40rpx;
+  color: #333333;
+  line-height: 56rpx;
+}
+.info .name-money .name view{
+  width: 64rpx;
+  height: 26rpx;
+  background: #20A0FF 60%;
+  text-align: center;
+  line-height: 26rpx;
+  font-size: 18rpx;
+  font-family: 'PingFangTC';
+  border-radius: 4rpx;
+  margin-left: 20rpx;
+  margin-bottom: 8rpx;
+}
+.info .name-money .money{
+  width: 50%;
+  background: blue;
+  display: flex;
+  align-items: flex-end;
+  padding-left: 5rpx;
+}
+.info .name-money .money view:first-child{
+  height: 34rpx;
+  line-height: 34rpx;
+  font-size: 24rpx;
+  font-family: 'PingFangTC-Regular';
+  color: #999999;
+}
+.info .name-money .money view .hours-money{
+  font-size: 32rpx;
+  font-family: 'PingFangTC-Regular';
+  color: #20A0FF;
+  margin-left: 14rpx;
+}
+.info .name-money .money view:nth-last-child(2){
+  font-size: 24rpx;
+  font-family: 'PingFangTC-Regular';
+  color: #333333;
+  line-height: 34rpx;
+  margin-left: 4rpx;
+}
+.info .name-money .money view:last-child{
+  width: 24.2rpx;
+  height: 24.2rpx;
+  background: red;
+  border-radius: 50%;
+  margin-left: 20rpx;
+  margin-bottom: 6rpx;
+}
+
+/* 标签样式 */
+.information .tag{
+  display: flex;
+  height: 120rpx;
+  align-items: center;
+}
+.information .tag view{
+  padding: 0 10rpx;
+  font-size: 20rpx;
+  line-height: 30rpx;
+  border: 2px solid #979797;
+  border-radius: 4rpx;
+  margin-right: 20rpx;
+}
+/* 地址样式 */
+.info .address{
+  height: 100rpx;
+  background: yellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.info .address>view{
+  height: 40rpx;
+  background: greenyellow;
+  display: flex;
+}
+.info .address .title1{
+  display: block;
+  width: 142rpx;
+  height: 100%;
+  font-size: 28rpx;
+  font-family: 'PingFang-SC-Medium';
+  color: #333333;
+  margin-right: 28rpx;
+}
+.info .address .title2{
+  display: block;
+  width: 402rpx;
+  height: 100%;
+  font-size: 28rpx;
+  font-family: 'PingFang-SC-Regular';
+  color: #333333;
+  margin-right: 28rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.info .address view{
+  display: flex;
+  align-items: center;
+  color: #8D91A2;
+  font-size: 24rpx;
+  font-family: 'PingFang-SC-Medium';
+}
+
+/* 优惠样式 */
+.info .youhui{
+  width: 100%;
+  height: 100rpx;
+  box-shadow: 0rpx 0rpx 10rpx 0rpx #666666;
+  margin: 40rpx 0rpx;
+  display: flex;
+  align-items: center;
+  border-radius: 16rpx;
+}
+.info .youhui view{
+  width: 53rpx;
+  height: 51.2rpx;
+  background: #20A0FF 60%;
+  color: #ffffff;
+  font-size: 40rpx;
+  font-family: 'PingFangSC-Regular';
+  line-height: 51.2rpx;
+  /* font-weight: 900; */
+  text-align: center;
+  border-radius: 40% 0 40% 0;
+  margin-right: 40rpx;
+  margin-left: 40rpx;
+}
+.info .youhui text{
+  color: #42436A;
+  font-size: 32rpx;
+  font-family: 'PingFang-SC-Medium';
+}
+/* 房型样式 */
+.info .hours-type{
+  width: 100%;
+  height: 284rpx;
+  box-shadow: 0rpx 0rpx 10rpx 0rpx #666666;
+  margin: 40rpx 0rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.info .hours-type .top{
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  background: yellow;
+}
+.info .hours-type .top view{
+  width: 53rpx;
+  height: 51.2rpx;
+  background: #20A0FF 60%;
+  color: #ffffff;
+  font-size: 40rpx;
+  font-family: 'PingFangSC-Regular';
+  line-height: 51.2rpx;
+  /* font-weight: 900; */
+  text-align: center;
+  border-radius: 40% 0 40% 0;
+  margin-right: 40rpx;
+  margin-left: 40rpx;
+}
+.info .hours-type .top text{
+  color: #42436A;
+  font-size: 32rpx;
+  font-family: 'PingFang-SC-Medium';
+}
+.info .hours-type .bottom-list{
+  background: greenyellow;
+  padding-left: 40rpx;
+}
+.info .hours-type .bottom-list .type{
+  height: 40rpx;
+  line-height: 40rpx;
+  margin-bottom: 20rpx;
+}
+.info .hours-type .bottom-list .type text:first-child{
+  font-size: 28rpx;
+  font-family: 'PingFang-SC-Medium';
+  color: #333333;
+}
+.info .hours-type .bottom-list .type text:nth-of-type(2){
+  font-size: 28rpx;
+  font-family: 'PingFang-SC-Regular';
+  color: #333333;
+}
+.info .hours-type .bottom-list .type text:nth-of-type(3){
+  font-size: 28rpx;
+  font-family: 'PingFang-SC-Regular';
+  color: #8D91A2;
+}
+/* 楼盘亮点样式 */
+.info .hours-lightspot{
+  background: yellow;
+}
+.info .hours-lightspot .title{
+  font-size: 36rpx;
+  font-family: 'PingFang-SC-Medium';
+  color: #111111;
+  background: green;
+}
+.info .hours-lightspot .overview{
+  background: lightcyan;
+  height: 86rpx;
+  padding-left: 32rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content :space-between;
+  flex-wrap: wrap;
+  margin-top: 32rpx;
+}
+.info .hours-lightspot .overview text:first-child{
+  display: block;
+  height: 34rpx;
+  width: 100%;
+  line-height: 34rpx;
+  font-size: 28rpx;
+  font-family: 'PingFang-SC-Medium';
+  color: #333333;
+}
+.info .hours-lightspot .overview text:last-child{
+  display: block;
+  height: 34rpx;
+  width: 100%;
+  line-height: 34rpx;
+  font-size: 24rpx;
+  font-family: 'PingFang-SC-Medium';
+  color: #8D91A2;
+}
+.info .hours-lightspot .other-list{
+  background: greenyellow;
+  padding-left: 32rpx;
+  margin-top: 40rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.info .hours-lightspot .other-list .other-list-item{
+  width: 280rpx;
+  background: lightgray;
+  margin-bottom: 40rpx;
+}
+.info .hours-lightspot .other-list .other-list-item text{
+  font-size: 28rpx;
+  color: #333333;
+  font-family: 'PingFang-SC-Medium';
+}
+.info .hours-lightspot .other-list .other-list-item view{
+  font-size: 24rpx;
+  color: #8D91A2;
+  font-family: 'PingFang-SC-Medium'; 
+  letter-spacing: 0.46rpx;
+  margin-top: 18rpx;
+}
+.info .hours-lightspot .look-all{
+  width: 100%;
+  height: 46rpx;
+  background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.7), rgba(255,255,255,1));
+  font-size: 24rpx;
+  font-family: 'PingFang-SC-Medium';
+  color: #8D91A2 ;
+  text-align: center;
+  line-height: 46rpx;
+  margin-top: -50rpx;
+}
+.info .hours-lightspot .look-all text:first-child{
+  margin-right: 6rpx;
+}
+
+/* 户型样式 */
+.info .huxing{
+  background: yellow;
+  margin-top: 40rpx;
+}
+.info .huxing .top{
+  height: 50rpx;
+  display: flex;
+  align-items: center;
+  background: blueviolet;
+  justify-content: space-between;
+}
+.info .huxing .top>text{
+  font-size: 36rpx;
+  color: #111111;
+  font-family: 'PingFangTC-Regular';
+}
+.info .huxing .top>view{
+  height: 100%;
+  font-size: 24rpx;
+  font-family: 'PingFang-SC-Medium';
+  color: #8D91A2 ;
+  background: lightgreen;
+  display: flex;
+  align-items: center;
+}
+.info .huxing .top>view text{
+  font-size: 20rpx;
+  margin-left: 10rpx; 
+}
+.info .huxing .tip{
+  height: 40rpx;
+  background: greenyellow;
+  font-size: 28rpx;
+  color: #111111;
+  font-family: 'PingFangTC-Medium';
+  margin-top: 38rpx;
+  line-height: 40rpx;
+}
+.info .huxing .img{
+  height: 332rpx;
+  background: green;
+  margin-top: 32rpx;
+  display: flex;
+}
+.info .huxing .img image{
+  width: 442rpx;
+  height: 100%;
+  border-radius: 6rpx;
+}
+.info .huxing .img .explain{
+  height: 100%;
+  padding-left: 18rpx;
+  background: greenyellow;
+}
+.info .huxing .img .explain .totle{
+  display: block;
+  height: 50rpx;
+  color: #B4B9CB;
+  font-size: 36rpx;
+  font-family: 'PingFangTC-Light'; 
+}
+.info .huxing .img .explain text:nth-of-type(2){
+  display: block;
+  height: 40rpx;
+  color: #333333;
+  font-size: 28rpx;
+  font-family: 'PingFangTC-Light'; 
+  margin-top: 30rpx;
+  margin-bottom: 10rpx;
+}
+.info .huxing .img .explain view{
+  height: 40rpx;
+  color: #8D91A2;
+  font-family: 'PingFangTC-Light';
+  font-size: 24rpx;
+  padding: 0 12rpx;
+  border: 1rpx solid #8D91A2;
+  border-radius: 6rpx;
+  line-height: 40rpx;
+  margin-bottom: 12rpx;
+}
+/* 楼盘图样式 */
+.info .hours-imgs{
+  margin-top: 30rpx;
+}
+.info .hours-imgs .title{
+  font-size: 36rpx;
+  color: #111111;
+  font-family: 'PingFang-SC-Medium';
+}
+.info .hours-imgs .img-list{
+  height: 380rpx;
+  background: greenyellow;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rpx;
+}
+.info .hours-imgs .img-list text{
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 28rpx;
+  font-family: 'PingFang-SC-Medium';
+  color: #333333;
+  background: red;
+  margin-bottom: 12rpx;
+}
+.info .hours-imgs .img-list .imgs{
+  width: 2000rpx;
+  height: 328rpx;
+  background: lightseagreen;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+.info .hours-imgs .img-list .imgs image{
+  display: block;
+  width: 440rpx;
+  height: 100%;
+  margin-right: 20rpx;
+  border-radius: 14rpx;
+}
+/* 项目详情样式 */
+.info .product-detail{
+  background: greenyellow;
+  margin-top: 40rpx;
+}
+.info .product-detail .title{
+  font-size: 18rpx;
+  color: #111111;
+  font-family: 'PingFang-SC-Medium';
+}
