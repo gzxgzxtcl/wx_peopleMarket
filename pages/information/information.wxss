@@ -454,7 +454,14 @@ swiper image{
   margin-top: 40rpx;
 }
 .info .product-detail .title{
-  font-size: 18rpx;
+  font-size: 36rpx;
   color: #111111;
   font-family: 'PingFang-SC-Medium';
+  margin-bottom: 32rpx;
 }
+.info .product-detail .detail-list>view{
+  height: 40rpx;
+  background: yellow;
+  margin-bottom: 20rpx;
+}
+
