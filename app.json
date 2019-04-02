@@ -1,12 +1,14 @@
 {
   "pages": [
+    
     "pages/index/index",
     "pages/recommend/recommend",
     "pages/information/information",
     "pages/oneself/oneself",
     "pages/bindUser/bindUser",
     "pages/setting/setting",
-    "pages/map/map"
+    "pages/map/map",
+    "pages/clients/client"
   ],
   "window": {
     "backgroundTextStyle": "light",
