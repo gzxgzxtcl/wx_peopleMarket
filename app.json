@@ -8,6 +8,7 @@
     "pages/setting/setting",
     "pages/map/map",
     "pages/clients/client",
+    "pages/coupon/coupon",
     "pages/mycoupon/mycoupon"
   ],
   "window": {
