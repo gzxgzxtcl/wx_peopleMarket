@@ -1,0 +1,39 @@
+<!--pages/mycoupon/mycoupon.wxml-->
+<!-- 引入共有模板 -->
+<view class='mycoupon'>
+  <view class='condition'>
+    <text bindtap='clickItem' data-val='未使用' class="{{usedVal==='未使用'?'is-sel':''}}">未使用</text>
+    <text bindtap='clickItem' data-val='已使用' class="{{usedVal==='已使用'?'is-sel':''}}">已使用</text>
+    <text bindtap='clickItem' data-val='已过期' class="{{usedVal==='已过期'?'is-sel':''}}">已过期</text>
+  </view>
+  <!-- 优惠券 -->
+  <view class='coupons-list'>
+    <view class='coupon-item' wx:for='{{5}}' wx:key='{{index}}'>
+      <image wx:if='{{!isOverDate}}' src='../../images/reduced.png'></image>
+      <image wx:else src='../../images/reduced_due.png'></image>
+      <view class='info'>
+        <view class='num'>
+          <text>98</text>
+          <text>折</text>
+        </view>
+        <view class='explain'>
+          <view class='top'>
+            <view>
+              <text>深圳</text>
+              <text>·</text>
+              <text>中海天钻</text>
+            </view>
+            <text>未使用</text>
+          </view>
+          <view class='bottom'>
+            <view>使用规则：<text>购买中海天钻户型可用</text></view>
+            <view>使用期限：<text>2019.5.1 - 2019.7.30</text></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
