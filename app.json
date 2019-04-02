@@ -7,7 +7,8 @@
     "pages/bindUser/bindUser",
     "pages/setting/setting",
     "pages/map/map",
-    "pages/clients/client"
+    "pages/clients/client",
+    "pages/mycoupon/mycoupon"
   ],
   "window": {
     "backgroundTextStyle": "light",
