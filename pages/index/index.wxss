@@ -1,53 +1,60 @@
 /**index.wxss**/
 @import '../../utils/icon.wxss';
 
-.container{
+.container {
   margin: 0;
   padding: 0;
   background: #f9fbff;
 }
-.city-sel{
+
+.city-sel {
   display: flex;
   width: 100%;
   height: 80rpx;
   justify-content: space-between;
   align-items: center;
-  background: #ffffff;
+  background: #fff;
 }
-.city-sel .left-city{
+
+.city-sel .left-city {
   display: flex;
   font-size: 32rpx;
   font-family: 'PingFang-SC-Medium';
   letter-spacing: 0.28rpx;
   padding-left: 20rpx;
 }
-.city-sel .left-city view{
+
+.city-sel .left-city view {
   margin-right: 11rpx;
   color: #1ca1ff;
   font-size: 39.6rpx;
 }
-.city-sel .right-check{
+
+.city-sel .right-check {
   font-family: 'PingFang-SC-Medium';
   font-size: 24rpx;
-  color: #8D91A2;
+  color: #8d91a2;
   display: flex;
 }
-.city-sel .right-check view{
+
+.city-sel .right-check view {
   margin-right: 20rpx;
   margin-left: 10rpx;
   margin-top: 5rpx;
   font-size: 25rpx;
 }
 
-swiper{
+swiper {
   width: 100%;
   height: 400rpx;
 }
-swiper image{
+
+swiper image {
   width: 100%;
   height: 100%;
 }
-.dot{
+
+.dot {
   width: 120rpx;
   height: 30rpx;
   display: flex;
@@ -56,27 +63,30 @@ swiper image{
   position: absolute;
   top: 32%;
   margin: auto;
-  z-index: 30; 
+  z-index: 30;
 }
-.dot view{
+
+.dot view {
   width: 16rpx;
   height: 16rpx;
-  border: 2rpx solid #000000;
-  background: #ffffff;
+  border: 2rpx solid #000;
+  background: #fff;
   border-radius: 50%;
 }
-.dot .active{
-  border: 2rpx solid #ffffff;
-  background: #000000;
-} 
 
- .gongneng-box{
+.dot .active {
+  border: 2rpx solid #fff;
+  background: #000;
+}
+
+.gongneng-box {
   position: relative;
   width: 100%;
-  height: 100rpx; 
-} 
-.goneneng{
-  width:685rpx;
+  height: 100rpx;
+}
+
+.goneneng {
+  width: 685rpx;
   height: 160rpx;
   display: flex;
   position: relative;
@@ -87,10 +97,11 @@ swiper image{
   margin: auto;
   justify-content: space-around;
   border-radius: 16rpx;
-  background: #ffffff;
-  box-shadow: 0 0.5rpx 0.5rpx 0.5rpx #eeeeee;
+  background: #fff;
+  box-shadow: 0 0.5rpx 0.5rpx 0.5rpx #eee;
 }
-.goneneng view{
+
+.goneneng view {
   width: 98rpx;
   height: 100%;
   display: flex;
@@ -98,49 +109,53 @@ swiper image{
   justify-content: space-around;
   align-items: center;
   font-family: "PingFang-SC-Medium";
-  color: #8D91A2;
-  font-size: 24rpx; 
-  background: pink；
+  color: #8d91a2;
+  font-size: 24rpx;
+  background: pink；;
 }
-.goneneng view image{
+
+.goneneng view image {
   width: 80%;
   height: 50%;
 }
 
-.hours{
+.hours {
   width: 100%;
   height: 44rpx;
   font-family: "PingFang-SC-Medium";
   font-size: 32rpx;
-  color: #333333;
+  color: #333;
   letter-spacing: 0.28rpx;
   padding: 30rpx 0 30rpx 30rpx;
   display: flex;
 }
 
-.hours-list{
+.hours-list {
   width: 658rpx;
 }
-.hours-list .img{
+
+.hours-list .img {
   width: 100%;
   height: 328rpx;
   border-radius: 14rpx;
 }
-.hours-list .img image{
+
+.hours-list .img image {
   width: 100%;
   height: 100%;
   background: pink;
   border-radius: 14rpx;
 }
 
-.hours-list .hours-info{
-  width:  658rpx;
+.hours-list .hours-info {
+  width: 658rpx;
   height: 100rpx;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.hours-list .left-info{
+
+.hours-list .left-info {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -149,60 +164,67 @@ swiper image{
   padding-right: 26rpx;
 }
 
-.hours-list .hours-name{
+.hours-list .hours-name {
   display: flex;
   align-items: center;
 }
-.hours-list .hours-name>text{
+
+.hours-list .hours-name>text {
   font-family: 'PingFang-SC-Medium';
   font-size: 28rpx;
-  color: #333333;
-   margin-right: 16rpx;
+  color: #333;
+  margin-right: 16rpx;
 }
-.hours-list .youhui{
+
+.hours-list .youhui {
   font-family: 'PingFangTC';
   font-size: 18rpx;
-  color: #ffffff;
+  color: #fff;
   display: flex;
 }
-.hours-list .youhui text{
-  background: #20A0FF 60%;
+
+.hours-list .youhui text {
+  background: #20a0ff 60%;
 }
-.hours-list .youhui .t1{
+
+.hours-list .youhui .t1 {
   display: block;
   padding: 0 2rpx 0 11rpx;
   border-radius: 4rpx;
 }
-.hours-list .youhui .t2{
+
+.hours-list .youhui .t2 {
   padding: 0 3rpx 0 2rpx;
   border-radius: 4rpx;
   display: block;
   margin-right: 10rpx;
 }
-.hours-list .youhui .t3{
+
+.hours-list .youhui .t3 {
   padding: 0 1rpx 0 11rpx;
   border-radius: 4rpx;
   display: block;
 }
 
-.hours-list .tag{
+.hours-list .tag {
   display: flex;
 }
-.hours-list .tag text{
+
+.hours-list .tag text {
   display: block;
   padding: 0 10rpx;
   margin: 0 10rpx 0 0;
   border-radius: 4rpx;
-  border: 1rpx solid #979797; 
+  border: 1rpx solid #979797;
   font-family: 'PingFangTC-Light';
   font-size: 20rpx;
-  color: #333333;
+  color: #333;
   line-height: 28rpx;
   letter-spacing: 0.2rpx;
   text-align: center;
 }
 
-.hours-list .right-info{
+.hours-list .right-info {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -210,20 +232,24 @@ swiper image{
   justify-content: space-around;
   padding-left: 30rpx;
 }
-.hours-list .right-info .price{
+
+.hours-list .right-info .price {
   font-family: 'PingFangTC-Regular';
   font-size: 24rpx;
-  color: #999999;
+  color: #999;
   letter-spacing: 0.24rpx;
 }
-.hours-list .right-info .price text:first-child{
-  color: #FB1414;
+
+.hours-list .right-info .price text:first-child {
+  color: #fb1414;
 }
-.hours-list .right-info .hours-address{
+
+.hours-list .right-info .hours-address {
   font-family: 'PingFangTC-Light';
   font-size: 20rpx;
-  color: #333333;
+  color: #333;
 }
-.hours-list .right-info .hours-address .hours-address-icon{
+
+.hours-list .right-info .hours-address .hours-address-icon {
   font-size: 20rpx;
 }

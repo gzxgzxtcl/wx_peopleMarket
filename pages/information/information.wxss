@@ -1,18 +1,19 @@
 /* pages/information/information.wxss */
 @import '../../utils/icon.wxss';
-.information{
-  background: #ffffff;
+
+.information {
+  background: #fff;
 }
 
-.information .num{
-  background: #000000;
+.information .num {
+  background: #000;
   width: 50rpx;
   height: 24rpx;
   font-size: 18rpx;
   font-family: 'PingFangTC';
   text-align: center;
   line-height: 24rpx;
-  color: #ffffff;
+  color: #fff;
   border-radius: 12rpx;
   position: absolute;
   z-index: 30;
@@ -20,46 +21,52 @@
   top: 308rpx;
 }
 
-swiper{
+swiper {
   width: 810rpx;
   height: 403rpx;
 }
-swiper image{
+
+swiper image {
   width: 100%;
   height: 100%;
 }
 
 /* 详情样式 */
-.info{
+
+.info {
   margin-top: -40rpx;
   border-radius: 20rpx 20rpx 0 0;
   position: relative;
   overflow: hidden;
   padding-left: 40rpx;
   padding-right: 40rpx;
-  background: #ffffff;
+  background: #fff;
 }
-.info .name-money{
+
+.info .name-money {
   height: 56rpx;
   margin-top: 28rpx;
   display: flex;
-  align-items: center; 
+  align-items: center;
 }
-.info .name-money .name{
+
+.info .name-money .name {
   width: 50%;
   display: flex;
   align-items: flex-end;
 }
-.info .name-money .name text{
+
+.info .name-money .name text {
   font-family: 'PingFang-SC-Medium';
   font-size: 40rpx;
-  color: #333333;
+  color: #333;
   line-height: 56rpx;
 }
-.info .name-money .name view{
+
+.info .name-money .name view {
   width: 64rpx;
   height: 26rpx;
-  background: #20A0FF 60%;
+  background: #20a0ff 60%;
   text-align: center;
   line-height: 26rpx;
   font-size: 18rpx;
@@ -67,36 +74,41 @@ swiper image{
   border-radius: 4rpx;
   margin-left: 20rpx;
   margin-bottom: 8rpx;
-  color: #ffffff;
+  color: #fff;
 }
-.info .name-money .money{
+
+.info .name-money .money {
   width: 50%;
   display: flex;
   align-items: flex-end;
   padding-left: 5rpx;
 }
-.info .name-money .money view:first-child{
+
+.info .name-money .money view:first-child {
   height: 34rpx;
   line-height: 34rpx;
   font-size: 24rpx;
   font-family: 'PingFangTC-Regular';
-  color: #999999;
+  color: #999;
   margin-right: 14rpx;
 }
-.info .name-money .money .hours-money{
+
+.info .name-money .money .hours-money {
   font-size: 32rpx;
   font-family: 'PingFangTC-Regular';
-  color: #20A0FF;
+  color: #20a0ff;
   margin-left: 14rpx;
 }
-.info .name-money .money view:nth-last-child(2){
+
+.info .name-money .money view:nth-last-child(2) {
   font-size: 24rpx;
   font-family: 'PingFangTC-Regular';
-  color: #333333;
+  color: #333;
   line-height: 34rpx;
   margin-left: 4rpx;
 }
-.info .name-money .money view:last-child{
+
+.info .name-money .money view:last-child {
   width: 24.2rpx;
   height: 24.2rpx;
   border-radius: 50%;
@@ -104,18 +116,21 @@ swiper image{
   margin-bottom: 6rpx;
   display: flex;
 }
-.info .name-money .money view:last-child image{
+
+.info .name-money .money view:last-child image {
   width: 100%;
   height: 100%;
 }
 
 /* 标签样式 */
-.information .tag{
+
+.information .tag {
   display: flex;
   height: 120rpx;
   align-items: center;
 }
-.information .tag view{
+
+.information .tag view {
   padding: 0 10rpx;
   font-size: 20rpx;
   line-height: 30rpx;
@@ -123,47 +138,54 @@ swiper image{
   border-radius: 4rpx;
   margin-right: 20rpx;
 }
+
 /* 地址样式 */
-.info .address{
+
+.info .address {
   height: 100rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.info .address>view{
+
+.info .address>view {
   height: 40rpx;
   display: flex;
 }
-.info .address .title1{
+
+.info .address .title1 {
   display: block;
   width: 142rpx;
   height: 100%;
   font-size: 28rpx;
   font-family: 'PingFang-SC-Medium';
-  color: #333333;
+  color: #333;
   margin-right: 28rpx;
 }
-.info .address .title2{
+
+.info .address .title2 {
   display: block;
   width: 402rpx;
   height: 100%;
   font-size: 28rpx;
   font-family: 'PingFang-SC-Regular';
-  color: #333333;
+  color: #333;
   margin-right: 28rpx;
   overflow: hidden;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
-.info .address>view view{
+
+.info .address>view view {
   display: flex;
   align-items: center;
-  color: #8D91A2;
+  color: #8d91a2;
   font-size: 24rpx;
   font-family: 'PingFang-SC-Medium';
   margin-right: 7rpx;
 }
-.info .address view image{
+
+.info .address view image {
   width: 10rpx;
   height: 20rpx;
   margin-left: 7rpx;
@@ -171,350 +193,410 @@ swiper image{
 }
 
 /* 优惠样式 */
-.info .youhui{
+
+.info .youhui {
   width: 100%;
   height: 100rpx;
-  box-shadow: 0rpx 0rpx 10rpx 0rpx #666666;
+  box-shadow: 0rpx 0rpx 10rpx 0rpx #666;
   margin: 40rpx 0rpx;
   display: flex;
   align-items: center;
   border-radius: 16rpx;
 }
-.info .youhui view{
+
+.info .youhui view {
   width: 53rpx;
   height: 51.2rpx;
   margin-right: 40rpx;
   margin-left: 40rpx;
 }
-.info .youhui view image{
+
+.info .youhui view image {
   width: 100%;
   height: 100%;
 }
 
-.info .youhui text{
-  color: #42436A;
+.info .youhui text {
+  color: #42436a;
   font-size: 32rpx;
   font-family: 'PingFang-SC-Medium';
 }
+
 /* 房型样式 */
-.info .hours-type{
+
+.info .hours-type {
   width: 100%;
   height: 284rpx;
-  box-shadow: 0rpx 0rpx 10rpx 0rpx #666666;
+  box-shadow: 0rpx 0rpx 10rpx 0rpx #666;
   margin: 40rpx 0rpx;
   border-radius: 16rpx;
   overflow: hidden;
 }
-.info .hours-type .top{
+
+.info .hours-type .top {
   width: 100%;
   height: 100rpx;
   display: flex;
   align-items: center;
 }
-.info .hours-type .top view{
+
+.info .hours-type .top view {
   width: 53rpx;
   height: 51.2rpx;
   margin-right: 40rpx;
   margin-left: 40rpx;
 }
-.info .hours-type .top view image{
+
+.info .hours-type .top view image {
   width: 100%;
   height: 100%;
 }
-.info .hours-type .top text{
-  color: #42436A;
+
+.info .hours-type .top text {
+  color: #42436a;
   font-size: 32rpx;
   font-family: 'PingFang-SC-Medium';
 }
-.info .hours-type .bottom-list{
+
+.info .hours-type .bottom-list {
   padding-left: 40rpx;
 }
-.info .hours-type .bottom-list .type{
+
+.info .hours-type .bottom-list .type {
   height: 40rpx;
   line-height: 40rpx;
   margin-bottom: 20rpx;
   display: flex;
 }
-.info .hours-type .bottom-list .type text:first-child{
+
+.info .hours-type .bottom-list .type text:first-child {
   font-size: 28rpx;
   font-family: 'PingFang-SC-Medium';
-  color: #333333;
+  color: #333;
 }
-.info .hours-type .bottom-list .type text:nth-of-type(2){
+
+.info .hours-type .bottom-list .type text:nth-of-type(2) {
   display: block;
   width: 180rpx;
   font-size: 28rpx;
   font-family: 'PingFang-SC-Regular';
-  color: #333333;
+  color: #333;
   margin-left: 36rpx;
 }
-.info .hours-type .bottom-list .type text:nth-of-type(3){
+
+.info .hours-type .bottom-list .type text:nth-of-type(3) {
   font-size: 28rpx;
   font-family: 'PingFang-SC-Regular';
-  color: #8D91A2;
+  color: #8d91a2;
 }
+
 /* 楼盘亮点样式 */
-.info .hours-lightspot .title{
+
+.info .hours-lightspot .title {
   font-size: 36rpx;
   font-family: 'PingFang-SC-Medium';
-  color: #111111;
+  color: #111;
 }
-.info .hours-lightspot .overview{
+
+.info .hours-lightspot .overview {
   height: 86rpx;
   padding-left: 32rpx;
   display: flex;
   flex-direction: column;
-  justify-content :space-between;
+  justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 32rpx;
 }
-.info .hours-lightspot .overview text:first-child{
+
+.info .hours-lightspot .overview text:first-child {
   display: block;
   height: 34rpx;
   width: 100%;
   line-height: 34rpx;
   font-size: 28rpx;
   font-family: 'PingFang-SC-Medium';
-  color: #333333;
+  color: #333;
 }
-.info .hours-lightspot .overview text:last-child{
+
+.info .hours-lightspot .overview text:last-child {
   display: block;
   height: 34rpx;
   width: 100%;
   line-height: 34rpx;
   font-size: 24rpx;
   font-family: 'PingFang-SC-Medium';
-  color: #8D91A2;
+  color: #8d91a2;
 }
-.info .hours-lightspot .other-list{
+
+.info .hours-lightspot .other-list {
   padding-left: 32rpx;
   margin-top: 40rpx;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.info .hours-lightspot .other-list .other-list-item{
+
+.info .hours-lightspot .other-list .other-list-item {
   width: 280rpx;
   margin-bottom: 40rpx;
 }
-.info .hours-lightspot .other-list .other-list-item text{
+
+.info .hours-lightspot .other-list .other-list-item text {
   font-size: 28rpx;
-  color: #333333;
+  color: #333;
   font-family: 'PingFang-SC-Medium';
 }
-.info .hours-lightspot .other-list .other-list-item view{
+
+.info .hours-lightspot .other-list .other-list-item view {
   font-size: 24rpx;
-  color: #8D91A2;
-  font-family: 'PingFang-SC-Medium'; 
+  color: #8d91a2;
+  font-family: 'PingFang-SC-Medium';
   letter-spacing: 0.46rpx;
   margin-top: 18rpx;
 }
-.info .hours-lightspot .look-all{
+
+.info .hours-lightspot .look-all {
   width: 100%;
   height: 46rpx;
-  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.7), rgba(255,255,255,1));
+  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1));
   font-size: 24rpx;
   font-family: 'PingFang-SC-Medium';
-  color: #8D91A2 ;
+  color: #8d91a2;
   text-align: center;
   line-height: 46rpx;
   margin-top: -50rpx;
 }
-.info .hours-lightspot .look-all text:first-child{
+
+.info .hours-lightspot .look-all text:first-child {
   margin-right: 6rpx;
 }
-.info .hours-lightspot .look-all text:last-child{
+
+.info .hours-lightspot .look-all text:last-child {
   font-size: 24rpx;
 }
 
 /* 户型样式 */
-.info .huxing{
+
+.info .huxing {
   margin-top: 40rpx;
 }
-.info .huxing .top{
+
+.info .huxing .top {
   height: 50rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.info .huxing .top>text{
+
+.info .huxing .top>text {
   font-size: 36rpx;
-  color: #111111;
+  color: #111;
   font-family: 'PingFangTC-Regular';
 }
-.info .huxing .top>view{
+
+.info .huxing .top>view {
   height: 100%;
   font-size: 24rpx;
   font-family: 'PingFang-SC-Medium';
-  color: #8D91A2 ;
+  color: #8d91a2;
   display: flex;
   align-items: center;
 }
-.info .huxing .top>view text{
+
+.info .huxing .top>view text {
   font-size: 20rpx;
   margin-top: 5rpx;
-  margin-left: 10rpx; 
+  margin-left: 10rpx;
 }
-.info .huxing .tip{
+
+.info .huxing .tip {
   height: 40rpx;
   font-size: 28rpx;
-  color: #111111;
+  color: #111;
   font-family: 'PingFangTC-Medium';
   margin-top: 38rpx;
   line-height: 40rpx;
 }
-.info .huxing .img{
+
+.info .huxing .img {
   height: 332rpx;
   margin-top: 32rpx;
   display: flex;
 }
-.info .huxing .img image{
+
+.info .huxing .img image {
   width: 442rpx;
   height: 100%;
   border-radius: 6rpx;
 }
-.info .huxing .img .explain{
+
+.info .huxing .img .explain {
   height: 100%;
   padding-left: 18rpx;
 }
-.info .huxing .img .explain .totle{
+
+.info .huxing .img .explain .totle {
   display: block;
   height: 50rpx;
-  color: #B4B9CB;
+  color: #b4b9cb;
   font-size: 36rpx;
-  font-family: 'PingFangTC-Light'; 
+  font-family: 'PingFangTC-Light';
 }
-.info .huxing .img .explain text:nth-of-type(2){
+
+.info .huxing .img .explain text:nth-of-type(2) {
   display: block;
   height: 40rpx;
-  color: #333333;
+  color: #333;
   font-size: 28rpx;
-  font-family: 'PingFangTC-Light'; 
+  font-family: 'PingFangTC-Light';
   margin-top: 30rpx;
   margin-bottom: 10rpx;
 }
-.info .huxing .img .explain view{
+
+.info .huxing .img .explain view {
   height: 40rpx;
-  color: #8D91A2;
+  color: #8d91a2;
   font-family: 'PingFangTC-Light';
   font-size: 24rpx;
   padding: 0 12rpx;
-  border: 1rpx solid #8D91A2;
+  border: 1rpx solid #8d91a2;
   border-radius: 6rpx;
   line-height: 40rpx;
   margin-bottom: 12rpx;
 }
+
 /* 楼盘图样式 */
-.info .hours-imgs{
+
+.info .hours-imgs {
   margin-top: 30rpx;
 }
-.info .hours-imgs .title{
+
+.info .hours-imgs .title {
   font-size: 36rpx;
-  color: #111111;
+  color: #111;
   font-family: 'PingFang-SC-Medium';
 }
-.info .hours-imgs .img-list{
+
+.info .hours-imgs .img-list {
   height: 380rpx;
   display: flex;
   flex-direction: column;
   margin-top: 20rpx;
 }
-.info .hours-imgs .img-list text{
+
+.info .hours-imgs .img-list text {
   height: 40rpx;
   line-height: 40rpx;
   font-size: 28rpx;
   font-family: 'PingFang-SC-Medium';
-  color: #333333;
+  color: #333;
   margin-bottom: 12rpx;
 }
-.info .hours-imgs .img-list .imgs{
+
+.info .hours-imgs .img-list .imgs {
   width: 2000rpx;
   height: 328rpx;
   display: flex;
   flex-wrap: nowrap;
   overflow: hidden;
 }
-.info .hours-imgs .img-list .imgs image{
+
+.info .hours-imgs .img-list .imgs image {
   display: block;
   width: 440rpx;
   height: 100%;
   margin-right: 20rpx;
   border-radius: 14rpx;
 }
+
 /* 项目详情样式 */
-.info .product-detail{
+
+.info .product-detail {
   margin-top: 40rpx;
 }
-.info .product-detail .title{
+
+.info .product-detail .title {
   display: block;
   font-size: 36rpx;
-  color: #111111;
+  color: #111;
   font-family: 'PingFang-SC-Medium';
   margin-bottom: 32rpx;
 }
-.info .product-detail .detail-list>view{
+
+.info .product-detail .detail-list>view {
   height: 40rpx;
   margin-bottom: 20rpx;
   display: flex;
 }
-.info .product-detail .detail-list>view:last-child{
+
+.info .product-detail .detail-list>view:last-child {
   margin: 0;
 }
-.info .product-detail .detail-list .txt1{
+
+.info .product-detail .detail-list .txt1 {
   display: block;
   width: 116rpx;
   height: 40rpx;
   line-height: 40rpx;
   font-size: 28rpx;
-  color: #333333;
+  color: #333;
   font-family: 'PingFang-SC-Medium';
   margin-right: 30rpx;
 }
-.info .product-detail .detail-list .txt2{
+
+.info .product-detail .detail-list .txt2 {
   display: block;
   height: 40rpx;
   line-height: 40rpx;
   font-size: 24rpx;
-  color: #8D91A2 ;
+  color: #8d91a2;
   font-family: 'PingFang-SC-Medium';
 }
-.hr{
+
+.hr {
   margin-top: 30rpx;
   height: 2rpx;
   width: 100%;
-  background: #E5E5E5;
+  background: #e5e5e5;
 }
+
 /* 免责条款样式 */
-.no-duty{
+
+.no-duty {
   width: 670rpx;
   font-size: 24rpx;
   font-family: 'PingFang-SC-Medium';
-  color: #8D91A2;
-  margin-top:30rpx; 
+  color: #8d91a2;
+  margin-top: 30rpx;
   margin-bottom: 108rpx;
-  padding:0 40rpx;
+  padding: 0 40rpx;
   padding-bottom: 44rpx;
 }
-.no-duty view{
+
+.no-duty view {
   float: left;
 }
-.no-duty text{
+
+.no-duty text {
   word-wrap: break-word;
- word-break: break-all;
+  word-break: break-all;
 }
+
 /* 底部tabbar样式 */
-.tabar{
+
+.tabar {
   height: 108rpx;
   width: 100%;
   display: flex;
   align-items: center;
-  border-top: 2rpx solid #eeeeee;
+  border-top: 2rpx solid #eee;
   padding-top: 5rpx;
   position: fixed;
   bottom: 0;
-  background: #ffffff;
+  background: #fff;
 }
-.tabar .attention,.tabar .share{
+
+.tabar .attention, .tabar .share {
   display: flex;
   flex-direction: column;
   width: 50rpx;
@@ -523,52 +605,60 @@ swiper image{
   align-items: center;
   font-size: 24rpx;
   font-family: 'PingFang-SC-Medium';
-  color: #8D91A2;
+  color: #8d91a2;
 }
-.tabar .attention{
+
+.tabar .attention {
   margin-left: 78rpx;
   margin-right: 60rpx;
 }
-.tabar .connect{
+
+.tabar .connect {
   width: 400rpx;
   height: 80rpx;
-  background: #20A0FF;
-  color: #ffffff;
-  font-size:30rpx;
+  background: #20a0ff;
+  color: #fff;
+  font-size: 30rpx;
   font-family: 'PingFangTC-Regular';
   line-height: 80rpx;
-  text-align: center; 
+  text-align: center;
   border-radius: 16rpx;
   margin-left: 70rpx;
 }
-.tabar .attention view,.tabar .share view{
+
+.tabar .attention view, .tabar .share view {
   height: 50%;
   width: 100%;
 }
-.tabar image{
+
+.tabar image {
   width: 100%;
   height: 100%;
 }
+
 /* 悬浮窗样式 */
-.floating{
+
+.floating {
   width: 50rpx;
   height: 200rpx;
-  background: rgba(32,160,255,0.8);
+  background: rgba(32, 160, 255, 0.8);
   border-radius: 4rpx;
   padding: 0 24rpx 0 26rpx;
-  color: #ffffff;
+  color: #fff;
   position: fixed;
   bottom: 180rpx;
   right: 30rpx;
 }
-.floating>view:first-child{
+
+.floating>view:first-child {
   padding-top: 18rpx;
   height: 82rpx;
   font-family: 'PingFangTC-Regular';
   font-size: 24rpx;
-  border-bottom: 2rpx solid #ffffff;
+  border-bottom: 2rpx solid #fff;
 }
-.floating>view:last-child{
+
+.floating>view:last-child {
   height: 82rpx;
   font-family: 'PingFangTC-Regular';
   font-size: 24rpx;
@@ -578,11 +668,13 @@ swiper image{
   justify-content: space-around;
   margin-top: 10rpx;
 }
-.floating>view:last-child .icon{
+
+.floating>view:last-child .icon {
   width: 100%;
   height: 50%;
 }
-.floating>view:last-child .icon image{
+
+.floating>view:last-child .icon image {
   width: 100%;
   height: 100%;
 }

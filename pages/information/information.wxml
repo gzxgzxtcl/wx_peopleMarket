@@ -1,12 +1,9 @@
 <!--pages/information/information.wxml-->
 <view class='information'>
   <!-- banner图 -->
-  <view class='num'>1<text></text>/5</view>
-  <swiper
-  autoplay="{{autoplay}}"
-  interval="{{interval}}"
-  duration="{{duration}}"
-  >
+  <view class='num'>1
+    <text></text>/5</view>
+  <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block wx:for="{{imgUrls}}" wx:key="{{index}}">
       <swiper-item>
         <image src="{{item}}" class="slide-image" width="355" height="150" />
@@ -24,7 +21,9 @@
         <view>主力均价:</view>
         <text class='hours-money'>98000</text>
         <view>元/㎡</view>
-        <view class='tanhao'><image src='../../images/tanhao.png'></image></view>
+        <view class='tanhao'>
+          <image src='../../images/tanhao.png'></image>
+        </view>
       </view>
     </view>
     <!-- 标签 -->
@@ -40,23 +39,31 @@
       <view class='add1'>
         <text class='title1'>售楼处地址</text>
         <text class='title2'>罗湖-菜屋围-滨河路1005路中..</text>
-        <view  bindtap='pageToMap'>导航<image src='../../images/right.png'></image></view>
+        <view bindtap='pageToMap'>导航
+          <image src='../../images/right.png'></image>
+        </view>
       </view>
       <view class='add2'>
         <text class='title1'>售楼处地址</text>
         <text class='title2'>罗湖-菜屋围-滨河路1005路中..</text>
-        <view bindtap='pageToMap'>导航<image src='../../images/right.png'></image></view>
+        <view bindtap='pageToMap'>导航
+          <image src='../../images/right.png'></image>
+        </view>
       </view>
     </view>
     <!-- 优惠 -->
     <view class='youhui'>
-      <view><image src='../../images/zhekou.png'></image></view>
+      <view>
+        <image src='../../images/zhekou.png'></image>
+      </view>
       <text>3月31日前认筹享受98折</text>
     </view>
     <!-- 房型 -->
     <view class='hours-type'>
       <view class='top'>
-        <view><image src='../../images/hometype.png'></image></view>
+        <view>
+          <image src='../../images/hometype.png'></image>
+        </view>
         <text>主力房型</text>
       </view>
       <view class='bottom-list'>
@@ -76,7 +83,7 @@
           <text>（五房二厅 六房三厅）</text>
         </view>
       </view>
-    </view> 
+    </view>
     <!-- 楼盘亮点 -->
     <view class='hours-lightspot'>
       <text class='title'>楼盘点亮</text>
@@ -111,7 +118,9 @@
     <view class='huxing'>
       <view class='top'>
         <text>户型（2）</text>
-        <view>查看全部<text class='iconfont iconjiantou'></text></view>
+        <view>查看全部
+          <text class='iconfont iconjiantou'></text>
+        </view>
       </view>
       <view class='tip'>
         <text>98m² 舒适两居室</text>
@@ -119,25 +128,25 @@
       <view class='img'>
         <image src='https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'></image>
         <view class='explain'>
-            <text class='totle'>暂无定价</text>
-            <text>户型优势</text>
-            <view>28m²大阳台</view>
-            <view>黄金地段</view>
-            <view>海景房</view>
+          <text class='totle'>暂无定价</text>
+          <text>户型优势</text>
+          <view>28m²大阳台</view>
+          <view>黄金地段</view>
+          <view>海景房</view>
         </view>
       </view>
     </view>
-    <!-- 楼盘图 --> 
+    <!-- 楼盘图 -->
     <view class='hours-imgs'>
       <text class='title'>楼盘图</text>
       <view class='img-list'>
         <text>效果图（6）</text>
         <view class="section section_gap">
           <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
-            <view class='imgs' >
-              <image wx:for='{{imgUrls}}' wx:key="{{index}}" src='{{item}}' ></image>
+            <view class='imgs'>
+              <image wx:for='{{imgUrls}}' wx:key="{{index}}" src='{{item}}'></image>
             </view>
-           </scroll-view>
+          </scroll-view>
         </view>
       </view>
       <view class='img-list'>
@@ -145,9 +154,9 @@
         <view class="section section_gap">
           <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
             <view class='imgs'>
-              <image wx:for='{{imgUrls}}' wx:key="{{index}}" src='{{item}}' ></image>
+              <image wx:for='{{imgUrls}}' wx:key="{{index}}" src='{{item}}'></image>
             </view>
-           </scroll-view>
+          </scroll-view>
         </view>
       </view>
       <view class='img-list'>
@@ -155,11 +164,11 @@
         <view class="section section_gap">
           <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
             <view class='imgs'>
-              <image wx:for='{{imgUrls}}' wx:key="{{index}}" src='{{item}}' ></image>
+              <image wx:for='{{imgUrls}}' wx:key="{{index}}" src='{{item}}'></image>
             </view>
-           </scroll-view>
+          </scroll-view>
         </view>
-      </view> 
+      </view>
     </view>
     <!-- 项目详情 -->
     <view class='product-detail'>
@@ -196,37 +205,44 @@
         <view class='list8'>
           <text class='txt1'>物业费</text>
           <text class='txt2'>暂无资料</text>
-        </view> 
+        </view>
       </view>
-      
+
     </view>
-  </view> 
+  </view>
   <!-- 免责分割线 -->
   <view class='hr'></view>
   <!-- 免责条款 -->
-    <view class='no-duty'>
-      <view>免责条款:</view>    <text>***************************************************************************************************************************************************************************************************************************</text>
-    </view>
-    <!-- 底部tabar -->
-    <view class='tabar'>
-      <view class='attention'>
-        <view><image src='../../images/guanzhu.png'></image></view>
-        <text>关注</text>
-      </view>
-      <view class='share'>
-        <view><image src='../../images/fenxiang.png'></image></view>
-        <text>分享</text>
-      </view>
-      <view class='connect'>
-        联系我们
-      </view>
-    </view>
-    <!-- 悬浮窗 -->
-    <view class='floating'>
-      <view>佣金规则</view>
+  <view class='no-duty'>
+    <view>免责条款:</view>
+    <text>***************************************************************************************************************************************************************************************************************************</text>
+  </view>
+  <!-- 底部tabar -->
+  <view class='tabar'>
+    <view class='attention'>
       <view>
-        <view class='icon'><image src='../../images/tuijian.png'></image></view>
-        <text>推荐</text>
+        <image src='../../images/guanzhu.png'></image>
       </view>
+      <text>关注</text>
     </view>
+    <view class='share'>
+      <view>
+        <image src='../../images/fenxiang.png'></image>
+      </view>
+      <text>分享</text>
+    </view>
+    <view class='connect'>
+      联系我们
+    </view>
+  </view>
+  <!-- 悬浮窗 -->
+  <view class='floating'>
+    <view>佣金规则</view>
+    <view>
+      <view class='icon'>
+        <image src='../../images/tuijian.png'></image>
+      </view>
+      <text>推荐</text>
+    </view>
+  </view>
 </view>

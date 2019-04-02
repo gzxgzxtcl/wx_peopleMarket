@@ -40,7 +40,6 @@ Page({
   },
 
   onLoad: function() {
-    console.log('fuck')
     let that = this;
     that.getMapLocation();
   },
@@ -48,13 +47,13 @@ Page({
   getMapLocation() {
     wx.getLocation({
       type: 'wgs84',
-      success: function (res) {
+      success: function(res) {
         console.log(JSON.stringify(res))
       },
-      fail: function (res) {
+      fail: function(res) {
 
       },
-      complete: function (res) {
+      complete: function(res) {
 
       }
     })

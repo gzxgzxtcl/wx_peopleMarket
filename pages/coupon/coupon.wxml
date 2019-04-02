@@ -20,8 +20,12 @@
             <text wx:else>已领取</text>
           </view>
           <view class='bottom'>
-            <view>使用规则：<text>购买中海天钻户型可用</text></view>
-            <view>使用期限：<text>2019.5.1 - 2019.7.30</text></view>
+            <view>使用规则：
+              <text>购买中海天钻户型可用</text>
+            </view>
+            <view>使用期限：
+              <text>2019.5.1 - 2019.7.30</text>
+            </view>
           </view>
         </view>
       </view>
