@@ -1,4 +1,7 @@
 /* pages/clients/client.wxss */
+.client{
+  background: #ffffff;
+}
 .clients .top{
   width: 100%;
   height: 121rpx;
@@ -142,7 +145,6 @@
 .client .step .step-time text:nth-of-type(3){
   margin-left: 68rpx;
 }
-
 .client .luck{
   display: flex;
   align-items: center;
@@ -166,7 +168,6 @@
   line-height: 28rpx;
   margin-left: 10rpx;
 }
-
 
 /* 悬浮窗样式 */
 .floating{
