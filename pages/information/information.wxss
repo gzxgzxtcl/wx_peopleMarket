@@ -233,6 +233,7 @@ swiper image{
   height: 40rpx;
   line-height: 40rpx;
   margin-bottom: 20rpx;
+  display: flex;
 }
 .info .hours-type .bottom-list .type text:first-child{
   font-size: 28rpx;
@@ -240,9 +241,12 @@ swiper image{
   color: #333333;
 }
 .info .hours-type .bottom-list .type text:nth-of-type(2){
+  display: block;
+  width: 180rpx;
   font-size: 28rpx;
   font-family: 'PingFang-SC-Regular';
   color: #333333;
+  margin-left: 36rpx;
 }
 .info .hours-type .bottom-list .type text:nth-of-type(3){
   font-size: 28rpx;
@@ -319,6 +323,9 @@ swiper image{
 .info .hours-lightspot .look-all text:first-child{
   margin-right: 6rpx;
 }
+.info .hours-lightspot .look-all text:last-child{
+  font-size: 24rpx;
+}
 
 /* 户型样式 */
 .info .huxing{
@@ -345,6 +352,7 @@ swiper image{
 }
 .info .huxing .top>view text{
   font-size: 20rpx;
+  margin-top: 5rpx;
   margin-left: 10rpx; 
 }
 .info .huxing .tip{
@@ -483,8 +491,9 @@ swiper image{
   font-family: 'PingFang-SC-Medium';
   color: #8D91A2;
   margin-top:30rpx; 
-  margin-bottom: 44rpx;
+  margin-bottom: 108rpx;
   padding:0 40rpx;
+  padding-bottom: 44rpx;
 }
 .no-duty view{
   float: left;
@@ -501,6 +510,9 @@ swiper image{
   align-items: center;
   border-top: 2rpx solid #eeeeee;
   padding-top: 5rpx;
+  position: fixed;
+  bottom: 0;
+  background: #ffffff;
 }
 .tabar .attention,.tabar .share{
   display: flex;
@@ -514,7 +526,7 @@ swiper image{
   color: #8D91A2;
 }
 .tabar .attention{
-  margin-left: 34rpx;
+  margin-left: 78rpx;
   margin-right: 60rpx;
 }
 .tabar .connect{

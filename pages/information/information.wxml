@@ -24,7 +24,7 @@
         <view>主力均价:</view>
         <text class='hours-money'>98000</text>
         <view>元/㎡</view>
-        <view class='tanhao'><image src='../../icon/项目详情/主力价格.png'></image></view>
+        <view class='tanhao'><image src='../../images/tanhao.png'></image></view>
       </view>
     </view>
     <!-- 标签 -->
@@ -40,23 +40,23 @@
       <view class='add1'>
         <text class='title1'>售楼处地址</text>
         <text class='title2'>罗湖-菜屋围-滨河路1005路中..</text>
-        <view>导航<image src='../../icon/项目详情/右.png'></image></view>
+        <view>导航<image src='../../images/right.png'></image></view>
       </view>
       <view class='add2'>
         <text class='title1'>售楼处地址</text>
         <text class='title2'>罗湖-菜屋围-滨河路1005路中..</text>
-        <view>导航<image src='../../icon/项目详情/右.png'></image></view>
+        <view>导航<image src='../../images/right.png'></image></view>
       </view>
     </view>
     <!-- 优惠 -->
     <view class='youhui'>
-      <view><image src='../../icon/项目详情/折扣.png'></image></view>
+      <view><image src='../../images/zhekou.png'></image></view>
       <text>3月31日前认筹享受98折</text>
     </view>
     <!-- 房型 -->
     <view class='hours-type'>
       <view class='top'>
-        <view><image src='../../icon/项目详情/房型.png'></image></view>
+        <view><image src='../../images/hometype.png'></image></view>
         <text>主力房型</text>
       </view>
       <view class='bottom-list'>
@@ -210,11 +210,11 @@
     <!-- 底部tabar -->
     <view class='tabar'>
       <view class='attention'>
-        <view><image src='../../icon/项目详情/关注.png'></image></view>
+        <view><image src='../../images/guanzhu.png'></image></view>
         <text>关注</text>
       </view>
       <view class='share'>
-        <view><image src='../../icon/项目详情/分享.png'></image></view>
+        <view><image src='../../images/fenxiang.png'></image></view>
         <text>分享</text>
       </view>
       <view class='connect'>
@@ -225,7 +225,7 @@
     <view class='floating'>
       <view>佣金规则</view>
       <view>
-        <view class='icon'><image src='../../icon/项目详情/推荐.png'></image></view>
+        <view class='icon'><image src='../../images/tuijian.png'></image></view>
         <text>推荐</text>
       </view>
     </view>
