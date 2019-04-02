@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
-    <!-- header -->
-   <view class='city-sel'>
+  <!-- header -->
+  <view class='city-sel'>
     <view class='left-city'>
       <view class='iconfont iconweizhi'></view>
       <text>深圳</text>
@@ -10,49 +10,43 @@
       <text>切换城市</text>
       <view class='right-icon iconfont iconjiantou'></view>
     </view>
-   </view>
-<!-- banner -->
-<view class='dot'>
+  </view>
+  <!-- banner -->
+  <view class='dot'>
     <view wx:for="{{imgUrls}}" wx:key="{{index}}" class="{{swiperCurrent==index?'active':''}}" bindtap='changeImg' data-index='{{index}}'></view>
-</view>
-<swiper
-  autoplay="{{autoplay}}"
-  interval="{{interval}}"
-  duration="{{duration}}"
-  current="{{swiperCurrent}}"
-  bindchange="swiperChange"
->
-  <block wx:for="{{imgUrls}}" wx:key='{{index}}'>
-    <swiper-item>
-      <image src="{{item}}" class="slide-image" width="355" height="150" />
-    </swiper-item>
-  </block>
-</swiper>
+  </view>
+  <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" current="{{swiperCurrent}}" bindchange="swiperChange">
+    <block wx:for="{{imgUrls}}" wx:key='{{index}}'>
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" width="355" height="150" />
+      </swiper-item>
+    </block>
+  </swiper>
 
-<!-- 功能 -->
+  <!-- 功能 -->
   <view class='gongneng-box'>
-    <view  class='goneneng'>
+    <view class='goneneng'>
       <view class='gn1'>
-        <image src='../../images/recommend.png'></image>
+        <image data-url='../recommend/recommend' bindtap='pageTobind' src='../../images/recommend.png'></image>
         <text>我要推荐</text>
       </view>
       <view class='gn2'>
-        <image src='../../images/client.png'></image>
+        <image data-url='../clients/client' bindtap='pageTobind' src='../../images/client.png'></image>
         <text>我的客户</text>
       </view>
       <view class='gn3'>
-        <image src='../../images/discounts.png'></image>
+        <image data-url='../recommend/recommend' bindtap='pageTobind' src='../../images/discounts.png'></image>
         <text>优惠券</text>
       </view>
     </view>
   </view>
-   
-   <!-- 楼盘信息标题 -->
-   <view class='hours'>
+
+  <!-- 楼盘信息标题 -->
+  <view class='hours'>
     <text>楼盘信息</text>
-   </view>
+  </view>
   <!-- 楼盘详情 -->
-   <view class='hours-list' bindtap='goInformation'>
+  <view class='hours-list' bindtap='goInformation'>
     <view class='img'>
       <image src='https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'></image>
     </view>
@@ -83,6 +77,6 @@
         </view>
       </view>
     </view>
-   </view>
+  </view>
 
 </view>

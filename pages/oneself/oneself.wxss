@@ -40,5 +40,13 @@
   line-height: 100rpx;
   background-color: #fff;
   border-top: 1rpx solid #e6e6e6;
-  padding-left:30rpx;
+  padding-left: 30rpx;
+}
+
+.iconImg {
+  width: 44rpx;
+  height: 44rpx;
+  margin-top: 14px;
+  margin-right: 13px;
+  float: left;
 }

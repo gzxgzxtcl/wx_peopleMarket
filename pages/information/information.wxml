@@ -40,12 +40,12 @@
       <view class='add1'>
         <text class='title1'>售楼处地址</text>
         <text class='title2'>罗湖-菜屋围-滨河路1005路中..</text>
-        <view>导航<image src='../../images/right.png'></image></view>
+        <view  bindtap='pageToMap'>导航<image src='../../images/right.png'></image></view>
       </view>
       <view class='add2'>
         <text class='title1'>售楼处地址</text>
         <text class='title2'>罗湖-菜屋围-滨河路1005路中..</text>
-        <view>导航<image src='../../images/right.png'></image></view>
+        <view bindtap='pageToMap'>导航<image src='../../images/right.png'></image></view>
       </view>
     </view>
     <!-- 优惠 -->
