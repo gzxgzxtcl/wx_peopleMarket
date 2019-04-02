@@ -38,5 +38,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  pageToMap(){
+    wx.navigateTo({
+      url: '../map/map?projectName=中海天钻'
+    })
   }
 })

@@ -42,11 +42,6 @@ Page({
   onLoad: function() {
 
   },
-  pageTo() {
-    wx.navigateTo({
-      url: '../map/map?projectName=中海天钻'
-    })
-  },
 
   // 页面跳转
   pageTobind(e) {

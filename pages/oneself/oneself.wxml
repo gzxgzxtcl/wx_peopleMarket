@@ -12,11 +12,16 @@
 </view>
 <view>
   <ul class='controlList'>
-    <li style='margin-top:20rpx;'>我的推荐</li>
-    <li>我的优惠券</li>
-    <li>我的关注</li>
-    <li style='border-bottom: 1rpx solid #e6e6e6;' data-url='../bindUser/bindUser' bindtap='pageTobind'>绑定用户</li>
-    <li style='margin-top:20rpx;border-bottom: 1rpx solid #e6e6e6;' data-url='../setting/setting' bindtap='pageTobind'>设置</li>
+    <li style='margin-top:20rpx;'>
+      <image class='iconImg' src="../../images/myrecommend.png"></image>我的推荐</li>
+    <li>
+      <image class='iconImg' src="../../images/myreduced.png"></image>我的优惠券</li>
+    <li>
+      <image class='iconImg' src="../../images/guanzhu.png"></image>我的关注</li>
+    <li style='border-bottom: 1rpx solid #e6e6e6;' data-url='../bindUser/bindUser' bindtap='pageTobind'>
+      <image class='iconImg' src="../../images/bindUser.png"></image>绑定用户</li>
+    <li style='margin-top:20rpx;border-bottom: 1rpx solid #e6e6e6;' data-url='../setting/setting' bindtap='pageTobind'>
+      <image class='iconImg' src="../../images/setting.png"></image>设置</li>
   </ul>
 </view>
 <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">sss</button> -->
