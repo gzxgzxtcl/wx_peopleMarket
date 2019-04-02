@@ -31,7 +31,7 @@
         <text>我要推荐</text>
       </view>
       <view class='gn2'>
-        <image data-url='../recommend/recommend' bindtap='pageTobind' src='../../images/client.png'></image>
+        <image data-url='../clients/client' bindtap='pageTobind' src='../../images/client.png'></image>
         <text>我的客户</text>
       </view>
       <view class='gn3'>
