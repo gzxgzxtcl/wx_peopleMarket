@@ -13,25 +13,27 @@ Page({
     autoplay: true,
     interval: 5000,
     duration: 1000,
-    swiperCurrent:0,
+    swiperCurrent: 0,
   },
   // 切换城市
-  changeCity(){
+  changeCity() {
     console.log("qiehuan")
-    
+
   },
   // 切换banner图
-  changeImg(e){
+  changeImg(e) {
     console.log(e)
     this.setData({
-      swiperCurrent:e.currentTarget.dataset.index
+      swiperCurrent: e.currentTarget.dataset.index
     })
   },
-  swiperChange(e){  
-    this.setData({ swiperCurrent: e.detail.current})
+  swiperChange(e) {
+    this.setData({
+      swiperCurrent: e.detail.current
+    })
   },
-//跳转详情页
-  goInformation(){
+  //跳转详情页
+  goInformation() {
     wx.navigateTo({
       url: '../information/information'
     })
@@ -44,6 +46,13 @@ Page({
     wx.navigateTo({
       url: '../map/map?projectName=中海天钻'
     })
-  }
+  },
 
+  // 页面跳转
+  pageTobind(e) {
+    let pageUrl = e.target.dataset.url
+    wx.navigateTo({
+      url: pageUrl
+    })
+  }
 })

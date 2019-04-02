@@ -53,3 +53,22 @@
   background-color: #20a0ff;
   color: #fff;
 }
+
+.iconSty {
+  width: 28rpx;
+  height: 28rpx;
+  border: 1rpx solid #e6e6e6;
+  border-radius: 50%;
+}
+
+.genderSty {
+  width: 200rpx;
+  background: none;
+  display: inline-block;
+  padding: 0;
+  text-align: left;
+}
+
+.genderSty::after {
+  border: none;
+}
