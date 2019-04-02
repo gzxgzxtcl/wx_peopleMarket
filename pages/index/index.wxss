@@ -105,7 +105,6 @@ swiper image{
 .goneneng view image{
   width: 80%;
   height: 50%;
-  background: pink;
 }
 
 .hours{
