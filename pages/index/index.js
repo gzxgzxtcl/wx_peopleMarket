@@ -40,7 +40,36 @@ Page({
   },
 
   onLoad: function() {
+    console.log('fuck')
+    let that = this;
+    that.getMapLocation();
+  },
 
+  getMapLocation() {
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        console.log(JSON.stringify(res))
+      },
+      fail: function (res) {
+
+      },
+      complete: function (res) {
+
+      }
+    })
+    wx.getLocation({
+      type: 'gcj02',
+      success: function(res) {
+        console.log(JSON.stringify(res))
+      },
+      fail: function(res) {
+
+      },
+      complete: function(res) {
+
+      }
+    })
   },
 
   // 页面跳转
