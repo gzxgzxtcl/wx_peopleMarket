@@ -61,8 +61,7 @@ swiper image {
   justify-content: space-around;
   align-items: center;
   position: absolute;
-  top: 32%;
-  margin: auto;
+  top: 380rpx;
   z-index: 30;
 }
 
