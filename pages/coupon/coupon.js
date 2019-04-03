@@ -10,8 +10,8 @@ Page({
 
   getCoupon() {
     wx.showToast({
-      title: '成功',
-      icon: 'success',
+      title: '领取成功',
+      icon: '../../images/getOK.png',
       duration: 2000
     })
     this.setData({

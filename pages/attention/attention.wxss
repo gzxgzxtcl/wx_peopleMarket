@@ -1,0 +1,147 @@
+
+
+.attention-item{
+  height: 480rpx;
+  background: #FFFFFF;
+  box-shadow: 0 0 2px 0 rgba(0,0,0,0.20);
+  padding: 20rpx 46rpx 0 46rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 列表块样式 */
+.my-attention .hours-list {
+  width: 658rpx;
+}
+
+.my-attention .hours-list .img {
+  width: 100%;
+  height: 328rpx;
+  border-radius: 14rpx;
+}
+
+.my-attention .hours-list .img image {
+  width: 100%;
+  height: 100%;
+  border-radius: 14rpx;
+}
+
+.my-attention .hours-list .hours-info {
+  width: 658rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 12rpx;
+}
+
+.my-attention .hours-list .left-info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 50%;
+  justify-content: space-between;
+  padding-right: 26rpx;
+}
+
+.my-attention .hours-list .hours-name {
+  display: flex;
+  align-items: center;
+}
+
+.my-attention .hours-list .hours-name>text {
+  font-family: 'PingFang-SC-Medium';
+  font-size: 28rpx;
+  color: #333;
+  margin-right: 16rpx;
+}
+
+.my-attention .hours-list .youhui {
+  font-family: 'PingFangTC';
+  font-size: 18rpx;
+  color: #fff;
+  display: flex;
+}
+
+.my-attention .hours-list .youhui text {
+  background: #20a0ff 60%;
+}
+
+.my-attention .hours-list .youhui .t1 {
+  display: block;
+  padding: 0 2rpx 0 11rpx;
+  border-radius: 4rpx;
+}
+
+.my-attention .hours-list .youhui .t2 {
+  padding: 0 3rpx 0 2rpx;
+  border-radius: 4rpx;
+  display: block;
+  margin-right: 10rpx;
+}
+
+.my-attention .hours-list .youhui .t3 {
+  padding: 0 1rpx 0 11rpx;
+  border-radius: 4rpx;
+  display: block;
+}
+
+.my-attention .hours-list .tag {
+  display: flex;
+}
+
+.my-attention .hours-list .tag text {
+  display: block;
+  padding: 0 10rpx;
+  margin: 0 10rpx 0 0;
+  border-radius: 4rpx;
+  border: 1rpx solid #979797;
+  font-family: 'PingFangTC-Light';
+  font-size: 20rpx;
+  color: #333333;
+  line-height: 28rpx;
+  letter-spacing: 0.2rpx;
+  text-align: center;
+}
+
+.my-attention .hours-list .right-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex: 1;
+  justify-content: space-between;
+  padding-left: 30rpx;
+}
+
+.my-attention .hours-list .right-info .price {
+  font-family: 'PingFangTC-Regular';
+  font-size: 24rpx;
+  color: #999;
+  letter-spacing: 0.24rpx;
+}
+
+.my-attention .hours-list .right-info .price text:first-child {
+  color: #fb1414;
+}
+
+.my-attention .hours-list .right-info .hours-address {
+  font-family: 'PingFangTC-Light';
+  font-size: 20rpx;
+  color: #333;
+  display: flex;
+}
+
+.my-attention .hours-list .right-info .hours-address .icon {
+  width: 14rpx;
+  height: 18rpx;
+  margin-right: 10rpx;
+}
+.my-attention .hours-list .right-info .hours-address .icon image{
+  width: 100%;
+  height: 100%;
+}
+.my-attention .hours-list .right-info .hours-address text:nth-of-type(1){
+  margin-right: 10rpx;
+}
+.my-attention .hours-list .right-info .hours-address text:last-child{
+  margin-left: 10rpx;
+}
