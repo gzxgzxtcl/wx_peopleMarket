@@ -39,26 +39,32 @@ Page({
     })
   },
 
-  onLoad: function() {
-    let that = this;
-    that.getMapLocation();
+  onLoad: function(option) {
+    let that = this
+    wx.getSetting({
+      success(res) {
+        console.log(res.authSetting['scope.userLocation'])
+        if (!res.authSetting['scope.userLocation']) {
+          wx.authorize({
+            scope: 'scope.userLocation',
+            success(res) {
+              console.log(res)
+              that.getMapLocation();
+            },
+            fail(res) {
+              console.log(res)
+            }
+          })
+        } else {
+          that.getMapLocation();
+        }
+      }
+    })
   },
 
   getMapLocation() {
     wx.getLocation({
       type: 'wgs84',
-      success: function(res) {
-        console.log(JSON.stringify(res))
-      },
-      fail: function(res) {
-
-      },
-      complete: function(res) {
-
-      }
-    })
-    wx.getLocation({
-      type: 'gcj02',
       success: function(res) {
         console.log(JSON.stringify(res))
       },
