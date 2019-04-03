@@ -23,7 +23,17 @@
   </view>
   <!-- 城市搜索 -->
   <view class='city-search'>
-
+    <view class='search'>
+      <i-panel>
+        <i-input value="{{ value5 }}" placeholder="请输入姓名或手机号" />
+      </i-panel>
+    </view>
+    <view class='search-icon'>
+      <image src='../../images/search.png'></image>
+    </view>
+    <view class='screen' bindtap='toggleRight'>
+      <text>筛选</text>
+    </view>
   </view>
   <!-- 客户列表 -->
   <view class='client'>
@@ -84,3 +94,70 @@
     </view>
   </view>
 </view>
+ <!-- 抽屉 -->
+<view class='drawer' wx:if='{{showRight}}'>
+  <view class='shade' bindtap='hideDrawer'></view>
+  <view class='content'>
+    <view class='city'>
+      <view class='title'>城市</view>
+      <view class='city-list'>
+        <view bindtap='selTag'>全部</view>
+        <view>深圳</view>
+        <view>东莞</view>
+      </view>
+    </view>
+
+    <view class='project'>
+      <view class='title'>项目</view>
+      <view>
+        <text>深圳中海天钻项目</text>
+        <image src='../../images/godown.png'></image>
+      </view>
+    </view>
+
+    <view class='time'>
+      <view class='title'>时间区间</view>
+      <view>
+        <view>
+          <text>开始时间</text>
+          <image src='../../images/godown.png'></image>
+        </view>
+        <view>
+          <text>结束时间</text>
+          <image src='../../images/godown.png'></image>
+        </view>
+      </view>
+    </view>
+
+    <view class='plan'>
+      <view class='title'>进度</view>
+      <view>
+        <text>全部</text>
+        <text>推荐</text>
+        <text>来电</text>
+        <text>签约</text>
+        <text>认购</text>
+      </view>
+    </view>
+
+    <view class='tabbar'>
+      <view class='reset'>重置</view>
+      <view class='ok'>确认</view>
+    </view>
+  </view>
+
+</view>
+
+
+
+
+
+<!--     
+      <i-drawer mode="right" visible="{{showRight1}}" bind:close="toggleRight1">
+          <view class="demo-container">
+            a
+          </view>
+      </i-drawer> -->
+ 
+   
+

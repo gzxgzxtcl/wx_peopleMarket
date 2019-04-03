@@ -7,11 +7,12 @@
     "pages/bindUser/bindUser",
     "pages/setting/setting",
     "pages/map/map",
-    "pages/clients/client",
     "pages/coupon/coupon",
     "pages/mycoupon/mycoupon",
+    "pages/clients/client",
     "pages/attention/attention",
     "pages/housestype/housestype"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

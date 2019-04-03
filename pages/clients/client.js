@@ -5,8 +5,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    showRight: false
   },
+  // 遮罩弹出
+  toggleRight() {
+    this.setData({
+      showRight:true
+    });
+  },
+  // 遮罩隐藏
+  hideDrawer(){
+    this.setData({
+      showRight: false
+    });
+  },
+  // 选择标签
+  selTag(e){
+    
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
