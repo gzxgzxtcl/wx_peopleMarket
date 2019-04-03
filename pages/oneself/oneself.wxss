@@ -4,6 +4,7 @@
   width: 100%;
   background-color: #fff;
   padding: 44rpx 0 44rpx 60rpx;
+  box-sizing: border-box;
 }
 
 .userAvatar {
@@ -19,6 +20,14 @@
 .userNickName {
   font-size: 40rpx;
   color: #111;
+}
+
+.iconR {
+  width: 24rpx;
+  height: 44rpx;
+  float: right;
+  margin-top: 32rpx;
+  margin-right: 60rpx;
 }
 
 .userTp {

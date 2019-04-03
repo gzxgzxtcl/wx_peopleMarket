@@ -40,3 +40,13 @@
   background-color: #20a0ff;
   color: #fff;
 }
+
+.noteCode {
+  display: block;
+  width: 150rpx;
+  position: absolute;
+  right: 35rpx;
+  top: 0;
+  color: #20a0ff;
+  text-align: center;
+}

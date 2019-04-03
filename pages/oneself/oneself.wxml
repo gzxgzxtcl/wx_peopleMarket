@@ -3,25 +3,26 @@
   <view>
     <open-data class='userAvatar' type="userAvatarUrl"></open-data>
   </view>
-  <view>
+  <view data-url='../bindUser/bindUser' bindtap='pageTobind'>
     <view>
-      <open-data class='userNickName' type="userNickName"></open-data>
+      <open-data data-url='../bindUser/bindUser' class='userNickName' type="userNickName"></open-data>
+      <image data-url='../bindUser/bindUser' class='iconR' src='../../images/right.png'></image>
     </view>
-    <view class='userTp'>独立经济人</view>
+    <view data-url='../bindUser/bindUser' class='userTp'>独立经济人</view>
   </view>
 </view>
 <view>
   <ul class='controlList'>
-    <li style='margin-top:20rpx;'>
-      <image class='iconImg' src="../../images/myrecommend.png"></image>我的推荐</li>
-    <li>
-      <image class='iconImg' src="../../images/myreduced.png"></image>我的优惠券</li>
-    <li>
-      <image class='iconImg' src="../../images/guanzhu.png"></image>我的关注</li>
-    <li style='border-bottom: 1rpx solid #e6e6e6;' data-url='../bindUser/bindUser' bindtap='pageTobind'>
-      <image class='iconImg' src="../../images/bindUser.png"></image>绑定用户</li>
+    <li style='margin-top:20rpx;' data-url='../clients/client' bindtap='pageTobind'>
+      <image class='iconImg' data-url='../clients/client' src="../../images/myrecommend.png"></image>我的推荐</li>
+    <li data-url='../mycoupon/mycoupon' bindtap='pageTobind'>
+      <image class='iconImg' data-url='../mycoupon/mycoupon' src="../../images/myreduced.png"></image>我的优惠券</li>
+    <li style='border-bottom: 1rpx solid #e6e6e6;' data-url='../attention/attention' bindtap='pageTobind'>
+      <image class='iconImg' data-url='../attention/attention' src="../../images/guanzhu.png"></image>我的关注</li>
+    <!-- <li style='border-bottom: 1rpx solid #e6e6e6;' data-url='../bindUser/bindUser' bindtap='pageTobind'>
+      <image class='iconImg' src="../../images/bindUser.png"></image>绑定用户</li> -->
     <li style='margin-top:20rpx;border-bottom: 1rpx solid #e6e6e6;' data-url='../setting/setting' bindtap='pageTobind'>
-      <image class='iconImg' src="../../images/setting.png"></image>设置</li>
+      <image class='iconImg' data-url='../setting/setting' src="../../images/setting.png"></image>设置</li>
   </ul>
 </view>
 <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">sss</button> -->

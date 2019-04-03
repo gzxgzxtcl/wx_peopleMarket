@@ -2,9 +2,36 @@
 <view>
   <ul class='bindList'>
     <li>
+      <span class='title'>姓名</span>
+      <span class="inp">
+        <input placeholder-class="phcolor" type='text' placeholder="请输入姓名" />
+      </span>
+    </li>
+    <li>
+      <span class='title'>性别</span>
+      <span class="inp">
+        <input placeholder-class="phcolor" type='text' placeholder="请输入性别" />
+      </span>
+    </li>
+    <!-- <li>
+      <span class='title'>身份证号</span>
+      <span class="inp">
+        <input placeholder-class="phcolor" type='idcard' placeholder="请输入身份证号" />
+      </span>
+    </li> -->
+    <li style='position:relative'>
+      <span class='title'>手机号</span>
+      <span class="inp" style='width:400rpx'>
+        <input placeholder-class="phcolor" type='number' placeholder="请输入手机号" />
+      </span>
+      <span wx:if='{{isnote}}' class='noteCode' bindtap='getNoteCode'>获取验证码</span>
+      <span wx:else class='noteCode'>({{downTime}}s)</span>
+    </li>
+
+    <li>
       <span class='title'>业主类型</span>
       <!-- <span style='float:right;color:#B2B2B2;'>请选择业主类型</span> -->
-      <span style='float:right;color:#B2B2B2;'>
+      <span style='float:right;'>
         <picker mode="selector" bindchange="bindPickerChange" range-key="name" value='{{arrayIndex}}' range="{{array}}">
           <view class="picker">
             <!-- 请选择业主类型 -->
@@ -12,27 +39,34 @@
           </view>
         </picker>
       </span>
+    </li>
 
-    </li>
-    <li>
-      <span class='title'>姓名</span>
-      <span class="inp">
-        <input placeholder-class="phcolor" type='text' placeholder="请输入姓名" />
-      </span>
-    </li>
-    <li>
+    <li wx-if="{{arrayIndex == 1}}" style='margin-top:20rpx;'>
       <span class='title'>身份证号</span>
       <span class="inp">
         <input placeholder-class="phcolor" type='idcard' placeholder="请输入身份证号" />
       </span>
     </li>
-    <li>
-      <span class='title'>手机号</span>
+    <li wx-if="{{arrayIndex == 2}}" style='margin-top:20rpx;'>
+      <span class='title'>渠道验证码</span>
       <span class="inp">
         <input placeholder-class="phcolor" type='number' placeholder="请输入手机号" />
       </span>
     </li>
+    <li wx-if="{{arrayIndex == 2}}">
+      <span class='title'>留电渠道</span>
+      <span class="inp">
+        <input placeholder-class="phcolor" type='text' placeholder="请输入留电渠道" />
+      </span>
+    </li>
+    <li wx-if="{{arrayIndex == 2}}">
+      <span class='title'>中介账户</span>
+      <span class="inp">
+        <input placeholder-class="phcolor" type='text' placeholder="请输入中介账户" />
+      </span>
+    </li>
   </ul>
+
 
   <button class='bindSub'>确定</button>
 </view>
