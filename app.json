@@ -11,8 +11,8 @@
     "pages/mycoupon/mycoupon",
     "pages/clients/client",
     "pages/attention/attention",
-    "pages/housestype/housestype"
-    
+    "pages/housestype/housestype",
+    "pages/houseimg/houseimg"
   ],
   "window": {
     "backgroundTextStyle": "light",
