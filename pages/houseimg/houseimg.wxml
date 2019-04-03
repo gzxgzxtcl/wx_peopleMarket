@@ -1,7 +1,7 @@
 <!-- 户型图页面 -->
 <view class='house-img-page'>
   <view class='house-img'>
-    <image src='https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'></image>
+    <image src='https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640' bindtap='getBigImg'></image>
   </view>
   <view class='tabbar'>
     <view class='sel1' bindtap='selImg' data-num='{{1}}'>
