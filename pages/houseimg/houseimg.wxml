@@ -1,0 +1,16 @@
+<!-- 户型图页面 -->
+<view class='house-img-page'>
+  <view class='house-img'>
+    <image src='https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640' bindtap='getBigImg'></image>
+  </view>
+  <view class='tabbar'>
+    <view class='sel1' bindtap='selImg' data-num='{{1}}'>
+      <view class='icon' wx:if='{{isLeftSel}}'><image src='../../images/top.png'></image></view>
+      <view class="txt {{isLeftSel?'active':''}}">户型图(1)</view>
+    </view>
+    <view class='sel2' bindtap='selImg' data-num='{{2}}'>
+      <view class='icon' wx:if='{{isRightSel}}'><image src='../../images/top.png'></image></view>
+      <view class="txt {{isRightSel?'active':''}}">样板图(6)</view>
+    </view>
+  </view>
+</view>
