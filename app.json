@@ -9,7 +9,9 @@
     "pages/map/map",
     "pages/clients/client",
     "pages/coupon/coupon",
-    "pages/mycoupon/mycoupon"
+    "pages/mycoupon/mycoupon",
+    "pages/attention/attention",
+    "pages/housestype/housestype"
   ],
   "window": {
     "backgroundTextStyle": "light",

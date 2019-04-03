@@ -1,0 +1,55 @@
+<!-- 户型列表页 -->
+<view class='house-type'>
+  <view class='top-sel'>
+    <view bindtap='changeHouse' data-type="{{'全部(2)'}}" class="{{selType=='全部(2)'?'active':''}}">
+      <text>全部(2)</text>
+      <view></view>
+    </view>
+    <view bindtap='changeHouse' data-type="{{'两室(1)'}}" class="{{selType=='两室(1)'?'active':''}}">
+      <text>两室(1)</text>
+      <view></view>
+    </view>
+    <view bindtap='changeHouse' data-type="{{'三室(1)'}}" class="{{selType=='三室(1)'?'active':''}}">
+      <text>三室(1)</text>
+      <view></view>
+    </view>
+  </view>
+  <!-- 户型信息 -->
+  <view class='house-item'>
+    <view class='huxing'>
+      <view class='tip'>
+        <text>98m² 舒适两居室</text>
+      </view>
+      <view class='img'>
+        <image src='https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'></image>
+        <view class='explain'>
+          <text class='totle'>暂无定价</text>
+          <text>精装修</text>
+          <text>户型优势</text>
+          <view>28m²大阳台</view>
+          <view>黄金地段</view>
+          <view>海景房</view>
+        </view>
+      </view>
+      <view class='house-info'>
+        <view class='top'>
+          <view>
+            <text>户型</text>
+            <text>两室一厅一卫</text>
+          </view>
+          <view>
+            <text>建筑面积</text>
+            <text>98m²</text>
+          </view>
+          <view>
+            <text>产品</text>
+            <text>高层</text>
+          </view>
+        </view>
+        <view class='miaoshu'>户型描述：<text>户型描述：高端海景洋房，享受高端定制服务。</text></view>
+      </view>
+    </view>
+  </view>
+
+
+</view>

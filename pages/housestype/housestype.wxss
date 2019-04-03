@@ -1,0 +1,140 @@
+/* 户型列表页样式 */
+page{
+  background: #ffffff;
+}
+.house-type{
+  padding-left: 50rpx;
+}
+
+.house-type .top-sel{
+  height: 60rpx;
+  display: flex; 
+  margin-top: 31rpx;
+  margin-bottom: 60rpx;
+}
+.house-type .top-sel>view{
+  margin-right: 40rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30rpx;
+  color: #333333;
+  font-family: 'PingFang-SC-Medium';
+}
+
+.house-type .top-sel>view>view{
+  width: 8rpx;
+  height: 8rpx;
+  background: #ffffff;
+  border-radius: 50%;
+}
+.house-type .top-sel> .active{
+  color: #20A0FF;
+}
+.house-type .top-sel>.active>view{
+  background: #20A0FF;
+}
+
+
+/* 户型样式 */
+
+.house-type .huxing {
+  margin-top: 28rpx;
+  padding-bottom: 32rpx;
+  border-bottom: 2rpx solid #E6E6E6;
+}
+
+.house-type .huxing .tip {
+  height: 40rpx;
+  font-size: 28rpx;
+  color: #111;
+  font-family: 'PingFangTC-Medium';
+  line-height: 40rpx;
+}
+
+.house-type .huxing .img {
+  height: 332rpx;
+  margin-top: 32rpx;
+  display: flex;
+}
+
+.house-type .huxing .img image {
+  width: 442rpx;
+  height: 100%;
+  border-radius: 6rpx;
+}
+
+.house-type .huxing .img .explain {
+  height: 100%;
+  padding-left: 18rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.house-type .huxing .img .explain .totle {
+  display: block;
+  height: 50rpx;
+  color: #b4b9cb;
+  font-size: 36rpx;
+  font-family: 'PingFangTC-Light';
+}
+
+.house-type .huxing .img .explain text:nth-of-type(2),.house-type .huxing .img .explain text:nth-of-type(3) {
+  display: block;
+  height: 40rpx;
+  color: #333;
+  font-size: 28rpx;
+  font-family: 'PingFangTC-Light';
+}
+
+.house-type .huxing .img .explain view {
+  height: 40rpx;
+  color: #8d91a2;
+  font-family: 'PingFangTC-Light';
+  font-size: 24rpx;
+  padding: 0 12rpx;
+  border: 1rpx solid #8d91a2;
+  border-radius: 6rpx;
+  line-height: 40rpx;
+  margin-bottom: 12rpx;
+}
+
+.house-type .huxing .house-info .top{
+  height: 86rpx;
+  display: flex;
+  margin-top: 30rpx;
+}
+.house-type .huxing .house-info .top>view{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}   
+.house-type .huxing .house-info .top>view:nth-of-type(1){
+  width: 280rpx;
+}
+.house-type .huxing .house-info .top>view:nth-of-type(2){
+  width:240rpx;
+}
+.house-type .huxing .house-info .top>view:nth-of-type(3){
+  flex: 1;
+}
+.house-type .huxing .house-info .top>view text:first-child{
+  font-size: 28rpx;
+  font-family: 'PingFang-SC-Regular';
+  color: #8D91A2;
+}
+.house-type .huxing .house-info .top>view text:last-child{
+  font-size: 30rpx;
+  font-family: 'PingFang-SC-Regular';
+  color: #333333;
+}
+.house-type .huxing .house-info .miaoshu{
+  font-size: 24rpx;
+  font-family: 'PingFang-SC-Regular';
+  color: #333333;
+  margin-top: 24rpx;
+}

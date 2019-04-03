@@ -1,0 +1,43 @@
+<!-- 我的关注列表页面 -->
+<view class='my-attention'>
+  <view class='attention-item' wx:for='{{3}}' wx:key="{{index}}">
+     <view class='hours-list' bindtap='goInformation'>
+    <view class='img'>
+      <image src='https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'></image>
+    </view>
+    <view class='hours-info'>
+      <view class='left-info'>
+        <view class='hours-name'>
+          <text>中海天钻</text>
+          <view class='youhui'>
+            <text class='t1'>9.8折</text>
+            <text class='t2'>领</text>
+            <text class='t3'>最高奖励1%</text>
+          </view>
+        </view>
+        <view class='tag'>
+          <text>市中心</text>
+          <text>学区房</text>
+          <text>紧邻地铁</text>
+        </view>
+      </view>
+      <view class='right-info'>
+        <view class='price'>主力均价：
+          <text>98000</text>
+          <text>元/㎡</text>
+        </view>
+        <view class='hours-address'>
+          <!-- <text class='hours-address-icon iconfont iconweizhi'></text>
+          <text>罗湖区</text> -->
+          <view class='icon'>
+            <image src='../../images/dingwei.png'></image>
+          </view>
+          <text class=' province'>广东省</text>
+          <text>|</text>
+          <text class='city'>深圳市</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  </view>
+</view>
