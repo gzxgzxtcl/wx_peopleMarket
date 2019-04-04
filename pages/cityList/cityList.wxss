@@ -1,0 +1,7 @@
+/* pages/cityList/cityList.wxss */
+.cityName{
+  display: inline-block;
+  width: 100rpx;
+  height: 40rpx;
+  text-align: center;
+}

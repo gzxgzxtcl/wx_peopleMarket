@@ -17,8 +17,9 @@ Page({
   },
   // 切换城市
   changeCity() {
-    console.log("qiehuan")
-
+    wx.navigateTo({
+      url: '../cityList/cityList'
+    })
   },
   // 切换banner图
   changeImg(e) {

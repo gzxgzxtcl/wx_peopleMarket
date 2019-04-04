@@ -1,0 +1,13 @@
+<!--pages/cityList/cityList.wxml-->
+<view>
+  <view>当前位置</view>
+  <span class="cityName">深圳</span>
+</view>
+<view>
+  <ul>
+    <li>
+      <view>b</view>
+      <span class="cityName">北京</span>
+    </li>
+  </ul>
+</view>
