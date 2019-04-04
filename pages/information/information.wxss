@@ -134,7 +134,7 @@ swiper image {
   padding: 0 10rpx;
   font-size: 20rpx;
   line-height: 30rpx;
-  border: 2px solid #979797;
+  border: 1rpx solid #979797;
   border-radius: 4rpx;
   margin-right: 20rpx;
 }
@@ -433,6 +433,9 @@ swiper image {
 .info .huxing .img .explain {
   height: 100%;
   padding-left: 18rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .info .huxing .img .explain .totle {
@@ -453,16 +456,14 @@ swiper image {
   margin-bottom: 10rpx;
 }
 
-.info .huxing .img .explain view {
-  height: 40rpx;
+.info .huxing .img .explain .house-tag text{
   color: #8d91a2;
   font-family: 'PingFangTC-Light';
   font-size: 24rpx;
   padding: 0 12rpx;
+  line-height: 40rpx;
   border: 1rpx solid #8d91a2;
   border-radius: 6rpx;
-  line-height: 40rpx;
-  margin-bottom: 12rpx;
 }
 
 /* 楼盘图样式 */
@@ -471,6 +472,23 @@ swiper image {
   margin-top: 30rpx;
 }
 
+.info .hours-imgs .top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.info .hours-imgs .top view{
+   height: 100%;
+  font-size: 24rpx;
+  font-family: 'PingFang-SC-Medium';
+  color: #8d91a2;
+  display: flex;
+  align-items: center;
+}
+.info .hours-imgs .top view text{
+  font-size: 20rpx;
+  margin-left: 10rpx;
+}
 .info .hours-imgs .title {
   font-size: 36rpx;
   color: #111;
@@ -494,11 +512,9 @@ swiper image {
 }
 
 .info .hours-imgs .img-list .imgs {
-  width: 2000rpx;
   height: 328rpx;
   display: flex;
   flex-wrap: nowrap;
-  overflow: hidden;
 }
 
 .info .hours-imgs .img-list .imgs image {
@@ -507,6 +523,9 @@ swiper image {
   height: 100%;
   margin-right: 20rpx;
   border-radius: 14rpx;
+}
+.info .hours-imgs .img-list .imgs image:last-child{
+  margin: 0;
 }
 
 /* 项目详情样式 */

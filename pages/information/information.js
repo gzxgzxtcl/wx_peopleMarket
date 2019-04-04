@@ -15,7 +15,27 @@ Page({
     interval: 5000,
     duration: 1000
   },
-
+  // 查看更多户型，跳转到户型列表页
+  goHousetype(){
+    wx.navigateTo({
+      url: '../housestype/housestype'
+    })
+  },
+  //户型图片点击事件
+  goHouseimg(e){
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../houseimg/houseimg?id=' + id
+    })
+  },
+  //楼盘图查看更多事件
+  goHouseimg(e){
+    console.log(e)
+    let id=e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../houseimg/houseimg?id=' + id
+    })
+  },
 
 
 

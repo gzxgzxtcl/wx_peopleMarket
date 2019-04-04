@@ -21,7 +21,7 @@ Page({
   },
   // 选择标签
   selTag(e){
-    
+    console.log(e)
   },
 
 

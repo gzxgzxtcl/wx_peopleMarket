@@ -90,8 +90,7 @@ page{
   font-family: 'PingFangTC-Light';
 }
 
-.house-type .huxing .img .explain view {
-  height: 40rpx;
+.house-type .huxing .img .explain view text{
   color: #8d91a2;
   font-family: 'PingFangTC-Light';
   font-size: 24rpx;
@@ -99,7 +98,6 @@ page{
   border: 1rpx solid #8d91a2;
   border-radius: 6rpx;
   line-height: 40rpx;
-  margin-bottom: 12rpx;
 }
 
 .house-type .huxing .house-info .top{
