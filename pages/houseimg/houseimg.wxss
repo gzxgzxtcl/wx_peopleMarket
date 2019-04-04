@@ -27,6 +27,7 @@ page{
   bottom: 0;
   display: flex;
   padding-bottom: 32rpx;
+  justify-content: space-around;
 }
 .house-img-page .tabbar .active{
   color: #20A0FF;

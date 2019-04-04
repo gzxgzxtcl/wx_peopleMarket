@@ -21,14 +21,20 @@
         <text>98m² 舒适两居室</text>
       </view>
       <view class='img'>
-        <image src='https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'></image>
+        <image src='https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640' bindtap='goHouseimg' data-id='{{0}}'></image>
         <view class='explain'>
           <text class='totle'>暂无定价</text>
           <text>精装修</text>
           <text>户型优势</text>
-          <view>28m²大阳台</view>
-          <view>黄金地段</view>
-          <view>海景房</view>
+          <view>
+            <text>28m²大阳台</text>
+          </view>
+          <view>
+            <text>黄金地段</text>
+          </view>
+          <view>
+            <text>海景房</text>
+          </view>
         </view>
       </view>
       <view class='house-info'>
