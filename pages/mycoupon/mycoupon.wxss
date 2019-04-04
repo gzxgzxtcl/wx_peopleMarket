@@ -1,10 +1,11 @@
 /* pages/mycoupon/mycoupon.wxss */
 
 .mycoupon {
-  margin-bottom: 100rpx;
+  /* margin-bottom: 100rpx; */
 }
 
 .mycoupon .condition {
+  width: 100%;
   height: 100rpx;
   display: flex;
   align-items: center;
@@ -14,6 +15,9 @@
   font-size: 30rpx;
   color: #333;
   font-family: 'PingFang-SC-Medium';
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .mycoupon .condition text {
@@ -36,6 +40,9 @@
 }
 
 /* 优惠券样式 */
+.coupons-list{
+  margin-top: 140rpx;
+}
 
 .coupon-item {
   display: flex;
