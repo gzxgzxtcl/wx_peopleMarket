@@ -96,7 +96,7 @@ swiper image {
 .info .name-money .money .hours-money {
   font-size: 32rpx;
   font-family: 'PingFangTC-Regular';
-  color: #20a0ff;
+  color: #FB1414;
   margin-left: 14rpx;
 }
 
@@ -462,7 +462,7 @@ swiper image {
   font-size: 24rpx;
   padding: 0 12rpx;
   line-height: 40rpx;
-  border: 1rpx solid #8d91a2;
+  border: 1rpx solid #8D91A2;
   border-radius: 6rpx;
 }
 
@@ -604,12 +604,13 @@ swiper image {
 /* 底部tabbar样式 */
 
 .tabar {
-  height: 108rpx;
+  height: 82rpx;
   width: 100%;
   display: flex;
   align-items: center;
   border-top: 2rpx solid #eee;
-  padding-top: 5rpx;
+  padding-top: 14rpx;
+  padding-bottom: 12rpx;
   position: fixed;
   bottom: 0;
   background: #fff;
@@ -646,8 +647,8 @@ swiper image {
 }
 
 .tabar .attention view, .tabar .share view {
-  height: 50%;
-  width: 100%;
+  height: 40rpx;
+  width: 40rpx;
 }
 
 .tabar image {

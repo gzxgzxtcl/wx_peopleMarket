@@ -61,7 +61,7 @@ swiper image {
   justify-content: space-around;
   align-items: center;
   position: absolute;
-  top: 380rpx;
+  top: 395rpx;
   z-index: 30;
 }
 
@@ -71,6 +71,7 @@ swiper image {
   border: 2rpx solid #000;
   background: #fff;
   border-radius: 50%;
+  box-sizing: border-box;
 }
 
 .dot .active {
@@ -105,7 +106,7 @@ swiper image {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   font-family: "PingFang-SC-Medium";
   color: #8d91a2;
@@ -114,8 +115,17 @@ swiper image {
 }
 
 .goneneng view image {
-  width: 80%;
-  height: 50%;
+  height: 58rpx;
+  margin-bottom: 20rpx;
+}
+.goneneng .gn1 image{
+  width: 60rpx;
+}
+.goneneng .gn2 image{
+  width: 72rpx;
+}
+.goneneng .gn3 image{
+  width: 64rpx;
 }
 
 .hours {

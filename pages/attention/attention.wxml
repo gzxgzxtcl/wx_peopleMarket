@@ -10,8 +10,8 @@
         <view class='hours-name'>
           <text>中海天钻</text>
           <view class='youhui'>
-            <text class='t1'>9.8折</text>
-            <text class='t2'>领</text>
+            <!-- <text class='t1'>9.8折</text>
+            <text class='t2'>领</text> -->
             <text class='t3'>最高奖励1%</text>
           </view>
         </view>
@@ -30,7 +30,7 @@
           <!-- <text class='hours-address-icon iconfont iconweizhi'></text>
           <text>罗湖区</text> -->
           <view class='icon'>
-            <image src='../../images/dingwei.png'></image>
+            <image src='../../images/dingwei2.png'></image>
           </view>
           <text class=' province'>广东省</text>
           <text>|</text>

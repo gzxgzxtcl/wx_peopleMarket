@@ -100,17 +100,24 @@
   <view class='content'>
     <view class='city'>
       <view class='title'>城市</view>
-      <view class='city-list'>
-        <view bindtap='selTag'>全部</view>
-        <view>深圳</view>
-        <view>东莞</view>
+      <view class='city-list' bindtap='selCity'>
+        <view data-cityTagId='{{0}}' class="{{citySelArr[0]?'active':''}}">全部</view>
+        <view data-cityTagId='{{1}}' class="{{citySelArr[1]?'active':''}}">深圳</view>
+        <view data-cityTagId='{{2}}' class="{{citySelArr[2]?'active':''}}">东莞</view>
       </view>
     </view>
 
     <view class='project'>
       <view class='title'>项目</view>
       <view>
-        <text>深圳中海天钻项目</text>
+        <view class="section">
+          <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class="picker">
+              <text wx:if='{{itemPakerIndex===null}}'>深圳中海天钻项目</text>
+              <text wx:else>{{array[itemPakerIndex]}}</text>
+            </view>
+          </picker>
+        </view>
         <image src='../../images/godown.png'></image>
       </view>
     </view>
@@ -118,12 +125,38 @@
     <view class='time'>
       <view class='title'>时间区间</view>
       <view>
-        <view>
-          <text>开始时间</text>
+        <view  class='start-time'>
+          <view class="section">
+            <picker
+              mode="date"
+              value="{{date}}"
+              start="2019-01-01"
+              end="2029-01-01"
+              bindchange="bindDateChangeStart"
+            >
+              <view class="picker">
+                <text wx:if='{{dataIntervalStart===null}}'>开始时间</text>
+                 <text wx:else>{{dataIntervalStart}}</text>
+              </view>
+            </picker>
+          </view>
           <image src='../../images/godown.png'></image>
         </view>
-        <view>
-          <text>结束时间</text>
+        <view class='end-time'>
+          <view class="section">
+            <picker
+              mode="date"
+              value="{{date}}"
+              start="2019-01-01"
+              end="2029-01-01"
+              bindchange="bindDateChangeEnd"
+            >
+              <view class="picker">
+                <text wx:if='{{dataIntervalEnd===null}}'>结束时间</text>
+                 <text wx:else>{{dataIntervalEnd}}</text>
+              </view>
+            </picker>
+          </view>
           <image src='../../images/godown.png'></image>
         </view>
       </view>
@@ -131,17 +164,17 @@
 
     <view class='plan'>
       <view class='title'>进度</view>
-      <view>
-        <text>全部</text>
-        <text>推荐</text>
-        <text>来电</text>
-        <text>签约</text>
-        <text>认购</text>
+      <view bindtap='selPlan'>
+        <text data-planTagId='{{0}}' class="{{planSelArr[0]?'active':''}}">全部</text>
+        <text data-planTagId='{{1}}' class="{{planSelArr[1]?'active':''}}">推荐</text>
+        <text data-planTagId='{{2}}' class="{{planSelArr[2]?'active':''}}">来电</text>
+        <text data-planTagId='{{3}}' class="{{planSelArr[3]?'active':''}}">签约</text>
+        <text data-planTagId='{{4}}' class="{{planSelArr[4]?'active':''}}">认购</text>
       </view>
     </view>
 
     <view class='tabbar'>
-      <view class='reset'>重置</view>
+      <view class='reset' bindtap='reset'>重置</view>
       <view class='ok'>确认</view>
     </view>
   </view>
@@ -150,14 +183,4 @@
 
 
 
-
-
-<!--     
-      <i-drawer mode="right" visible="{{showRight1}}" bind:close="toggleRight1">
-          <view class="demo-container">
-            a
-          </view>
-      </i-drawer> -->
- 
-   
 
