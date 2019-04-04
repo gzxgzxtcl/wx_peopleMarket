@@ -1,13 +1,15 @@
 <!--pages/cityList/cityList.wxml-->
-<view>
-  <view>当前位置</view>
+<view class='vPack vTitle'>
+  <view style='margin-bottom:20rpx'>当前位置</view>
   <span class="cityName">深圳</span>
 </view>
-<view>
+<view class='vPack'>
   <ul>
-    <li>
-      <view>b</view>
-      <span class="cityName">北京</span>
+    <li class='cityList' wx:for='{{cityListData}}'>
+      <view style='line-height: 56rpx;color: #8d91a2; padding-left: 30rpx;'>{{item.key}}</view>
+      <view class='cityNameList'>
+        <span class="cityName" wx:for='{{item.item}}'>{{item.name}}</span>
+      </view>
     </li>
   </ul>
 </view>
