@@ -50,3 +50,13 @@
   color: #20a0ff;
   text-align: center;
 }
+
+.modalClass {
+  top: -200rpx !important;
+}
+
+.inpText {
+  display: inline-block;
+  width: 40rpx;
+  margin: 0 10rpx;
+}

@@ -24,8 +24,13 @@
       <span class="inp" style='width:400rpx'>
         <input placeholder-class="phcolor" type='number' placeholder="请输入手机号" />
       </span>
-      <span wx:if='{{isnote}}' class='noteCode' bindtap='getNoteCode'>获取验证码</span>
-      <span wx:else class='noteCode'>({{downTime}}s)</span>
+      <view wx-if='{{!noteResult}}'>
+        <span wx:if='{{isnote}}' class='noteCode' bindtap='getNoteCode'>获取验证码</span>
+        <span wx:else class='noteCode' bindtap='noteCodeModalShow'>({{downTime}}s)</span>
+      </view>
+      <span wx:if="{{noteResult}}" class='noteCode' style='color:#0aba07'>
+        <icon type="success" size="14" /> 成功
+      </span>
     </li>
 
     <li>
@@ -50,7 +55,7 @@
     <li wx-if="{{arrayIndex == 2}}" style='margin-top:20rpx;'>
       <span class='title'>渠道验证码</span>
       <span class="inp">
-        <input placeholder-class="phcolor" type='number' placeholder="请输入手机号" />
+        <input placeholder-class="phcolor" type='number' placeholder="请输入渠道验证码" />
       </span>
     </li>
     <li wx-if="{{arrayIndex == 2}}">
@@ -69,4 +74,16 @@
 
 
   <button class='bindSub'>确定</button>
+
+  <!-- 验证窗口 -->
+  <i-modal i-class='modalClass' style='top:-100rpx' visible="{{noteCodeVisible}}" bind:ok="noteCodeModalOk" bind:cancel="noteCodeModalClose">
+    <view style='font-size:32rpx;color:#111'>请输入手机验证码</view>
+    <view bindtap='noteCodeModalShow' style='font-size:36rpx;color:#111;margin:22rpx 0 20rpx;'>
+      <input style='width:0;height:0;float:left;' placeholder-class="phcolor" focus="{{noteCodeVisible}}" type='text' maxlength='{{noteCodeValLeng}}' bindinput='inpBind' />
+      <block wx:for="{{noteCodeValLeng}}" wx:key="item">
+        <input class='inpText' value='{{noteCodeVal[index]}}' disabled type='text' placeholder="—" />
+      </block>
+    </view>
+    <view style='font-siez:24rpx'>已发送:13313231515</view>
+  </i-modal>
 </view>

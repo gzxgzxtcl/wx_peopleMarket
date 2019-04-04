@@ -5,6 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 验证码窗口
+    noteCodeVisible: false,
+    noteCodeVal: null,
+    noteCodeValLeng: 6,
+    // 验证是否成功
+    noteResult: false,
     array: [{
       id: 1,
       name: '独立经纪人'
@@ -38,7 +44,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    console.log(1)
+ 
   },
 
   /**
@@ -56,7 +62,6 @@ Page({
    */
   onHide: function() {
     this.data.onHideTime = Math.round(new Date().getTime() / 1000)
-    // this.endSetInter()
   },
 
   /**
@@ -98,7 +103,35 @@ Page({
       })
     }, 1000)
     that.setData({
-      isnote: false
+      isnote: false,
+      noteCodeVisible: true
+    })
+  },
+
+  // 显示验证窗口
+  noteCodeModalShow() {
+    this.setData({
+      noteCodeVisible: true
+    })
+  },
+
+  noteCodeModalOk() {
+    this.setData({
+      noteCodeVisible: false,
+      noteResult: true
+    })
+  },
+
+  noteCodeModalClose(e) {
+    this.setData({
+      noteCodeVisible: false
+    })
+  },
+
+  inpBind(e) {
+    console.log(e.detail.value)
+    this.setData({
+      noteCodeVal: e.detail.value
     })
   },
 
