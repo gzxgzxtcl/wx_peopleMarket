@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isAttention: false,  /*是否关注*/
     imgUrls: [
       'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
       'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
@@ -14,6 +15,7 @@ Page({
     autoplay: false,
     interval: 5000,
     duration: 1000
+    
   },
   // 查看更多户型，跳转到户型列表页
   goHousetype(){
@@ -36,7 +38,10 @@ Page({
       url: '../houseimg/houseimg?id=' + id
     })
   },
-
+  //关注 按钮事件
+  toAttention(){
+    this.setData({ isAttention: !this.data.isAttention})
+  },
 
 
 

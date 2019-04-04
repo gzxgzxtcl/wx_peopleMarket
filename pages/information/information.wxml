@@ -230,9 +230,10 @@
   </view>
   <!-- 底部tabar -->
   <view class='tabar'>
-    <view class='attention'>
+    <view class='attention' bindtap='toAttention'>
       <view>
-        <image src='../../images/guanzhu.png'></image>
+        <image  wx:if='{{!isAttention}}' src='../../images/guanzhu.png'></image>
+        <image  wx:else src='../../images/yjguanzhu.png'></image>
       </view>
       <text>关注</text>
     </view>
