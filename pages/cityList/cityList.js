@@ -1,4 +1,8 @@
 // pages/cityList/cityList.js
+//获取应用实例
+const app = getApp()
+import apiSetting from '../../http/apiSetting.js'
+import $http from '../../http/http.js'
 Page({
 
   /**
@@ -34,6 +38,13 @@ Page({
    */
   onLoad: function(options) {
 
+    //获取城市列表
+    let promise = {}
+    $http(apiSetting.cityFindCityItems, promise).then((data) => {
+      console.log(data.data)
+    }, (error) => {
+      console.log(error)
+    });
   },
 
   /**

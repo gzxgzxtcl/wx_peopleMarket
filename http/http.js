@@ -1,5 +1,6 @@
 //接口地址
-const url = 'https://www.easy-mock.com/mock/5b39f9e442aef2399ae2333e'
+// 测试地址
+const url = 'http://39.98.191.16/zhwx-api'
 
 let $httpServer = function (opts, data) {
   let promise = new Promise(function (resolve, reject) {

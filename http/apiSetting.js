@@ -1,8 +1,12 @@
 const serviceModule = {
-  getList01: {
-    url: '/list_01',
-    method: 'get'
-  }
+  userDecodeUserInfo: {
+    url: '/user/decodeUserInfo',
+    method: 'post'
+  },
+  cityFindCityItems: {
+    url: '/city/findCityItems',
+    method: 'post'
+  },
 }
 const ApiSetting = { ...serviceModule }
 
