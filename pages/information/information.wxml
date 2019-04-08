@@ -143,7 +143,7 @@
       </view>
     </view>
     <!-- 楼盘图 -->
-    <view class='hours-imgs'>    
+    <view class='hours-imgs'>
       <view class='top'>
         <text class='title'>楼盘图</text>
         <view bindtap='goHouseimg' data-id='1'>查看全部
@@ -232,18 +232,24 @@
   <view class='tabar'>
     <view class='attention' bindtap='toAttention'>
       <view>
-        <image  wx:if='{{!isAttention}}' src='../../images/guanzhu.png'></image>
-        <image  wx:else src='../../images/yjguanzhu.png'></image>
+        <image wx:if='{{!isAttention}}' src='../../images/guanzhu.png'></image>
+        <image wx:else src='../../images/yjguanzhu.png'></image>
       </view>
       <text>关注</text>
     </view>
-    <view class='share'>
+    <!-- <view class='share' bindtap='onShareAppMessage'>
       <view>
         <image src='../../images/fenxiang.png'></image>
       </view>
       <text>分享</text>
-    </view>
-    <view class='connect'>
+    </view> -->
+    <button class='shareBut' open-type="share">
+      <view style='height: 40rpx;width: 40rpx;margin:12rpx auto -6rpx;'>
+        <image src='../../images/fenxiang.png'></image>
+      </view>
+      <text>分享</text>
+    </button>
+    <view class='connect' bindtap='toPhone'>
       联系我们
     </view>
   </view>

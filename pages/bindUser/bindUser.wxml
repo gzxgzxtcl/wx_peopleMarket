@@ -9,9 +9,21 @@
     </li>
     <li>
       <span class='title'>性别</span>
-      <span class="inp">
-        <input placeholder-class="phcolor" type='text' placeholder="请输入性别" />
+      <span class="" style='height:100rpx;float:right;'>
+        <button class='genderSty' data-val='1' bindtap='genderChange'>
+          <icon wx:if="{{gender==1}}" type="success" size="14" />
+          <icon wx:else class='iconSty' />
+          <text style='margin-left:20rpx'>男</text>
+        </button>
+        <button class='genderSty' data-val='0' bindtap='genderChange'>
+          <icon wx:if="{{gender==0}}" type="success" size="14" />
+          <icon wx:else class='iconSty' />
+          <text style='margin-left:20rpx'>女</text>
+        </button>
       </span>
+      <!-- <span class="inp">
+        <input placeholder-class="phcolor" type='text' placeholder="请输入性别" />
+      </span> -->
     </li>
     <li style='position:relative'>
       <span class='title'>手机号</span>
@@ -75,7 +87,7 @@
     <view bindtap='noteCodeModalShow' style='font-size:36rpx;color:#111;margin:22rpx 0 20rpx;'>
       <input style='width:0;height:0;float:left;' placeholder-class="phcolor" focus="{{noteCodeVisible}}" type='text' maxlength='{{noteCodeValLeng}}' bindinput='inpBind' />
       <block wx:for="{{noteCodeValLeng}}" wx:key="item">
-        <input class='inpText' value='{{noteCodeVal[index]}}' disabled type='text' placeholder="—" />
+        <input class='inpText' value='{{noteCodeVal[index]}}' disabled type='number' placeholder="—" />
       </block>
     </view>
     <view style='font-siez:24rpx'>已发送:13313231515</view>

@@ -31,6 +31,8 @@ Page({
 
     // 记录切换后台时间
     onHideTime: null,
+
+    gender: 1,
   },
 
   /**
@@ -44,7 +46,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
- 
+
   },
 
   /**
@@ -128,6 +130,16 @@ Page({
     })
   },
 
+  // 性别选择
+  genderChange(e) {
+    let val = e.target.dataset.val
+    console.log(e.target.dataset)
+    this.setData({
+      gender: val
+    })
+  },
+
+  // 验证码输入
   inpBind(e) {
     console.log(e.detail.value)
     this.setData({

@@ -11,12 +11,12 @@
       <span class='title required'>性别</span>
       <span class="">
         <button class='genderSty' data-val='1' bindtap='genderChange'>
-          <icon wx:if="{{gender==1}}" type="success" size="14" color="green" />
+          <icon wx:if="{{gender==1}}" type="success" size="14" />
           <icon wx:else class='iconSty' />
           <text style='margin-left:20rpx'>男</text>
         </button>
         <button class='genderSty' data-val='0' bindtap='genderChange'>
-          <icon wx:if="{{gender==0}}" type="success" size="14" color="green" />
+          <icon wx:if="{{gender==0}}" type="success" size="14" />
           <icon wx:else class='iconSty' />
           <text style='margin-left:20rpx'>女</text>
         </button>

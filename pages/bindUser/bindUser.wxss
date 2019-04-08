@@ -60,3 +60,22 @@
   width: 40rpx;
   margin: 0 10rpx;
 }
+
+.iconSty {
+  width: 28rpx;
+  height: 28rpx;
+  border: 1rpx solid #e6e6e6;
+  border-radius: 50%;
+}
+
+.genderSty {
+  width: 200rpx;
+  background: none;
+  display: inline-block;
+  padding: 0;
+  text-align: right;
+}
+
+.genderSty::after {
+  border: none;
+}
