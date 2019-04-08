@@ -13,26 +13,15 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        console.log(res.code)
+        // console.log(res.code)
         let promise = {
           code: res.code
         }
-        wx.request({
-          url: 'http://39.98.191.16/zhwx-api/user/decodeUserInfo',
-          method: 'post',
-          header: {
-            'content-type': 'application/x-www-form-urlencoded'
-          },
-          data: promise,
-          success(res) {
-            console.log(res.data)
-          }
-        })
-        // $http(apiSetting.userDecodeUserInfo, promise).then((data) => {
-        //   console.log(data.data)
-        // }, (error) => {
-        //   console.log(error)
-        // });
+        $http(apiSetting.userDecodeUserInfo, promise).then((data) => {
+          console.log(data.data)
+        }, (error) => {
+          console.log(error)
+        });
       }
     })
     // 获取用户信息
