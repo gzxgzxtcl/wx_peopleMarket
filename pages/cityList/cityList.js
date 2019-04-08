@@ -25,7 +25,8 @@ Page({
           name: '长沙'
         }]
       }
-    ]
+    ],
+    selectCity: null
   },
 
   /**
@@ -77,10 +78,10 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
+  cityChange(e) {
+    console.log(e.target.dataset.name)
+    this.setData({
+      selectCity: e.target.dataset.id
+    })
   }
 })

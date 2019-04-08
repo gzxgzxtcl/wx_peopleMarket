@@ -33,3 +33,8 @@
   padding: 20rpx 0 0rpx 30rpx;
   background-color: #fff;
 }
+
+.selectColor {
+  color: #fff;
+  background-color: #4db3ff;
+}

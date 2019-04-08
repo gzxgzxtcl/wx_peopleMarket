@@ -1,14 +1,14 @@
 <!--pages/cityList/cityList.wxml-->
 <view class='vPack vTitle'>
   <view style='margin-bottom:20rpx'>当前位置</view>
-  <span class="cityName">深圳</span>
+  <span class="cityName selectColor">深圳</span>
 </view>
 <view class='vPack'>
   <ul>
-    <li class='cityList' wx:for='{{cityListData}}'>
+    <li class='cityList' wx:for='{{cityListData}}' wx:key='{{index}}'>
       <view style='line-height: 56rpx;color: #8d91a2; padding-left: 30rpx;'>{{item.key}}</view>
       <view class='cityNameList'>
-        <span class="cityName" wx:for='{{item.item}}'>{{item.name}}</span>
+        <span class="cityName {{selectCity==item.id ? 'selectColor':''}}" wx:for='{{item.item}}' wx:key='{{index}}' data-id='{{item.id}}' data-name='{{item.name}}' bindtap='cityChange'>{{item.name}}</span>
       </view>
     </li>
   </ul>
