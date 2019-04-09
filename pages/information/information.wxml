@@ -1,9 +1,9 @@
 <!--pages/information/information.wxml-->
 <view class='information'>
   <!-- banner图 -->
-  <view class='num'>1
-    <text></text>/5</view>
-  <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <view class='num'>
+    <text>{{bannerindex+1}}</text>/{{bannerlength}}</view>
+  <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange='bannerChange'> 
     <block wx:for="{{imgUrls}}" wx:key="{{index}}">
       <swiper-item>
         <image src="{{item}}" class="slide-image" width="355" height="150" />
@@ -14,38 +14,40 @@
   <view class='info'>
     <view class='name-money'>
       <view class='name'>
-        <text>中海天钻</text>
-        <view>待售</view>
+        <text>{{projectname_hk}}</text>
+        <view>{{issale}}</view>
       </view>
       <view class='money'>
         <view>主力均价:</view>
-        <text class='hours-money'>98000</text>
+        <text class='hours-money'>{{mainprice}}</text>
         <view>元/㎡</view>
-        <view class='tanhao'>
+        <view class='tanhao' bindtap="handleOpen2">
           <image src='../../images/tanhao.png'></image>
         </view>
       </view>
     </view>
+    <!-- 主力均价提示 -->
+    <view>
+      <i-modal visible="{{ visible2 }}" bind:ok="handleClose2" bind:cancel="handleClose2">
+        <view>{{mainpricedescription}}</view>
+      </i-modal>
+    </view>
     <!-- 标签 -->
     <view class='tag'>
-      <view>市中心</view>
-      <view>学区房</view>
-      <view>紧邻地铁</view>
-      <view>南北通透</view>
-      <view>智慧社区</view>
+      <view wx:for='{{labelsList}}' wx:key='{{index}}'>{{item.labels}}</view>
     </view>
     <!-- 地址 -->
     <view class='address'>
       <view class='add1'>
         <text class='title1'>售楼处地址</text>
-        <text class='title2'>罗湖-菜屋围-滨河路1005路中..</text>
+        <text class='title2'>{{salesaddr}}</text>
         <view bindtap='pageToMap'>导航
           <image src='../../images/right.png'></image>
         </view>
       </view>
       <view class='add2'>
-        <text class='title1'>售楼处地址</text>
-        <text class='title2'>罗湖-菜屋围-滨河路1005路中..</text>
+        <text class='title1'>展厅地址</text>
+        <text class='title2'>{{showhall}}</text>
         <view bindtap='pageToMap'>导航
           <image src='../../images/right.png'></image>
         </view>
@@ -56,7 +58,7 @@
       <view>
         <image src='../../images/zhekou.png'></image>
       </view>
-      <text>3月31日前认筹享受98折</text>
+      <text>{{couponinfo}}</text>
     </view>
     <!-- 房型 -->
     <view class='hours-type'>
@@ -67,20 +69,10 @@
         <text>主力房型</text>
       </view>
       <view class='bottom-list'>
-        <view class='type type1'>
-          <text>公寓</text>
-          <text>50-80平米</text>
-          <text>（一房一厅 二房一厅）</text>
-        </view>
-        <view class='type type2'>
-          <text>高层</text>
-          <text>80-180平米</text>
-          <text>（二房一厅 三房二厅）</text>
-        </view>
-        <view class='type type3'>
-          <text>别墅</text>
-          <text>180-360平米</text>
-          <text>（五房二厅 六房三厅）</text>
+        <view class='type type1' wx:for='{{mainhouseholdList}}' wx:key='{{index}}'>
+          <text>{{item.houserhold}}</text>
+          <text>{{item.area}}</text>
+          <text>（{{item.layout}}）</text>
         </view>
       </view>
     </view>
@@ -91,28 +83,17 @@
         <text>亮点概述</text>
         <text>首创5M智慧健康社区；60分钟直达香港</text>
       </view>
-      <view class='other-list'>
-        <view class='other-list-item'>
-          <text>地铁交通</text>
-          <view class='tip'>距离庆盛约15分钟车程，步行5分钟到鱼窝头公交总站s</view>
-        </view>
-        <view class='other-list-item'>
-          <text>医疗配套</text>
-          <view class='tip'>鱼窝头医院和东涌医院</view>
-        </view>
-        <view class='other-list-item'>
-          <text>购物消费</text>
-          <view class='tip'>东涌天汇百货，南沙万达广场</view>
-        </view>
-        <view class='other-list-item'>
-          <text>文化教育</text>
-          <view class='tip'>鱼窝头中学，东涌中学</view>
-        </view>
-        <view class='look-all'>
-          <text>查看全部</text>
-          <text class='iconfont iconxiajiantou'></text>
+      <view class='other-list' style="height:{{islookall?'':'330'}}rpx">
+        <view class='other-list-item' wx:for='{{brightspotsList}}' wx:key='{{index}}'>
+          <text>{{item.labels}}</text>
+          <view class='tip'>{{item.remark}}</view>
         </view>
       </view>
+      <view class='look-all' wx:if='{{ishaveall}}'>
+          <text bindtap='lookAll' wx:if='{{!islookall}}'>查看全部</text>
+          <text bindtap='lookAll' wx:else>关闭</text>
+          <text class='iconfont iconxiajiantou'></text>
+        </view>
     </view>
     <!-- 户型 -->
     <view class='huxing'>
@@ -187,35 +168,35 @@
       <view class='detail-list'>
         <view class='list1'>
           <text class='txt1'>开发商</text>
-          <text class='txt2'>南昌市海欣房地产开发建设有限公司</text>
+          <text class='txt2'>{{developer}}</text>
         </view>
         <view class='list2'>
           <text class='txt1'>物业公司</text>
-          <text class='txt2'>深圳中海物业管理有限公司</text>
+          <text class='txt2'>{{propertycompany}}</text>
         </view>
         <view class='list3'>
           <text class='txt1'>开盘时间</text>
-          <text class='txt2'>2019年5月10日</text>
+          <text class='txt2'>{{opening_date}}</text>
         </view>
         <view class='list4'>
           <text class='txt1'>交房时间</text>
-          <text class='txt2'>2021年10月1日</text>
+          <text class='txt2'>{{delivery_date}}</text>
         </view>
         <view class='list5'>
           <text class='txt1'>产权年限</text>
-          <text class='txt2'>70年</text>
+          <text class='txt2'>{{years}}</text>
         </view>
         <view class='list6'>
           <text class='txt1'>产品类型</text>
-          <text class='txt2'>高层</text>
+          <text class='txt2'>{{buildingtype}}</text>
         </view>
         <view class='list7'>
           <text class='txt1'>装修状态</text>
-          <text class='txt2'>毛坯</text>
+          <text class='txt2'>{{isup}}</text>
         </view>
         <view class='list8'>
           <text class='txt1'>物业费</text>
-          <text class='txt2'>暂无资料</text>
+          <text class='txt2'>{{propertyexpenses}}</text>
         </view>
       </view>
 
@@ -225,8 +206,8 @@
   <view class='hr'></view>
   <!-- 免责条款 -->
   <view class='no-duty'>
-    <view>免责条款:</view>
-    <text>***************************************************************************************************************************************************************************************************************************</text>
+    <view>免责条款：</view>
+    <text>{{exemption}}</text>
   </view>
   <!-- 底部tabar -->
   <view class='tabar'>
@@ -237,12 +218,6 @@
       </view>
       <text>关注</text>
     </view>
-    <!-- <view class='share' bindtap='onShareAppMessage'>
-      <view>
-        <image src='../../images/fenxiang.png'></image>
-      </view>
-      <text>分享</text>
-    </view> -->
     <button class='shareBut' open-type="share">
       <view style='height: 40rpx;width: 40rpx;margin:12rpx auto -6rpx;'>
         <image src='../../images/fenxiang.png'></image>
