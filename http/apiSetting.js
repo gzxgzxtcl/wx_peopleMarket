@@ -19,6 +19,10 @@ const serviceModule = {
     url: '/user/getCode',
     method: 'post'
   },
+  userCheckSMSCode: { //短信校验
+    url: '/user/checkSMSCode',
+    method: 'post'
+  },
   projectApiFindProjectInfoById: { //详情-获取项目信息
     url: '/projectApi/findProjectInfoById',
     method: 'post'

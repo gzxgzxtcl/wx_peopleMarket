@@ -8,15 +8,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo:{
-      agencyAccount:'',
+    userInfo: {
+      agencyAccount: '',
       agencyUid: '',
       brokertype: '',
       channelCode: '',
-      code: '',
       idno: '',
-      myName: '谷振兴',
-      phone: '13313231519',
+      myName: '',
+      phone: '',
+      sex: '男',
       wxid: ''
     },
     // 验证码窗
@@ -40,20 +40,23 @@ Page({
     // 存放计时器
     setInter: '',
     // 验证倒计时
-    downTime: 60,
+    downTime: 180,
     isnote: true,
 
     // 记录切换后台时间
     onHideTime: null,
 
-    gender: 1,
+    gender: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.data.userInfo.wxid = app.globalData.openid
+    this.setData({
+      gender: this.data.userInfo.sex
+    })
   },
 
   /**
@@ -100,6 +103,7 @@ Page({
     this.setData({
       arrayIndex: e.detail.value
     })
+    this.data.userInfo.brokertype = this.data.array[e.detail.value].name
   },
 
   // 获取验证码
@@ -109,28 +113,36 @@ Page({
     })
     let that = this
     let promise = {
-      mobile: '13313231519',
+      mobile: that.data.userInfo.phone,
       type: 2
     }
     $http(apiSetting.userGetCode, promise).then((data) => {
       wx.hideLoading()
-      that.data.setInter = setInterval(function() {
-        that.data.downTime = that.data.downTime - 1
-        if (that.data.downTime <= 0) {
-          that.endSetInter()
+      if (data.code == 0) {
+        that.data.setInter = setInterval(function() {
+          that.data.downTime = that.data.downTime - 1
+          if (that.data.downTime <= 0) {
+            that.endSetInter()
+            that.setData({
+              isnote: true,
+              downTime: 180
+            })
+          }
           that.setData({
-            isnote: true,
-            downTime: 60
+            downTime: that.data.downTime
           })
-        }
+        }, 1000)
         that.setData({
-          downTime: that.data.downTime
+          isnote: false,
+          noteCodeVisible: true
         })
-      }, 1000)
-      that.setData({
-        isnote: false,
-        noteCodeVisible: true
-      })
+      } else {
+        wx.showToast({
+          title: data.message,
+          icon: 'none',
+          duration: 2000
+        })
+      }
     }, (error) => {
       console.log(error)
       wx.hideLoading()
@@ -146,9 +158,21 @@ Page({
   },
 
   noteCodeModalOk() {
-    this.setData({
-      noteCodeVisible: false,
-      noteResult: true
+    let that = this
+    let promise = {
+      mobile: that.data.userInfo.phone,
+      code: this.data.noteCodeVal
+    }
+    $http(apiSetting.userCheckSMSCode, promise).then((data) => {
+      console.log(data.code == 0)
+      if (data.code == 0) {
+        that.setData({
+          noteCodeVisible: false,
+          noteResult: true
+        })
+      } else {
+
+      }
     })
   },
 
@@ -162,14 +186,30 @@ Page({
   genderChange(e) {
     let val = e.target.dataset.val
     console.log(e.target.dataset)
+    this.data.userInfo.sex = val
     this.setData({
       gender: val
     })
   },
 
+  myNameBind(e) {
+    this.data.userInfo.myName = e.detail.value
+  },
+  phoneBind(e) {
+    this.data.userInfo.phone = e.detail.value
+  },
+  idnoBind(e){
+    this.data.userInfo.idno = e.detail.value
+  },
+  channelCodeBind(e) { 
+    this.data.userInfo.channelCode = e.detail.value
+  },
+  agencyAccountBind(e) {
+    this.data.userInfo.agencyAccount = e.detail.value
+   },
   // 验证码输入
   inpBind(e) {
-    console.log(e.detail.value)
+    // console.log(e.detail.value)
     this.setData({
       noteCodeVal: e.detail.value
     })
@@ -179,5 +219,9 @@ Page({
     var that = this;
     //清除计时器  即清除setInter
     clearInterval(that.data.setInter)
+  },
+
+  bindSub() {
+    console.log(this.data.userInfo)
   },
 })

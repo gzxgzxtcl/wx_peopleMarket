@@ -4,19 +4,19 @@
     <li>
       <span class='title'>姓名</span>
       <span class="inp">
-        <input placeholder-class="phcolor" value='{{userInfo.myName}}' type='text' placeholder="请输入姓名" />
+        <input placeholder-class="phcolor" value='{{userInfo.myName}}' type='text' placeholder="请输入姓名" bindinput='myNameBind' />
       </span>
     </li>
     <li>
       <span class='title'>性别</span>
       <span class="" style='height:100rpx;float:right;'>
-        <button class='genderSty' data-val='1' bindtap='genderChange'>
-          <icon wx:if="{{gender==1}}" type="success" size="14" />
+        <button class='genderSty' data-val='男' bindtap='genderChange'>
+          <icon wx:if="{{gender=='男'}}" type="success" size="14" />
           <icon wx:else class='iconSty' />
           <text style='margin-left:20rpx'>男</text>
         </button>
-        <button class='genderSty' data-val='0' bindtap='genderChange'>
-          <icon wx:if="{{gender==0}}" type="success" size="14" />
+        <button class='genderSty' data-val='女' bindtap='genderChange'>
+          <icon wx:if="{{gender=='女'}}" type="success" size="14" />
           <icon wx:else class='iconSty' />
           <text style='margin-left:20rpx'>女</text>
         </button>
@@ -28,7 +28,7 @@
     <li style='position:relative'>
       <span class='title'>手机号</span>
       <span class="inp" style='width:400rpx'>
-        <input placeholder-class="phcolor" type='number' value='{{userInfo.phone}}' disabled='{{noteResult}}' placeholder="请输入手机号" />
+        <input placeholder-class="phcolor" type='number' value='{{userInfo.phone}}' disabled='{{noteResult}}' placeholder="请输入手机号" bindinput='phoneBind'/>
       </span>
       <view wx-if='{{!noteResult}}'>
         <span wx:if='{{isnote}}' class='noteCode' bindtap='getNoteCode'>获取验证码</span>
@@ -55,31 +55,31 @@
     <li wx-if="{{arrayIndex == 1}}" style='margin-top:20rpx;'>
       <span class='title'>身份证号</span>
       <span class="inp">
-        <input placeholder-class="phcolor" type='idcard' placeholder="请输入身份证号" />
+        <input placeholder-class="phcolor" type='idcard' value='{{userInfo.idno}}' placeholder="请输入身份证号" bindinput='idnoBind'/>
       </span>
     </li>
     <li wx-if="{{arrayIndex == 2}}" style='margin-top:20rpx;'>
       <span class='title'>渠道验证码</span>
       <span class="inp">
-        <input placeholder-class="phcolor" type='number' placeholder="请输入渠道验证码" />
+        <input placeholder-class="phcolor" type='number' value='{{userInfo.channelCode}}' placeholder="请输入渠道验证码" bindinput='channelCodeBind'/>
       </span>
     </li>
-    <li wx-if="{{arrayIndex == 2}}">
+    <!-- <li wx-if="{{arrayIndex == 2}}">
       <span class='title'>留电渠道</span>
       <span class="inp">
-        <input placeholder-class="phcolor" type='text' placeholder="请输入留电渠道" />
+        <input placeholder-class="phcolor" type='text' value='{{userInfo.myName}}' placeholder="请输入留电渠道" />
       </span>
-    </li>
+    </li> -->
     <li wx-if="{{arrayIndex == 2}}">
       <span class='title'>中介账户</span>
       <span class="inp">
-        <input placeholder-class="phcolor" type='text' placeholder="请输入中介账户" />
+        <input placeholder-class="phcolor" type='text' value='{{userInfo.agencyAccount}}' placeholder="请输入中介账户" bindinput='agencyAccountBind'/>
       </span>
     </li>
   </ul>
 
 
-  <button class='bindSub'>确定</button>
+  <button class='bindSub' bindtap='bindSub'>确定</button>
 
   <!-- 验证窗口 -->
   <i-modal i-class='modalClass' style='top:-100rpx' visible="{{noteCodeVisible}}" bind:ok="noteCodeModalOk" bind:cancel="noteCodeModalClose">
@@ -90,6 +90,6 @@
         <input class='inpText' value='{{noteCodeVal[index]}}' disabled type='number' placeholder="—" />
       </block>
     </view>
-    <view style='font-siez:24rpx'>已发送:13313231515</view>
+    <view style='font-siez:24rpx'>已发送:{{userInfo.phone}}</view>
   </i-modal>
 </view>
