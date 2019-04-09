@@ -7,7 +7,9 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-    // console.log(logs)
+
+    // 获取本地存储的城市
+    this.globalData.storLocalCity = wx.getStorageSync('storLocalCity') || null
 
     // 登录
     wx.login({
@@ -47,6 +49,7 @@ App({
   },
 
   globalData: {
-    userInfo: null
+    userInfo: null,
+    storLocalCity: null
   }
 })

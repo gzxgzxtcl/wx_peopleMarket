@@ -14,6 +14,13 @@ Page({
     interval: 5000,
     duration: 1000,
     swiperCurrent: 0,
+
+    // 查询城市参数
+    cityInfo: {
+      latitude: '',
+      longitude: '',
+      cityName: ''
+    }
   },
   // 切换城市
   changeCity() {
@@ -42,32 +49,43 @@ Page({
 
   onLoad: function(option) {
     let that = this
-    wx.getSetting({
-      success(res) {
-        console.log(res.authSetting['scope.userLocation'])
-        if (!res.authSetting['scope.userLocation']) {
-          wx.authorize({
-            scope: 'scope.userLocation',
-            success(res) {
-              console.log(res)
-              that.getMapLocation();
-            },
-            fail(res) {
-              console.log(res)
-            }
-          })
-        } else {
-          that.getMapLocation();
+    console.log(app.globalData.storLocalCity)
+    if (app.globalData.storLocalCity) {
+      console.log(0)
+    } else {
+      wx.getSetting({
+        success(res) {
+          console.log(res.authSetting['scope.userLocation'])
+          if (!res.authSetting['scope.userLocation']) {
+            wx.authorize({
+              scope: 'scope.userLocation',
+              success(res) {
+                console.log(res)
+                that.getMapLocation();
+              },
+              fail(res) {
+                console.log(res)
+              }
+            })
+          } else {
+            that.getMapLocation();
+          }
         }
-      }
-    })
+      })
+    }
+
   },
 
   getMapLocation() {
+    let that = this
     wx.getLocation({
       type: 'wgs84',
       success: function(res) {
-        console.log(JSON.stringify(res))
+        console.log(res.latitude)
+        console.log(res.longitude)
+        that.data.cityInfo.latitude = res.latitude
+        that.data.cityInfo.longitude = res.longitude
+        // console.log(that.data.cityInfo.latitude)
       },
       fail: function(res) {
 
@@ -77,7 +95,7 @@ Page({
       }
     })
   },
-  
+
   getPhoneNumber(e) {
     console.log(e.detail.errMsg)
     console.log(e.detail.iv)
