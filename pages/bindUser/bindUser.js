@@ -1,14 +1,17 @@
 // pages/bindUser/bindUser.js
+const app = getApp()
+import apiSetting from '../../http/apiSetting.js'
+import $http from '../../http/http.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    // 验证码窗口
+    // 验证码窗
     noteCodeVisible: false,
     noteCodeVal: null,
-    noteCodeValLeng: 6,
+    noteCodeValLeng: 4,
     // 验证是否成功
     noteResult: false,
     array: [{
@@ -90,24 +93,37 @@ Page({
 
   // 获取验证码
   getNoteCode() {
-    let that = this
-    that.data.setInter = setInterval(function() {
-      that.data.downTime = that.data.downTime - 1
-      if (that.data.downTime <= 0) {
-        that.endSetInter()
-        that.setData({
-          isnote: true,
-          downTime: 60
-        })
-      }
-      that.setData({
-        downTime: that.data.downTime
-      })
-    }, 1000)
-    that.setData({
-      isnote: false,
-      noteCodeVisible: true
+    wx.showLoading({
+      title: '正在发送',
     })
+    let that = this
+    let promise = {
+      "mobile": "13313231519"
+    }
+    $http(apiSetting.userGetCode, promise).then((data) => {
+      wx.hideLoading()
+      that.data.setInter = setInterval(function() {
+        that.data.downTime = that.data.downTime - 1
+        if (that.data.downTime <= 0) {
+          that.endSetInter()
+          that.setData({
+            isnote: true,
+            downTime: 60
+          })
+        }
+        that.setData({
+          downTime: that.data.downTime
+        })
+      }, 1000)
+      that.setData({
+        isnote: false,
+        noteCodeVisible: true
+      })
+    }, (error) => {
+      console.log(error)
+      wx.hideLoading()
+    });
+
   },
 
   // 显示验证窗口

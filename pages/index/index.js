@@ -50,8 +50,11 @@ Page({
   onLoad: function(option) {
     let that = this
     console.log(app.globalData.storLocalCity)
-    if (app.globalData.storLocalCity) {
-      console.log(0)
+    if (!app.globalData.storLocalCity) {
+      // console.log(0)
+      // that.data.cityInfo.cityName = app.globalData.city
+      that.data.cityInfo.cityName = '北京'
+      that.getCityFindBuildInfoByCity()
     } else {
       wx.getSetting({
         success(res) {
@@ -83,9 +86,10 @@ Page({
       success: function(res) {
         console.log(res.latitude)
         console.log(res.longitude)
-        that.data.cityInfo.latitude = res.latitude
-        that.data.cityInfo.longitude = res.longitude
+        that.data.cityInfo.latitude = res.latitude.toString()
+        that.data.cityInfo.longitude = res.longitude.toString()
         // console.log(that.data.cityInfo.latitude)
+        that.getCityFindBuildInfoByCity()
       },
       fail: function(res) {
 
@@ -94,6 +98,18 @@ Page({
 
       }
     })
+  },
+
+  getCityFindBuildInfoByCity(){
+    let that = this
+    let promise = that.data.cityInfo
+    $http(apiSetting.cityFindBuildInfoByCity, promise).then((data) => {
+      console.log(data.data)
+      // that.hideLoading()
+    }, (error) => {
+      console.log(error)
+      // that.hideLoading()
+    });
   },
 
   getPhoneNumber(e) {
