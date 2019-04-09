@@ -8,6 +8,17 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo:{
+      agencyAccount:'',
+      agencyUid: '',
+      brokertype: '',
+      channelCode: '',
+      code: '',
+      idno: '',
+      myName: '谷振兴',
+      phone: '13313231519',
+      wxid: ''
+    },
     // 验证码窗
     noteCodeVisible: false,
     noteCodeVal: null,
@@ -98,7 +109,8 @@ Page({
     })
     let that = this
     let promise = {
-      "mobile": "13313231519"
+      mobile: '13313231519',
+      type: 2
     }
     $http(apiSetting.userGetCode, promise).then((data) => {
       wx.hideLoading()

@@ -3,10 +3,11 @@ import apiSetting from 'http/apiSetting.js'
 import $http from 'http/http.js'
 App({
   onLaunch: function() {
+    let that = this
     // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    // var logs = wx.getStorageSync('logs') || []
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs)
 
     // 获取本地存储的城市
     this.globalData.storLocalCity = wx.getStorageSync('storLocalCity') || null
@@ -20,7 +21,8 @@ App({
           code: res.code
         }
         $http(apiSetting.userDecodeUserInfo, promise).then((data) => {
-          console.log(data.data)
+          console.log(data.data.openid)
+          that.globalData.openid = data.data.openid
         }, (error) => {
           console.log(error)
         });
@@ -49,6 +51,7 @@ App({
   },
 
   globalData: {
+    openid: null,
     userInfo: null,
     storLocalCity: null
   }

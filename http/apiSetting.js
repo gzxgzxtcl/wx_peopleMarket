@@ -3,28 +3,41 @@ const serviceModule = {
     url: '/user/decodeUserInfo',
     method: 'post'
   },
+  cityFindBuildInfoByCity: {
+    url: '/city/findBuildInfoByCity',
+    method: 'post'
+  },
   cityFindCityItems: {
     url: '/city/findCityItems',
     method: 'post'
   },
-  projectApiFindProjectInfoById:{     //详情-获取项目信息
-    url: '/projectApi/findProjectInfoById',
-    method:'post'
+  userIdentifyUser: { //用户认证
+    url: '/user/identifyUser',
+    method: 'post'
   },
-  projectApiFindProjectDetailsById: {   //详情-获取项目详情
+  userGetCode: { //获取短信验证
+    url: '/user/getCode',
+    method: 'post'
+  },
+  projectApiFindProjectInfoById: { //详情-获取项目信息
+    url: '/projectApi/findProjectInfoById',
+    method: 'post'
+  },
+  projectApiFindProjectDetailsById: { //详情-获取项目详情
     url: '/projectApi/findProjectDetailsById',
     method: 'post'
   },
-  projectApiFindProjectHouserholdListById: {    //详情-获取户型列表
+  projectApiFindProjectHouserholdListById: { //详情-获取户型列表
     url: '/projectApi/findProjectHouserholdListById',
     method: 'post'
   },
-  projectApiFindProjectHouserholdFileListById: {  //详情-获取户型图片列表
+  projectApiFindProjectHouserholdFileListById: { //详情-获取户型图片列表
     url: '/projectApi/findProjectHouserholdFileListById',
     method: 'post'
   },
-  
+
 }
-const ApiSetting = { ...serviceModule }
+const ApiSetting = { ...serviceModule
+}
 
 export default ApiSetting

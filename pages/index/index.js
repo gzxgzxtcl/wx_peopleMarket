@@ -5,6 +5,7 @@ import apiSetting from '../../http/apiSetting.js'
 import $http from '../../http/http.js'
 Page({
   data: {
+    cityNametext: '',
     imgUrls: [
       'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
       'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
@@ -50,20 +51,18 @@ Page({
   onLoad: function(option) {
     let that = this
     console.log(app.globalData.storLocalCity)
-    if (!app.globalData.storLocalCity) {
-      // console.log(0)
-      // that.data.cityInfo.cityName = app.globalData.city
-      that.data.cityInfo.cityName = '北京'
+    if (app.globalData.storLocalCity) {
+      that.data.cityInfo.cityName = app.globalData.storLocalCity.city
       that.getCityFindBuildInfoByCity()
     } else {
       wx.getSetting({
         success(res) {
-          console.log(res.authSetting['scope.userLocation'])
+          // console.log(res.authSetting['scope.userLocation'])
           if (!res.authSetting['scope.userLocation']) {
             wx.authorize({
               scope: 'scope.userLocation',
               success(res) {
-                console.log(res)
+                // console.log(res)
                 that.getMapLocation();
               },
               fail(res) {
@@ -79,13 +78,14 @@ Page({
 
   },
 
+  // 获取位置
   getMapLocation() {
     let that = this
     wx.getLocation({
       type: 'wgs84',
       success: function(res) {
-        console.log(res.latitude)
-        console.log(res.longitude)
+        // console.log(res.latitude)
+        // console.log(res.longitude)
         that.data.cityInfo.latitude = res.latitude.toString()
         that.data.cityInfo.longitude = res.longitude.toString()
         // console.log(that.data.cityInfo.latitude)
@@ -100,11 +100,17 @@ Page({
     })
   },
 
-  getCityFindBuildInfoByCity(){
+  // 获取轮播图及城市信息
+  getCityFindBuildInfoByCity() {
     let that = this
     let promise = that.data.cityInfo
     $http(apiSetting.cityFindBuildInfoByCity, promise).then((data) => {
-      console.log(data.data)
+      // console.log(data.data.cityInfo)
+      app.globalData.storLocalCity = data.data.cityInfo
+      that.setData({
+        cityNametext: data.data.cityInfo.city
+      })
+      // console.log(app.globalData.storLocalCity)
       // that.hideLoading()
     }, (error) => {
       console.log(error)
