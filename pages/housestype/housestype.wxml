@@ -1,15 +1,15 @@
 <!-- 户型列表页 -->
 <view class='house-type'>
-  <view class='top-sel'>
-    <view bindtap='changeHouse' data-type="{{'全部(2)'}}" class="{{selType=='全部(2)'?'active':''}}">
+  <view class='top-sel' >
+    <view bindtap='changeHouse' data-index="{{0}}" class="{{selIndex===0?'active':''}}">
       <text>全部(2)</text>
       <view></view>
     </view>
-    <view bindtap='changeHouse' data-type="{{'两室(1)'}}" class="{{selType=='两室(1)'?'active':''}}">
+    <view bindtap='changeHouse' data-index="{{1}}" class="{{selIndex===1?'active':''}}">
       <text>两室(1)</text>
       <view></view>
     </view>
-    <view bindtap='changeHouse' data-type="{{'三室(1)'}}" class="{{selType=='三室(1)'?'active':''}}">
+    <view bindtap='changeHouse' data-index="{{2}}" class="{{selIndex===2?'active':''}}">
       <text>三室(1)</text>
       <view></view>
     </view>

@@ -1,11 +1,10 @@
 // pages/information/information.js
 import apiSetting from '../../http/apiSetting.js'
 import $http from '../../http/http.js'
-const url = 'http://39.98.191.16/zhwx-api'
 
 Page({
   data: {
-    imgpath:'http://39.98.191.16/zhwx-api',     //图片根路径
+    imgpath:'http://39.98.191.16/zhwx/userfiles',     //图片根路径
     isAttention: false,
     /*是否关注*/
     imgUrls: [
@@ -26,16 +25,45 @@ Page({
     /*
       项目信息
      */
-    projectname_hk:'中海天钻',              	/*海客案名（项目名）*/
-    issale:'待售',                          	/*在售状态，如（开盘）*/
-    salesaddr:'罗湖-菜屋围-滨河路1005路中..',  /*	售楼地址*/
-    showhall:'罗湖-菜屋围-滨河路1005路中..',  	/*展厅地址*/
-    couponinfo:'3月31日前认筹享受98折',       	/*优惠信息*/
-    mainprice:'98000',                       	/*主力产品均价*/
-    mainpricedescription:'主力产品均价后方价格说明详情',  	/*主力产品均价后方价格说明详情*/
+    projectname_hk:'',              	/*海客案名（项目名）*/
+    issale:'',                          	/*在售状态，如（开盘）*/
+    salesaddr:'',  /*	售楼地址*/
+    showhall:'',  	/*展厅地址*/
+    couponinfo:'',       	/*优惠信息*/
+    mainprice:'',                       	/*主力产品均价*/
+    mainpricedescription:'',  	/*主力产品均价后方价格说明详情*/
     mainhouseholdList: [],                   /*主力房型*/	
     labelsList: [],                         /* 卖点标签*/
     brightspotsList: [],                    /*楼盘亮点*/
+    isbuildsimg:false,                      /*是否有楼盘图*/
+
+
+    /*
+      楼盘图假数据
+    */
+    buildsimg:[
+      {
+        name:'效果图',
+        imgs: [
+          'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
+          'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
+          'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'
+        ]
+      },
+      {
+        name: '配套图',
+        imgs: [
+          'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
+          'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640'
+        ]
+      },
+      {
+        name: '规划图',
+        imgs: [
+          'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'
+        ]
+      }
+    ],
 
     /*
     项目详情
@@ -67,12 +95,13 @@ Page({
     /*
       房型图片列表
      */
+    hourseimg:'/574016EAC21E4F44ADDE74416AC1C76B/54A657CD261142869BACD03D08AF47E3.gif'
       // 户型图片对象
-    houserimglist:[
-      {
-        "upload_file_path": "/574016EAC21E4F44ADDE74416AC1C76B/FD8A403F170A4EC9BBBCD284B31CD6EC.jpg"
-      },
-    ],
+    // houserimglist:[
+    //   {
+    //     "upload_file_path": ''
+    //   },
+    // ],
   },
 
   /**
@@ -88,12 +117,9 @@ Page({
   //通过id获取户型图片列表
   getProjectHouserholdFileList(id) {
     let promise = { houserhold_id:id}
-    console.log('houserhold_id:',id)
     $http(apiSetting.projectApiFindProjectHouserholdFileListById, promise).then((data) => {
-      let imgArr=data.data
-      console.log('a:'+imgArr)
-      // this.setData({upload_file_path: imgArr.upload_file_path})
-      // console.log(this.data.imgpath + this.data.upload_file_path)
+      let imgArr=data.data[0]
+      this.setData({ hourserimglist:imgArr})
     }), (error) => {
       console.log(error)
     }
@@ -103,7 +129,6 @@ Page({
     let promise = { project_id: '574016EAC21E4F44ADDE74416AC1C76B'}
     $http(apiSetting.projectApiFindProjectHouserholdListById, promise).then((data) => {
       let hourserholdlist=data.data[0];
-      console.log(hourserholdlist)
       this.setData({
         hourselist: data.data,
         caption: hourserholdlist.caption,	
@@ -115,7 +140,6 @@ Page({
         decoration: hourserholdlist.decoration,    	
         houserholdremark: hourserholdlist.houserholdremark,  
       })
-      console.log(this.data.hourselist)
       this.getProjectHouserholdFileList(hourserholdlist.id);
     }), (error) => {
       console.log(error)
@@ -126,7 +150,6 @@ Page({
     let promise = { project_id:'574016EAC21E4F44ADDE74416AC1C76B'}
     $http(apiSetting.projectApiFindProjectDetailsById,promise).then((data)=>{
       let projectdetails=data.data
-      console.log(projectdetails)
       this.setData({
         developer: projectdetails.developer, 
         propertycompany: projectdetails.propertycompany,
@@ -148,7 +171,6 @@ Page({
     let promise = { project_id:"574016EAC21E4F44ADDE74416AC1C76B"}
     $http(apiSetting.projectApiFindProjectInfoById, promise).then((data) => {
       let projectinfo=data.data
-      console.log(projectinfo)
       this.setData({
         projectname_hk: projectinfo.projectname_hk,
         issale: projectinfo.issale,
@@ -179,6 +201,15 @@ Page({
       url: '../houseimg/houseimg?id=' + id
     })
   },
+  //判断是否有楼盘图
+  isHaveBuildsImg(){
+    let imgs = this.data.buildsimg;
+    if(imgs===[]){
+      this.setData({ isbuildsimg:false})
+    }else{
+      this.setData({ isbuildsimg: true })
+    }
+  },
   //楼盘图查看更多事件
   goHouseimg(e) {
     console.log(e)
@@ -193,7 +224,7 @@ Page({
       isAttention: !this.data.isAttention
     })
   },
-  // 主力均价提示
+  // 主力均价提示  /zhwx/userfiles + 返回的路径
   handleOpen2(){
     this.setData({
       visible2: true
@@ -210,7 +241,6 @@ Page({
   },
   //图片轮播
   bannerChange(e){
-    console.log(e.detail.current)
     let current = e.detail.current
     this.setData({ bannerindex: current})
   },

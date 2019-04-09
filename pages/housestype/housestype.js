@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    selType:'全部(2)',
+    selIndex:0,
     hourses:[],       /*户型列表*/
     // caption: '98m² 舒适两居室',	  /*标题*/
     // houserhold: '两室一厅一卫',  	/*户型*/
@@ -17,7 +17,8 @@ Page({
     // houserholdremark: '高端海景洋房，享受高端定制服务。',  	/*户型描述*/
   },
   changeHouse(e){
-    this.setData({ selType: e.currentTarget.dataset.type})
+    let index = e.currentTarget.dataset.index
+    this.setData({ selIndex: index})
   },
   // 查看户型图
   goHouseimg(e){
