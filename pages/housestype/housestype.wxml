@@ -15,17 +15,17 @@
     </view>
   </view>
   <!-- 户型信息 -->
-  <view class='house-item'>
+  <view class='house-item' wx:for='{{hourses}}' wx:key='{{index}}'>
     <view class='huxing'>
       <view class='tip'>
-        <text>98m² 舒适两居室</text>
+        <text>{{item.caption}}</text>
       </view>
       <view class='img'>
         <image src='https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640' bindtap='goHouseimg' data-id='{{0}}'></image>
         <view class='explain'>
-          <text class='totle'>暂无定价</text>
-          <text>精装修</text>
-          <text>户型优势</text>
+          <text class='totle'>{{item.price}}</text>
+          <text>{{item.decoration}}</text>
+          <text>{{buyingpoint}}</text>
           <view>
             <text>28m²大阳台</text>
           </view>
@@ -41,18 +41,18 @@
         <view class='top'>
           <view>
             <text>户型</text>
-            <text>两室一厅一卫</text>
+            <text>{{item.houserhold}}</text>
           </view>
           <view>
             <text>建筑面积</text>
-            <text>98m²</text>
+            <text>{{item.area}}</text>
           </view>
           <view>
             <text>产品</text>
-            <text>高层</text>
+            <text>{{item.category}}</text>
           </view>
         </view>
-        <view class='miaoshu'>户型描述：<text>高端海景洋房，享受高端定制服务。</text></view>
+        <view class='miaoshu'>户型描述：<text>{{item.houserholdremark}}</text></view>
       </view>
     </view>
   </view>

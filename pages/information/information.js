@@ -1,9 +1,11 @@
 // pages/information/information.js
 import apiSetting from '../../http/apiSetting.js'
 import $http from '../../http/http.js'
+const url = 'http://39.98.191.16/zhwx-api'
 
 Page({
   data: {
+    imgpath:'http://39.98.191.16/zhwx-api',     //图片根路径
     isAttention: false,
     /*是否关注*/
     imgUrls: [
@@ -31,89 +33,9 @@ Page({
     couponinfo:'3月31日前认筹享受98折',       	/*优惠信息*/
     mainprice:'98000',                       	/*主力产品均价*/
     mainpricedescription:'主力产品均价后方价格说明详情',  	/*主力产品均价后方价格说明详情*/
-    /*主力房型*/
-    mainhouseholdList: [       
-      {
-        "project_id": "574016EAC21E4F44ADDE74416AC1C76B",
-        "houserhold": "别墅",
-        "area": "180~360㎡",
-        "details": null,
-        "layout": "5房2厅",
-        "snumber": "0",
-        "status": "1"
-      },
-      {
-        "project_id": "574016EAC21E4F44ADDE74416AC1C76B",
-        "houserhold": "公寓",
-        "area": "50~80㎡",
-        "details": null,
-        "layout": "2房1厅",
-        "snumber": "1",
-        "status": "1"
-      },
-      {
-        "project_id": "574016EAC21E4F44ADDE74416AC1C76B",
-        "houserhold": "高层",
-        "area": "80~180㎡",
-        "details": null,
-        "layout": "3房2厅",
-        "snumber": "2",
-        "status": "1"
-      }
-    ],  	
-    /* 卖点标签*/
-    labelsList: [
-      {
-        "project_id": "574016EAC21E4F44ADDE74416AC1C76B",
-        "labels": "智慧社区",
-        "snumber": "1",
-        "status": "1"
-      },
-      {
-        "project_id": "574016EAC21E4F44ADDE74416AC1C76B",
-        "labels": "南北通透",
-        "snumber": "2",
-        "status": "1"
-      }
-    ],
-    /*楼盘亮点*/
-    brightspotsList: [
-      {
-        "project_id": "574016EAC21E4F44ADDE74416AC1C76B",
-        "labels": "文化教育",
-        "remark": " 社区幼儿园、XX重点中学",
-        "snumber": "0",
-        "status": "1"
-      },
-      {
-        "project_id": "574016EAC21E4F44ADDE74416AC1C76B",
-        "labels": "文化教育",
-        "remark": " 社区幼儿园、XX重点中学",
-        "snumber": "0",
-        "status": "1"
-      },
-      {
-        "project_id": "574016EAC21E4F44ADDE74416AC1C76B",
-        "labels": "文化教育",
-        "remark": " 社区幼儿园、XX重点中学",
-        "snumber": "0",
-        "status": "1"
-      },
-      {
-        "project_id": "574016EAC21E4F44ADDE74416AC1C76B",
-        "labels": "地铁交通",
-        "remark": "步行10分钟到XX地铁口",
-        "snumber": "1",
-        "status": "1"
-      },
-      {
-        "project_id": "574016EAC21E4F44ADDE74416AC1C76B",
-        "labels": "地铁交通",
-        "remark": "步行10分钟到XX地铁口",
-        "snumber": "1",
-        "status": "1"
-      },
-    ],
+    mainhouseholdList: [],                   /*主力房型*/	
+    labelsList: [],                         /* 卖点标签*/
+    brightspotsList: [],                    /*楼盘亮点*/
 
     /*
     项目详情
@@ -131,6 +53,8 @@ Page({
     /*
       房型列表
     */
+    hourselist:[],           /*户型列表 */
+    upload_file_path:'',      /*房型图片*/   
     caption:'98m² 舒适两居室',	  /*标题*/
     houserhold:'两室一厅一卫',  	/*户型*/
     price:'暂无定价',         	/*定价*/
@@ -158,42 +82,86 @@ Page({
     this.setData({ bannerlength:this.data.imgUrls.length})    //初始化轮播展示图数量
     this.getSpotLength();
     this.getProjectInfo();
-    this.getProjectDetails;
+    this.getProjectDetails();
     this.getProjectHouserholdList();
-    this.getProjectHouserholdFileList();
   },
   //通过id获取户型图片列表
-  getProjectHouserholdFileList() {
-    let promise = {}
+  getProjectHouserholdFileList(id) {
+    let promise = { houserhold_id:id}
+    console.log('houserhold_id:',id)
     $http(apiSetting.projectApiFindProjectHouserholdFileListById, promise).then((data) => {
-      console.log(data.data)
+      let imgArr=data.data
+      console.log('a:'+imgArr)
+      // this.setData({upload_file_path: imgArr.upload_file_path})
+      // console.log(this.data.imgpath + this.data.upload_file_path)
     }), (error) => {
       console.log(error)
     }
   },
   //通过id查询户型列表
   getProjectHouserholdList(){
-    let promise = {}
+    let promise = { project_id: '574016EAC21E4F44ADDE74416AC1C76B'}
     $http(apiSetting.projectApiFindProjectHouserholdListById, promise).then((data) => {
-      console.log(data.data)
+      let hourserholdlist=data.data[0];
+      console.log(hourserholdlist)
+      this.setData({
+        hourselist: data.data,
+        caption: hourserholdlist.caption,	
+        houserhold: hourserholdlist.houserhold,  
+        price: hourserholdlist.price,         
+        buyingpoint: hourserholdlist.buyingpoint,   	
+        area: hourserholdlist.area,            
+        category: hourserholdlist.category,         
+        decoration: hourserholdlist.decoration,    	
+        houserholdremark: hourserholdlist.houserholdremark,  
+      })
+      console.log(this.data.hourselist)
+      this.getProjectHouserholdFileList(hourserholdlist.id);
     }), (error) => {
       console.log(error)
     }
   },
   //通过id获取项目详情
   getProjectDetails(){
-    let promise = {}
+    let promise = { project_id:'574016EAC21E4F44ADDE74416AC1C76B'}
     $http(apiSetting.projectApiFindProjectDetailsById,promise).then((data)=>{
-      console.log(data.data)
+      let projectdetails=data.data
+      console.log(projectdetails)
+      this.setData({
+        developer: projectdetails.developer, 
+        propertycompany: projectdetails.propertycompany,
+        opening_date: projectdetails.opening_date, 
+        delivery_date: projectdetails.delivery_date,	
+        years: projectdetails.years,           
+        buildingtype: projectdetails.buildingtype,  
+        isup: projectdetails.isup,           
+        propertyexpenses: projectdetails.propertyexpenses,  
+        exemption: projectdetails.exemption,	
+      })
+
     }),(error)=>{
       console.log(error)
     }
   },
   // 通过id获取项目信息
   getProjectInfo() {
-    let promise = {}
+    let promise = { project_id:"574016EAC21E4F44ADDE74416AC1C76B"}
     $http(apiSetting.projectApiFindProjectInfoById, promise).then((data) => {
-      console.log(data.data)
+      let projectinfo=data.data
+      console.log(projectinfo)
+      this.setData({
+        projectname_hk: projectinfo.projectname_hk,
+        issale: projectinfo.issale,
+        salesaddr: projectinfo.salesaddr,
+        showhall: projectinfo.showhall,
+        couponinfo: projectinfo.couponinfo,
+        mainprice: projectinfo.mainprice,
+        mainpricedescription: projectinfo.mainpricedescription,
+        mainhouseholdList: projectinfo.mainhouseholdList,
+        labelsList: projectinfo.labelsList,
+        brightspotsList: projectinfo.brightspotsList
+      })
+
     }, (error) => {
       console.log(error)
     });
@@ -201,7 +169,7 @@ Page({
   // 查看更多户型，跳转到户型列表页
   goHousetype() {
     wx.navigateTo({
-      url: '../housestype/housestype'
+      url: '../housestype/housestype?hourselist=' +JSON.stringify(this.data.hourselist),
     })
   },
   //户型图片点击事件

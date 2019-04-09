@@ -104,13 +104,13 @@
         </view>
       </view>
       <view class='tip'>
-        <text>98m² 舒适两居室</text>
+        <text>{{caption}}</text>
       </view>
       <view class='img'>
-        <image src='https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640' bindtap='goHouseimg' data-id='{{0}}'></image>
+        <image src='{{upload_file_path}}' bindtap='goHouseimg' data-id='{{0}}'></image>
         <view class='explain'>
-          <text class='totle'>暂无定价</text>
-          <text>户型优势</text>
+          <text class='totle'>{{price}}</text>
+          <text>{{buyingpoint}}</text>
           <view class='house-tag'>
             <text>28m²大阳台</text>
           </view>
