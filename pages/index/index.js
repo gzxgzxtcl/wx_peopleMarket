@@ -127,6 +127,7 @@ Page({
       // that.hideLoading()
       let _arr=[]
       for (let i = 0; i < data.data.buildInfo.length;i++){
+        if (!data.data.buildInfo[i].labels) return
         _arr.push(data.data.buildInfo[i].labels.split(','))
         // console.log(_arr)
       }
@@ -148,8 +149,13 @@ Page({
       city: app.globalData.storLocalCity.id
     }
     // console.log(promise)
-    $http(apiSetting.cityFindBuildInfoByCity, promise).then((data) => {
-      let rimbuildinfo = data.data.buildInfo
+    $http(apiSetting.projectApiFindProjectListByCity, promise).then((data) => {
+      let rimbuildinfo
+      if (data){
+        rimbuildinfo = data.list
+      }else{
+        rimbuildinfo = []
+      }
       that.setData({
         rimbuildinfolist: rimbuildinfo
       })

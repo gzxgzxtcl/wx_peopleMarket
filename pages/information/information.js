@@ -32,7 +32,7 @@ Page({
     labelsList: [],                       /*卖点标签*/
     brightspotsList: [],                  /*楼盘亮点*/
     isbuildsimg:false,                    /*是否有楼盘图*/
-
+    project_id:'',                        /*项目id*/         
 
     /*
       楼盘图假数据
@@ -155,7 +155,7 @@ Page({
       },                                      /*物业类别*/
     },
     getmore:false,                          /*是否查看更多*/
-
+    exemption:'免责条款',                     /*免责条款*/
     /*
       房型列表
     */
@@ -188,6 +188,7 @@ Page({
   onLoad: function(options) {
     let project_id=options.project_id          //index-->information 项目id
     let imgurl=options.imgurl                 //index-->information  项目主图
+    console.log(options)
 
     this.resetBanner(imgurl);                     //初始化轮播图
     this.getSpotLength();                         //获取亮点条数
@@ -254,7 +255,8 @@ Page({
         'project_info.plotratio.value': projectdetails.plotratio,                     
         'project_info.presalepermit.value': projectdetails.presalepermit,              
         'project_info.projectaddr.value': projectdetails.projectaddr,                   
-        'project_info.propertytype.value': projectdetails.propertytype,                 
+        'project_info.propertytype.value': projectdetails.propertytype,      
+        exemption: projectdetails.exemption
       })
 
     }),(error)=>{
@@ -268,6 +270,7 @@ Page({
       let projectinfo=data.data
       console.log(projectinfo)
       this.setData({
+        project_id: projectinfo.id,
         projectname_hk: projectinfo.projectname_hk,
         issale: projectinfo.issale,
         salesaddr: projectinfo.salesaddr,
@@ -358,6 +361,17 @@ Page({
     } else {
       return
     }
+  },
+  //查看佣金规则
+  getMoneyRule(){
+    console.log('佣金规则')
+  },
+  //去推荐
+  goRecommend(){
+    console.log('推荐')
+    wx.navigateTo({
+      url: '../recommend/recommend?project_id='+this.data.project_id,
+    })
   },
 
   toPhone() {

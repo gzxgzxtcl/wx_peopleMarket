@@ -101,9 +101,9 @@ Page({
   getRecommendIitemList(){
     let promise={}
     $http(apiSetting.recommendIitemList, promise).then((data) => {
-      console.log(data.data)
-      let plan=data.data.recommendInfo
-      this.setData({ recommendInfo:plan})
+      console.log(data)
+      // let plan=data.data.recommendInfo
+      // this.setData({ recommendInfo:plan})
     }, (error) => {
       console.log(error)
 

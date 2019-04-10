@@ -21,7 +21,7 @@ App({
           code: res.code
         }
         $http(apiSetting.userDecodeUserInfo, promise).then((data) => {
-          // console.log(data.data.openid)
+          console.log(data.data.openid)
           that.globalData.openid = data.data.openid
           if (data.data.isCheck == 0) {
             that.globalData.isCheck = true
