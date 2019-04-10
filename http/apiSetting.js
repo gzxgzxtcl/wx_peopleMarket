@@ -32,6 +32,12 @@ const serviceModule = {
     method: 'post'
   },
 
+  // 推荐客户
+  recommendAddAgencyCustom: {
+    url: '/recommend/addAgencyCustom',
+    method: 'post'
+  },
+
   // 获取楼盘列表
   recommendGetProjectList: {
     url: '/recommend/getProjectList',
