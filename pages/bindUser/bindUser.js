@@ -26,6 +26,7 @@ Page({
     noteCodeVisible: false,
     noteCodeVal: null,
     noteCodeValLeng: 4,
+    modalPhone:null,
     // 验证是否成功
     noteResult: false,
     array: [{
@@ -112,6 +113,10 @@ Page({
 
   // 获取验证码
   getNoteCode() {
+    // this.setData({
+    //   noteCodeVisible: true
+    // })
+    // return
     wx.showLoading({
       title: '正在发送',
     })
@@ -182,6 +187,7 @@ Page({
 
   noteCodeModalClose(e) {
     this.setData({
+      noteCodeVal:'',
       noteCodeVisible: false
     })
   },
@@ -200,6 +206,9 @@ Page({
     this.data.userInfo.myName = e.detail.value
   },
   phoneBind(e) {
+    this.setData({
+      modalPhone: e.detail.value
+    })
     this.data.userInfo.phone = e.detail.value
   },
   idnoBind(e) {

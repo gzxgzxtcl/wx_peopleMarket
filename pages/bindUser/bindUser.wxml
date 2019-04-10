@@ -90,7 +90,7 @@
         <input class='inpText' value='{{noteCodeVal[index]}}' disabled type='number' placeholder="—" />
       </block>
     </view>
-    <view style='font-siez:24rpx'>已发送:{{userInfo.phone}}</view>
+    <view style='font-siez:24rpx'>已发送:{{modalPhone}}</view>
   </i-modal>
 </view>
 

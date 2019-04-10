@@ -4,11 +4,11 @@
     <open-data class='userAvatar' type="userAvatarUrl"></open-data>
   </view>
   <view data-url='../bindUser/bindUser' bindtap='pageTobind'>
-    <view>
+    <view data-url='../bindUser/bindUser'>
       <open-data data-url='../bindUser/bindUser' class='userNickName' type="userNickName"></open-data>
       <image data-url='../bindUser/bindUser' class='iconR' src='../../images/right.png'></image>
     </view>
-    <view data-url='../bindUser/bindUser' class='userTp'>独立经济人</view>
+    <view data-url='../bindUser/bindUser' class='userTp'>{{brokertype}}</view>
   </view>
 </view>
 <view>
@@ -26,3 +26,7 @@
   </ul>
 </view>
 <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">sss</button> -->
+
+<i-modal visible="{{ visible }}" ok-text="绑定用户" bind:ok="visibleOk" bind:cancel="visibleOkClose">
+    <view>暂无绑定用户信息</view>
+</i-modal>

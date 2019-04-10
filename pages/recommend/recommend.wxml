@@ -4,7 +4,7 @@
     <li>
       <span class='title required'>客户姓名</span>
       <span class="inp">
-        <input placeholder-class="phcolor" type='text' placeholder="请输入姓名" />
+        <input placeholder-class="phcolor" type='text' placeholder="请输入客户姓名" />
       </span>
     </li>
     <li>
@@ -31,7 +31,7 @@
     <li>
       <span class='title required'>城市</span>
       <span class="inp">
-        <input placeholder-class="phcolor" type='text' placeholder="请选择城市" />
+        <input placeholder-class="phcolor" type='text' value="北京" placeholder="请选择城市" />
       </span>
     </li>
     <li>
@@ -45,11 +45,11 @@
     </li>
     <li>
       <span class='title'>推荐人</span>
-      <span class="">赵王章</span>
+      <span class=""></span>
     </li>
     <li>
       <span class='title'>推荐人电话</span>
-      <span class="">1860008888</span>
+      <span class=""></span>
     </li>
     <li>
       <span class='title'>推荐身份</span>

@@ -47,6 +47,7 @@
     }
   },
   "usingComponents": {
-    "i-message": "dist/message/index"
+    "i-message": "dist/message/index",
+    "i-modal": "../../dist/modal/index"
   }
 }

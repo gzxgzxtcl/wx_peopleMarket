@@ -23,12 +23,12 @@ App({
         $http(apiSetting.userDecodeUserInfo, promise).then((data) => {
           // console.log(data.data.openid)
           that.globalData.openid = data.data.openid
-          if (data.data.isCheck == 1){
+          if (data.data.isCheck == 0) {
             that.globalData.isCheck = true
-          }else{
+          } else {
             that.globalData.isCheck = false
           }
-          // that.globalData.isCheck = data.data.isCheck
+          that.getUserGetUserInfo(data.data.openid)
         }, (error) => {
           console.log(error)
         });
@@ -56,10 +56,21 @@ App({
     // })
   },
 
+// 获取绑定用户信息
+  getUserGetUserInfo(val) {
+    let that = this
+    $http(apiSetting.userGetUserInfo, {
+      openid: val
+    }).then((data) => {
+      that.globalData.bindUserInfo = data.data
+    })
+  },
+
+  // 全局参数
   globalData: {
-    isCheck:false,
+    isCheck: false,
     openid: null,
-    userInfo: null,
-    storLocalCity: null
+    storLocalCity: null,
+    bindUserInfo: {}
   }
 })

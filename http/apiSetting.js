@@ -27,6 +27,13 @@ const serviceModule = {
     url: '/user/checkSMSCode',
     method: 'post'
   },
+
+  // 获取楼盘列表
+  recommendGetProjectList: {
+    url: '/recommend/getProjectList',
+    method: 'post'
+  },
+
   projectApiFindProjectInfoById: { //详情-获取项目信息
     url: '/projectApi/findProjectInfoById',
     method: 'post'

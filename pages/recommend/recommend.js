@@ -1,4 +1,7 @@
 // pages/recommend/recommend.js
+const app = getApp()
+import apiSetting from '../../http/apiSetting.js'
+import $http from '../../http/http.js'
 Page({
 
   /**
@@ -63,6 +66,16 @@ Page({
     console.log(e.target.dataset)
     this.setData({
       gender: val
+    })
+  },
+
+  // 获取推荐楼盘
+  getRecommendGetProjectList() {
+    let promise = {
+      cityId: '',
+    }
+    $http(apiSetting.recommendGetProjectList, promise).then((data) => {
+      // console.log(data.data)
     })
   }
 })
