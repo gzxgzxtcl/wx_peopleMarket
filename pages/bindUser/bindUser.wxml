@@ -85,7 +85,7 @@
   <i-modal i-class='modalClass' style='top:-100rpx' visible="{{noteCodeVisible}}" bind:ok="noteCodeModalOk" bind:cancel="noteCodeModalClose">
     <view style='font-size:32rpx;color:#111'>请输入手机验证码</view>
     <view bindtap='noteCodeModalShow' style='font-size:36rpx;color:#111;margin:22rpx 0 20rpx;'>
-      <input style='width:0;height:0;float:left;' placeholder-class="phcolor" focus="{{noteCodeVisible}}" type='text' maxlength='{{noteCodeValLeng}}' bindinput='inpBind' />
+      <input style='width:0;height:0;float:left;' placeholder-class="phcolor" focus="{{noteCodeVisible}}" type='number' maxlength='{{noteCodeValLeng}}' bindinput='inpBind' />
       <block wx:for="{{noteCodeValLeng}}" wx:key="item">
         <input class='inpText' value='{{noteCodeVal[index]}}' disabled type='number' placeholder="—" />
       </block>

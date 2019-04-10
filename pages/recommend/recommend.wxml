@@ -4,7 +4,7 @@
     <li>
       <span class='title required'>客户姓名</span>
       <span class="inp">
-        <input placeholder-class="phcolor" type='text' placeholder="请输入客户姓名" />
+        <input placeholder-class="phcolor" type='text' bindinput='customNameBind' placeholder="请输入客户姓名" />
       </span>
     </li>
     <li>
@@ -25,37 +25,48 @@
     <li>
       <span class='title required'>客户电话</span>
       <span class="inp">
-        <input placeholder-class="phcolor" type='number' placeholder="请输入客户电话" />
+        <input placeholder-class="phcolor" type='number' bindinput='customPhoneBind' placeholder="请输入客户电话" />
       </span>
     </li>
     <li>
       <span class='title required'>城市</span>
       <span class="inp">
-        <input placeholder-class="phcolor" type='text' value="北京" placeholder="请选择城市" />
+        <input placeholder-class="phcolor" type='text' value="{{reportList.city}}" placeholder="请选择城市" />
       </span>
     </li>
     <li>
       <span class='title required'>推荐楼盘</span>
-      <span class="inp">
-        <input placeholder-class="phcolor" type='text' placeholder="请选择" />
+      <span class="inp" style="text-align:left;display:block;">
+        <!-- <input placeholder-class="phcolor" type='text' placeholder="请选择" /> -->
+        <picker style='width:100%' mode="selector" bindchange="arrayProjectChange" range-key="wxProjectName" value='{{arrayProjectIndex}}' range="{{arrayProject}}">
+          <view class="picker">
+            <!-- 请选择 -->
+            <text wx:if="{{arrayProjectIndex == null}}">请选择</text>
+            {{arrayProject[arrayProjectIndex].wxProjectName}}
+          </view>
+        </picker>
       </span>
     </li>
     <li style="height:200rpx;margin-top:20rpx;margin-bottom:40rpx">
-      <textarea class='textsty' style='' placeholder="请输入客户相关描述，如意向户型、面积等" />
+      <textarea class='textsty' style='' bindinput='remarkBind' placeholder="请输入客户相关描述，如意向户型、面积等" />
     </li>
     <li>
       <span class='title'>推荐人</span>
-      <span class=""></span>
+      <span class="">{{reportList.reportName}}</span>
     </li>
     <li>
       <span class='title'>推荐人电话</span>
-      <span class=""></span>
+      <span class="">{{reportList.reportMobile}}</span>
     </li>
     <li>
       <span class='title'>推荐身份</span>
-      <span class=""></span>
+      <span class="">{{reportList.reportType}}</span>
     </li>
   </ul>
 
-  <button class='bindSub'>确认推荐</button>
+  <button class='bindSub' bindtap='bindSub'>确认推荐</button>
 </view>
+
+<i-modal visible="{{ visible }}" ok-text="绑定用户" bind:ok="visibleOk" bind:cancel="visibleOkClose">
+  <view>暂无绑定用户信息</view>
+</i-modal>

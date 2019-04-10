@@ -23,9 +23,9 @@ Page({
         brokertype: app.globalData.bindUserInfo.brokertype
       })
     } else {
-      that.setData({
-        visible: true
-      })
+      // that.setData({
+      //   visible: true
+      // })
     }
   },
 
