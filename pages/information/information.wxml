@@ -107,7 +107,7 @@
         <text>{{caption}}</text>
       </view>
       <view class='img'>
-        <image src='{{imgpath+hourseimg}}' bindtap='goHouseimg' data-id='{{0}}'></image>
+        <image src='{{imgpath+hourseimg}}' bindtap='goHouseimg' data-id='{{0}}' data-imgurl='{{imgpath+hourseimg}}'></image>
         <view class='explain'>
           <text class='totle'>{{price}}</text>
           <text>{{buyingpoint}}</text>
@@ -135,7 +135,7 @@
         <text>{{item.name}}({{item.imgs.length}}）</text>
         <view class="section section_gap">
           <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
-            <view class='imgs' style='width:{{440*item.imgs.length}}rpx'>
+            <view class='imgs' style='width:{{440*item.imgs.length+20*(item.imgs.length-1)}}rpx'>
               <image wx:for='{{item.imgs}}' wx:key="{{index}}" src='{{item}}'></image>
             </view>
           </scroll-view>
@@ -165,41 +165,13 @@
     <!-- 项目详情 -->
     <view class='product-detail'>
       <text class='title'>项目详情</text>
-      <view class='detail-list'>
-        <view class='list1'>
-          <text class='txt1'>开发商</text>
-          <text class='txt2'>{{developer}}</text>
-        </view>
-        <view class='list2'>
-          <text class='txt1'>物业公司</text>
-          <text class='txt2'>{{propertycompany}}</text>
-        </view>
-        <view class='list3'>
-          <text class='txt1'>开盘时间</text>
-          <text class='txt2'>{{opening_date}}</text>
-        </view>
-        <view class='list4'>
-          <text class='txt1'>交房时间</text>
-          <text class='txt2'>{{delivery_date}}</text>
-        </view>
-        <view class='list5'>
-          <text class='txt1'>产权年限</text>
-          <text class='txt2'>{{years}}</text>
-        </view>
-        <view class='list6'>
-          <text class='txt1'>产品类型</text>
-          <text class='txt2'>{{buildingtype}}</text>
-        </view>
-        <view class='list7'>
-          <text class='txt1'>装修状态</text>
-          <text class='txt2'>{{isup}}</text>
-        </view>
-        <view class='list8'>
-          <text class='txt1'>物业费</text>
-          <text class='txt2'>{{propertyexpenses}}</text>
+      <view class='detail-list' style="height:{{!getmore?480:''}}rpx">
+        <view class='list1' wx:for='{{project_info}}' >
+          <text class='txt1'>{{item.name}}</text>
+          <text class='txt2'>{{item.value}}</text>
         </view>
       </view>
-
+      <view class='get-more' bindtap='getMoreInfo' wx:if='{{!getmore}}'>查看更多</view>
     </view>
   </view>
   <!-- 免责分割线 -->
