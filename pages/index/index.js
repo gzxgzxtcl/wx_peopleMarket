@@ -17,7 +17,13 @@ Page({
       latitude: '',
       longitude: '',
       cityName: ''
-    }
+    },
+    //楼盘信息列表
+    buildinfolist:[],
+    //楼盘信息标签列表
+    buildinfotaglist:[],
+    // 楼盘信息图片
+    buildinfoimg:''
   },
   // 切换城市
   changeCity() {
@@ -38,9 +44,11 @@ Page({
     })
   },
   //跳转详情页
-  goInformation() {
+  goInformation(e) {
+    let project_id = e.currentTarget.dataset.project_id
+    let imgurl = e.currentTarget.dataset.imgurl
     wx.navigateTo({
-      url: '../information/information'
+      url: '../information/information?project_id=' + project_id+'&&imgurl='+imgurl
     })
   },
 
@@ -105,10 +113,18 @@ Page({
       app.globalData.storLocalCity = data.data.cityInfo
       that.setData({
         cityNametext: data.data.cityInfo.city,
-        imgUrls: data.data.rollImg
+        imgUrls: data.data.rollImg,
+        buildinfolist: data.data.buildInfo,
       })
+      console.log(this.data.buildinfolist)
       // console.log(app.globalData.storLocalCity)
       // that.hideLoading()
+      let _arr=[]
+      for (let i = 0; i < data.data.buildInfo.length;i++){
+        _arr.push(data.data.buildInfo[i].labels.split(','))
+        // console.log(_arr)
+      }
+      that.setData({ buildinfotaglist:_arr})
     }, (error) => {
       console.log(error)
       // that.hideLoading()

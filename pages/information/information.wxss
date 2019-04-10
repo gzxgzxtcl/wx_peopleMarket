@@ -556,6 +556,9 @@ swiper image {
   margin-bottom: 32rpx;
 }
 
+.info .product-detail .detail-list{
+  overflow: hidden;
+}
 .info .product-detail .detail-list>view {
   height: 40rpx;
   margin-bottom: 20rpx;
@@ -568,7 +571,7 @@ swiper image {
 
 .info .product-detail .detail-list .txt1 {
   display: block;
-  width: 116rpx;
+  width: 140rpx;
   height: 40rpx;
   line-height: 40rpx;
   font-size: 28rpx;
@@ -584,6 +587,13 @@ swiper image {
   font-size: 24rpx;
   color: #8d91a2;
   font-family: 'PingFang-SC-Medium';
+}
+.info .get-more{
+  font-size: 28rpx;
+  font-family: 'PingFang-SC-Medium';
+  color: #199ed8;
+  text-align: center;
+  line-height: 30rpx;
 }
 
 .hr {
