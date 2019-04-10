@@ -2,6 +2,9 @@
 const app = getApp()
 import apiSetting from '../../http/apiSetting.js'
 import $http from '../../http/http.js'
+const {
+  $Message
+} = require('../../dist/base/index');
 Page({
 
   /**
@@ -54,6 +57,7 @@ Page({
    */
   onLoad: function(options) {
     this.data.userInfo.wxid = app.globalData.openid
+    // this.data.userInfo.wxid = 'oIaEE5sLWOCYcsX3nYrlZ6gYC6Dg'
     this.setData({
       gender: this.data.userInfo.sex
     })
@@ -198,15 +202,15 @@ Page({
   phoneBind(e) {
     this.data.userInfo.phone = e.detail.value
   },
-  idnoBind(e){
+  idnoBind(e) {
     this.data.userInfo.idno = e.detail.value
   },
-  channelCodeBind(e) { 
+  channelCodeBind(e) {
     this.data.userInfo.channelCode = e.detail.value
   },
   agencyAccountBind(e) {
     this.data.userInfo.agencyAccount = e.detail.value
-   },
+  },
   // 验证码输入
   inpBind(e) {
     // console.log(e.detail.value)
@@ -221,7 +225,26 @@ Page({
     clearInterval(that.data.setInter)
   },
 
+
+  // 用户信息提交
   bindSub() {
-    console.log(this.data.userInfo)
+    // console.log(this.data.userInfo)
+    if (this.data.noteResult) {
+      let promise = this.data.userInfo
+      $http(apiSetting.userIdentifyUser, promise).then((data) => {
+        // console.log(data)
+        if (data.code == 0){
+          wx.reLaunch({
+            url: '../index/index'
+          })
+        }
+      })
+    } else {
+      $Message({
+        content: '请进行短信验证',
+        type: 'warning'
+      });
+    }
+
   },
 })

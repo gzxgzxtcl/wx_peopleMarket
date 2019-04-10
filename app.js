@@ -21,8 +21,14 @@ App({
           code: res.code
         }
         $http(apiSetting.userDecodeUserInfo, promise).then((data) => {
-          console.log(data.data.openid)
+          // console.log(data.data.openid)
           that.globalData.openid = data.data.openid
+          if (data.data.isCheck == 1){
+            that.globalData.isCheck = true
+          }else{
+            that.globalData.isCheck = false
+          }
+          // that.globalData.isCheck = data.data.isCheck
         }, (error) => {
           console.log(error)
         });
@@ -51,6 +57,7 @@ App({
   },
 
   globalData: {
+    isCheck:false,
     openid: null,
     userInfo: null,
     storLocalCity: null

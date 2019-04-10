@@ -93,3 +93,5 @@
     <view style='font-siez:24rpx'>已发送:{{userInfo.phone}}</view>
   </i-modal>
 </view>
+
+<i-message id="message" />

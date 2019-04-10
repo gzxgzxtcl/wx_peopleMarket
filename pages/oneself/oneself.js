@@ -1,4 +1,7 @@
 // pages/oneself/oneself.js
+const app = getApp()
+import apiSetting from '../../http/apiSetting.js'
+import $http from '../../http/http.js'
 Page({
 
   /**
@@ -25,6 +28,9 @@ Page({
     //     }
     //   }
     // })
+    $http(apiSetting.userGetUserInfo, {}).then((data) => {
+      console.log(data)
+    })
   },
 
   /**

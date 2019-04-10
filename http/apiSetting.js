@@ -15,6 +15,10 @@ const serviceModule = {
     url: '/user/identifyUser',
     method: 'post'
   },
+  userGetUserInfo: { //获取用户信息
+    url: '/user/getUserInfo',
+    method: 'post'
+  },
   userGetCode: { //获取短信验证
     url: '/user/getCode',
     method: 'post'
