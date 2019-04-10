@@ -165,11 +165,12 @@
     <view class='plan'>
       <view class='title'>进度</view>
       <view bindtap='selPlan'>
-        <text data-planTagId='{{0}}' class="{{planSelArr[0]?'active':''}}">全部</text>
-        <text data-planTagId='{{1}}' class="{{planSelArr[1]?'active':''}}">推荐</text>
-        <text data-planTagId='{{2}}' class="{{planSelArr[2]?'active':''}}">来电</text>
-        <text data-planTagId='{{3}}' class="{{planSelArr[3]?'active':''}}">签约</text>
-        <text data-planTagId='{{4}}' class="{{planSelArr[4]?'active':''}}">认购</text>
+        <text 
+          wx:for='{{recommendInfo}}'
+          wx:key='{{index}}' 
+          data-planTagId='{{index}}'
+          class="{{planSelArr[index]?'active':''}}"
+          >{{item}}</text>
       </view>
     </view>
 

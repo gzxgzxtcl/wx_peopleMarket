@@ -23,7 +23,13 @@ Page({
     //楼盘信息标签列表
     buildinfotaglist:[],
     // 楼盘信息图片
-    buildinfoimg:''
+    buildinfoimg: '',
+    //周边楼盘信息列表
+    rimbuildinfolist: [],
+    //周边楼盘信息标签列表
+    rimbuildinfotaglist: [],
+    // 周边楼盘信息图片
+    rimbuildinfoimg: ''
   },
   // 切换城市
   changeCity() {
@@ -79,7 +85,7 @@ Page({
         }
       })
     }
-
+    this.getRimBuildInfo();
   },
 
   // 获取位置
@@ -116,7 +122,7 @@ Page({
         imgUrls: data.data.rollImg,
         buildinfolist: data.data.buildInfo,
       })
-      console.log(this.data.buildinfolist)
+      // console.log(this.data.buildinfolist)
       // console.log(app.globalData.storLocalCity)
       // that.hideLoading()
       let _arr=[]
@@ -130,6 +136,35 @@ Page({
       // that.hideLoading()
     });
   },
+
+  //获取周边城市信息
+  getRimBuildInfo(){
+    let that = this
+    // console.log(app.globalData.storLocalCity.id)
+    let promise = {
+      page:1,
+      perpage:10,
+      login_by:'',
+      city: app.globalData.storLocalCity.id
+    }
+    // console.log(promise)
+    $http(apiSetting.cityFindBuildInfoByCity, promise).then((data) => {
+      let rimbuildinfo = data.data.buildInfo
+      that.setData({
+        rimbuildinfolist: rimbuildinfo
+      })
+      let _arr = []
+      for (let i = 0; i < rimbuildinfo.length; i++) {
+        _arr.push(rimbuildinfo[i].labels.split(','))
+      //  console.log(_arr)
+      }
+      that.setData({ rimbuildinfotaglist:_arr })
+    }, (error) => {
+      console.log(error)
+      
+    });
+  },
+
 
   getPhoneNumber(e) {
     console.log(e.detail.errMsg)
