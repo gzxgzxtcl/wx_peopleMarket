@@ -7,6 +7,10 @@ const serviceModule = {
     url: '/city/findBuildInfoByCity',
     method: 'post'
   },
+  projectApiFindProjectListByCity:{     //
+    url: '/projectApi/findProjectListByCity',
+    method: 'post'
+  },
   cityFindCityItems: {
     url: '/city/findCityItems',
     method: 'post'
@@ -48,6 +52,10 @@ const serviceModule = {
   },
   projectApiFindProjectHouserholdFileListById: { //详情-获取户型图片列表
     url: '/projectApi/findProjectHouserholdFileListById',
+    method: 'post'
+  },
+  recommendIitemList:{  //推荐-筛选条目
+    url:'/recommend/itemList',
     method: 'post'
   },
 

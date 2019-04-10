@@ -77,4 +77,47 @@
     </view>
   </view>
 
+ <!-- 周边信息标题 -->
+  <view class='hours' wx:if="{{rimbuildinfolist.length}}">
+    <text>周边信息</text>
+  </view>
+  <!-- 周边楼盘详情 -->
+  <view 
+    class='hours-list' 
+    bindtap='goInformation' 
+    data-project_id='{{item.projectid_id}}' 
+    data-imgurl='{{item.pictureurl}}'
+     wx:for='{{rimbuildinfolist}}' 
+     wx:key='index'
+     wx:if="{{rimbuildinfolist.length}}"
+     >
+    <view class='img'>
+      <image src='{{item.pictureurl}}'></image>
+    </view>
+    <view class='hours-info'>
+      <view class='left-info'>
+        <view class='hours-name'>
+          <text>{{item.projectname_cswx}}</text>
+          <view class='youhui'>
+            <!-- <text class='t1'>9.8折</text>
+            <text class='t2'>领</text> -->
+            <text class='t3'>{{item.couponname}}</text>
+          </view>
+        </view>
+        <view class='tag'>
+          <text wx:for='{{rimbuildinfotaglist[index]}}' wx:key='{{index}}'>{{item}}</text>
+        </view>
+      </view>
+      <view class='right-info'>
+        <view class='price'>主力均价：
+          <text>{{item.mainprice}}</text>
+          <text>元/㎡</text>
+        </view>
+        <view class='hours-address'>
+          <text class='hours-address-icon iconfont iconweizhi'></text>
+          <text>{{item.city}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>
