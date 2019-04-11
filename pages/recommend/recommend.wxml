@@ -70,3 +70,12 @@
 <i-modal visible="{{ visible }}" ok-text="绑定用户" bind:ok="visibleOk" bind:cancel="visibleOkClose">
   <view>暂无绑定用户信息</view>
 </i-modal>
+<i-modal 
+  visible="{{ visible2 }}" 
+  bind:ok="handleCloseOk"
+  bind:cancel="handleCloseNo"
+  ok-text="我的推荐"
+  cancel-text="首页"
+  >
+  <view>推荐成功</view>
+</i-modal>

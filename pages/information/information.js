@@ -33,7 +33,7 @@ Page({
     brightspotsList: [],                  /*楼盘亮点*/
     isbuildsimg:false,                    /*是否有楼盘图*/
     project_id:'',                        /*项目id*/         
-
+    city_id:'',                           /*城市id*/
     /*
       楼盘图假数据
     */
@@ -188,7 +188,6 @@ Page({
   onLoad: function(options) {
     let project_id=options.project_id          //index-->information 项目id
     let imgurl=options.imgurl                 //index-->information  项目主图
-    console.log(options)
 
     this.resetBanner(imgurl);                     //初始化轮播图
     this.getSpotLength();                         //获取亮点条数
@@ -268,7 +267,7 @@ Page({
     let promise = { project_id:id}
     $http(apiSetting.projectApiFindProjectInfoById, promise).then((data) => {
       let projectinfo=data.data
-      console.log(projectinfo)
+      console.log("项目信息：",projectinfo)
       this.setData({
         project_id: projectinfo.id,
         projectname_hk: projectinfo.projectname_hk,
@@ -280,7 +279,8 @@ Page({
         mainpricedescription: projectinfo.mainpricedescription,
         mainhouseholdList: projectinfo.mainhouseholdList,
         labelsList: projectinfo.labelsList,
-        brightspotsList: projectinfo.brightspotsList
+        brightspotsList: projectinfo.brightspotsList,
+        city_id: projectinfo.city
       })
 
     }, (error) => {
@@ -368,9 +368,9 @@ Page({
   },
   //去推荐
   goRecommend(){
-    console.log('推荐')
+    console.log(this.data.city_id)
     wx.navigateTo({
-      url: '../recommend/recommend?project_id='+this.data.project_id,
+      url: '../recommend/recommend?project_id='+this.data.project_id+'&&city_id='+this.data.city_id,
     })
   },
 

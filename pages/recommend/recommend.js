@@ -8,6 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    visible2: false,      //确认推荐模态窗
+
     reportList: {
       city: '上海',
       customName: '',
@@ -22,6 +24,8 @@ Page({
       reportType: '',
       sex: ''
     },
+    city_id: '',   
+
     //性别
     gender: 1,
     visible: false,
@@ -35,7 +39,14 @@ Page({
    */
   onLoad: function(options) {
     let that = this;
-    console.log(app.globalData.bindUserInfo)
+    //判断是否有传递的项目id，如果有，直接复制给data中的变量，即详情页的跳转
+    if (options.project_id) {
+      this.setData({ 'reportList.projectId': options.project_id, city_id: options.city_id})
+      this.getCityInfo(options.project_id);
+    }else{
+      this.getRecommendGetProjectList()
+    }
+    // console.log(app.globalData.bindUserInfo)
     if (app.globalData.isCheck) {
       let reportList = that.data.reportList
       reportList.openId = app.globalData.bindUserInfo.wxid
@@ -46,7 +57,7 @@ Page({
       that.setData({
         reportList: reportList
       })
-      that.getRecommendGetProjectList()
+   
     } else {
       that.setData({
         visible: true
@@ -54,47 +65,7 @@ Page({
     }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
   customNameBind(e) {
     this.data.reportList.customName = e.detail.value
   },
@@ -115,20 +86,48 @@ Page({
       gender: val
     })
   },
-
+  //详情(id)-->推荐，获取城市信息
+  getCityInfo(id){
+    let promise = { project_id: id }
+    $http(apiSetting.projectApiFindProjectInfoById, promise).then((data) => {
+      let projectInfo = data.data
+      console.log(projectInfo)
+      this.setData({ 'reportList.city': projectInfo.city_text, city_id: projectInfo.city})
+      this.getRecommendGetProjectList()
+    }, (error) => {
+      console.log(error)
+    });
+  },
   // 获取推荐楼盘
   getRecommendGetProjectList() {
     let that = this
-    let promise = {
-      cityId: '0-166-884-202-',
+    if(!this.data.city_id){
+      let cityInfo = wx.getStorageSync('storLocalCity')
+      this.setData({ 'reportList.city': cityInfo.city, city_id: cityInfo.id})
     }
+    let promise = { cityId: this.data.city_id}   // cityId: '0-166-884-202-',
+
+    //获取楼盘列表
     $http(apiSetting.recommendGetProjectList, promise).then((data) => {
       console.log(data.data)
-      that.setData({
-        arrayProject: data.data
-      })
+      if (this.data.reportList.projectId){
+        for(let i=0;i<data.data.length;i++){
+          if (data.data[i].wxProjectId === this.data.reportList.projectId){
+            that.setData({ 'arrayProject[0]': data.data[i]})
+            return
+          }
+        }
+      }else{
+        this.setData({
+          arrayProject: data.data
+        })
+      }
+    },(error)=>{
+      console.log(error)
     })
   },
+ 
+  //选择推荐楼盘列表
   arrayProjectChange(e) {
     // console.log(e.detail.value)
     // console.log(this.data.array[e.detail.value])
@@ -149,8 +148,36 @@ Page({
       url: "../index/index"
     })
   },
-
+//确认推荐
   bindSub() {
-    console.log(this.data.reportList)
+    // console.log(this.data.reportList)
+    let promise = this.data.reportList
+    console.log(promise)
+    $http(apiSetting.recommendAddAgencyCustom, promise).then((data) => {
+      console.log(data)
+      if(!data.code){
+        this.setData({ visible2: true })
+      }
+    }, (error) => {
+      console.log(error)
+    });
   },
+
+  //确认模态窗
+  handleCloseOk() {
+    wx.navigateTo({
+      url: '../clients/client'
+    })
+    this.setData({
+      visible2: false
+    });
+  },
+  handleCloseNo() {
+    wx.reLaunch({
+      url: '../index/index'
+    })
+    this.setData({
+      visible2: false
+    });
+  }
 })
