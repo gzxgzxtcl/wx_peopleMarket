@@ -31,6 +31,10 @@
   font-size: 48rpx;
   font-family: 'PingFang-SC-Medium';
   color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .clients .top>view>view>text {
@@ -101,6 +105,7 @@
   width: 670rpx;
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1);
   padding: 0 40rpx;
+  margin-bottom: 40rpx;
 }
 
 .client .cilent-info {
@@ -148,11 +153,14 @@
 .client .step .step-view .dot {
   width: 40rpx;
   height: 40rpx;
-  background: #20a0ff;
+  background: #d8d8d8;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.client .step .step-view view:first-child{
+  background: #20a0ff;
 }
 
 .client .step .step-view .dot image {
@@ -163,6 +171,9 @@
 .client .step .step-view .striping {
   width: 134rpx;
   height: 4rpx;
+  background: #d8d8d8;
+}
+.client .step .step-view .plan-active{
   background: #20a0ff;
 }
 
@@ -201,6 +212,7 @@
   font-family: 'PingFang-SC-Medium';
   color: #8d91a2;
   margin-top: 12rpx;
+  overflow: hidden
 }
 
 .client .step .step-time text {
@@ -215,6 +227,9 @@
 
 .client .step .step-time text:nth-of-type(3) {
   margin-left: 68rpx;
+}
+.client .step .step-time text:nth-of-type(4) {
+  margin-left: 48rpx;
 }
 
 .client .luck {
@@ -292,7 +307,7 @@
 .drawer {
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;

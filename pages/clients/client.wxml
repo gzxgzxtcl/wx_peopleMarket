@@ -4,19 +4,19 @@
   <view class='top'>
     <view>
       <text>已推荐客户</text>
-      <view>20
+      <view>{{peoplesArray[0].recommendNum}}
         <text>人</text>
       </view>
     </view>
     <view>
       <text>已到访客户</text>
-      <view>5
+      <view>{{peoplesArray[0].viewNum}}
         <text>人</text>
       </view>
     </view>
     <view>
       <text>已获得推荐佣金</text>
-      <view>5
+      <view>50
         <text>万元</text>
       </view>
     </view>
@@ -36,14 +36,14 @@
     </view>
   </view>
   <!-- 客户列表 -->
-  <view class='client'>
+  <view class='client' wx:for='{{recommendPersonList}}' wx:key='{{index}}'>
     <view class='cilent-info'>
       <view class='name'>
-        <text>张生</text>
-        <text>13988889990</text>
+        <text>{{item.name}}</text>
+        <text>{{item.refer_mobile}}</text>
       </view>
       <view>
-        <text>深圳中海天钻</text>
+        <text>{{item.cityName}}</text>
       </view>
     </view>
     <view class='step'>
@@ -51,16 +51,16 @@
         <view class='dot'>
           <image src='../../images/duihao.png'></image>
         </view>
-        <view class='striping connect1'></view>
-        <view class='dot connect1'>
+        <view class="striping {{item.lfDate?'plan-active':''}} connect1"></view>
+        <view class="dot {{item.lfDate?'plan-active':''}} connect1">
           <image src='../../images/duihao.png'></image>
         </view>
-        <view class='striping connect2'></view>
-        <view class='dot connect2'>
+        <view class="striping {{item.rgDate?'plan-active':''}} connect2"></view>
+        <view class="dot {{item.rgDate?'plan-active':''}} connect2">
           <image src='../../images/duihao.png'></image>
         </view>
-        <view class='striping connect3'></view>
-        <view class='dot connect3'>
+        <view class="striping {{item.cjDate?'plan-active':''}} connect3"></view>
+        <view class="dot {{item.cjDate?'plan-active':''}} connect3">
           <image src='../../images/duihao.png'></image>
         </view>
       </view>
@@ -71,9 +71,10 @@
         <text>成交</text>
       </view>
       <view class='step-time'>
-        <text>2019.01.12</text>
-        <text>2019.02.10</text>
-        <text>2019.03.11</text>
+        <text>{{item.tjDate}}</text>
+        <text>{{item.lfDate}}</text>
+        <text>{{item.rgDate}}</text>
+        <text>{{item.cjDate}}</text>
       </view>
     </view>
     <view class='luck'>
@@ -101,9 +102,12 @@
     <view class='city'>
       <view class='title'>城市</view>
       <view class='city-list' bindtap='selCity'>
-        <view data-cityTagId='{{0}}' class="{{citySelArr[0]?'active':''}}">全部</view>
-        <view data-cityTagId='{{1}}' class="{{citySelArr[1]?'active':''}}">深圳</view>
-        <view data-cityTagId='{{2}}' class="{{citySelArr[2]?'active':''}}">东莞</view>
+        <view 
+          wx:for='{{cityInfo}}'
+          wx:key='{{index}}' 
+          data-cityTagId='{{index}}'
+          class="{{cityDefaultIndex===index?'active':''}}"
+          >{{item.cityName}}</view>
       </view>
     </view>
 
@@ -111,10 +115,15 @@
       <view class='title'>项目</view>
       <view>
         <view class="section">
-          <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <picker 
+            bindchange="bindPickerChange" 
+            value="{{index}}" 
+            range="{{itemInfo}}" 
+            range-key='projectName'
+            >
             <view class="picker">
               <text wx:if='{{itemPakerIndex===null}}'>深圳中海天钻项目</text>
-              <text wx:else>{{array[itemPakerIndex]}}</text>
+              <text wx:else>{{itemInfo[itemPakerIndex].projectName}}</text>
             </view>
           </picker>
         </view>
@@ -169,7 +178,7 @@
           wx:for='{{recommendInfo}}'
           wx:key='{{index}}' 
           data-planTagId='{{index}}'
-          class="{{planSelArr[index]?'active':''}}"
+          class="{{planDefaultIndex===index?'active':''}}"
           >{{item}}</text>
       </view>
     </view>
