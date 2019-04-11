@@ -23,7 +23,7 @@ Page({
       sex: '男',
       wxid: ''
     },
-    showAgencyAccount:'',
+    showAgencyAccount: '',
     // 验证码窗
     noteCodeVisible: false,
     noteCodeVal: null,
@@ -77,7 +77,7 @@ Page({
       this.data.userInfo.wxid = app.globalData.bindUserInfo.wxid
 
 
-      this.data.showAgencyAccount = app.globalData.bindUserInfo.showAgencyAccount
+      // this.data.showAgencyAccount = app.globalData.bindUserInfo.agencyAccount
       let findIndex = this.data.array.findIndex((n) => {
         return n.name == app.globalData.bindUserInfo.brokertype
       })
@@ -86,7 +86,8 @@ Page({
         userInfo: this.data.userInfo,
         gender: this.data.userInfo.sex,
         arrayIndex: findIndex,
-        isEdit: false
+        isEdit: false,
+        showAgencyAccount: app.globalData.bindUserInfo.agencyAccount
       })
     } else {
       this.data.userInfo.wxid = app.globalData.openid
@@ -147,7 +148,7 @@ Page({
 
   // 获取验证码
   getNoteCode() {
-    if (this.data.userInfo.phone == ''){
+    if (this.data.userInfo.phone == '') {
       $Message({
         content: '请输入手机号',
         type: 'warning'
@@ -259,9 +260,9 @@ Page({
     this.data.userInfo.idno = e.detail.value
   },
   channelCodeBind(e) {
-    let val= e.detail.value
+    let val = e.detail.value
     this.data.userInfo.channelCode = e.detail.value
-    if (val.length>= 11){
+    if (val.length >= 11) {
       this.getUserGetHaikeAgencyInfo(val)
     }
   },
@@ -282,11 +283,11 @@ Page({
     clearInterval(that.data.setInter)
   },
 
-// 获取海客中介用户
-  getUserGetHaikeAgencyInfo(val){
+  // 获取海客中介用户
+  getUserGetHaikeAgencyInfo(val) {
     let that = this
     let promise = {
-      channelCode:val
+      channelCode: val
     }
     $http(apiSetting.userGetHaikeAgencyInfo, promise).then((data) => {
       console.log(data.data)
@@ -297,7 +298,7 @@ Page({
           showAgencyAccount: data.data.agencyAccount,
         })
       }
-      if (data.code == -1){
+      if (data.code == -1) {
         $Message({
           content: data.data.message,
           type: 'warning'
