@@ -7,7 +7,7 @@ const serviceModule = {
     url: '/city/findBuildInfoByCity',
     method: 'post'
   },
-  projectApiFindProjectListByCity:{     //
+  projectApiFindProjectListByCity: { //
     url: '/projectApi/findProjectListByCity',
     method: 'post'
   },
@@ -29,6 +29,12 @@ const serviceModule = {
   },
   userCheckSMSCode: { //短信校验
     url: '/user/checkSMSCode',
+    method: 'post'
+  },
+
+  //获取海客中介用户
+  userGetHaikeAgencyInfo: {
+    url: '/user/getHaikeAgencyInfo',
     method: 'post'
   },
 
@@ -60,8 +66,8 @@ const serviceModule = {
     url: '/projectApi/findProjectHouserholdFileListById',
     method: 'post'
   },
-  recommendIitemList:{  //推荐-筛选条目
-    url:'/recommend/itemList',
+  recommendIitemList: { //推荐-筛选条目
+    url: '/recommend/itemList',
     method: 'post'
   },
 
