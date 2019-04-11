@@ -50,7 +50,7 @@ const serviceModule = {
     method: 'post'
   },
   //推荐-筛选条目
-  recommendItemList: {  
+  recommendItemList: {
     url: '/recommend/itemList',
     method: 'post'
   },
@@ -70,7 +70,7 @@ const serviceModule = {
     method: 'post'
   },
 
-  
+
   projectApiFindProjectInfoById: { //详情-获取项目信息
     url: '/projectApi/findProjectInfoById',
     method: 'post'
@@ -86,8 +86,13 @@ const serviceModule = {
   projectApiFindProjectHouserholdFileListById: { //详情-获取户型图片列表
     url: '/projectApi/findProjectHouserholdFileListById',
     method: 'post'
-  }
+  },
 
+  // 查询我的关注项目列表
+  projectApiFindProjectListByMyConc: {
+    url: '/projectApi/findProjectListByMyConc',
+    method: 'post'
+  }
 }
 const ApiSetting = { ...serviceModule
 }

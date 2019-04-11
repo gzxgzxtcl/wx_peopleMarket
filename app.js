@@ -28,13 +28,14 @@ App({
           } else {
             that.globalData.isCheck = false
           }
+          that.globalData.userId = data.data.userId
           // that.getUserGetUserInfo(data.data.openid)
         }, (error) => {
           console.log(error)
         });
       }
     })
-  
+
   },
 
 
@@ -44,6 +45,7 @@ App({
     isCheck: false,
     openid: null,
     storLocalCity: null,
-    bindUserInfo: {}
+    bindUserInfo: {},
+    userId: null
   }
 })
