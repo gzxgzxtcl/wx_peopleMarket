@@ -25,11 +25,12 @@
   <view class='city-search'>
     <view class='search'>
       <i-panel>
-        <i-input value="{{ value5 }}" placeholder="请输入姓名或手机号" />
+        <i-input bind:blur='getRecommendPersonList' placeholder="请输入姓名或手机号" />
       </i-panel>
+       <!-- <input value="{{ value5 }}" placeholder="这是一个可以自动聚焦的input" /> -->
     </view>
     <view class='search-icon'>
-      <image src='../../images/search.png'></image>
+      <image bindtap='selItem' src='../../images/search.png'></image>
     </view>
     <view class='screen' bindtap='toggleRight'>
       <text>筛选</text>
@@ -185,7 +186,7 @@
 
     <view class='tabbar'>
       <view class='reset' bindtap='reset'>重置</view>
-      <view class='ok'>确认</view>
+      <view class='ok' bindtap='submit'>确认</view>
     </view>
   </view>
 

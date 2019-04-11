@@ -25,51 +25,60 @@ Page({
     cityDefaultIndex: 0,       //城市默认下标
 
     recommendPersonList:[],     //推荐人信息列表
-
+    //筛选条件
+    selectList:{
+      startRow: 0,        
+      perRow: 10,
+      searchType: "",                  //进度
+      startDate: "",                 //开始时间
+      endDate: "",                    //结束时间
+      cityId: "",                     //城市id
+      projectID: "",                  //项目id
+      searchVal: "",                  //搜索框条件                
+      openID: "oGKIT0fsLqw5ZJPa-IxUO2EwQt_I"     
+    },             
 
   },
 
   //项目选择
   bindPickerChange(e) {
+    console.log(e.detail.value)
+    console.log(this.data.itemInfo)
     this.setData({
       itemPakerIndex: e.detail.value
     })
+    this.setData({ 'selectList.projectID': this.data.itemInfo[e.detail.value].projectId})
+    console.log(this.data.selectList)
   },
   // 时间区间选择
   bindDateChangeStart(e) {
+    console.log(e.detail.value)
     this.setData({
       dataIntervalStart: e.detail.value
     })
+    this.setData({ 'selectList.startDate': e.detail.value})
   },
   bindDateChangeEnd(e) {
     this.setData({
       dataIntervalEnd: e.detail.value
     })
-  },
-
-  // 遮罩弹出
-  toggleRight() {
-    this.setData({
-      showRight:true
-    });
-  },
-  // 遮罩隐藏
-  hideDrawer(){
-    this.setData({
-      showRight: false
-    });
+    this.setData({ 'selectList.endDate': e.detail.value })
   },
   // 选择城市标签
   selCity(e){
+    console.log(e.target.dataset, this.data.cityInfo)
     if (e.target.dataset.citytagid === undefined) return
     let tagId=e.target.dataset.citytagid;
     this.setData({ cityDefaultIndex:tagId})
+    this.setData({ 'selectList.cityId': this.data.cityInfo[e.target.dataset.citytagid].cityId})
   },
   // 选择进度标签
   selPlan(e) {
+    console.log(e.target.dataset, this.data.recommendInfo)
     if (e.target.dataset.plantagid===undefined) return
     let tagId = e.target.dataset.plantagid;
     this.setData({ planDefaultIndex:tagId })
+    this.setData({ 'selectList.searchType': this.data.recommendInfo[e.target.dataset.plantagid] })
   },
   // 重置
   reset(){
@@ -78,6 +87,52 @@ Page({
     // 项目重置
     this.setData({ itemPakerIndex: null})
     this.setData({ dataIntervalStart: null, dataIntervalEnd: null})
+    this.resetParameter();
+  },
+  // 确认筛选
+  submit(){
+    let promise = this.data.selectList
+    $http(apiSetting.recommendFindCustomList, promise).then((data) => {
+      console.log(data.data)
+      this.setData({ recommendPersonList: data.data })
+    }, (error) => {
+      console.log(error)
+    });
+    this.setData({ showRight: false });
+    this.resetParameter();
+  },
+  //文本框筛选
+  getRecommendPersonList(e){
+    this.resetParameter()
+    this.setData({ 'selectList. searchVal': e.detail.detail.value})
+    console.log(this.data.selectList.searchVal)
+  },
+
+  // 遮罩弹出
+  toggleRight() {
+    this.setData({
+      showRight: true
+    });
+  },
+  // 遮罩隐藏
+  hideDrawer() {
+    this.setData({
+      showRight: false
+    });
+    this.resetParameter();
+  },
+  //初始化请求参数
+  resetParameter(){
+    this.setData({
+      'selectList.searchType': "",            //进度
+      'selectList.startDate': "",      //开始时间
+      'selectList.endDate': "",        //结束时间
+      'selectList.cityId': "",       //城市id
+      'selectList.projectID': "",                  //项目id
+      'selectList. searchVal': "",                  //搜索框条件                
+      'selectList. openID': "oGKIT0fsLqw5ZJPa-IxUO2EwQt_I"
+    })
+    console.log(this.data.selectList)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -89,7 +144,7 @@ Page({
   },
   //获取推荐人状态信息
   findCustomList(){
-    let promise = { "openID": "oGKIT0fsLqw5ZJPa-IxUO2EwQt_I" }
+    let promise = { openID: "oGKIT0fsLqw5ZJPa-IxUO2EwQt_I" }
     $http(apiSetting.recommendFindCustomList, promise).then((data) => {
       console.log(data.data)
       this.setData({ recommendPersonList:data.data})
@@ -99,7 +154,7 @@ Page({
   },
   //推荐客户人数
   findRecommendPerson(){
-    let promise = { "openID": "oGKIT0fsLqw5ZJPa-IxUO2EwQt_I"}
+    let promise = { openID: "oGKIT0fsLqw5ZJPa-IxUO2EwQt_I"}
     $http(apiSetting.recommendFindRecommendPerson, promise).then((data) => {
       this.setData({ peoplesArray:data.data})
     }, (error) => {
