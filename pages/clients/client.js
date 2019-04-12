@@ -1,6 +1,7 @@
 // pages/clients/client.js
 import apiSetting from '../../http/apiSetting.js'
 import $http from '../../http/http.js'
+const app=getApp()
 
 Page({
 
@@ -25,6 +26,7 @@ Page({
     cityDefaultIndex: 0,       //城市默认下标
 
     recommendPersonList:[],     //推荐人信息列表
+    _val:'',                    //搜索框临时数据
     //筛选条件
     selectList:{
       startRow: 0,        
@@ -35,7 +37,7 @@ Page({
       cityId: "",                     //城市id
       projectID: "",                  //项目id
       searchVal: "",                  //搜索框条件                
-      openID: "oGKIT0fsLqw5ZJPa-IxUO2EwQt_I"     
+      openID: ""    
     },             
 
   },
@@ -101,11 +103,23 @@ Page({
     this.setData({ showRight: false });
     this.resetParameter();
   },
-  //文本框筛选
-  getRecommendPersonList(e){
-    this.resetParameter()
-    this.setData({ 'selectList. searchVal': e.detail.detail.value})
-    console.log(this.data.selectList.searchVal)
+  //搜索图标点击
+  selItem(){
+    console.log('事件执行力')
+    this.setData({ 'selectList.searchVal': this.data._val })
+    let promise = this.data.selectList
+    console.log(promise)
+    $http(apiSetting.recommendFindCustomList, promise).then((data) => {
+      console.log(data.data)
+      this.setData({ recommendPersonList: data.data })
+    }, (error) => {
+      console.log(error)
+    });
+    this.resetParameter();
+  },
+  //文本框监听
+  valueChange(e){
+    this.setData({ _val: e.detail.value})
   },
 
   // 遮罩弹出
@@ -124,13 +138,12 @@ Page({
   //初始化请求参数
   resetParameter(){
     this.setData({
-      'selectList.searchType': "",            //进度
-      'selectList.startDate': "",      //开始时间
-      'selectList.endDate': "",        //结束时间
-      'selectList.cityId': "",       //城市id
-      'selectList.projectID': "",                  //项目id
-      'selectList. searchVal': "",                  //搜索框条件                
-      'selectList. openID': "oGKIT0fsLqw5ZJPa-IxUO2EwQt_I"
+      'selectList.searchType': '',            //进度
+      'selectList.startDate': '',      //开始时间
+      'selectList.endDate': '',        //结束时间
+      'selectList.cityId': '',       //城市id
+      'selectList.projectID': '',                  //项目id
+      'selectList.searchVal': '',                  //搜索框条件                
     })
     console.log(this.data.selectList)
   },
@@ -138,13 +151,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.setData({ 'selectList.openID': app.globalData.openid})
     this.findCustomList();
     this.getRecommendItemList();
     this.findRecommendPerson();
   },
   //获取推荐人状态信息
   findCustomList(){
-    let promise = { openID: "oGKIT0fsLqw5ZJPa-IxUO2EwQt_I" }
+    let promise = { openID: app.globalData.openid }
     $http(apiSetting.recommendFindCustomList, promise).then((data) => {
       console.log(data.data)
       this.setData({ recommendPersonList:data.data})
@@ -154,7 +168,7 @@ Page({
   },
   //推荐客户人数
   findRecommendPerson(){
-    let promise = { openID: "oGKIT0fsLqw5ZJPa-IxUO2EwQt_I"}
+    let promise = { openID: app.globalData.openid}
     $http(apiSetting.recommendFindRecommendPerson, promise).then((data) => {
       this.setData({ peoplesArray:data.data})
     }, (error) => {
@@ -163,7 +177,7 @@ Page({
   },
   //筛选条目获取
   getRecommendItemList(){
-    let promise = { openID: "oGKIT0fsLqw5ZJPa-IxUO2EwQt_I"}
+    let promise = { openID: app.globalData.openid }
     $http(apiSetting.recommendItemList, promise).then((data) => {
       this.setData({
         cityInfo: data.data.cityInfo,
@@ -174,6 +188,10 @@ Page({
       console.log(error)
 
     });
+  },
+  //获取佣金
+  getRecommendCommissionInfoList(){
+    let promise = { openID: app.globalData.openid }
   },
   
 })

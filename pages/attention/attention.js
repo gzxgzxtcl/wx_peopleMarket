@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    attentionList:[],       //我的关注列表
   },
 
   /**
@@ -59,15 +59,21 @@ Page({
   onReachBottom: function() {
 
   },
-
+  //获取我的关注列表
   getProjectApiFindProjectListByMyConc() {
     let promise = {
       page: 1,
       perpage: 10,
       login_by: app.globalData.userId
     }
+    console.log(promise)
     $http(apiSetting.projectApiFindProjectListByMyConc, promise).then((data) => {
       console.log(data.list)
+      this.setData({ attentionList:data.list})
     })
-  }
+  },
+  //查看关注列表楼盘详情
+  goInformation(e){
+    console.log(e)
+  },
 })

@@ -1,6 +1,12 @@
 <!-- 我的关注列表页面 -->
 <view class='my-attention'>
-  <view class='attention-item' wx:for='{{3}}' wx:key="{{index}}">
+  <view 
+    class='attention-item' 
+    wx:for='{{2}}' 
+    wx:key="{{index}}" 
+    bindtap='goInformation' 
+    data-project_id='574016EAC21E4F44ADDE74416AC1C76B'
+    >
      <view class='hours-list' bindtap='goInformation'>
     <view class='img'>
       <image src='https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'></image>
