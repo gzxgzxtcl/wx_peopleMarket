@@ -6,7 +6,7 @@ const app=getApp()
 Page({
   data: {
     imgpath:'http://39.98.191.16/zhwx/userfiles',     //图片根路径
-    isAttention: null,          /*是否关注*/
+    isAttention: false,          /*是否关注*/
     imgUrls: [],
     bannerlength:0,            /*轮播图个数 */
     bannerindex:0,             /*轮播下标*/
@@ -18,6 +18,7 @@ Page({
     ishaveall:false,          /*是否大于4条亮点 */
     islookall:false,         /*是否查看全部*/
 
+    phone:'',                 //联系我们-电话
     /*
       项目信息
      */
@@ -60,6 +61,16 @@ Page({
         ]
       }
     ],
+    //楼盘主图,实景图,效果图,配套图,规划图
+    
+    hourseImgObj:{
+      mainImg: [],
+      sjImg: [],
+      xgImg: [],
+      ptImg: [],
+      ghImg: [],
+    },
+    
 
     /*
     项目详情
@@ -199,13 +210,38 @@ Page({
       'attentionList.login_by': app.globalData.userId,
       'attentionList.project_id': project_id
     })
+    this.isAttentionProject()
 
     this.resetBanner(imgurl);                     //初始化轮播图
     this.getSpotLength();                         //获取亮点条数
     this.getProjectInfo(project_id);              // 通过id获取项目信息
     this.getProjectDetails(project_id);          //通过id获取项目详情
     this.getProjectHouserholdList(project_id);    //通过id查询户型列表
+    this.getHourseImgList(project_id);            //通过类型查询楼盘图
   },
+  //通过类型查询楼盘图列表
+  getHourseImgList(id) {                        
+    let promise1 = { project_id: id, picturetype: "楼盘主图" }
+    this.getHourseImgFun(promise1)
+    let promise2 = { project_id: id, picturetype: "实景图" }
+    this.getHourseImgFun(promise2)
+    let promise3 = { project_id: id, picturetype: "效果图" }
+    this.getHourseImgFun(promise3)
+    let promise4 = { project_id: id, picturetype: "配套图" }
+    this.getHourseImgFun(promise4)
+    let promise5 = { project_id: id, picturetype: "规划图" }
+    this.getHourseImgFun(promise5)
+  },
+  //请求楼盘图接口函数
+  getHourseImgFun(promise) {       //楼盘主图,实景图,效果图,配套图,规划图
+    $http(apiSetting.projectApiFindProjectImagesListByType, promise).then((data) => {
+      console.log(data.data)
+      
+    }), (error) => {
+      console.log(error)
+    }
+  },
+
   //通过id获取户型图片列表
   getProjectHouserholdFileList(id) {
     let promise = { houserhold_id:id}
@@ -221,7 +257,6 @@ Page({
     let promise = { project_id: id}
     $http(apiSetting.projectApiFindProjectHouserholdListById, promise).then((data) => {
       let hourserholdlist=data.data[0];
-      console.log(hourserholdlist)
       this.setData({
         hourselist: data.data,
         caption: hourserholdlist.caption,	
@@ -243,7 +278,6 @@ Page({
     let promise = { project_id:id}
     $http(apiSetting.projectApiFindProjectDetailsById,promise).then((data)=>{
       let projectdetails=data.data
-      console.log(projectdetails)
       this.setData({
         'project_info.developer.value': projectdetails.developer, 
         'project_info.propertycompany.value': projectdetails.propertycompany,
@@ -267,7 +301,8 @@ Page({
         'project_info.presalepermit.value': projectdetails.presalepermit,              
         'project_info.projectaddr.value': projectdetails.projectaddr,                   
         'project_info.propertytype.value': projectdetails.propertytype,      
-        exemption: projectdetails.exemption
+        exemption: projectdetails.exemption,
+        phone: projectdetails.phone
       })
 
     }),(error)=>{
@@ -279,7 +314,6 @@ Page({
     let promise = { project_id:id}
     $http(apiSetting.projectApiFindProjectInfoById, promise).then((data) => {
       let projectinfo=data.data
-      console.log("项目信息：",projectinfo)
       this.setData({
         project_id: projectinfo.id,
         projectname_hk: projectinfo.projectname_hk,
@@ -294,7 +328,6 @@ Page({
         brightspotsList: projectinfo.brightspotsList,
         city_id: projectinfo.city
       })
-      console.log(projectinfo)
       if (projectinfo.is_myconc==0){
         this.setData({ isAttention:true})
       }else{
@@ -334,12 +367,14 @@ Page({
       url: '../houseimg/houseimg?id=' + id
     })
   },
+
+
   //关注 按钮事件
   toAttention() {
     this.setData({
       isAttention: !this.data.isAttention
     })
-    console.log(this.data.attentionList)
+    console.log("is:",this.data.isAttention)
     if (this.data.isAttention) {                  //isAttention为true,则发起关注请求
       let promise = this.data.attentionList
       $http(apiSetting.projectApiInsertMyConc, promise).then((data) => {
@@ -356,6 +391,26 @@ Page({
       });
     }
   },
+  //判断是否已经关注
+  isAttentionProject(){
+    let promise = this.data.attentionList
+    $http(apiSetting.projectApiUpdateMyConc, promise).then((data) => {
+      if(data.code===-1){          //返回值为-1，表示项目暂时没有被关注
+        this.setData({ isAttention:false})
+      }else{
+        $http(apiSetting.projectApiInsertMyConc, promise).then((data) => {  //返回值为0，表示已经被关注，取消后发起请求重新关注
+          if (data.data){
+            this.setData({ isAttention: true })
+          }
+        }, (error) => {
+          console.log(error)
+        });
+      }
+    }, (error) => {
+      console.log(error)
+    });
+  },
+
   // 主力均价提示 
   handleOpen2(){
     this.setData({
@@ -401,15 +456,15 @@ Page({
   },
   //去推荐
   goRecommend(){
-    console.log(this.data.city_id)
+    // console.log(this.data.city_id)
     wx.navigateTo({
-      url: '../recommend/recommend?project_id='+this.data.project_id+'&&city_id='+this.data.city_id,
+      url: '../recommend/recommend?project_id='+this.data.project_id,
     })
   },
 
   toPhone() {
     wx.makePhoneCall({
-      phoneNumber: '1340000'
+      phoneNumber: this.data.phone
     })
   },
   pageToMap() {

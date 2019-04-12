@@ -44,17 +44,17 @@ Page({
 
   //项目选择
   bindPickerChange(e) {
-    console.log(e.detail.value)
-    console.log(this.data.itemInfo)
+    // console.log(e.detail.value)
+    // console.log(this.data.itemInfo)
     this.setData({
       itemPakerIndex: e.detail.value
     })
     this.setData({ 'selectList.projectID': this.data.itemInfo[e.detail.value].projectId})
-    console.log(this.data.selectList)
+    // console.log(this.data.selectList)
   },
   // 时间区间选择
   bindDateChangeStart(e) {
-    console.log(e.detail.value)
+    // console.log(e.detail.value)
     this.setData({
       dataIntervalStart: e.detail.value
     })
@@ -68,7 +68,7 @@ Page({
   },
   // 选择城市标签
   selCity(e){
-    console.log(e.target.dataset, this.data.cityInfo)
+    // console.log(e.target.dataset, this.data.cityInfo)
     if (e.target.dataset.citytagid === undefined) return
     let tagId=e.target.dataset.citytagid;
     this.setData({ cityDefaultIndex:tagId})
@@ -76,7 +76,7 @@ Page({
   },
   // 选择进度标签
   selPlan(e) {
-    console.log(e.target.dataset, this.data.recommendInfo)
+    // console.log(e.target.dataset, this.data.recommendInfo)
     if (e.target.dataset.plantagid===undefined) return
     let tagId = e.target.dataset.plantagid;
     this.setData({ planDefaultIndex:tagId })
@@ -105,10 +105,9 @@ Page({
   },
   //搜索图标点击
   selItem(){
-    console.log('事件执行力')
     this.setData({ 'selectList.searchVal': this.data._val })
     let promise = this.data.selectList
-    console.log(promise)
+    // console.log(promise)
     $http(apiSetting.recommendFindCustomList, promise).then((data) => {
       console.log(data.data)
       this.setData({ recommendPersonList: data.data })
@@ -145,7 +144,7 @@ Page({
       'selectList.projectID': '',                  //项目id
       'selectList.searchVal': '',                  //搜索框条件                
     })
-    console.log(this.data.selectList)
+    // console.log(this.data.selectList)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -160,7 +159,7 @@ Page({
   findCustomList(){
     let promise = { openID: app.globalData.openid }
     $http(apiSetting.recommendFindCustomList, promise).then((data) => {
-      console.log(data.data)
+      // console.log(data.data)
       this.setData({ recommendPersonList:data.data})
     }, (error) => {
       console.log(error)

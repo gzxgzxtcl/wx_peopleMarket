@@ -92,6 +92,11 @@ const serviceModule = {
     url: '/projectApi/findProjectHouserholdFileListById',
     method: 'post'
   },
+  projectApiFindProjectImagesListByType: { //详情-获取楼盘图片列表
+    url: '/projectApi/findProjectImagesListByType',
+    method: 'post'
+  },
+
   //添加我的关注
   projectApiInsertMyConc: {
     url: '/projectApi/insertMyConc',

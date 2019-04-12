@@ -131,17 +131,17 @@
           <text class='iconfont iconjiantou'></text>
         </view>
       </view>
-      <view class='img-list' wx:for='{{buildsimg}}' wx:key='{{index}}'>
-        <text>{{item.name}}({{item.imgs.length}}）</text>
+      <view class='img-list'>
+        <text>楼盘主图({{mainImg.length}}）</text>
         <view class="section section_gap">
           <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
             <view class='imgs' style='width:{{440*item.imgs.length+20*(item.imgs.length-1)}}rpx'>
-              <image wx:for='{{item.imgs}}' wx:key="{{index}}" src='{{item}}'></image>
+              <image wx:for='{{mainImg}}' wx:key="{{index}}" src='{{imgpath}}{{item.upload_file_path}}'></image>
             </view>
           </scroll-view>
         </view>
       </view>
-      <!-- <view class='img-list'>
+      <view class='img-list'>
         <text>配套图（8）</text>
         <view class="section section_gap">
           <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
@@ -160,7 +160,7 @@
             </view>
           </scroll-view>
         </view>
-      </view> -->
+      </view>
     </view>
     <!-- 项目详情 -->
     <view class='product-detail'>
