@@ -151,6 +151,7 @@ Page({
     console.log("用户id:", app.globalData)
     // console.log(promise)
     $http(apiSetting.projectApiFindProjectListByCity, promise).then((data) => {
+      console.log('周边城市信息：',data)
       let rimbuildinfo
       if (data.list){
         rimbuildinfo = data.list
@@ -160,7 +161,6 @@ Page({
       that.setData({
         rimbuildinfolist: rimbuildinfo
       })
-      console.log(rimbuildinfo)
       let _arr = []
       // if (rimbuildinfo.length<=1) return
       for (let i = 0; i < rimbuildinfo.length; i++) {
