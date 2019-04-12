@@ -8,10 +8,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    visible2: false,      //确认推荐模态窗
+    isCitySelect: false, // 是否选择城市
+    visible2: false, //确认推荐模态窗
 
     reportList: {
-      city: '上海',
+      city: '',
       customName: '',
       customPhone: '',
       hkProjectId: '',
@@ -24,7 +25,7 @@ Page({
       reportType: '',
       sex: ''
     },
-    city_id: '',   
+    city_id: '',
 
     //性别
     gender: 1,
@@ -41,12 +42,15 @@ Page({
     let that = this;
     //判断是否有传递的项目id，如果有，直接复制给data中的变量，即详情页的跳转
     if (options.project_id) {
-      this.setData({ 'reportList.projectId': options.project_id, city_id: options.city_id})
+      this.setData({
+        'reportList.projectId': options.project_id,
+        city_id: options.city_id
+      })
       this.getCityInfo(options.project_id);
-    }else{
+    } else {
       this.getRecommendGetProjectList()
     }
-    // console.log(app.globalData.bindUserInfo)
+
     if (app.globalData.isCheck) {
       let reportList = that.data.reportList
       reportList.openId = app.globalData.bindUserInfo.wxid
@@ -57,7 +61,7 @@ Page({
       that.setData({
         reportList: reportList
       })
-   
+
     } else {
       that.setData({
         visible: true
@@ -65,6 +69,19 @@ Page({
     }
   },
 
+  onShow: function() {
+    // 判断是否是从选择城市进入
+    if (this.data.isCitySelect) {
+      this.data.city_id = app.globalData.transienceCity.id
+      this.setData({
+        'city_id': app.globalData.transienceCity.id,
+        'reportList.city': app.globalData.transienceCity.city,
+        'reportList.projectId': '',
+        'arrayProjectIndex': null
+      })
+      this.getRecommendGetProjectList()
+    }
+  },
 
   customNameBind(e) {
     this.data.reportList.customName = e.detail.value
@@ -86,13 +103,26 @@ Page({
       gender: val
     })
   },
+
+  // 城市选择
+  citySelcet() {
+    this.data.isCitySelect = true
+    wx.navigateTo({
+      url: '../citySelect/citySelect?city_id=' + this.data.city_id
+    })
+  },
+
   //详情(id)-->推荐，获取城市信息
-  getCityInfo(id){
-    let promise = { project_id: id }
+  getCityInfo(id) {
+    let promise = {
+      project_id: id
+    }
     $http(apiSetting.projectApiFindProjectInfoById, promise).then((data) => {
       let projectInfo = data.data
-      console.log(projectInfo)
-      this.setData({ 'reportList.city': projectInfo.city_text, city_id: projectInfo.city})
+      this.setData({
+        'reportList.city': projectInfo.city_text,
+        city_id: projectInfo.city
+      })
       this.getRecommendGetProjectList()
     }, (error) => {
       console.log(error)
@@ -101,36 +131,40 @@ Page({
   // 获取推荐楼盘
   getRecommendGetProjectList() {
     let that = this
-    if(!this.data.city_id){
+    if (!this.data.city_id) {
       let cityInfo = wx.getStorageSync('storLocalCity')
-      this.setData({ 'reportList.city': cityInfo.city, city_id: cityInfo.id})
+      this.setData({
+        'reportList.city': cityInfo.city,
+        city_id: cityInfo.id
+      })
     }
-    let promise = { cityId: this.data.city_id}   // cityId: '0-166-884-202-',
+    let promise = {
+      cityId: this.data.city_id
+    } // cityId: '0-166-884-202-',
 
     //获取楼盘列表
     $http(apiSetting.recommendGetProjectList, promise).then((data) => {
-      console.log(data.data)
-      if (this.data.reportList.projectId){
-        for(let i=0;i<data.data.length;i++){
-          if (data.data[i].wxProjectId === this.data.reportList.projectId){
-            that.setData({ 'arrayProject[0]': data.data[i]})
+      if (this.data.reportList.projectId) {
+        for (let i = 0; i < data.data.length; i++) {
+          if (data.data[i].wxProjectId === this.data.reportList.projectId) {
+            that.setData({
+              'arrayProject[0]': data.data[i]
+            })
             return
           }
         }
-      }else{
+      } else {
         this.setData({
           arrayProject: data.data
         })
       }
-    },(error)=>{
+    }, (error) => {
       console.log(error)
     })
   },
- 
+
   //选择推荐楼盘列表
   arrayProjectChange(e) {
-    // console.log(e.detail.value)
-    // console.log(this.data.array[e.detail.value])
     this.setData({
       arrayProjectIndex: e.detail.value
     })
@@ -148,15 +182,14 @@ Page({
       url: "../index/index"
     })
   },
-//确认推荐
+  //确认推荐
   bindSub() {
-    // console.log(this.data.reportList)
     let promise = this.data.reportList
-    console.log(promise)
     $http(apiSetting.recommendAddAgencyCustom, promise).then((data) => {
-      console.log(data)
-      if(!data.code){
-        this.setData({ visible2: true })
+      if (!data.code) {
+        this.setData({
+          visible2: true
+        })
       }
     }, (error) => {
       console.log(error)

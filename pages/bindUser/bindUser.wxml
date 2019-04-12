@@ -75,7 +75,7 @@
     <li wx-if="{{arrayIndex == 2}}">
       <span class='title'>中介账户</span>
       <span class="inp">
-        <input placeholder-class="phcolor" type='text' value='{{showAgencyAccount}}' placeholder="请输入中介账户" disabled bindinput='agencyAccountBind' />
+        <input placeholder-class="phcolor" type='text' value='{{showAgencyAccount}}' placeholder="" disabled bindinput='agencyAccountBind' />
       </span>
     </li>
   </ul>

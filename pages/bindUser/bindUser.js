@@ -155,10 +155,6 @@ Page({
       });
       return
     }
-    // this.setData({
-    //   noteCodeVisible: true
-    // })
-    // return
     wx.showLoading({
       title: '正在发送',
     })
@@ -188,14 +184,13 @@ Page({
           noteCodeVisible: true
         })
       } else {
-        wx.showToast({
-          title: data.message,
-          icon: 'none',
-          duration: 2000
-        })
+        $Message({
+          content: data.message,
+          type: 'error'
+        });
       }
     }, (error) => {
-      console.log(error)
+      // console.log(error)
       wx.hideLoading()
     });
 
@@ -240,7 +235,7 @@ Page({
   // 性别选择
   genderChange(e) {
     let val = e.target.dataset.val
-    console.log(e.target.dataset)
+    // console.log(e.target.dataset)
     this.data.userInfo.sex = val
     this.setData({
       gender: val
@@ -290,7 +285,7 @@ Page({
       channelCode: val
     }
     $http(apiSetting.userGetHaikeAgencyInfo, promise).then((data) => {
-      console.log(data.data)
+      // console.log(data.data)
       if (data.code == 0) {
         that.data.userInfo.agencyAccount = data.data.agencyAccount
         that.data.userInfo.agencyUid = data.data.agencyUid
@@ -300,7 +295,7 @@ Page({
       }
       if (data.code == -1) {
         $Message({
-          content: data.data.message,
+          content: data.message,
           type: 'warning'
         });
       }
@@ -309,23 +304,66 @@ Page({
 
   // 用户信息提交
   bindSub() {
-    console.log(this.data.userInfo)
-    if (this.data.noteResult) {
-      let promise = this.data.userInfo
-      $http(apiSetting.userIdentifyUser, promise).then((data) => {
-        // console.log(data)
-        if (data.code == 0) {
-          wx.reLaunch({
-            url: '../index/index'
-          })
-        }
-      })
-    } else {
+    // console.log(this.data.userInfo)
+    // 是否填写姓名
+    if (this.data.userInfo.myName == '') {
+      $Message({
+        content: '请输入姓名',
+        type: 'warning'
+      });
+      return
+    }
+
+    // 短信是否验证通过
+    if (!this.data.noteResult) {
       $Message({
         content: '请进行短信验证',
         type: 'warning'
       });
+      return
     }
 
+    if (this.data.arrayIndex == 1) {
+      if (this.data.userInfo.idno == "") {
+        $Message({
+          content: '请输入身份证号',
+          type: 'warning'
+        });
+        return
+      }
+    }
+
+    if (this.data.arrayIndex == 2) {
+      if (this.data.userInfo.showAgencyAccount == "") {
+        $Message({
+          content: '请正确填写渠道验证码',
+          type: 'warning'
+        });
+        return
+      }
+    }
+
+    let that = this
+    let promise = this.data.userInfo
+    $http(apiSetting.userIdentifyUser, promise).then((data) => {
+      // console.log(data)
+      if (data.code == 0) {
+        that.getUserGetUserInfo(app.globalData.openid)
+      }
+    })
+
   },
+
+  // 获取绑定用户信息
+  getUserGetUserInfo(val) {
+    let that = this
+    $http(apiSetting.userGetUserInfo, {
+      openid: val
+    }).then((data) => {
+      app.globalData.bindUserInfo = data.data
+      wx.reLaunch({
+        url: '../index/index'
+      })
+    })
+  }
 })

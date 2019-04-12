@@ -4,13 +4,9 @@ import $http from 'http/http.js'
 App({
   onLaunch: function() {
     let that = this
-    // 展示本地存储能力
-    // var logs = wx.getStorageSync('logs') || []
-    // logs.unshift(Date.now())
-    // wx.setStorageSync('logs', logs)
 
     // 获取本地存储的城市
-    this.globalData.storLocalCity = wx.getStorageSync('storLocalCity') || null
+    that.globalData.storLocalCity = wx.getStorageSync('storLocalCity') || null
 
     // 登录
     wx.login({
@@ -29,7 +25,7 @@ App({
             that.globalData.isCheck = false
           }
           that.globalData.userId = data.data.userId
-          // that.getUserGetUserInfo(data.data.openid)
+          that.getUserGetUserInfo(data.data.openid)
         }, (error) => {
           console.log(error)
         });
@@ -38,7 +34,15 @@ App({
 
   },
 
-
+  // 获取绑定用户信息
+  getUserGetUserInfo(val) {
+    let that = this
+    $http(apiSetting.userGetUserInfo, {
+      openid: val
+    }).then((data) => {
+      that.globalData.bindUserInfo = data.data
+    })
+  },
 
   // 全局参数
   globalData: {
