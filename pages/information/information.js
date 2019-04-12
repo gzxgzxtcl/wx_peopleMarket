@@ -38,39 +38,39 @@ Page({
     /*
       楼盘图假数据
     */
+    // buildsimgs:[
+    //   {
+    //     name:'效果图',
+    //     imgs: [
+    //       'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
+    //       'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
+    //       'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'
+    //     ]
+    //   }
+    // ],
+   //楼盘主图,实景图,效果图,配套图,规划图
     buildsimg:[
       {
-        name:'效果图',
-        imgs: [
-          'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-          'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
-          'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'
-        ]
+        name:'楼盘主图',
+        imgs:[]
+      },
+      {
+        name: '实景图',
+        imgs: []
+      },
+      {
+        name: '效果图',
+        imgs: []
       },
       {
         name: '配套图',
-        imgs: [
-          'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-          'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640'
-        ]
+        imgs: []
       },
       {
         name: '规划图',
-        imgs: [
-          'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'
-        ]
-      }
+        imgs: []
+      },
     ],
-    //楼盘主图,实景图,效果图,配套图,规划图
-    
-    hourseImgObj:{
-      mainImg: [],
-      sjImg: [],
-      xgImg: [],
-      ptImg: [],
-      ghImg: [],
-    },
-    
 
     /*
     项目详情
@@ -185,12 +185,6 @@ Page({
       房型图片列表
      */
     hourseimg:'/574016EAC21E4F44ADDE74416AC1C76B/54A657CD261142869BACD03D08AF47E3.gif'
-      // 户型图片对象
-    // houserimglist:[
-    //   {
-    //     "upload_file_path": ''
-    //   },
-    // ],
   },
   /*
     关注请求数据
@@ -231,12 +225,60 @@ Page({
     this.getHourseImgFun(promise4)
     let promise5 = { project_id: id, picturetype: "规划图" }
     this.getHourseImgFun(promise5)
+    console.log(this.data.buildsimg)
   },
   //请求楼盘图接口函数
   getHourseImgFun(promise) {       //楼盘主图,实景图,效果图,配套图,规划图
     $http(apiSetting.projectApiFindProjectImagesListByType, promise).then((data) => {
-      console.log(data.data)
-      
+      let _arr=data.data
+      console.log(_arr)
+      let _arr2=[]
+      if(promise.picturetype==="楼盘主图"){
+        for (let i = 0; i < _arr.length; i++) {
+          if (_arr[i].upload_file_path == undefined) {
+            continue
+          } else {
+            _arr2.push(_arr[i].upload_file_path)
+          }
+        }
+        this.setData({['buildsimg[0].imgs']:_arr2})
+      } else if (promise.picturetype === "实景图") {
+        for (let i = 0; i < _arr.length; i++) {
+          if (_arr[i].upload_file_path == undefined) {
+            continue
+          } else {
+            _arr2.push(_arr[i].upload_file_path)
+          }
+        }
+        this.setData({ 'buildsimg[1].imgs': _arr2 })
+      } else if (promise.picturetype === "效果图") {
+        for (let i = 0; i < _arr.length; i++) {
+          if (_arr[i].upload_file_path == undefined) {
+            continue
+          } else {
+            _arr2.push(_arr[i].upload_file_path)
+          }
+        }
+        this.setData({ 'buildsimg[2].imgs': _arr2 })
+      } else if (promise.picturetype === "配套图") {
+        for (let i = 0; i < _arr.length; i++) {
+          if (_arr[i].upload_file_path == undefined) {
+            continue
+          } else {
+            _arr2.push(_arr[i].upload_file_path)
+          }
+        }
+        this.setData({ 'buildsimg[3].imgs': _arr2 })
+      } else if (promise.picturetype === "规划图") {
+        for (let i = 0; i < _arr.length; i++) {
+          if (_arr[i].upload_file_path == undefined) {
+            continue
+          } else {
+            _arr2.push(_arr[i].upload_file_path)
+          }
+        }
+        this.setData({ 'buildsimg[4].imgs': _arr2 })
+      }
     }), (error) => {
       console.log(error)
     }
@@ -361,10 +403,10 @@ Page({
   },
   //楼盘图查看更多事件
   goHouseimg(e) {
-    console.log(e)
-    let id = e.currentTarget.dataset.id;
+    // console.log(e)
+    // let id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../houseimg/houseimg?id=' + id
+      url: '../houseimg/houseimg?buildsimg='+JSON.stringify(this.data.buildsimg)
     })
   },
 

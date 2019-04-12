@@ -18,7 +18,7 @@ page{
   height: 690rpx;
 }
 .house-img-page .tabbar{
-  font-size: 30rpx;
+  font-size: 28rpx;
   font-family: 'PingFang-SC-Medium';
   color: #ffffff;
   height: 74rpx;
