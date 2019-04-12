@@ -48,7 +48,7 @@
       </span>
     </li>
     <li style="height:200rpx;margin-top:20rpx;margin-bottom:40rpx">
-      <textarea class='textsty' style='' bindinput='remarkBind' placeholder="请输入客户相关描述，如意向户型、面积等" />
+      <textarea class='textsty' style='' bindinput='remarkBind' placeholder="{{placeholderText}}" />
     </li>
     <li>
       <span class='title'>推荐人</span>
@@ -70,6 +70,7 @@
 <i-modal visible="{{ visible }}" ok-text="绑定用户" bind:ok="visibleOk" bind:cancel="visibleOkClose">
   <view>暂无绑定用户信息</view>
 </i-modal>
+
 <i-modal 
   visible="{{ visible2 }}" 
   bind:ok="handleCloseOk"

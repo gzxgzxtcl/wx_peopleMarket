@@ -11,7 +11,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    placeholderText:'请输入客户相关描述，如意向户型、面积等',
     isCitySelect: false, // 是否选择城市
+    visible: false,
     visible2: false, //确认推荐模态窗
 
     reportList: {
@@ -32,7 +34,6 @@ Page({
 
     //性别
     gender: 1,
-    visible: false,
 
     arrayProject: [],
     arrayProjectIndex: null
@@ -67,7 +68,8 @@ Page({
 
     } else {
       that.setData({
-        visible: true
+        visible: true,
+        placeholderText: ''
       })
     }
   },
@@ -213,7 +215,8 @@ Page({
     $http(apiSetting.recommendAddAgencyCustom, promise).then((data) => {
       if (!data.code) {
         this.setData({
-          visible2: true
+          visible2: true,
+          placeholderText: '',
         })
       }else{
         $Message({
@@ -232,7 +235,8 @@ Page({
       url: '../clients/client'
     })
     this.setData({
-      visible2: false
+      visible2: false,
+      placeholderText: '请输入客户相关描述，如意向户型、面积等'
     });
   },
   handleCloseNo() {
@@ -240,7 +244,8 @@ Page({
       url: '../index/index'
     })
     this.setData({
-      visible2: false
+      visible2: false,
+      placeholderText: '请输入客户相关描述，如意向户型、面积等'
     });
   }
 })

@@ -279,7 +279,8 @@ Page({
   getUserGetHaikeAgencyInfo(val) {
     let that = this
     let promise = {
-      channelCode: val
+      channelCode: val,
+      openid: app.globalData.openid
     }
     $http(apiSetting.userGetHaikeAgencyInfo, promise).then((data) => {
       if (data.code == 0) {
