@@ -7,7 +7,7 @@ const serviceModule = {
     url: '/city/findBuildInfoByCity',
     method: 'post'
   },
-  projectApiFindProjectListByCity: { 
+  projectApiFindProjectListByCity: {
     url: '/projectApi/findProjectListByCity',
     method: 'post'
   },
@@ -72,7 +72,7 @@ const serviceModule = {
   //获取佣金信息
   recommendCommissionInfoList: {
     url: '/recommend/commissionInfoList',
-      method: 'post'
+    method: 'post'
   },
 
 
@@ -105,6 +105,12 @@ const serviceModule = {
   // 查询我的关注项目列表
   projectApiFindProjectListByMyConc: {
     url: '/projectApi/findProjectListByMyConc',
+    method: 'post'
+  },
+
+  // 查询经纪人类型，免责条款，佣金规则 参数{'dictname':'经纪人类型'}
+  projectApiFindOtherDictValues: {
+    url: '/projectApi/findOtherDictValues',
     method: 'post'
   },
 }

@@ -138,8 +138,7 @@ Page({
   },
 
   bindPickerChange(e) {
-    // console.log(e.detail.value)
-    // console.log(this.data.array[e.detail.value])
+
     this.setData({
       arrayIndex: e.detail.value
     })
@@ -235,7 +234,6 @@ Page({
   // 性别选择
   genderChange(e) {
     let val = e.target.dataset.val
-    // console.log(e.target.dataset)
     this.data.userInfo.sex = val
     this.setData({
       gender: val
@@ -266,7 +264,6 @@ Page({
   },
   // 验证码输入
   inpBind(e) {
-    // console.log(e.detail.value)
     this.setData({
       noteCodeVal: e.detail.value
     })
@@ -285,7 +282,6 @@ Page({
       channelCode: val
     }
     $http(apiSetting.userGetHaikeAgencyInfo, promise).then((data) => {
-      // console.log(data.data)
       if (data.code == 0) {
         that.data.userInfo.agencyAccount = data.data.agencyAccount
         that.data.userInfo.agencyUid = data.data.agencyUid
@@ -346,7 +342,6 @@ Page({
     let that = this
     let promise = this.data.userInfo
     $http(apiSetting.userIdentifyUser, promise).then((data) => {
-      // console.log(data)
       if (data.code == 0) {
         that.getUserGetUserInfo(app.globalData.openid)
       }
