@@ -118,6 +118,12 @@ const serviceModule = {
     url: '/projectApi/findOtherDictValues',
     method: 'post'
   },
+
+  // 经纪人使用帮助、经纪人使用须知、当前版本
+  projectApiFindSettingDict: {
+    url: '/projectApi/findSettingDict',
+    method: 'post'
+  }
 }
 const ApiSetting = { ...serviceModule
 }

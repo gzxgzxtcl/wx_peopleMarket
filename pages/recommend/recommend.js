@@ -76,14 +76,16 @@ Page({
   onShow: function() {
     // 判断是否是从选择城市进入
     if (this.data.isCitySelect) {
-      this.data.city_id = app.globalData.transienceCity.id
-      this.setData({
-        'city_id': app.globalData.transienceCity.id,
-        'reportList.city': app.globalData.transienceCity.city,
-        'reportList.projectId': '',
-        'arrayProjectIndex': null
-      })
-      this.getRecommendGetProjectList()
+      if (app.globalData.transienceCity.id){
+        this.data.city_id = app.globalData.transienceCity.id
+        this.setData({
+          'city_id': app.globalData.transienceCity.id,
+          'reportList.city': app.globalData.transienceCity.city,
+          'reportList.projectId': '',
+          'arrayProjectIndex': null
+        })
+        this.getRecommendGetProjectList()
+      }
     }
   },
 

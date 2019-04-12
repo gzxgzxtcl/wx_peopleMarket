@@ -12,7 +12,7 @@
       </span>
     </li>
     <li>当前版本
-      <span class="iconImg">V1.0.0</span>
+      <span class="iconImg">V{{versions}}</span>
     </li>
     <!-- <li class="quit">退出登录</li> -->
   </ul>

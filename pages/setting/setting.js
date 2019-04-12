@@ -1,18 +1,21 @@
 // pages/setting/setting.js
+const app = getApp()
+import apiSetting from '../../http/apiSetting.js'
+import $http from '../../http/http.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    versions: '0.0.1'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.getProjectApiFindSettingDict()
   },
 
   /**
@@ -57,10 +60,13 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
+  getProjectApiFindSettingDict: function() {
+    let that = this
+    $http(apiSetting.projectApiFindSettingDict, {}).then((data) => {
+      console.log(data.data)
+      that.setData({
+        versions: data.data[0].dictdoc
+      })
+    })
   }
 })

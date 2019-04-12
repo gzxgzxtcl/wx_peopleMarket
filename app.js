@@ -50,6 +50,7 @@ App({
     openid: null,
     storLocalCity: null,
     bindUserInfo: {},
-    userId: null
+    userId: null,
+    transienceCity:{}
   }
 })
