@@ -19,7 +19,7 @@ Page({
     let that = this
     if (app.globalData.isCheck) {
       that.setData({
-        brokertype: app.globalData.brokertype
+        brokertype: app.globalData.bindUserInfo.brokertype
       })
     }
   },
