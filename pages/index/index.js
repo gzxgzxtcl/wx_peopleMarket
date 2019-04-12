@@ -115,7 +115,7 @@ Page({
     let that = this
     let promise = that.data.cityInfo
     $http(apiSetting.cityFindBuildInfoByCity, promise).then((data) => {
-      // console.log(data.data.cityInfo)
+      // console.log('楼盘信息：',data.data)
       app.globalData.storLocalCity = data.data.cityInfo
       that.setData({
         cityNametext: data.data.cityInfo.city,
@@ -141,16 +141,17 @@ Page({
   //获取周边城市信息
   getRimBuildInfo(){
     let that = this
-    console.log(app.globalData.storLocalCity.id)
+    // console.log(app.globalData.storLocalCity.id)
     let promise = {
       page:1,
       perpage:10,
       login_by: app.globalData.userId,
       city: app.globalData.storLocalCity.id
     }
-    console.log("用户id:", app.globalData)
+    // console.log("用户id:", app.globalData)
     // console.log(promise)
     $http(apiSetting.projectApiFindProjectListByCity, promise).then((data) => {
+      console.log('周边城市信息：',data.list)
       let rimbuildinfo
       if (data.list){
         rimbuildinfo = data.list
@@ -160,7 +161,6 @@ Page({
       that.setData({
         rimbuildinfolist: rimbuildinfo
       })
-      console.log(rimbuildinfo)
       let _arr = []
       // if (rimbuildinfo.length<=1) return
       for (let i = 0; i < rimbuildinfo.length; i++) {

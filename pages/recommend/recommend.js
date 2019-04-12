@@ -48,7 +48,6 @@ Page({
     if (options.project_id) {
       this.setData({
         'reportList.projectId': options.project_id,
-        city_id: options.city_id
       })
       this.getCityInfo(options.project_id);
     } else {

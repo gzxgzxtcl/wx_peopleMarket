@@ -115,7 +115,7 @@
         </view>
         <view class='hours-address'>
           <text class='hours-address-icon iconfont iconweizhi'></text>
-          <text>{{item.city}}</text>
+          <text>{{item.city_text}}</text>
         </view>
       </view>
     </view>

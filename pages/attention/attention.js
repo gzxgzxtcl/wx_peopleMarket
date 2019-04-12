@@ -29,7 +29,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.getProjectApiFindProjectListByMyConc()
   },
 
   /**
@@ -66,14 +66,20 @@ Page({
       perpage: 10,
       login_by: app.globalData.userId
     }
+    console.log(app.globalData.userId)
     console.log(promise)
     $http(apiSetting.projectApiFindProjectListByMyConc, promise).then((data) => {
-      console.log(data.list)
+      console.log(data)
       this.setData({ attentionList:data.list})
+      console.log(this.data.attentionList)
     })
   },
   //查看关注列表楼盘详情
   goInformation(e){
     console.log(e)
+    let project_id = e.currentTarget.dataset.project_id
+    wx.navigateTo({
+      url: '../information/information?project_id=' + project_id ,
+    })
   },
 })
