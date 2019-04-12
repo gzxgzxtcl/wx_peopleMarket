@@ -1,12 +1,12 @@
 // pages/information/information.js
 import apiSetting from '../../http/apiSetting.js'
 import $http from '../../http/http.js'
+const app=getApp()
 
 Page({
   data: {
     imgpath:'http://39.98.191.16/zhwx/userfiles',     //图片根路径
-    isAttention: false,
-    /*是否关注*/
+    isAttention: null,          /*是否关注*/
     imgUrls: [],
     bannerlength:0,            /*轮播图个数 */
     bannerindex:0,             /*轮播下标*/
@@ -181,6 +181,13 @@ Page({
     //   },
     // ],
   },
+  /*
+    关注请求数据
+  */
+  attentionList:{
+    login_by:'',         //用户登录id
+    project_id:'',       //项目id
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -188,6 +195,10 @@ Page({
   onLoad: function(options) {
     let project_id=options.project_id          //index-->information 项目id
     let imgurl=options.imgurl                 //index-->information  项目主图
+    this.setData({
+      'attentionList.login_by': app.globalData.userId,
+      'attentionList.project_id': project_id
+    })
 
     this.resetBanner(imgurl);                     //初始化轮播图
     this.getSpotLength();                         //获取亮点条数
@@ -210,6 +221,7 @@ Page({
     let promise = { project_id: id}
     $http(apiSetting.projectApiFindProjectHouserholdListById, promise).then((data) => {
       let hourserholdlist=data.data[0];
+      console.log(hourserholdlist)
       this.setData({
         hourselist: data.data,
         caption: hourserholdlist.caption,	
@@ -282,7 +294,12 @@ Page({
         brightspotsList: projectinfo.brightspotsList,
         city_id: projectinfo.city
       })
-
+      console.log(projectinfo)
+      if (projectinfo.is_myconc==0){
+        this.setData({ isAttention:true})
+      }else{
+        this.setData({ isAttention: false })
+      }
     }, (error) => {
       console.log(error)
     });
@@ -322,6 +339,22 @@ Page({
     this.setData({
       isAttention: !this.data.isAttention
     })
+    console.log(this.data.attentionList)
+    if (this.data.isAttention) {                  //isAttention为true,则发起关注请求
+      let promise = this.data.attentionList
+      $http(apiSetting.projectApiInsertMyConc, promise).then((data) => {
+        console.log(data)
+      }, (error) => {
+        console.log(error)
+      });
+    } else {          //isAttention为false,则发起取消关注请求
+      let promise = this.data.attentionList
+      $http(apiSetting.projectApiUpdateMyConc, promise).then((data) => {
+        console.log(data)
+      }, (error) => {
+        console.log(error)
+      });
+    }
   },
   // 主力均价提示 
   handleOpen2(){

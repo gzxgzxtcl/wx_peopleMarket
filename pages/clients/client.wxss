@@ -70,12 +70,10 @@
   flex: 1;
 }
 
-.clients .city-search .search i-input {
+/* .clients .city-search .search i-input {
   height: 100%;
-  font-size: 28rpx;
-  font-family: 'PingFangSC-Regular';
-  color: #8d91a2;
-}
+ 
+} */
 
 .clients .city-search .search-icon {
   padding: 30rpx 40rpx;
@@ -96,6 +94,15 @@
   font-family: 'PingFang-SC-Medium';
   line-height: 60rpx;
   text-align: right;
+}
+.search-input{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  font-family: 'PingFangSC-Regular';
+  color: #8d91a2;
+  padding-left: 40rpx;
 }
 
 /* 客户列表样式 */

@@ -24,13 +24,15 @@
   <!-- 城市搜索 -->
   <view class='city-search'>
     <view class='search'>
-      <i-panel>
-        <i-input bind:blur='getRecommendPersonList' placeholder="请输入姓名或手机号" />
-      </i-panel>
-       <!-- <input value="{{ value5 }}" placeholder="这是一个可以自动聚焦的input" /> -->
+       <input 
+        class='search-input' 
+        value="{{ value5 }}" 
+        placeholder="请输入姓名或手机号" 
+        bindinput='valueChange'
+        />
     </view>
-    <view class='search-icon'>
-      <image bindtap='selItem' src='../../images/search.png'></image>
+    <view class='search-icon' bindtap='selItem'>
+      <image src='../../images/search.png'></image>
     </view>
     <view class='screen' bindtap='toggleRight'>
       <text>筛选</text>

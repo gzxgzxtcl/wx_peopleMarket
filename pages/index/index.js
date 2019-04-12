@@ -141,17 +141,18 @@ Page({
   //获取周边城市信息
   getRimBuildInfo(){
     let that = this
-    // console.log(app.globalData.storLocalCity.id)
+    console.log(app.globalData.storLocalCity.id)
     let promise = {
       page:1,
       perpage:10,
-      login_by:'',
+      login_by: app.globalData.userId,
       city: app.globalData.storLocalCity.id
     }
+    console.log("用户id:", app.globalData)
     // console.log(promise)
     $http(apiSetting.projectApiFindProjectListByCity, promise).then((data) => {
       let rimbuildinfo
-      if (data){
+      if (data.list){
         rimbuildinfo = data.list
       }else{
         rimbuildinfo = []
@@ -159,10 +160,13 @@ Page({
       that.setData({
         rimbuildinfolist: rimbuildinfo
       })
+      console.log(rimbuildinfo)
       let _arr = []
+      // if (rimbuildinfo.length<=1) return
       for (let i = 0; i < rimbuildinfo.length; i++) {
-        _arr.push(rimbuildinfo[i].labels.split(','))
-      //  console.log(_arr)
+        if (rimbuildinfo[i].labels){
+          _arr = rimbuildinfo[i].labels.split(',')
+        }
       }
       that.setData({ rimbuildinfotaglist:_arr })
     }, (error) => {

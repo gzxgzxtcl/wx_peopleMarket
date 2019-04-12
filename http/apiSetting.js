@@ -7,7 +7,7 @@ const serviceModule = {
     url: '/city/findBuildInfoByCity',
     method: 'post'
   },
-  projectApiFindProjectListByCity: { //
+  projectApiFindProjectListByCity: { 
     url: '/projectApi/findProjectListByCity',
     method: 'post'
   },
@@ -69,6 +69,11 @@ const serviceModule = {
     url: '/recommend/getMyRecommendData',
     method: 'post'
   },
+  //获取佣金信息
+  recommendCommissionInfoList: {
+    url: '/recommend/commissionInfoList',
+      method: 'post'
+  },
 
 
   projectApiFindProjectInfoById: { //详情-获取项目信息
@@ -87,12 +92,21 @@ const serviceModule = {
     url: '/projectApi/findProjectHouserholdFileListById',
     method: 'post'
   },
-
+  //添加我的关注
+  projectApiInsertMyConc: {
+    url: '/projectApi/insertMyConc',
+    method: 'post'
+  },
+  //取消我的关注
+  projectApiUpdateMyConc: {
+    url: '/projectApi/updateMyConc',
+    method: 'post'
+  },
   // 查询我的关注项目列表
   projectApiFindProjectListByMyConc: {
     url: '/projectApi/findProjectListByMyConc',
     method: 'post'
-  }
+  },
 }
 const ApiSetting = { ...serviceModule
 }
