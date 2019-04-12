@@ -2,7 +2,7 @@
 <view class='house-type'>
   <view class='top-sel' >
     <view bindtap='changeHouse' data-index="{{0}}" class="{{selIndex===0?'active':''}}">
-      <text>全部(2)</text>
+      <text>全部({{hourses.length}})</text>
       <view></view>
     </view>
     <view bindtap='changeHouse' data-index="{{1}}" class="{{selIndex===1?'active':''}}">
