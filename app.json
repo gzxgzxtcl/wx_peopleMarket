@@ -13,7 +13,8 @@
     "pages/attention/attention",
     "pages/housestype/housestype",
     "pages/houseimg/houseimg",
-    "pages/cityList/cityList"
+    "pages/cityList/cityList",
+    "pages/citySelect/citySelect"
   ],
   "window": {
     "backgroundTextStyle": "light",

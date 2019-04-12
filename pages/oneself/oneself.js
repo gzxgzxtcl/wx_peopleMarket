@@ -16,15 +16,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
     let that = this
     if (app.globalData.isCheck) {
-      that.getUserGetUserInfo(app.globalData.openid)
-      // console.log(app.globalData.bindUserInfo)
-    } else {
-      // that.setData({
-      //   visible: true
-      // })
+      that.setData({
+        brokertype: app.globalData.brokertype
+      })
     }
   },
 
@@ -88,15 +84,15 @@ Page({
   },
 
   // 获取绑定用户信息
-  getUserGetUserInfo(val) {
-    let that = this
-    $http(apiSetting.userGetUserInfo, {
-      openid: val
-    }).then((data) => {
-      app.globalData.bindUserInfo = data.data
-      that.setData({
-        brokertype: data.data.brokertype
-      })
-    })
-  },
+  // getUserGetUserInfo(val) {
+  //   let that = this
+  //   $http(apiSetting.userGetUserInfo, {
+  //     openid: val
+  //   }).then((data) => {
+  //     app.globalData.bindUserInfo = data.data
+  //     that.setData({
+  //       brokertype: data.data.brokertype
+  //     })
+  //   })
+  // },
 })
