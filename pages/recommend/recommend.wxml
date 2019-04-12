@@ -79,3 +79,5 @@
   >
   <view>推荐成功</view>
 </i-modal>
+
+<i-message id="message" />

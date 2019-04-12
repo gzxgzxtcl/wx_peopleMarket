@@ -2,6 +2,9 @@
 const app = getApp()
 import apiSetting from '../../http/apiSetting.js'
 import $http from '../../http/http.js'
+const {
+  $Message
+} = require('../../dist/base/index');
 Page({
 
   /**
@@ -184,12 +187,39 @@ Page({
   },
   //确认推荐
   bindSub() {
+    console.log(this.data.reportList)
+    if (this.data.reportList.customName == "") {
+      $Message({
+        content: '请输入客户姓名',
+        type: 'warning'
+      });
+      return
+    }
+    if (this.data.reportList.customPhone == "") {
+      $Message({
+        content: '请输入客户电话',
+        type: 'warning'
+      });
+      return
+    }
+    if (this.data.reportList.projectId == "") {
+      $Message({
+        content: '请选择推荐楼盘',
+        type: 'warning'
+      });
+      return
+    }
     let promise = this.data.reportList
     $http(apiSetting.recommendAddAgencyCustom, promise).then((data) => {
       if (!data.code) {
         this.setData({
           visible2: true
         })
+      }else{
+        $Message({
+          content: data.message,
+          type: 'error'
+        });
       }
     }, (error) => {
       console.log(error)
