@@ -445,9 +445,9 @@ swiper image {
 .info .huxing .img .explain {
   height: 100%;
   padding-left: 18rpx;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-around; */
 }
 
 .info .huxing .img .explain .totle {

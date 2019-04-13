@@ -25,16 +25,16 @@
         <view class='explain'>
           <text class='totle'>{{item.price}}</text>
           <text>{{item.decoration}}</text>
-          <text>{{buyingpoint}}</text>
-          <view>
-            <text>28m²大阳台</text>
+          <text>户型优势</text>
+          <view wx:for='{{hoursepointList[index]}}' wx:key='index'>
+            <text>{{item}}</text>
           </view>
-          <view>
+          <!-- <view>
             <text>黄金地段</text>
           </view>
           <view>
             <text>海景房</text>
-          </view>
+          </view> -->
         </view>
       </view>
       <view class='house-info'>
