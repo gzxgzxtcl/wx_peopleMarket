@@ -35,19 +35,7 @@ Page({
     isbuildsimg:false,                    /*是否有楼盘图*/
     project_id:'',                        /*项目id*/         
     city_id:'',                           /*城市id*/
-    /*
-      楼盘图假数据
-    */
-    // buildsimgs:[
-    //   {
-    //     name:'效果图',
-    //     imgs: [
-    //       'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-    //       'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
-    //       'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'
-    //     ]
-    //   }
-    // ],
+   
    //楼盘主图,实景图,效果图,配套图,规划图
     buildsimg:[
       {
@@ -180,19 +168,18 @@ Page({
     category:'高层',         	/*产品类型*/
     decoration:'精装修',    	/*装修情况*/
     houserholdremark:'高端海景洋房，享受高端定制服务。',  	/*户型描述*/
+    pointList:[],            //房型优势列表
+    hourserimglist: [],     //房型图片列表
 
     /*
-      房型图片列表
-     */
-    hourseimg:'/574016EAC21E4F44ADDE74416AC1C76B/54A657CD261142869BACD03D08AF47E3.gif'
-  },
-  /*
     关注请求数据
   */
-  attentionList:{
-    login_by:'',         //用户登录id
-    project_id:'',       //项目id
+  attentionList: {
+      login_by: '',         //用户登录id
+      project_id: '',       //项目id
+    },
   },
+  
 
   /**
    * 生命周期函数--监听页面加载
@@ -204,6 +191,7 @@ Page({
       'attentionList.login_by': app.globalData.userId,
       'attentionList.project_id': project_id
     })
+    console.log(app.globalData.userId,project_id)
     this.isAttentionProject()
 
     this.resetBanner(imgurl);                     //初始化轮播图
@@ -289,7 +277,8 @@ Page({
     let promise = { houserhold_id:id}
     $http(apiSetting.projectApiFindProjectHouserholdFileListById, promise).then((data) => {
       let imgArr=data.data[0]
-      this.setData({ hourserimglist:imgArr})
+      console.log(data.data)
+      this.setData({ upload_file_path: imgArr.upload_file_path})
     }), (error) => {
       console.log(error)
     }
@@ -299,6 +288,7 @@ Page({
     let promise = { project_id: id}
     $http(apiSetting.projectApiFindProjectHouserholdListById, promise).then((data) => {
       let hourserholdlist=data.data[0];
+      console.log(data.data)
       this.setData({
         hourselist: data.data,
         caption: hourserholdlist.caption,	
@@ -310,6 +300,9 @@ Page({
         decoration: hourserholdlist.decoration,    	
         houserholdremark: hourserholdlist.houserholdremark,  
       })
+      console.log(hourserholdlist)
+      this.setData({ pointList: hourserholdlist.buyingpoint.split(',')})
+      console.log(this.data.pointList)
       this.getProjectHouserholdFileList(hourserholdlist.id);
     }), (error) => {
       console.log(error)

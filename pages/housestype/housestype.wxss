@@ -69,9 +69,9 @@ page{
 .house-type .huxing .img .explain {
   height: 100%;
   padding-left: 18rpx;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: space-around; */
 }
 
 .house-type .huxing .img .explain .totle {
@@ -80,6 +80,7 @@ page{
   color: #b4b9cb;
   font-size: 36rpx;
   font-family: 'PingFangTC-Light';
+  margin-bottom: 10rpx;
 }
 
 .house-type .huxing .img .explain text:nth-of-type(2),.house-type .huxing .img .explain text:nth-of-type(3) {
@@ -88,8 +89,11 @@ page{
   color: #333;
   font-size: 28rpx;
   font-family: 'PingFangTC-Light';
+  margin-bottom: 10rpx;
 }
-
+.house-type .huxing .img .explain view{
+  margin: 0
+}
 .house-type .huxing .img .explain view text{
   color: #8d91a2;
   font-family: 'PingFangTC-Light';

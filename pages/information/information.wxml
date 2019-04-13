@@ -107,19 +107,19 @@
         <text>{{caption}}</text>
       </view>
       <view class='img'>
-        <image src='{{imgpath+hourseimg}}' bindtap='goHouseimg' data-id='{{0}}' data-imgurl='{{imgpath+hourseimg}}'></image>
+        <image src='{{imgpath+upload_file_path}}' bindtap='goHouseimg' data-id='{{0}}' data-imgurl='{{imgpath+upload_file_path}}'></image>
         <view class='explain'>
           <text class='totle'>{{price}}</text>
-          <text>{{buyingpoint}}</text>
-          <view class='house-tag'>
-            <text>28m²大阳台</text>
+          <text>户型优势</text>
+          <view class='house-tag' wx:for='{{pointList}}' wx:key='{{index}}'>
+            <text>{{item}}</text>
           </view>
-          <view class='house-tag'>
+          <!-- <view class='house-tag'>
             <text>黄金地段</text>
           </view>
           <view class='house-tag'>
             <text>海景房</text>
-          </view>
+          </view> -->
         </view>
       </view>
     </view>
