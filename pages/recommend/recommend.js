@@ -53,7 +53,7 @@ Page({
     } else {
       this.getRecommendGetProjectList()
     }
-
+   
     if (app.globalData.isCheck) {
       let reportList = that.data.reportList
       reportList.openId = app.globalData.bindUserInfo.wxid

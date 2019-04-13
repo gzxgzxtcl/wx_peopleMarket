@@ -38,10 +38,10 @@ Page({
    
    //楼盘主图,实景图,效果图,配套图,规划图
     buildsimg:[
-      {
-        name:'楼盘主图',
-        imgs:[]
-      },
+      // {
+      //   name:'楼盘主图',
+      //   imgs:[]
+      // },
       {
         name: '实景图',
         imgs: []
@@ -194,7 +194,7 @@ Page({
     console.log(app.globalData.userId,project_id)
     this.isAttentionProject()
 
-    this.resetBanner(imgurl);                     //初始化轮播图
+    // this.resetBanner(imgurl);                     //初始化轮播图
     this.getSpotLength();                         //获取亮点条数
     this.getProjectInfo(project_id);              // 通过id获取项目信息
     this.getProjectDetails(project_id);          //通过id获取项目详情
@@ -229,7 +229,8 @@ Page({
             _arr2.push(_arr[i].upload_file_path)
           }
         }
-        this.setData({['buildsimg[0].imgs']:_arr2})
+        this.resetBanner(_arr2)
+        // this.setData({['buildsimg[0].imgs']:_arr2})
       } else if (promise.picturetype === "实景图") {
         for (let i = 0; i < _arr.length; i++) {
           if (_arr[i].upload_file_path == undefined) {
@@ -238,7 +239,7 @@ Page({
             _arr2.push(_arr[i].upload_file_path)
           }
         }
-        this.setData({ 'buildsimg[1].imgs': _arr2 })
+        this.setData({ 'buildsimg[0].imgs': _arr2 })
       } else if (promise.picturetype === "效果图") {
         for (let i = 0; i < _arr.length; i++) {
           if (_arr[i].upload_file_path == undefined) {
@@ -247,7 +248,7 @@ Page({
             _arr2.push(_arr[i].upload_file_path)
           }
         }
-        this.setData({ 'buildsimg[2].imgs': _arr2 })
+        this.setData({ 'buildsimg[1].imgs': _arr2 })
       } else if (promise.picturetype === "配套图") {
         for (let i = 0; i < _arr.length; i++) {
           if (_arr[i].upload_file_path == undefined) {
@@ -256,7 +257,7 @@ Page({
             _arr2.push(_arr[i].upload_file_path)
           }
         }
-        this.setData({ 'buildsimg[3].imgs': _arr2 })
+        this.setData({ 'buildsimg[2].imgs': _arr2 })
       } else if (promise.picturetype === "规划图") {
         for (let i = 0; i < _arr.length; i++) {
           if (_arr[i].upload_file_path == undefined) {
@@ -265,7 +266,7 @@ Page({
             _arr2.push(_arr[i].upload_file_path)
           }
         }
-        this.setData({ 'buildsimg[4].imgs': _arr2 })
+        this.setData({ 'buildsimg[3].imgs': _arr2 })
       }
     }), (error) => {
       console.log(error)
@@ -463,7 +464,7 @@ Page({
   },
   // 初始化轮播图
   resetBanner(url) {
-    this.setData({ 'imgUrls[0]': url })
+    this.setData({ 'imgUrls': url })
     this.setData({ bannerlength: this.data.imgUrls.length })    //初始化轮播展示图数量
   },
   //图片轮播

@@ -41,14 +41,13 @@
         <picker style='width:100%' mode="selector" bindchange="arrayProjectChange" range-key="wxProjectName" value='{{arrayProjectIndex}}' range="{{arrayProject}}">
           <view class="picker">
             <!-- 请选择 -->
-            <text wx:if="{{arrayProjectIndex == null}}">请选择</text>
-            {{arrayProject[arrayProjectIndex].wxProjectName}}
+            <text wx:if="{{arrayProjectIndex == null}}">请选择</text> {{arrayProject[arrayProjectIndex].wxProjectName}}
           </view>
         </picker>
       </span>
     </li>
     <li style="height:200rpx;margin-top:20rpx;margin-bottom:40rpx">
-      <textarea class='textsty' style='' bindinput='remarkBind' placeholder="{{placeholderText}}" />
+      <textarea wx:if="{{placeholderText !== ''}}" class='textsty' style='' bindinput='remarkBind' placeholder="{{placeholderText}}" />
     </li>
     <li>
       <span class='title'>推荐人</span>
@@ -71,13 +70,7 @@
   <view>暂无绑定用户信息</view>
 </i-modal>
 
-<i-modal 
-  visible="{{ visible2 }}" 
-  bind:ok="handleCloseOk"
-  bind:cancel="handleCloseNo"
-  ok-text="我的推荐"
-  cancel-text="首页"
-  >
+<i-modal visible="{{ visible2 }}" bind:ok="handleCloseOk" bind:cancel="handleCloseNo" ok-text="我的推荐" cancel-text="首页">
   <view>推荐成功</view>
 </i-modal>
 

@@ -6,7 +6,7 @@
   <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange='bannerChange'> 
     <block wx:for="{{imgUrls}}" wx:key="{{index}}">
       <swiper-item>
-        <image src="{{item}}" class="slide-image" width="355" height="150" />
+        <image src="{{imgpath}}{{item}}" class="slide-image" width="355" height="150" />
       </swiper-item>
     </block>
   </swiper>
@@ -166,7 +166,7 @@
     <view class='product-detail'>
       <text class='title'>项目详情</text>
       <view class='detail-list' style="height:{{!getmore?480:''}}rpx">
-        <view class='list1' wx:for='{{project_info}}' wx:key='{{index}}'>
+        <view class='list1' wx:for='{{project_info}}' wx:key='{{index}}' wx:if="{{item.value=='null'}}">
           <text class='txt1'>{{item.name}}</text>
           <text class='txt2'>{{item.value}}</text>
         </view>

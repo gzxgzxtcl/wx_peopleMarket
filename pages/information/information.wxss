@@ -51,7 +51,7 @@ swiper image {
 }
 
 .info .name-money .name {
-  width: 40%;
+  /* width: 40%; */
   display: flex;
   align-items: flex-end;
   padding-right: 20rpx;

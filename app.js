@@ -25,7 +25,7 @@ App({
           } else {
             that.globalData.isCheck = false
           }
-          that.globalData.userId = data.data.userId
+          that.globalData.userId = data.data.USERID
           that.getUserGetUserInfo(data.data.openid)
         }, (error) => {
           console.log(error)
