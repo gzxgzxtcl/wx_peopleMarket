@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isHide :false,
     attentionList:[],       //我的关注列表
   },
 
@@ -29,14 +30,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.getProjectApiFindProjectListByMyConc()
+    if (this.data.isHide){
+      this.getProjectApiFindProjectListByMyConc()
+    }
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-
+    this.data.isHide = true
   },
 
   /**

@@ -85,7 +85,6 @@ Page({
         }
       })
     }
-    this.getRimBuildInfo();
   },
 
   // 获取位置
@@ -122,9 +121,8 @@ Page({
         imgUrls: data.data.rollImg,
         buildinfolist: data.data.buildInfo,
       })
-      // console.log(this.data.buildinfolist)
-      // console.log(app.globalData.storLocalCity)
-      // that.hideLoading()
+      // 获取周边楼盘
+      this.getRimBuildInfo();
       let _arr=[]
       for (let i = 0; i < data.data.buildInfo.length;i++){
         if (!data.data.buildInfo[i].labels) return

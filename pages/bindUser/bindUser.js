@@ -345,6 +345,11 @@ Page({
     $http(apiSetting.userIdentifyUser, promise).then((data) => {
       if (data.code == 0) {
         that.getUserGetUserInfo(app.globalData.openid)
+      }else{
+        $Message({
+          content: data.message,
+          type: 'error'
+        });
       }
     })
 

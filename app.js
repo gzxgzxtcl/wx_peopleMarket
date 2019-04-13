@@ -18,6 +18,7 @@ App({
         }
         $http(apiSetting.userDecodeUserInfo, promise).then((data) => {
           console.log(data.data.openid)
+          that.globalData.token = data.data['vx-zhwx-token']
           that.globalData.openid = data.data.openid
           if (data.data.isCheck == 0) {
             that.globalData.isCheck = true
@@ -51,6 +52,7 @@ App({
     storLocalCity: null,
     bindUserInfo: {},
     userId: null,
-    transienceCity:{}
+    transienceCity:{},
+    token:''
   }
 })
