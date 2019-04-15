@@ -8,10 +8,10 @@ Page({
     imgpath: 'http://39.98.191.16/zhwx/userfiles',     //图片根路径
     isLeftSel:true,   /*是否选中户型图*/
     isRightSel: false,   /*是否选中样板图*/
-    selArr:[
-      ['户型图'],
-      [ '效果图', '配套图', '规划图']
-    ],
+    // selArr:[
+    //   ['户型图'],
+    //   [ '效果图', '配套图', '规划图']
+    // ],
     // selIndex:0,   /*默认分类数组下标*/
     selItem:0,     /*默认选中第一项*/
 
@@ -25,15 +25,13 @@ Page({
     this.setData({ selItem:num})
   },
   // 获取大图
-  getBigImg(){
-    let current = this.data.imgpath + this.data.buildImgList[this.data.selItem].imgs[0]
-    let _arr = this.data.buildImgList[this.data.selItem].imgs
-    for(let i=0;i<_arr.length;i++){
-      _arr[i] = this.data.imgpath + _arr[i]
-    }
+  getBigImg(e){
+    // console.log(e.currentTarget.dataset.imglist)
+    let imgList = e.currentTarget.dataset.imglist
+    let current = this.data.imgpath + imgList[0]
     wx.previewImage({
-      current: "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3022329450,1185405705&fm=27&gp=0.jpg", // 当前显示图片的http链接
-      urls: _arr // 需要预览的图片http链接列表
+      current: current, // 当前显示图片的http链接
+      urls: imgList // 需要预览的图片http链接列表
     })
   },
 
@@ -44,7 +42,14 @@ Page({
     console.log(options)
     let arr = JSON.parse(options.buildsimg)
     console.log(arr)
-    this.setData({ buildImgList:arr})
+    let _arr=[]
+    for(let i=0;i<arr.length;i++){
+      if(arr[i].imgs.length){
+        _arr.push(arr[i])
+      }
+    }
+    console.log(_arr)
+    this.setData({ buildImgList:_arr})
 
   },
 

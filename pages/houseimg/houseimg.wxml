@@ -1,10 +1,17 @@
 <!-- 户型图页面 -->
 <view class='house-img-page'>
   <view class='house-img'>
-    <image src='{{imgpath}}{{buildImgList[selItem].imgs[0]}}' bindtap='getBigImg'></image>
+    <image src='{{imgpath}}{{buildImgList[selItem].imgs[0]}}' bindtap='getBigImg' data-imglist='{{buildImgList[selItem].imgs}}'></image>
   </view>
   <view class='tabbar'>
-    <view wx:for='{{buildImgList}}' wx:key='{{index}}' class='sel1' bindtap='selImg' data-num='{{index}}'>
+    <view 
+      wx:for='{{buildImgList}}' 
+      wx:key='{{index}}' 
+      class='sel1' 
+      bindtap='selImg' 
+      data-num='{{index}}'
+      wx:if='{{item.imgs.length}}'
+      >
       <view class='icon' wx:if='{{selItem===index}}'><image src='../../images/top.png'></image></view>
       <view class="txt {{selItem===index?'active':''}}">{{item.name}}({{item.imgs.length}})</view>
     </view>
