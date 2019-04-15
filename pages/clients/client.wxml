@@ -16,7 +16,7 @@
     </view>
     <view>
       <text>已获得推荐佣金</text>
-      <view>50
+      <view>{{peoplesArray[0].totalCommissioninfo}}
         <text>万元</text>
       </view>
     </view>

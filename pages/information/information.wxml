@@ -72,7 +72,8 @@
         <view class='type type1' wx:for='{{mainhouseholdList}}' wx:key='{{index}}'>
           <text>{{item.houserhold}}</text>
           <text>{{item.area}}</text>
-          <text>（{{item.layout}}）</text>
+          <text>{{item.layout}}</text>
+          <!-- <text wx:else>{{item.layout}}</text> -->
         </view>
       </view>
     </view>
@@ -98,7 +99,7 @@
     <!-- 户型 -->
     <view class='huxing'>
       <view class='top'>
-        <text>户型（2）</text>
+        <text>户型（{{hourselist.length}}）</text>
         <view bindtap='goHousetype'>查看全部
           <text class='iconfont iconjiantou'></text>
         </view>
@@ -112,7 +113,7 @@
           <text class='totle'>{{price}}</text>
           <text>户型优势</text>
           <view class='house-tag' wx:for='{{pointList}}' wx:key='{{index}}'>
-            <text>{{item}}</text>
+            <text wx:if='{{item}}'>{{item}}</text>
           </view>
           <!-- <view class='house-tag'>
             <text>黄金地段</text>
