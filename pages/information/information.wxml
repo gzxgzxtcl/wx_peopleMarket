@@ -167,7 +167,7 @@
     <view class='product-detail'>
       <text class='title'>项目详情</text>
       <view class='detail-list' style="height:{{!getmore?480:''}}rpx">
-        <view class='list1' wx:for='{{project_info}}' wx:key='{{index}}' wx:if="{{item.value!==null}}">
+        <view class='list1' wx:for='{{project_info}}' wx:key='{{index}}' wx:if="{{item.value!==''&&item.value!==null}}">
           <text class='txt1'>{{item.name}}</text>
           <text class='txt2'>{{item.value}}</text>
         </view>
