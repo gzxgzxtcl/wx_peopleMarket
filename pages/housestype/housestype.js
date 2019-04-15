@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgpath: 'http://39.98.191.16/zhwx/userfiles',     //图片根路径
     selIndex:0,
     hourseViewList:[],              //户型显示列表
     allhourseList:[],                //全部户型列表
@@ -19,6 +20,7 @@ Page({
     twoPointList:[],               //两室优势列表
     threePointList:[],            //三室优势列表
 
+    hourseImgList:[],             //户型图片列表
   },
   changeHouse(e){
     let index = e.currentTarget.dataset.index
@@ -34,10 +36,20 @@ Page({
     }
   },
   // 查看户型图
-  goHouseimg(e){
-    let id=e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: '../houseimg/houseimg?id='+id
+  // goHouseimg(e){
+  //   let id=e.currentTarget.dataset.id
+  //   wx.navigateTo({
+  //     url: '../houseimg/houseimg?id='+id
+  //   })
+  // },
+  // 获取大图
+  goHouseimg(e) {
+    console.log(e.currentTarget.dataset.imglist)
+    let imgList =[ e.currentTarget.dataset.imglist]
+    let current = e.currentTarget.dataset.imglist
+    wx.previewImage({
+      current: current, // 当前显示图片的http链接
+      urls: imgList // 需要预览的图片http链接列表
     })
   },
 
@@ -82,6 +94,7 @@ Page({
 
     //查询户型图片列表
     for (let i = 0; i < hourselist.length; i++){
+      console.log(hourselist[i])
       this.getProjectHouserholdFileList(hourselist[i].id)
     }
   },
@@ -89,7 +102,8 @@ Page({
   getProjectHouserholdFileList(id) {
     let promise = { houserhold_id: id }
     $http(apiSetting.projectApiFindProjectHouserholdFileListById, promise).then((data) => {
-      // console.log(data)
+      console.log(data.data)
+      this.setData({ hourseImgList:data.data})
     }), (error) => {
       console.log(error)
     }

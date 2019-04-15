@@ -80,8 +80,13 @@ Page({
       let _arr1 = []
       console.log(_arr)
       for (let i = 0; i < _arr.length; i++) {
-        _arr1.push(_arr[i].labels.split(','))
+        if (!_arr[i].labels){
+          _arr1.push('')
+        }else{
+          _arr1.push(_arr[i].labels.split(','))
+        }
       }
+      console.log(_arr1)
       this.setData({ tagList: _arr1 })
       console.log(_arr)
       // console.log(this.data.attentionList)

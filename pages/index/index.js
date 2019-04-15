@@ -147,11 +147,11 @@ Page({
         imgUrls: data.data.rollImg,
         buildinfolist: data.data.buildInfo,
       })
-      console.log(data.data.buildInfo)
+      // console.log(data.data.buildInfo)
       let buildInfo = data.data.buildInfo
       let _tagArr=[]
       for (let j = 0; j < buildInfo.length;j++){
-        console.log(buildInfo[j].labels)
+        // console.log(buildInfo[j].labels)
         if (buildInfo[j].labels===undefined){
           _tagArr.push('')
         }else{
@@ -170,9 +170,9 @@ Page({
       //   _arr.push(data.data.buildInfo[i].labels.split(','))
       //   // console.log(_arr)
       // }
-      that.setData({
-        buildinfotaglist: _arr
-      })
+      // that.setData({
+      //   buildinfotaglist: _arr
+      // })
     }, (error) => {
       console.log(error)
       // that.hideLoading()
