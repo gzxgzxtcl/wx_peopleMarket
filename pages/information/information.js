@@ -15,7 +15,7 @@ Page({
     interval: 5000,
     duration: 1000,
     visible2:false,
-    ishaveall:false,          /*是否大于4条亮点 */
+    ishaveall:false,          /*是否大于5条亮点 */
     islookall:false,         /*是否查看全部*/
 
     phone:'',                 //联系我们-电话
@@ -63,98 +63,11 @@ Page({
     /*
     项目详情
     */ 
-    project_info:{
-      developer: {
-        name:'开发商',
-        value: ''
-      },  	                                        /*开发商*/
-      propertycompany:{
-        name:'物业公司',
-        value:''
-      },	                                           /*物业公司*/
-      opening_date: {
-        name:'开盘时间',
-        value: ''
-      },                                            	/*开盘时间*/
-      delivery_date: {
-        name:'交房时间',
-        value:''
-      },	                                            /*交房时间*/
-      years: {
-        name:'产权年限',
-        value:''
-      },                                          	/*产权年限*/
-      buildingtype:  {
-        name:'建筑类别',
-        value:''
-      },                                           	/*建筑类别*/
-      isup: {
-        name:'装修状态',
-        value:''
-      },                                          	/*装修状态*/
-      propertyexpenses: {
-        name:'物业费',
-        value:''
-      },                                            	/*物业费*/
-      exemption: {
-        name:'免责条款',
-        value:''
-      },	                                           /*免责条款*/
-      commissioninfo: {
-        name:'佣金信息',
-        value:''
-      },                                             /*佣金信息*/
-      couponinfo: {
-        name:'优惠信息',
-        value:''
-      },                                               /*优惠信息*/
-      district: {
-        name:'所属区县',
-        value:''
-      },                                              /*所属区县*/
-      floorarea: {
-        name:'建筑面积',
-        value:''
-      },                                              /*建筑面积*/
-      mainarea: {
-        name:'主面积',
-        value:''
-      },                                                /*主面积*/
-      greencoverage: {
-        name:'绿化情况',
-        value:''
-      },                                            /*绿化情况*/
-      highlights: {
-        name:'亮点概述',
-        value:''
-      },                                            /*亮点概述*/
-      panning: {
-        name:'建筑规划',
-        value:''
-      },                                         /*建筑规划*/
-      phone: {
-        name:'咨询电话',
-        value:''
-      },                                        /*咨询电话*/
-      plotratio: {
-        name:'容积率',
-        value:''
-      },                                        /*容积率*/
-      presalepermit: {
-        name:'预售许可证',
-        value:''
-      },                                      /*预售许可证*/
-      projectaddr: {
-        name:'楼盘地址',
-        value:''
-      },                                      /*楼盘地址*/
-      propertytype: {
-        name:'物业类别',
-        value:''
-      },                                      /*物业类别*/
-    },
-    getmore:false,                          /*是否查看更多*/
-    exemption:'',                     /*免责条款*/
+    projectInfo:[],                   //项目详情
+    isMoreInfo:false,                   //是否有更多详情
+    projectInfoNum:0,                //项目详情条数
+   
+    exemption:'',                           /*免责条款*/
     commissionRule:'',                    //佣金规则
     /*
       房型列表
@@ -198,7 +111,9 @@ Page({
     // this.resetBanner(imgurl);                     //初始化轮播图
     this.getSpotLength();                         //获取亮点条数
     this.getProjectInfo(project_id);              // 通过id获取项目信息
-    this.getProjectDetails(project_id);          //通过id获取项目详情
+    // this.getProjectDetails(project_id);          //通过id获取项目详情
+    this.getProjectDetails(project_id)             //通过id获取项目详情
+
     this.getProjectHouserholdList(project_id);    //通过id查询户型列表
     this.getHourseImgList(project_id);            //通过类型查询楼盘图
     this.getClauseAndRule();                      //获取免责条款和佣金规则
@@ -331,43 +246,61 @@ Page({
     }
   },
   //通过id获取项目详情
-  getProjectDetails(id){
-    let promise = { project_id:id}
-    $http(apiSetting.projectApiFindProjectDetailsById,promise).then((data)=>{
-      let projectdetails=data.data
+  
+  getProjectDetails(id) {
+    let promise = { project_id: id }
+    $http(apiSetting.projectApiFindProjectDetailsById, promise).then((data) => {
+      let projectdetails = data.data
       console.log(data.data)
-      // console.log(this.data.project_info)
+      let _projectInfo=[]
+      _projectInfo.push(
+        { name: '开发商', value: projectdetails.developer},   
+        { name: '物业公司', value: projectdetails.propertycompany},	  
+        { name: '开盘时间', value: projectdetails.opening_date}, 
+        { name: '交房时间', value: projectdetails.delivery_date},	   
+        { name: '产权年限', value: projectdetails.years},   
+        { name: '建筑类别', value: projectdetails.buildingtype},                                          
+        { name: '装修状态', value: projectdetails.isup},                                         
+        { name: '物业费', value: projectdetails.propertyexpenses},                                           
+        { name: '免责条款', value: projectdetails.exemption},	                                         
+        { name: '佣金信息', value: projectdetails.commissioninfo},                                          
+        { name: '优惠信息', value: projectdetails.couponinfo},                                            
+        { name: '所属区县', value: projectdetails.district},                                             
+        { name: '建筑面积', value: projectdetails.floorarea},                                             
+        { name: '主面积', value: projectdetails.mainarea },                                             
+        { name: '绿化情况', value: projectdetails.greencoverage},                                            
+        { name: '亮点概述', value: projectdetails.highlights},                                           
+        { name: '建筑规划', value: projectdetails.panning},                                        
+        { name: '咨询电话', value: projectdetails.phone},                                       
+        { name: '容积率', value: projectdetails.plotratio},                                       
+        { name: '预售许可证', value: projectdetails.presalepermit},                                    
+        { name: '楼盘地址', value: projectdetails.projectaddr },                                    
+        { name: '物业类别', value: projectdetails.propertytype},                                    
+      )
+      //筛选有值的详情项
+      let _arr=[]
+      for (let i = 0; i < _projectInfo.length; i++){
+        if (_projectInfo[i].value){
+          _arr.push(_projectInfo[i])
+        }
+      }
+      //判断符合的数量，大于8个即产生'查看更多'
+      if(_arr.length>8){
+        this.setData({ isMoreInfo: true, projectInfoNum:8})
+      }else{
+        this.setData({ isMoreInfo: false, projectInfoNum: 8})
+      }
       this.setData({
-        'project_info.developer.value': projectdetails.developer, 
-        'project_info.propertycompany.value': projectdetails.propertycompany,
-        'project_info.opening_date.value': projectdetails.opening_date, 
-        'project_info.delivery_date.value': projectdetails.delivery_date,	
-        'project_info.years.value': projectdetails.years,           
-        'project_info.buildingtype.value': projectdetails.buildingtype,  
-        'project_info.isup.value': projectdetails.isup,           
-        'project_info.propertyexpenses.value': projectdetails.propertyexpenses,  
-        'project_info.exemption.value': projectdetails.exemption,	
-        'project_info.commissioninfo.value': projectdetails.commissioninfo,            
-        'project_info.couponinfo.value': projectdetails.couponinfo,                 
-        'project_info.district.value': projectdetails.district,                    
-        'project_info.floorarea.value': projectdetails.floorarea,                  
-        'project_info.mainarea.value': projectdetails.mainarea,                     
-        'project_info.greencoverage.value': projectdetails.greencoverage,              
-        'project_info.highlights.value': projectdetails.highlights,                 
-        'project_info.panning.value': projectdetails.panning,                     
-        'project_info.phone.value': projectdetails.phone,                           
-        'project_info.plotratio.value': projectdetails.plotratio,                     
-        'project_info.presalepermit.value': projectdetails.presalepermit,              
-        'project_info.projectaddr.value': projectdetails.projectaddr,                   
-        'project_info.propertytype.value': projectdetails.propertytype,      
+        projectInfo: _arr,
         exemption: projectdetails.exemption,
         phone: projectdetails.phone
       })
-      console.log(this.data.project_info)
-    }),(error)=>{
+      console.log(this.data.projectInfo)
+    }), (error) => {
       console.log(error)
     }
   },
+
   // 通过id获取项目信息
   getProjectInfo(id) {
     let promise = { project_id:id}
@@ -503,12 +436,12 @@ Page({
   },
   //查看更多详细信息
   getMoreInfo(){
-    this.setData({ getmore:true})
+    this.setData({ isMoreInfo: false, projectInfoNum: this.data.projectInfo.length})
   },
   //判断亮点条数
   getSpotLength() {
     let spots = this.data.brightspotsList.length
-    if (spots > 4) {
+    if (spots > 5) {
       ishaveall: true
       this.setData({ ishaveall: true })
     } else {
