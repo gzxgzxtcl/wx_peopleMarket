@@ -85,7 +85,7 @@
         <text>首创5M智慧健康社区；60分钟直达香港</text>
       </view>
       <view class='other-list' style="height:{{islookall?'':'330'}}rpx">
-        <view class='other-list-item' wx:for='{{brightspotsList}}' wx:key='{{index}}'>
+        <view class='other-list-item' wx:for='{{brightspotsList}}' wx:key='{{index}}' >
           <text>{{item.labels}}</text>
           <view class='tip'>{{item.remark}}</view>
         </view>

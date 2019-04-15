@@ -87,11 +87,12 @@
 
 .my-attention .hours-list .tag {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .my-attention .hours-list .tag text {
   display: block;
-  padding: 0 10rpx;
+  padding: 0 5rpx;
   margin: 0 10rpx 0 0;
   border-radius: 4rpx;
   border: 1rpx solid #979797;
@@ -101,6 +102,7 @@
   line-height: 28rpx;
   letter-spacing: 0.2rpx;
   text-align: center;
+  margin-bottom: 5rpx;
 }
 
 .my-attention .hours-list .right-info {

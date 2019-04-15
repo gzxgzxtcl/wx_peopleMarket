@@ -154,14 +154,29 @@ Page({
         imgUrls: data.data.rollImg,
         buildinfolist: data.data.buildInfo,
       })
+      console.log(data.data.buildInfo)
+      let buildInfo = data.data.buildInfo
+      let _tagArr=[]
+      for (let j = 0; j < buildInfo.length;j++){
+        console.log(buildInfo[j].labels)
+        if (buildInfo[j].labels===undefined){
+          _tagArr.push('')
+        }else{
+          _tagArr.push(buildInfo[j].labels.split(','))
+        }
+      }
+      console.log(_tagArr)
+      this.setData({ buildinfotaglist: _tagArr})
+
       // 获取周边楼盘
       this.getRimBuildInfo();
-      let _arr = []
-      for (let i = 0; i < data.data.buildInfo.length; i++) {
-        if (!data.data.buildInfo[i].labels) return
-        _arr.push(data.data.buildInfo[i].labels.split(','))
-        // console.log(_arr)
-      }
+      // let _arr = []
+      // console.log(data.data.buildInfo)
+      // for (let i = 0; i < data.data.buildInfo.length; i++) {
+      //   if (!data.data.buildInfo[i].labels) return
+      //   _arr.push(data.data.buildInfo[i].labels.split(','))
+      //   // console.log(_arr)
+      // }
       that.setData({
         buildinfotaglist: _arr
       })
@@ -196,9 +211,10 @@ Page({
       })
       let _arr = []
       // if (rimbuildinfo.length<=1) return
+      console.log(rimbuildinfo)
       for (let i = 0; i < rimbuildinfo.length; i++) {
         if (rimbuildinfo[i].labels) {
-          _arr = rimbuildinfo[i].labels.split(',')
+          _arr.push(rimbuildinfo[i].labels.split(','))
         }
       }
       that.setData({

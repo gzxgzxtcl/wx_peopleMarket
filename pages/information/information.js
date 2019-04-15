@@ -299,7 +299,7 @@ Page({
     let promise = { houserhold_id:id}
     $http(apiSetting.projectApiFindProjectHouserholdFileListById, promise).then((data) => {
       let imgArr=data.data[0]
-      // console.log(data)
+      console.log(data)
       this.setData({ upload_file_path: imgArr.upload_file_path})
     }), (error) => {
       console.log(error)
@@ -373,7 +373,7 @@ Page({
     let promise = { project_id:id}
     $http(apiSetting.projectApiFindProjectInfoById, promise).then((data) => {
       let projectinfo=data.data
-      console.log(projectinfo)
+      console.log('项目信息：',projectinfo)
       this.setData({
         project_id: projectinfo.id,
         projectname_hk: projectinfo.projectname_hk,

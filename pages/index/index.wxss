@@ -144,6 +144,7 @@ swiper image {
 
 .hours-list {
   width: 658rpx;
+  margin-bottom:20rpx;
 }
 
 .hours-list .img {
@@ -160,7 +161,7 @@ swiper image {
 
 .hours-list .hours-info {
   width: 658rpx;
-  height: 100rpx;
+  /* height: 100rpx; */
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -219,6 +220,7 @@ swiper image {
 
 .hours-list .tag {
   display: flex;
+  flex-wrap: wrap
 }
 
 .hours-list .tag text {
@@ -233,6 +235,7 @@ swiper image {
   line-height: 28rpx;
   letter-spacing: 0.2rpx;
   text-align: center;
+  margin-bottom: 5rpx;
 }
 
 .hours-list .right-info {
