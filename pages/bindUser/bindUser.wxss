@@ -41,6 +41,14 @@
   color: #fff;
 }
 
+.amendSub {
+  height: 80rpx;
+  font-size: 30rpx;
+  margin: 200rpx 40rpx 0;
+  background-color: #fff;
+  color: #333;
+}
+
 .noteCode {
   display: block;
   width: 150rpx;

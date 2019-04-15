@@ -355,6 +355,14 @@ Page({
 
   },
 
+
+// 修改
+  amendSub(){
+    this.setData({
+      isEdit:true
+    })
+  },
+
   // 获取绑定用户信息
   getUserGetUserInfo(val) {
     let that = this

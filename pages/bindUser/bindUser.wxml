@@ -81,6 +81,7 @@
   </ul>
 
   <button class='bindSub' wx:if='{{isEdit}}' bindtap='bindSub'>确定</button>
+  <button class='amendSub' wx:if='{{!isEdit}}' bindtap='amendSub'>修改</button>
 
   <!-- 验证窗口 -->
   <i-modal i-class='modalClass' style='top:-100rpx' visible="{{noteCodeVisible}}" bind:ok="noteCodeModalOk" bind:cancel="noteCodeModalClose">
