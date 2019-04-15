@@ -145,3 +145,12 @@
 .my-attention .hours-list .right-info .hours-address text:last-child{
   margin-left: 10rpx;
 }
+
+/* 无关注信息提示 */
+.null-tip{
+  text-align: center;
+  margin-top: 300rpx;
+  font-family: 'PingFang-SC-Medium';
+  font-size: 28rpx;
+  color: #333;
+}

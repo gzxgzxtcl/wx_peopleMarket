@@ -54,17 +54,29 @@ Page({
   },
   // 时间区间选择
   bindDateChangeStart(e) {
-    // console.log(e.detail.value)
+    console.log(e.detail.value)
     this.setData({
       dataIntervalStart: e.detail.value
     })
     this.setData({ 'selectList.startDate': e.detail.value})
   },
   bindDateChangeEnd(e) {
+    let endDate=e.detail.value
+    if (endDate < this.data.dataIntervalStart){
+      this.handleWarning()
+      return
+    }
     this.setData({
       dataIntervalEnd: e.detail.value
     })
     this.setData({ 'selectList.endDate': e.detail.value })
+  },
+  handleWarning() {
+    wx.showToast({
+      title: '请选择正确的结束时间!',
+      icon: 'none',
+      duration: 2000
+    })
   },
   // 选择城市标签
   selCity(e){
@@ -154,6 +166,7 @@ Page({
     this.findCustomList();
     this.getRecommendItemList();
     this.findRecommendPerson();
+    this.getRecommendCommissionInfoList()
   },
   //获取推荐人状态信息
   findCustomList(){
@@ -170,6 +183,7 @@ Page({
     let promise = { openID: app.globalData.openid}
     $http(apiSetting.recommendFindRecommendPerson, promise).then((data) => {
       this.setData({ peoplesArray:data.data})
+      console.log(data.data)
     }, (error) => {
       console.log(error)
     });
@@ -185,12 +199,16 @@ Page({
       })
     }, (error) => {
       console.log(error)
-
     });
   },
   //获取佣金
   getRecommendCommissionInfoList(){
-    let promise = { openID: app.globalData.openid }
+    let promise = { openID: app.globalData.openid, 'vx-zhwx-token':'upSmUBBRDfIITGp87nQcs3XMHhIHIGoRxYX+yCLjnoogi3UGgyxfykcyRNYt3jvu9BATG2NBfEZyGmQGS6gdeA=='}
+    $http(apiSetting.recommendCommissionInfoList, promise).then((data) => {
+      console.log(data)
+      this.setData({ recommendPersonList: data.data })
+    }, (error) => {
+      console.log(error)
+    });
   },
-  
 })
