@@ -10,6 +10,7 @@ Page({
   data: {
     isHide :false,
     attentionList:[],       //我的关注列表
+    tagList:[],             //标签数组
   },
 
   /**
@@ -74,7 +75,16 @@ Page({
     $http(apiSetting.projectApiFindProjectListByMyConc, promise).then((data) => {
       console.log(data)
       this.setData({ attentionList:data.list})
-      console.log(this.data.attentionList)
+
+      let _arr = data.list
+      let _arr1 = []
+      console.log(_arr)
+      for (let i = 0; i < _arr.length; i++) {
+        _arr1.push(_arr[i].labels.split(','))
+      }
+      this.setData({ tagList: _arr1 })
+      console.log(_arr)
+      // console.log(this.data.attentionList)
     })
   },
   //查看关注列表楼盘详情

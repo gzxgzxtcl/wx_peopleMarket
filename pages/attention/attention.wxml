@@ -16,9 +16,8 @@
             </view>
           </view>
           <view class='tag'>
-            <text wx:for='{{item.labels}}' wx:key='{{index}}'>{{item}}</text>
-            <!-- <text>学区房</text>
-            <text>紧邻地铁</text> -->
+            <text wx:for='{{tagList[index]}}' wx:key='{{index}}'>{{item}}</text>
+            <!-- <text>紧邻地铁</text>  -->
           </view>
         </view>
         <view class='right-info'>
