@@ -8,6 +8,7 @@ const {
 } = require('../../dist/base/index');
 Page({
   data: {
+    isPermit:false,
     imgpath: 'http://39.98.191.16',
     cityNametext: '',
     imgUrls: [],
@@ -80,6 +81,12 @@ Page({
             app.globalData.isCheck = true
           } else {
             app.globalData.isCheck = false
+          }
+          
+          if (data.data.status == 401){
+            that.setData({
+              isPermit:true
+            })
           }
           app.globalData.userId = data.data.USERID
           that.getUserGetUserInfo(data.data.openid)

@@ -118,13 +118,16 @@ swiper image {
   height: 58rpx;
   margin-bottom: 20rpx;
 }
-.goneneng .gn1 image{
+
+.goneneng .gn1 image {
   width: 60rpx;
 }
-.goneneng .gn2 image{
+
+.goneneng .gn2 image {
   width: 72rpx;
 }
-.goneneng .gn3 image{
+
+.goneneng .gn3 image {
   width: 64rpx;
 }
 
@@ -260,4 +263,10 @@ swiper image {
 
 .hours-list .right-info .hours-address .hours-address-icon {
   font-size: 20rpx;
+}
+
+.wxexit {
+  font-size: 34rpx;
+  margin-top: 70rpx;
+  color: #20a0ff;
 }

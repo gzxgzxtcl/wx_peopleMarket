@@ -223,7 +223,7 @@ Page({
   },
   //通过类型查询楼盘图列表
   getHourseImgList(id) {                        
-    let promise1 = { project_id: id, picturetype: "楼盘主图" }
+    let promise1 = { project_id: id, picturetype: "项目主图" }
     this.getHourseImgFun(promise1)
     let promise2 = { project_id: id, picturetype: "实景图" }
     this.getHourseImgFun(promise2)
@@ -241,7 +241,7 @@ Page({
       let _arr=data.data
       // console.log(_arr)
       let _arr2=[]
-      if(promise.picturetype==="楼盘主图"){
+      if(promise.picturetype==="项目主图"){
         for (let i = 0; i < _arr.length; i++) {
           if (_arr[i].upload_file_path == undefined) {
             continue
