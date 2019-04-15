@@ -51,7 +51,7 @@ swiper image {
 }
 
 .info .name-money .name {
-  /* width: 40%; */
+  width: 40%;
   display: flex;
   align-items: flex-end;
   padding-right: 20rpx;
@@ -130,6 +130,7 @@ swiper image {
   display: flex;
   height: 120rpx;
   align-items: center;
+  flex-wrap: wrap
 }
 
 .information .tag view {
@@ -228,7 +229,7 @@ swiper image {
 
 .info .hours-type {
   width: 100%;
-  height: 284rpx;
+  /* height: 284rpx; */
   box-shadow: 0rpx 0rpx 10rpx 0rpx #666;
   margin: 40rpx 0rpx;
   border-radius: 16rpx;
@@ -261,36 +262,48 @@ swiper image {
 }
 
 .info .hours-type .bottom-list {
+  width: 100%;
   padding-left: 40rpx;
+  display: flex;
+  flex-direction: column;
 }
 
 .info .hours-type .bottom-list .type {
   height: 40rpx;
+  width: 100%;
   line-height: 40rpx;
   margin-bottom: 20rpx;
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
 }
 
 .info .hours-type .bottom-list .type text:first-child {
+  width: 60rpx;
   font-size: 28rpx;
   font-family: 'PingFang-SC-Medium';
   color: #333;
+  float: left;
 }
 
 .info .hours-type .bottom-list .type text:nth-of-type(2) {
-  display: block;
-  width: 180rpx;
+  /* display: block; */
+  /* width: 240rpx; */
   font-size: 28rpx;
   font-family: 'PingFang-SC-Regular';
   color: #333;
+  float: left;
+  /* display: flex; */
+  flex: 1;
+  margin-left: 36rpx;
 }
 
 .info .hours-type .bottom-list .type text:nth-of-type(3) {
+  width: 294rpx;
   font-size: 28rpx;
   font-family: 'PingFang-SC-Regular';
   color: #8d91a2;
   margin-right:68rpx;
+  float: right;
 }
 
 /* 楼盘亮点样式 */
@@ -562,33 +575,38 @@ swiper image {
   overflow: hidden;
 }
 .info .product-detail .detail-list>view {
-  height: 40rpx;
+  /* height: 40rpx; */
   margin-bottom: 20rpx;
-  display: flex;
+  /* display: flex; */
+  width: 100%;
+  
 }
 
-.info .product-detail .detail-list>view:last-child {
+/* .info .product-detail .detail-list>view:last-child {
   margin: 0;
-}
+} */
 
 .info .product-detail .detail-list .txt1 {
   display: block;
   width: 140rpx;
-  height: 40rpx;
+  /* height: 40rpx; */
   line-height: 40rpx;
   font-size: 28rpx;
   color: #333;
   font-family: 'PingFang-SC-Medium';
   margin-right: 30rpx;
+  float: left;
 }
 
 .info .product-detail .detail-list .txt2 {
-  display: block;
-  height: 40rpx;
+  display: flex;
+  /* height: 40rpx; */
+  flex: 1;
   line-height: 40rpx;
   font-size: 24rpx;
   color: #8d91a2;
   font-family: 'PingFang-SC-Medium';
+  flex-wrap: wrap;
 }
 .info .get-more{
   font-size: 28rpx;

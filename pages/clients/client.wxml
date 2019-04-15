@@ -4,19 +4,19 @@
   <view class='top'>
     <view>
       <text>已推荐客户</text>
-      <view>{{peoplesArray[0].recommendNum}}
+      <view>{{peoplesArray.recommendNum}}
         <text>人</text>
       </view>
     </view>
     <view>
       <text>已到访客户</text>
-      <view>{{peoplesArray[0].viewNum}}
+      <view>{{peoplesArray.viewNum}}
         <text>人</text>
       </view>
     </view>
     <view>
       <text>已获得推荐佣金</text>
-      <view>50
+      <view>{{peoplesArray.totalCommissioninfo}}
         <text>万元</text>
       </view>
     </view>

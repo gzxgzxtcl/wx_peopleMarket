@@ -7,7 +7,7 @@ Page({
   data: {
     imgpath:'http://39.98.191.16/zhwx/userfiles',     //图片根路径
     isAttention: false,          /*是否关注*/
-    imgUrls: [],
+    imgUrls: [],                  //轮播图列表 
     bannerlength:0,            /*轮播图个数 */
     bannerindex:0,             /*轮播下标*/
     indicatorDots: false,
@@ -66,15 +66,15 @@ Page({
     project_info:{
       developer: {
         name:'开发商',
-        value: '南昌市海欣房地产开发建设有限公司'
+        value: ''
       },  	                                        /*开发商*/
       propertycompany:{
         name:'物业公司',
-        value:'深圳中海物业管理有限公司'
+        value:''
       },	                                           /*物业公司*/
       opening_date: {
         name:'开盘时间',
-        value: '2019年5月10日'
+        value: ''
       },                                            	/*开盘时间*/
       delivery_date: {
         name:'交房时间',
@@ -82,79 +82,80 @@ Page({
       },	                                            /*交房时间*/
       years: {
         name:'产权年限',
-        value:'70年'
+        value:''
       },                                          	/*产权年限*/
       buildingtype:  {
         name:'建筑类别',
-        value:'高层'
+        value:''
       },                                           	/*建筑类别*/
       isup: {
         name:'装修状态',
-        value:'毛坯'
+        value:''
       },                                          	/*装修状态*/
       propertyexpenses: {
         name:'物业费',
-        value:'暂无资料'
+        value:''
       },                                            	/*物业费*/
       exemption: {
         name:'免责条款',
-        value:'这是免责条款'
+        value:''
       },	                                           /*免责条款*/
       commissioninfo: {
         name:'佣金信息',
-        value:'佣金信息'
+        value:''
       },                                             /*佣金信息*/
       couponinfo: {
         name:'优惠信息',
-        value:'优惠信息'
+        value:''
       },                                               /*优惠信息*/
       district: {
         name:'所属区县',
-        value:'所属区县'
+        value:''
       },                                              /*所属区县*/
       floorarea: {
         name:'建筑面积',
-        value:'建筑面积'
+        value:''
       },                                              /*建筑面积*/
       mainarea: {
         name:'主面积',
-        value:'主面积'
+        value:''
       },                                                /*主面积*/
       greencoverage: {
         name:'绿化情况',
-        value:'绿化情况'
+        value:''
       },                                            /*绿化情况*/
       highlights: {
         name:'亮点概述',
-        value:'亮点概述'
+        value:''
       },                                            /*亮点概述*/
       panning: {
         name:'建筑规划',
-        value:'建筑规划'
+        value:''
       },                                         /*建筑规划*/
       phone: {
         name:'咨询电话',
-        value:'咨询电话'
+        value:''
       },                                        /*咨询电话*/
       plotratio: {
         name:'容积率',
-        value:'容积率'
+        value:''
       },                                        /*容积率*/
       presalepermit: {
         name:'预售许可证',
-        value:'预售许可证'
+        value:''
       },                                      /*预售许可证*/
       projectaddr: {
         name:'楼盘地址',
-        value:'楼盘地址'
+        value:''
       },                                      /*楼盘地址*/
       propertytype: {
         name:'物业类别',
-        value:'物业类别'
+        value:''
       },                                      /*物业类别*/
     },
     getmore:false,                          /*是否查看更多*/
-    exemption:'免责条款',                     /*免责条款*/
+    exemption:'',                     /*免责条款*/
+    commissionRule:'',                    //佣金规则
     /*
       房型列表
     */
@@ -200,6 +201,25 @@ Page({
     this.getProjectDetails(project_id);          //通过id获取项目详情
     this.getProjectHouserholdList(project_id);    //通过id查询户型列表
     this.getHourseImgList(project_id);            //通过类型查询楼盘图
+    this.getClauseAndRule();                      //获取免责条款和佣金规则
+  },
+  //查询免责条款和佣金规则
+  getClauseAndRule(){
+    let promise1 = { dictname: '免责条款'}
+    $http(apiSetting.projectApiFindOtherDictValues, promise1).then((data) => {
+      console.log(data.data)
+      this.setData({ exemption:data.data})
+    }), (error) => {
+      console.log(error)
+    }
+    let promise2 = { dictname: '佣金规则' }
+    $http(apiSetting.projectApiFindOtherDictValues, promise2).then((data) => {
+      console.log(data.data)
+      this.setData({ commissionRule:data.data})
+    }), (error) => {
+      console.log(error)
+    }
+
   },
   //通过类型查询楼盘图列表
   getHourseImgList(id) {                        
@@ -229,6 +249,7 @@ Page({
             _arr2.push(_arr[i].upload_file_path)
           }
         }
+       
         this.resetBanner(_arr2)
         // this.setData({['buildsimg[0].imgs']:_arr2})
       } else if (promise.picturetype === "实景图") {
@@ -314,6 +335,7 @@ Page({
     let promise = { project_id:id}
     $http(apiSetting.projectApiFindProjectDetailsById,promise).then((data)=>{
       let projectdetails=data.data
+      console.log(data.data)
       // console.log(this.data.project_info)
       this.setData({
         'project_info.developer.value': projectdetails.developer, 
@@ -351,6 +373,7 @@ Page({
     let promise = { project_id:id}
     $http(apiSetting.projectApiFindProjectInfoById, promise).then((data) => {
       let projectinfo=data.data
+      console.log(projectinfo)
       this.setData({
         project_id: projectinfo.id,
         projectname_hk: projectinfo.projectname_hk,
@@ -470,7 +493,7 @@ Page({
   },
   // 初始化轮播图
   resetBanner(url) {
-    this.setData({ 'imgUrls': url })
+    this.setData({ imgUrls: url })
     this.setData({ bannerlength: this.data.imgUrls.length })    //初始化轮播展示图数量
   },
   //图片轮播

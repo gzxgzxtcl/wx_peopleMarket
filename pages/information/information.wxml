@@ -72,7 +72,8 @@
         <view class='type type1' wx:for='{{mainhouseholdList}}' wx:key='{{index}}'>
           <text>{{item.houserhold}}</text>
           <text>{{item.area}}</text>
-          <text>（{{item.layout}}）</text>
+          <text>{{item.layout}}</text>
+          <!-- <text wx:else>{{item.layout}}</text> -->
         </view>
       </view>
     </view>
@@ -98,7 +99,7 @@
     <!-- 户型 -->
     <view class='huxing'>
       <view class='top'>
-        <text>户型（2）</text>
+        <text>户型（{{hourselist.length}}）</text>
         <view bindtap='goHousetype'>查看全部
           <text class='iconfont iconjiantou'></text>
         </view>
@@ -112,7 +113,7 @@
           <text class='totle'>{{price}}</text>
           <text>户型优势</text>
           <view class='house-tag' wx:for='{{pointList}}' wx:key='{{index}}'>
-            <text>{{item}}</text>
+            <text wx:if='{{item}}'>{{item}}</text>
           </view>
           <!-- <view class='house-tag'>
             <text>黄金地段</text>
@@ -166,7 +167,7 @@
     <view class='product-detail'>
       <text class='title'>项目详情</text>
       <view class='detail-list' style="height:{{!getmore?480:''}}rpx">
-        <view class='list1' wx:for='{{project_info}}' wx:key='{{index}}' wx:if="{{item.value!==null}}">
+        <view class='list1' wx:for='{{project_info}}' wx:key='{{index}}' wx:if="{{item.value!==''&&item.value!==null}}">
           <text class='txt1'>{{item.name}}</text>
           <text class='txt2'>{{item.value}}</text>
         </view>

@@ -27,7 +27,7 @@
           <text>{{item.decoration}}</text>
           <text>户型优势</text>
           <view wx:for="{{pointViewList[index]}}" wx:key='index'>
-            <text>{{item}}</text>
+            <text wx:if='{{item}}'>{{item}}</text>
           </view>
           <!-- <view>
             <text>黄金地段</text>
