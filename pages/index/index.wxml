@@ -46,9 +46,9 @@
     <text>楼盘信息</text>
   </view>
   <!-- 楼盘详情 -->
-  <view class='hours-list' bindtap='goInformation' data-project_id='{{item.projectid_id}}' data-imgurl='{{item.pictureurl}}' wx:for='{{buildinfolist}}' wx:key='index'>
+  <view class='hours-list' bindtap='goInformation' data-project_id='{{item.projectid_id}}'  wx:for='{{buildinfolist}}' wx:key='index'>
     <view class='img'>
-      <image src='{{item.pictureurl}}'></image>
+      <image src='{{imgpath}}{{item.pictureurl}}'></image>
     </view>
     <view class='hours-info'>
       <view class='left-info'>

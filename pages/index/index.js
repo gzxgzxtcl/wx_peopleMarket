@@ -8,6 +8,7 @@ const {
 } = require('../../dist/base/index');
 Page({
   data: {
+    imgpath: 'http://39.98.191.16', 
     cityNametext: '',
     imgUrls: [],
     autoplay: true,
