@@ -21,7 +21,7 @@
         <text>{{item.caption}}</text>
       </view>
       <view class='img'>
-        <image src='' bindtap='goHouseimg' data-id='{{0}}'></image>
+        <image src='{{imgpath+hourseImgList[0].upload_file_path}}' bindtap='goHouseimg' data-imglist='{{imgpath+hourseImgList[0].upload_file_path}}'></image>
         <view class='explain'>
           <text class='totle'>{{item.price}}</text>
           <text>{{item.decoration}}</text>

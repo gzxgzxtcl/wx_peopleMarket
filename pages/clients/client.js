@@ -203,7 +203,7 @@ Page({
   },
   //获取佣金
   getRecommendCommissionInfoList(){
-    let promise = { openID: app.globalData.openid, 'vx-zhwx-token':'upSmUBBRDfIITGp87nQcs3XMHhIHIGoRxYX+yCLjnoogi3UGgyxfykcyRNYt3jvu9BATG2NBfEZyGmQGS6gdeA=='}
+    let promise = { openID: app.globalData.openid, 'vx-zhwx-token': 'upSmUBBRDfIITGp87nQcs3XMHhIHIGoRxYX+yCLjnoogi3UGgyxfykcyRNYt3jvu9BATG2NBfEZyGmQGS6gdeA=='}
     $http(apiSetting.recommendCommissionInfoList, promise).then((data) => {
       console.log(data)
       this.setData({ recommendPersonList: data.data })
