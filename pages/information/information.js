@@ -191,7 +191,7 @@ Page({
       'attentionList.login_by': app.globalData.userId,
       'attentionList.project_id': project_id
     })
-    console.log(app.globalData.userId,project_id)
+    // console.log(app.globalData,project_id)
     this.isAttentionProject()
 
     // this.resetBanner(imgurl);                     //初始化轮播图
@@ -213,13 +213,13 @@ Page({
     this.getHourseImgFun(promise4)
     let promise5 = { project_id: id, picturetype: "规划图" }
     this.getHourseImgFun(promise5)
-    console.log(this.data.buildsimg)
+    // console.log(this.data.buildsimg)
   },
   //请求楼盘图接口函数
   getHourseImgFun(promise) {       //楼盘主图,实景图,效果图,配套图,规划图
     $http(apiSetting.projectApiFindProjectImagesListByType, promise).then((data) => {
       let _arr=data.data
-      console.log(_arr)
+      // console.log(_arr)
       let _arr2=[]
       if(promise.picturetype==="楼盘主图"){
         for (let i = 0; i < _arr.length; i++) {
@@ -278,7 +278,7 @@ Page({
     let promise = { houserhold_id:id}
     $http(apiSetting.projectApiFindProjectHouserholdFileListById, promise).then((data) => {
       let imgArr=data.data[0]
-      console.log(data.data)
+      // console.log(data)
       this.setData({ upload_file_path: imgArr.upload_file_path})
     }), (error) => {
       console.log(error)
@@ -289,7 +289,7 @@ Page({
     let promise = { project_id: id}
     $http(apiSetting.projectApiFindProjectHouserholdListById, promise).then((data) => {
       let hourserholdlist=data.data[0];
-      console.log(data.data)
+      // console.log(data.data)
       this.setData({
         hourselist: data.data,
         caption: hourserholdlist.caption,	
@@ -301,9 +301,9 @@ Page({
         decoration: hourserholdlist.decoration,    	
         houserholdremark: hourserholdlist.houserholdremark,  
       })
-      console.log(hourserholdlist)
+      // console.log(hourserholdlist)
       this.setData({ pointList: hourserholdlist.buyingpoint.split(',')})
-      console.log(this.data.pointList)
+      // console.log(this.data.pointList)
       this.getProjectHouserholdFileList(hourserholdlist.id);
     }), (error) => {
       console.log(error)
@@ -381,10 +381,15 @@ Page({
   },
   //户型图片点击事件
   goHouseimg(e) {
-    let id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '../houseimg/houseimg?id=' + id
+    console.log(e)
+    let imgurl = e.currentTarget.dataset.imgurl;
+    wx.previewImage({
+      current: imgurl, // 当前显示图片的http链接
+      urls: [imgurl] // 需要预览的图片http链接列表
     })
+    // wx.navigateTo({
+    //   url: '../houseimg/houseimg?id=' + id
+    // })
   },
   //判断是否有楼盘图
   isHaveBuildsImg(){
@@ -396,7 +401,7 @@ Page({
     }
   },
   //楼盘图查看更多事件
-  goHouseimg(e) {
+  goBuildimg(e) {
     // console.log(e)
     // let id = e.currentTarget.dataset.id;
     wx.navigateTo({

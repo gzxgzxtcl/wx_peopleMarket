@@ -1,32 +1,32 @@
 <!-- 户型列表页 -->
 <view class='house-type'>
   <view class='top-sel' >
-    <view bindtap='changeHouse' data-index="{{0}}" class="{{selIndex===0?'active':''}}">
-      <text>全部({{hourses.length}})</text>
+    <view bindtap='changeHouse' data-index="{{0}}" data-type='{{0}}' class="{{selIndex===0?'active':''}}">
+      <text>全部({{allhourseList.length}})</text>
       <view></view>
     </view>
-    <view bindtap='changeHouse' data-index="{{1}}" class="{{selIndex===1?'active':''}}">
-      <text>两室(1)</text>
+    <view bindtap='changeHouse' data-index="{{1}}" data-type='{{1}}' class="{{selIndex===1?'active':''}}">
+      <text>两室({{twohourse.length}})</text>
       <view></view>
     </view>
-    <view bindtap='changeHouse' data-index="{{2}}" class="{{selIndex===2?'active':''}}">
-      <text>三室(1)</text>
+    <view bindtap='changeHouse' data-index="{{2}}" data-type='{{2}}' class="{{selIndex===2?'active':''}}">
+      <text>三室({{threehourse.length}})</text>
       <view></view>
     </view>
   </view>
   <!-- 户型信息 -->
-  <view class='house-item' wx:for='{{hourses}}' wx:key='{{index}}'>
+  <view class='house-item' wx:for='{{hourseViewList}}' wx:key='{{index}}'>
     <view class='huxing'>
       <view class='tip'>
         <text>{{item.caption}}</text>
       </view>
       <view class='img'>
-        <image src='https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640' bindtap='goHouseimg' data-id='{{0}}'></image>
+        <image src='' bindtap='goHouseimg' data-id='{{0}}'></image>
         <view class='explain'>
           <text class='totle'>{{item.price}}</text>
           <text>{{item.decoration}}</text>
           <text>户型优势</text>
-          <view wx:for='{{hoursepointList[index]}}' wx:key='index'>
+          <view wx:for="{{pointViewList[index]}}" wx:key='index'>
             <text>{{item}}</text>
           </view>
           <!-- <view>

@@ -107,7 +107,7 @@
         <text>{{caption}}</text>
       </view>
       <view class='img'>
-        <image src='{{imgpath+upload_file_path}}' bindtap='goHouseimg' data-id='{{0}}' data-imgurl='{{imgpath+upload_file_path}}'></image>
+        <image src='{{imgpath+upload_file_path}}' bindtap='goHouseimg' data-imgurl='{{imgpath+upload_file_path}}'></image>
         <view class='explain'>
           <text class='totle'>{{price}}</text>
           <text>户型优势</text>
@@ -127,11 +127,11 @@
     <view class='hours-imgs' wx:if='{{!isbuildsimg}}'>
       <view class='top'>
         <text class='title'>楼盘图</text>
-        <view bindtap='goHouseimg' data-id='1'>查看全部
+        <view bindtap='goBuildimg' data-id='1'>查看全部
           <text class='iconfont iconjiantou'></text>
         </view>
       </view>
-      <view class='img-list' wx:for='{{buildsimg}}' wx:key='{{index}}'>
+      <view class='img-list' wx:for='{{buildsimg}}' wx:key='{{index}}' wx:if='{{item.imgs.length}}'>
         <text>{{item.name}}({{item.imgs.length}}）</text>
         <view class="section section_gap">
           <scroll-view class="scroll-view_H" scroll-x style="width: 100%">

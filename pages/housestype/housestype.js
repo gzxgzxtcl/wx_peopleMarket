@@ -9,20 +9,29 @@ Page({
    */
   data: {
     selIndex:0,
-    hourses:[],       /*户型列表*/
-    // caption: '98m² 舒适两居室',	  /*标题*/
-    // houserhold: '两室一厅一卫',  	/*户型*/
-    // price: '暂无定价',         	/*定价*/
-    // buyingpoint: '户型优势',   	/*户型优势*/
-    // area: '98m²',            	/*建筑面积*/
-    // category: '高层',         	/*产品类型*/
-    // decoration: '精装修',    	/*装修情况*/
-    // houserholdremark: '高端海景洋房，享受高端定制服务。',  	/*户型描述*/
-    hoursepointList:[],           //户型优势列表
+    hourseViewList:[],              //户型显示列表
+    allhourseList:[],                //全部户型列表
+    twohourse:[],                   //两室户型列表
+    threehourse:[],                   //三室户型列表
+
+    pointViewList:[],             //优势显示列表
+    allPointList:[],              //全部优势列表
+    twoPointList:[],               //两室优势列表
+    threePointList:[],            //三室优势列表
+
   },
   changeHouse(e){
     let index = e.currentTarget.dataset.index
     this.setData({ selIndex: index})
+    let type = e.currentTarget.dataset.type
+    //筛选符合类型户型
+    if(type===0){
+      this.setData({ hourseViewList: this.data.allhourseList, pointViewList: this.data.allPointList})
+    }else if(type===1){
+      this.setData({ hourseViewList: this.data.twohourse, pointViewList: this.data.twoPointList })
+    }else if(type===2){
+      this.setData({ hourseViewList: this.data.threehourse, pointViewList: this.data.threePointList })
+    }
   },
   // 查看户型图
   goHouseimg(e){
@@ -42,28 +51,45 @@ Page({
   //获取详情传递的户型列表数据
   getHourseList(options){
     let hourselist = JSON.parse(options.hourselist)
-    this.setData({ hourses: hourselist })
+    this.setData({ allhourseList: hourselist, hourseViewList:hourselist })     //赋值给全部户型列表
     console.log(hourselist)
-    let pointArr=[]
-    for (let i = 0; i < hourselist.length;i++){   //遍历截取亮点文本
-      let _arr=[]
-      if (hourselist[i].buyingpoint===null) return
-      _arr=hourselist[i].buyingpoint.split(',')
-      console.log(_arr)
-      pointArr.push(_arr)
+    let _arr1=[]
+    let _arr2=[]
+    let point=[]
+    let point1=[]
+    let point2=[]
+    for (let j = 0; j < hourselist.length; j++) {
+      if (hourselist[j].houserhold.indexOf('两室') >= 0
+        || hourselist[j].houserhold.indexOf('2室') >= 0
+        || hourselist[j].houserhold.indexOf('两房') >= 0
+        || hourselist[j].houserhold.indexOf('2房') >= 0) {
+        _arr1.push(hourselist[j])
+        point.push(hourselist[j].buyingpoint.split(','))
+        point1.push(hourselist[j].buyingpoint.split(','))                     //两室优势
+      } else if (hourselist[j].houserhold.indexOf('三室') >= 0
+        || hourselist[j].houserhold.indexOf('3室') >= 0
+        || hourselist[j].houserhold.indexOf('三房') >= 0
+        || hourselist[j].houserhold.indexOf('3房') >= 0){
+        _arr2.push(hourselist[j])
+        point.push(hourselist[j].buyingpoint.split(','))
+        point2.push(hourselist[j].buyingpoint.split(','))                   //三室优势
+        }else{
+        point.push(hourselist[j].buyingpoint.split(','))                  //全部优势
+        }
     }
-    this.setData({ hoursepointList: pointArr })
-    console.log(this.data.hoursepointList)
+    this.setData({ twohourse: _arr1, threehourse:_arr2})
+    this.setData({ allPointList: point, pointViewList: point, twoPointList: point1, threePointList:point2})
 
-    for(let j=0;j<hourselist.length;j++){
-      this.getProjectHouserholdFileList(hourselist[j].id)
+    //查询户型图片列表
+    for (let i = 0; i < hourselist.length; i++){
+      this.getProjectHouserholdFileList(hourselist[i].id)
     }
   },
   //通过id获取户型图片列表
   getProjectHouserholdFileList(id) {
     let promise = { houserhold_id: id }
     $http(apiSetting.projectApiFindProjectHouserholdFileListById, promise).then((data) => {
-      console.log(data)
+      // console.log(data)
     }), (error) => {
       console.log(error)
     }
