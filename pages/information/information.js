@@ -314,6 +314,7 @@ Page({
     let promise = { project_id:id}
     $http(apiSetting.projectApiFindProjectDetailsById,promise).then((data)=>{
       let projectdetails=data.data
+      // console.log(this.data.project_info)
       this.setData({
         'project_info.developer.value': projectdetails.developer, 
         'project_info.propertycompany.value': projectdetails.propertycompany,
@@ -340,7 +341,7 @@ Page({
         exemption: projectdetails.exemption,
         phone: projectdetails.phone
       })
-
+      console.log(this.data.project_info)
     }),(error)=>{
       console.log(error)
     }
