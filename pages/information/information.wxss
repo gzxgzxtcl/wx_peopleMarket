@@ -402,6 +402,10 @@ swiper image {
   font-size: 24rpx;
 }
 
+.info .hours-lightspot .other-list .big-weight{
+  width: 100%;
+}
+
 /* 户型样式 */
 
 .info .huxing {
@@ -583,10 +587,6 @@ swiper image {
   width: 100%;
   
 }
-
-/* .info .product-detail .detail-list>view:last-child {
-  margin: 0;
-} */
 
 .info .product-detail .detail-list .txt1 {
   display: block;

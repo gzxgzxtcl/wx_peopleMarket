@@ -1,5 +1,5 @@
 <!-- 我的关注列表页面 -->
-<view class='my-attention'>
+<view class='my-attention' wx:if='{{attentionList.length}}'>
   <view class='attention-item' wx:for='{{attentionList}}' wx:key="{{index}}">
     <view class='hours-list' bindtap='goInformation' data-project_id='{{item.id}}'>
       <view class='img'>
@@ -40,4 +40,4 @@
     </view>
   </view>
 </view>
-<!-- <view class='null-tip' wx:else>暂无关注信息!</view> -->
+<view class='null-tip' wx:else>暂无关注信息!</view>

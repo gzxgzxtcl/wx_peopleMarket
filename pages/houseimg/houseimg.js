@@ -26,8 +26,11 @@ Page({
   },
   // 获取大图
   getBigImg(e){
-    // console.log(e.currentTarget.dataset.imglist)
+    console.log(e.currentTarget.dataset.imglist)
     let imgList = e.currentTarget.dataset.imglist
+    for(let i=0;i<imgList.length;i++){
+      imgList[i] = this.data.imgpath + imgList[i]
+    }
     let current = this.data.imgpath + imgList[0]
     wx.previewImage({
       current: current, // 当前显示图片的http链接

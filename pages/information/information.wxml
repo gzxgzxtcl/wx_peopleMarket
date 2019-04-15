@@ -58,7 +58,8 @@
       <view>
         <image src='../../images/zhekou.png'></image>
       </view>
-      <text>{{couponinfo}}</text>
+      <text wx:if='{{couponinfo}}'>{{couponinfo}}</text>
+      <text wx:else>暂无优惠</text>
     </view>
     <!-- 房型 -->
     <view class='hours-type'>
@@ -78,14 +79,14 @@
       </view>
     </view>
     <!-- 楼盘亮点 -->
-    <view class='hours-lightspot'>
-      <text class='title'>楼盘点亮</text>
-      <view class='overview'>
+    <view class='hours-lightspot' wx:if='{{brightspotsList.length}}'>
+      <text class='title'>楼盘亮点</text>
+      <!-- <view class='overview'>
         <text>亮点概述</text>
         <text>首创5M智慧健康社区；60分钟直达香港</text>
-      </view>
+      </view> -->
       <view class='other-list' style="height:{{islookall?'':'330'}}rpx">
-        <view class='other-list-item' wx:for='{{brightspotsList}}' wx:key='{{index}}' >
+        <view wx:for='{{brightspotsList}}' wx:key='{{index}}' class="other-list-item {{!index?'big-weight':''}}">
           <text>{{item.labels}}</text>
           <view class='tip'>{{item.remark}}</view>
         </view>
@@ -97,7 +98,7 @@
         </view>
     </view>
     <!-- 户型 -->
-    <view class='huxing'>
+    <view class='huxing' wx:if='{{hourselist.length}}'>
       <view class='top'>
         <text>户型（{{hourselist.length}}）</text>
         <view bindtap='goHousetype'>查看全部
@@ -164,15 +165,15 @@
       </view> -->
     </view>
     <!-- 项目详情 -->
-    <view class='product-detail'>
+    <view class='product-detail' wx:if='{{projectInfo.length}}'>
       <text class='title'>项目详情</text>
-      <view class='detail-list' style="height:{{!getmore?480:''}}rpx">
-        <view class='list1' wx:for='{{project_info}}' wx:key='{{index}}' wx:if="{{item.value!==''&&item.value!==null}}">
-          <text class='txt1'>{{item.name}}</text>
-          <text class='txt2'>{{item.value}}</text>
+      <view class='detail-list'>
+        <view class='list1' wx:for='{{projectInfo}}' wx:key='{{index}}'>
+          <text class='txt1' wx:if='{{index<=projectInfoNum}}'>{{item.name}}</text>
+          <text class='txt2' wx:if='{{index<=projectInfoNum}}'>{{item.value}}</text>
         </view>
       </view>
-      <view class='get-more' bindtap='getMoreInfo' wx:if='{{!getmore}}'>查看更多</view>
+      <view class='get-more' bindtap='getMoreInfo' wx:if='{{isMoreInfo}}'>查看更多</view>
     </view>
   </view>
   <!-- 免责分割线 -->
