@@ -42,7 +42,6 @@ Page({
   },
   // 切换banner图
   changeImg(e) {
-    console.log(e)
     this.setData({
       swiperCurrent: e.currentTarget.dataset.index
     })
@@ -63,19 +62,42 @@ Page({
 
   onLoad: function(option) {
     let that = this
-    console.log(app.globalData.storLocalCity)
+    // 登录
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        // console.log(res.code)
+        let promise = {
+          code: res.code
+        }
+        $http(apiSetting.userDecodeUserInfo, promise).then((data) => {
+          console.log(data.data.openid)
+          app.globalData.token = data.data['vx-zhwx-token']
+          app.globalData.openid = data.data.openid
+          if (data.data.isCheck == 0) {
+            app.globalData.isCheck = true
+          } else {
+            app.globalData.isCheck = false
+          }
+          app.globalData.userId = data.data.USERID
+          that.getUserGetUserInfo(data.data.openid)
+        }, (error) => {
+          console.log(error)
+        });
+      }
+    })
+
+// 判断本地是否有数据
     if (app.globalData.storLocalCity) {
       that.data.cityInfo.cityName = app.globalData.storLocalCity.city
       that.getCityFindBuildInfoByCity()
     } else {
       wx.getSetting({
         success(res) {
-          // console.log(res.authSetting['scope.userLocation'])
           if (!res.authSetting['scope.userLocation']) {
             wx.authorize({
               scope: 'scope.userLocation',
               success(res) {
-                // console.log(res)
                 that.getMapLocation();
               },
               fail(res) {
@@ -117,7 +139,6 @@ Page({
     let that = this
     let promise = that.data.cityInfo
     $http(apiSetting.cityFindBuildInfoByCity, promise).then((data) => {
-      // console.log('楼盘信息：',data.data)
       app.globalData.storLocalCity = data.data.cityInfo
       that.setData({
         cityNametext: data.data.cityInfo.city,
@@ -176,12 +197,17 @@ Page({
     });
   },
 
-
-  getPhoneNumber(e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
+  // 获取绑定用户信息
+  getUserGetUserInfo(val) {
+    let that = this
+    $http(apiSetting.userGetUserInfo, {
+      openid: val
+    }).then((data) => {
+      app.globalData.bindUserInfo = data.data
+      console.log(app.globalData.isCheck)
+    })
   },
+
   // 页面跳转
   pageTobind(e) {
     let pageUrl = e.target.dataset.url
