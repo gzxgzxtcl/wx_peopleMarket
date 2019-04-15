@@ -8,7 +8,7 @@ const {
 } = require('../../dist/base/index');
 Page({
   data: {
-    imgpath: 'http://39.98.191.16', 
+    imgpath: 'http://39.98.191.16',
     cityNametext: '',
     imgUrls: [],
     autoplay: true,
@@ -23,9 +23,9 @@ Page({
       cityName: ''
     },
     //楼盘信息列表
-    buildinfolist:[],
+    buildinfolist: [],
     //楼盘信息标签列表
-    buildinfotaglist:[],
+    buildinfotaglist: [],
     // 楼盘信息图片
     buildinfoimg: '',
     //周边楼盘信息列表
@@ -57,7 +57,7 @@ Page({
     let project_id = e.currentTarget.dataset.project_id
     let imgurl = e.currentTarget.dataset.imgurl
     wx.navigateTo({
-      url: '../information/information?project_id=' + project_id+'&&imgurl='+imgurl
+      url: '../information/information?project_id=' + project_id + '&&imgurl=' + imgurl
     })
   },
 
@@ -72,7 +72,8 @@ Page({
           code: res.code
         }
         $http(apiSetting.userDecodeUserInfo, promise).then((data) => {
-          console.log(data.data.openid)
+          console.log('openid:' + data.data.openid)
+          console.log('status:' + data.data.status)
           app.globalData.token = data.data['vx-zhwx-token']
           app.globalData.openid = data.data.openid
           if (data.data.isCheck == 0) {
@@ -88,7 +89,7 @@ Page({
       }
     })
 
-// 判断本地是否有数据
+    // 判断本地是否有数据
     if (app.globalData.storLocalCity) {
       that.data.cityInfo.cityName = app.globalData.storLocalCity.city
       that.getCityFindBuildInfoByCity()
@@ -148,13 +149,15 @@ Page({
       })
       // 获取周边楼盘
       this.getRimBuildInfo();
-      let _arr=[]
-      for (let i = 0; i < data.data.buildInfo.length;i++){
+      let _arr = []
+      for (let i = 0; i < data.data.buildInfo.length; i++) {
         if (!data.data.buildInfo[i].labels) return
         _arr.push(data.data.buildInfo[i].labels.split(','))
         // console.log(_arr)
       }
-      that.setData({ buildinfotaglist:_arr})
+      that.setData({
+        buildinfotaglist: _arr
+      })
     }, (error) => {
       console.log(error)
       // that.hideLoading()
@@ -162,23 +165,23 @@ Page({
   },
 
   //获取周边城市信息
-  getRimBuildInfo(){
+  getRimBuildInfo() {
     let that = this
     // console.log(app.globalData.storLocalCity.id)
     let promise = {
-      page:1,
-      perpage:10,
+      page: 1,
+      perpage: 10,
       login_by: app.globalData.userId,
       city: app.globalData.storLocalCity.id
     }
     // console.log("用户id:", app.globalData)
     // console.log(promise)
     $http(apiSetting.projectApiFindProjectListByCity, promise).then((data) => {
-      console.log('周边城市信息：',data.list)
+      console.log('周边城市信息：', data.list)
       let rimbuildinfo
-      if (data.list){
+      if (data.list) {
         rimbuildinfo = data.list
-      }else{
+      } else {
         rimbuildinfo = []
       }
       that.setData({
@@ -187,14 +190,16 @@ Page({
       let _arr = []
       // if (rimbuildinfo.length<=1) return
       for (let i = 0; i < rimbuildinfo.length; i++) {
-        if (rimbuildinfo[i].labels){
+        if (rimbuildinfo[i].labels) {
           _arr = rimbuildinfo[i].labels.split(',')
         }
       }
-      that.setData({ rimbuildinfotaglist:_arr })
+      that.setData({
+        rimbuildinfotaglist: _arr
+      })
     }, (error) => {
       console.log(error)
-      
+
     });
   },
 
