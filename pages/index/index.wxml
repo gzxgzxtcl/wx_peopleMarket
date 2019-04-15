@@ -26,17 +26,17 @@
   <!-- 功能 -->
   <view class='gongneng-box'>
     <view class='goneneng'>
-      <view class='gn1'>
-        <image data-url='../recommend/recommend' bindtap='pageTobind' src='../../images/recommend.png'></image>
-        <text>我要推荐</text>
+      <view class='gn1' data-url='../recommend/recommend' bindtap='pageTobind'>
+        <image data-url='../recommend/recommend' src='../../images/recommend.png'></image>
+        <text data-url='../recommend/recommend'>我要推荐</text>
       </view>
-      <view class='gn2'>
-        <image data-url='../clients/client' bindtap='pageTobind' src='../../images/client.png'></image>
-        <text>我的客户</text>
+      <view class='gn2' data-url='../clients/client' bindtap='pageTobind'>
+        <image data-url='../clients/client' src='../../images/client.png'></image>
+        <text data-url='../clients/client'>我的客户</text>
       </view>
-      <view class='gn3'>
-        <image data-url='../coupon/coupon' bindtap='pageTobind' src='../../images/discounts.png'></image>
-        <text>优惠券</text>
+      <view class='gn3' data-url='../coupon/coupon' bindtap='pageTobind'>
+        <image data-url='../coupon/coupon' src='../../images/discounts.png'></image>
+        <text data-url='../coupon/coupon'>优惠券</text>
       </view>
     </view>
   </view>
@@ -77,20 +77,12 @@
     </view>
   </view>
 
- <!-- 周边信息标题 -->
+  <!-- 周边信息标题 -->
   <view class='hours' wx:if="{{rimbuildinfolist.length}}">
     <text>周边信息</text>
   </view>
   <!-- 周边楼盘详情 -->
-  <view 
-    class='hours-list' 
-    bindtap='goInformation' 
-    data-project_id='{{item.projectid_id}}' 
-    data-imgurl='{{item.pictureurl}}'
-     wx:for='{{rimbuildinfolist}}' 
-     wx:key='index'
-     wx:if="{{rimbuildinfolist.length}}"
-     >
+  <view class='hours-list' bindtap='goInformation' data-project_id='{{item.projectid_id}}' data-imgurl='{{item.pictureurl}}' wx:for='{{rimbuildinfolist}}' wx:key='index' wx:if="{{rimbuildinfolist.length}}">
     <view class='img'>
       <image src='{{item.pictureurl}}'></image>
     </view>

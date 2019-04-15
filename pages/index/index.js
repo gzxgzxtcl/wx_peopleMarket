@@ -3,6 +3,9 @@
 const app = getApp()
 import apiSetting from '../../http/apiSetting.js'
 import $http from '../../http/http.js'
+const {
+  $Message
+} = require('../../dist/base/index');
 Page({
   data: {
     cityNametext: '',
