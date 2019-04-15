@@ -361,7 +361,6 @@ Page({
     $http(apiSetting.userGetUserInfo, {
       openid: val
     }).then((data) => {
-      ischeck
       if (data.data.ischeck == 0){
         app.globalData.ischeck = true
       }
