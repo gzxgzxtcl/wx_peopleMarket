@@ -59,8 +59,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    //this.data.userInfo.wxid = app.globalData.openid
-    // this.data.userInfo.wxid = 'oIaEE5sLWOCYcsX3nYrlZ6gYC6Dg'
+ 
     if (app.globalData.isCheck) {
       // 经纪人账号
       this.data.userInfo.agencyAccount = app.globalData.bindUserInfo.agencyAccount
@@ -76,8 +75,6 @@ Page({
       this.data.userInfo.sex = app.globalData.bindUserInfo.sex
       this.data.userInfo.wxid = app.globalData.bindUserInfo.wxid
 
-
-      // this.data.showAgencyAccount = app.globalData.bindUserInfo.agencyAccount
       let findIndex = this.data.array.findIndex((n) => {
         return n.name == app.globalData.bindUserInfo.brokertype
       })
@@ -87,7 +84,8 @@ Page({
         gender: this.data.userInfo.sex,
         arrayIndex: findIndex,
         isEdit: false,
-        showAgencyAccount: app.globalData.bindUserInfo.agencyAccount
+        showAgencyAccount: app.globalData.bindUserInfo.agencyAccount,
+        modalPhone: app.globalData.bindUserInfo.phone
       })
     } else {
       this.data.userInfo.wxid = app.globalData.openid
@@ -342,6 +340,8 @@ Page({
 
     let that = this
     let promise = this.data.userInfo
+    console.log(promise)
+    return
     $http(apiSetting.userIdentifyUser, promise).then((data) => {
       if (data.code == 0) {
         that.getUserGetUserInfo(app.globalData.openid)
