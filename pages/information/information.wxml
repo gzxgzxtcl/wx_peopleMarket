@@ -3,7 +3,7 @@
   <!-- banner图 -->
   <view class='num'>
     <text>{{bannerindex+1}}</text>/{{bannerlength}}</view>
-  <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange='bannerChange'> 
+  <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange='bannerChange'>
     <block wx:for="{{imgUrls}}" wx:key="{{index}}">
       <swiper-item>
         <image src="{{imgpath}}{{item}}" class="slide-image" width="355" height="150" />
@@ -45,7 +45,7 @@
           <image src='../../images/right.png'></image>
         </view>
       </view>
-      <view class='add2'>
+      <view class='add2' wx:if='{{showhall!=""}}'>
         <text class='title1'>展厅地址</text>
         <text class='title2'>{{showhall}}</text>
         <view bindtap='pageToMap'>导航
@@ -92,10 +92,10 @@
         </view>
       </view>
       <view class='look-all' wx:if='{{ishaveall}}'>
-          <text bindtap='lookAll' wx:if='{{!islookall}}'>查看全部</text>
-          <text bindtap='lookAll' wx:else>关闭</text>
-          <text class='iconfont iconxiajiantou'></text>
-        </view>
+        <text bindtap='lookAll' wx:if='{{!islookall}}'>查看全部</text>
+        <text bindtap='lookAll' wx:else>关闭</text>
+        <text class='iconfont iconxiajiantou'></text>
+      </view>
     </view>
     <!-- 户型 -->
     <view class='huxing' wx:if='{{hourselist.length}}'>

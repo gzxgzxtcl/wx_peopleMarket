@@ -147,7 +147,7 @@ swiper image {
 /* 地址样式 */
 
 .info .address {
-  height: 100rpx;
+  /* height: 100rpx; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -163,6 +163,7 @@ Page({
     $http(apiSetting.userGetCode, promise).then((data) => {
       wx.hideLoading()
       if (data.code == 0) {
+        // 开启计时器
         that.data.setInter = setInterval(function() {
           that.data.downTime = that.data.downTime - 1
           if (that.data.downTime <= 0) {
@@ -340,8 +341,7 @@ Page({
 
     let that = this
     let promise = this.data.userInfo
-    console.log(promise)
-    return
+    wx.showLoading()
     $http(apiSetting.userIdentifyUser, promise).then((data) => {
       if (data.code == 0) {
         that.getUserGetUserInfo(app.globalData.openid)
@@ -351,6 +351,7 @@ Page({
           type: 'error'
         });
       }
+      wx.hideLoading()
     })
 
   },
