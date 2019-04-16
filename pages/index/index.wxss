@@ -161,19 +161,17 @@ swiper image {
 
 .hours-list .hours-info {
   width: 658rpx;
-  /* height: 100rpx; */
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
-.hours-list .left-info {
+.hours-list .top-info {
   display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 50%;
-  justify-content: space-around;
-  padding-right: 26rpx;
+  height: 44rpx;
+  width: 100%;
+  margin-top: 12rpx;
+  justify-content: space-between;
 }
 
 .hours-list .hours-name {
@@ -188,39 +186,44 @@ swiper image {
   margin-right: 16rpx;
 }
 
-.hours-list .youhui {
-  font-family: 'PingFangTC';
-  font-size: 18rpx;
-  color: #fff;
+.hours-list .top-info .price {
   display: flex;
+  align-items: center;
+  font-family: 'PingFangTC-Regular';
+  font-size: 24rpx;
+  color: #999;
+  letter-spacing: 0.24rpx;
 }
 
-.hours-list .youhui text {
-  background: #20a0ff 60%;
+.hours-list .top-info .price text:first-child {
+  color: #fb1414;
 }
 
-.hours-list .youhui .t1 {
+.hours-list .bottom-info {
+  height: 30rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 22rpx;
+}
+
+.hours-list .sale text {
   display: block;
-  padding: 0 2rpx 0 11rpx;
+  height: 26rpx;
+  background: rgba(32,160,255,0.6);
+  font-family: PingFangTC;
+  font-size: 18rpx;
+  color: #FFFFFF;
+  padding: 0 6rpx 0 4rpx;
   border-radius: 4rpx;
+  margin-left: 20rpx;
 }
 
-.hours-list .youhui .t2 {
-  padding: 0 3rpx 0 2rpx;
-  border-radius: 4rpx;
-  display: block;
-  margin-right: 10rpx;
-}
-
-.hours-list .youhui .t3 {
-  padding: 0 1rpx 0 11rpx;
-  border-radius: 4rpx;
-  display: block;
-}
 
 .hours-list .tag {
   display: flex;
-  flex-wrap: wrap
+  align-items: center;
 }
 
 .hours-list .tag text {
@@ -238,33 +241,13 @@ swiper image {
   margin-bottom: 5rpx;
 }
 
-.hours-list .right-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  flex: 1;
-  justify-content: space-around;
-  padding-left: 30rpx;
-}
-
-.hours-list .right-info .price {
-  font-family: 'PingFangTC-Regular';
-  font-size: 24rpx;
-  color: #999;
-  letter-spacing: 0.24rpx;
-}
-
-.hours-list .right-info .price text:first-child {
-  color: #fb1414;
-}
-
-.hours-list .right-info .hours-address {
+.hours-list .bottom-info .hours-address {
   font-family: 'PingFangTC-Light';
   font-size: 20rpx;
   color: #333;
 }
 
-.hours-list .right-info .hours-address .hours-address-icon {
+.hours-list .bottom-info .hours-address .hours-address-icon {
   font-size: 20rpx;
 }
 
