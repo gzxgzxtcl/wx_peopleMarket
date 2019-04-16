@@ -51,6 +51,7 @@
   background-color: #fff;
   border-top: 1rpx solid #e6e6e6;
   padding-left: 30rpx;
+  box-sizing: border-box;
 }
 
 .iconImg {
