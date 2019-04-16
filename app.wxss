@@ -1,12 +1,19 @@
 /**app.wxss**/
 
 page {
+  width: 100%;
   background-color: #f9fbff;
-  overflow-x:hidden;
+  overflow-x: hidden;
+}
+
+.pack {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
 }
 
 .container {
-  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
