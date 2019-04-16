@@ -4,6 +4,7 @@ page{
 }
 .house-type{
   padding-left: 50rpx;
+  border-bottom: 2rpx solid #E6E6E6;
 }
 
 .house-type .top-sel{
@@ -43,7 +44,7 @@ page{
 .house-type .huxing {
   margin-top: 28rpx;
   padding-bottom: 32rpx;
-  border-bottom: 2rpx solid #E6E6E6;
+  padding-right: 40rpx;
 }
 
 .house-type .huxing .tip {

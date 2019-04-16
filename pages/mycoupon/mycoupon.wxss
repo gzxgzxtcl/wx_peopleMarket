@@ -115,7 +115,7 @@
   font-family: 'PingFang-SC-Medium';
   margin-right: 20rpx;
 }
-
+/* 未使用标签 */
 .coupon-item .info .explain .top>text {
   display: block;
   text-align: center;
@@ -126,6 +126,32 @@
   font-family: 'PingFang-SC-Medium';
   color: #fff;
   background: #20a0ff;
+  border-radius: 4rpx;
+}
+/* 已使用标签 */
+.coupon-item .info .explain .top .isUsed{
+  display: block;
+  text-align: center;
+  line-height: 28rpx;
+  height: 28rpx;
+  width: 68rpx;
+  font-size: 18rpx;
+  font-family: 'PingFang-SC-Medium';
+  color: #fff;
+  background: #cccccc;
+  border-radius: 4rpx;
+}
+/* 已过期标签 */
+.coupon-item .info .explain .top .isOldUsed{
+  display: block;
+  text-align: center;
+  line-height: 28rpx;
+  height: 28rpx;
+  width: 68rpx;
+  font-size: 18rpx;
+  font-family: 'PingFang-SC-Medium';
+  color: #fff;
+  background: #cccccc;
   border-radius: 4rpx;
 }
 

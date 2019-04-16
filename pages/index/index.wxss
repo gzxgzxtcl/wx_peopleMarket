@@ -58,23 +58,27 @@ swiper image {
 }
 
 .dot {
-  width: 120rpx;
-  height: 30rpx;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  width: 100%;
+  /* height: 30rpx; */
+  text-align: center;
+  /* display: flex; */
+  /* justify-content: space-around; */
+  /* align-items: center; */
   position: absolute;
-  top: 395rpx;
+  top: 370rpx;
   z-index: 30;
+  /* background: pink; */
 }
 
 .dot view {
+  display: inline-block;
   width: 16rpx;
   height: 16rpx;
   border: 2rpx solid #000;
   background: #fff;
   border-radius: 50%;
   box-sizing: border-box;
+  margin: 0 10rpx;
 }
 
 .dot .active {
