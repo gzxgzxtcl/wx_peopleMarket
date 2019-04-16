@@ -51,23 +51,21 @@
       <image src='{{imgpath}}{{item.pictureurl}}'></image>
     </view>
     <view class='hours-info'>
-      <view class='left-info'>
+      <view class='top-info'>
         <view class='hours-name'>
           <text>{{item.projectname_cswx}}</text>
-          <view class='youhui'>
-            <!-- <text class='t1'>9.8折</text>
-            <text class='t2'>领</text> -->
-            <text class='t3'>{{item.couponname}}</text>
+          <view class='sale'>
+            <text class='t3'>{{item.issale}}</text>
           </view>
         </view>
-        <view class='tag'>
-          <text wx:for='{{buildinfotaglist[index]}}' wx:key='{{index}}'>{{item}}</text>
-        </view>
-      </view>
-      <view class='right-info'>
         <view class='price'>主力均价：
           <text>{{item.mainprice}}</text>
           <text>元/㎡</text>
+        </view>
+      </view>
+      <view class='bottom-info'>
+        <view class='tag'>
+          <text wx:for='{{buildinfotaglist[index]}}' wx:key='{{index}}'>{{item}}</text>
         </view>
         <view class='hours-address'>
           <text class='hours-address-icon iconfont iconweizhi'></text>
@@ -87,23 +85,21 @@
       <image src='{{imgpath}}{{item.pictureurl}}'></image>
     </view>
     <view class='hours-info'>
-      <view class='left-info'>
+      <view class='top-info'>
         <view class='hours-name'>
           <text>{{item.projectname_cswx}}</text>
-          <view class='youhui'>
-            <!-- <text class='t1'>9.8折</text>
-            <text class='t2'>领</text> -->
-            <text class='t3'>{{item.couponname}}</text>
-          </view>
+          <!-- <view class='sale'>
+            <text class='t3'>{{item.issale}}</text>
+          </view> -->
         </view>
-        <view class='tag'>
-          <text wx:for='{{rimbuildinfotaglist[index]}}' wx:key='{{index}}'>{{item}}</text>
-        </view>
-      </view>
-      <view class='right-info'>
         <view class='price'>主力均价：
           <text>{{item.mainprice}}</text>
           <text>元/㎡</text>
+        </view>
+      </view>
+      <view class='bottom-info'>
+        <view class='tag'>
+          <text wx:for='{{rimbuildinfotaglist[index]}}' wx:key='{{index}}'>{{item}}</text>
         </view>
         <view class='hours-address'>
           <text class='hours-address-icon iconfont iconweizhi'></text>
