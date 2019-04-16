@@ -350,8 +350,8 @@ Page({
           content: data.message,
           type: 'error'
         });
+        wx.hideLoading()
       }
-      wx.hideLoading()
     })
 
   },
@@ -373,6 +373,7 @@ Page({
       if (data.data.ischeck == 0){
         app.globalData.ischeck = true
       }
+      wx.hideLoading()
       app.globalData.bindUserInfo = data.data
       wx.reLaunch({
         url: '../index/index'
