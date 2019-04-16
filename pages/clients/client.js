@@ -107,7 +107,6 @@ Page({
   submit(){
     let promise = this.data.selectList
     $http(apiSetting.recommendFindCustomList, promise).then((data) => {
-      console.log(data.data)
       this.setData({ recommendPersonList: data.data })
     }, (error) => {
       console.log(error)
@@ -119,9 +118,7 @@ Page({
   selItem(){
     this.setData({ 'selectList.searchVal': this.data._val })
     let promise = this.data.selectList
-    // console.log(promise)
     $http(apiSetting.recommendFindCustomList, promise).then((data) => {
-      console.log(data.data)
       this.setData({ recommendPersonList: data.data })
     }, (error) => {
       console.log(error)
@@ -166,7 +163,6 @@ Page({
     this.findCustomList();
     this.getRecommendItemList();
     this.findRecommendPerson();
-    this.getRecommendCommissionInfoList()
   },
   //获取推荐人状态信息
   findCustomList(){
@@ -197,16 +193,6 @@ Page({
         itemInfo: data.data.itemInfo,
         recommendInfo: data.data.recommendInfo
       })
-    }, (error) => {
-      console.log(error)
-    });
-  },
-  //获取佣金
-  getRecommendCommissionInfoList(){
-    let promise = { openID: app.globalData.openid, 'vx-zhwx-token': 'upSmUBBRDfIITGp87nQcs3XMHhIHIGoRxYX+yCLjnoogi3UGgyxfykcyRNYt3jvu9BATG2NBfEZyGmQGS6gdeA=='}
-    $http(apiSetting.recommendCommissionInfoList, promise).then((data) => {
-      console.log(data)
-      this.setData({ recommendPersonList: data.data })
     }, (error) => {
       console.log(error)
     });

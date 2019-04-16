@@ -165,7 +165,6 @@ Page({
           _tagArr.push(buildInfo[j].labels.split(','))
         }
       }
-      console.log(_tagArr)
       this.setData({ buildinfotaglist: _tagArr})
 
       // 获取周边楼盘
@@ -196,10 +195,9 @@ Page({
       login_by: app.globalData.userId,
       city: app.globalData.storLocalCity.id
     }
-    // console.log("用户id:", app.globalData)
+    console.log("globalData:", app.globalData)
     // console.log(promise)
     $http(apiSetting.projectApiFindProjectListByCity, promise).then((data) => {
-      console.log('周边城市信息：', data.list)
       let rimbuildinfo
       if (data.list) {
         rimbuildinfo = data.list
@@ -211,7 +209,6 @@ Page({
       })
       let _arr = []
       // if (rimbuildinfo.length<=1) return
-      console.log(rimbuildinfo)
       for (let i = 0; i < rimbuildinfo.length; i++) {
         if (rimbuildinfo[i].labels) {
           _arr.push(rimbuildinfo[i].labels.split(','))

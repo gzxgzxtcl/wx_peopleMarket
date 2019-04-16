@@ -64,7 +64,6 @@ Page({
   getHourseList(options){
     let hourselist = JSON.parse(options.hourselist)
     this.setData({ allhourseList: hourselist, hourseViewList:hourselist })     //赋值给全部户型列表
-    console.log(hourselist)
     let _arr1=[]
     let _arr2=[]
     let point=[]
@@ -94,7 +93,6 @@ Page({
 
     //查询户型图片列表
     for (let i = 0; i < hourselist.length; i++){
-      console.log(hourselist[i])
       this.getProjectHouserholdFileList(hourselist[i].id)
     }
   },
@@ -102,7 +100,7 @@ Page({
   getProjectHouserholdFileList(id) {
     let promise = { houserhold_id: id }
     $http(apiSetting.projectApiFindProjectHouserholdFileListById, promise).then((data) => {
-      console.log(data.data)
+      if(!data.data)  return
       this.setData({ hourseImgList:data.data})
     }), (error) => {
       console.log(error)

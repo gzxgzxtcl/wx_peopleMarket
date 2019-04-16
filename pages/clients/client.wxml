@@ -125,7 +125,7 @@
             range-key='projectName'
             >
             <view class="picker">
-              <text wx:if='{{itemPakerIndex===null}}'>深圳中海天钻项目</text>
+              <text wx:if='{{itemPakerIndex===null}}'></text>
               <text wx:else>{{itemInfo[itemPakerIndex].projectName}}</text>
             </view>
           </picker>

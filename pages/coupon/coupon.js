@@ -9,29 +9,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isGet: false /*是否领取*/
+    isGet: false,                  /*是否领取*/
+    couponList:[],                 //优惠券列表
+
+
   },
   //点击领取优惠券
   getCoupon(e) {
+    console.log(this)
     let that=this
     let promise = {
-      couponId: e.currentTarget.detail.id,          //卡券ID
+      couponId: e.currentTarget.dataset.couponid,          //卡券ID
       userId: app.globalData.userId                 //用户ID
     }
-    console.log(app.globalData.userId)
+    console.log(promise)
     $http(apiSetting.apiCouponGetCoupon, promise).then((data) => {
-     console.log(data)
+      //  console.log(data)
+      console.log("领了")
+      wx.showToast({
+        title: '领取成功',
+        icon: '../../images/getOK.png',
+        duration: 2000
+      })
+      this.setData({
+        isGet: true
+      })
     }, (error) => {
       console.log(error)
     });
-    // wx.showToast({
-    //   title: '领取成功',
-    //   icon: '../../images/getOK.png',
-    //   duration: 2000
-    // })
-    // this.setData({
-    //   isGet: true
-    // })
   },
 
 
@@ -39,20 +44,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.getAllCouponList()
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
+  //获取未领取优惠券
+  getAllCouponList(){
+    let that=this
+    let promise = {
+      city: "0-166-907-205-",
+      page: 1,
+      perpage: 10
+    }
+    $http(apiSetting.apiCouponUnreceivedList, promise).then((data) => {
+      // console.log(data.data.list)
+      let _arr = data.data.list
+      for(let i=0;i<_arr.length;i++){
+        _arr[i].startDate = _arr[i].startDate.split(' ')[0].split('-').join('.')
+        _arr[i].endDate = _arr[i].endDate.split(' ')[0].split('-').join('.')
+      }
+      console.log(_arr)
+    
+      this.setData({ couponList: _arr})
+    }, (error) => {
+      console.log(error)
+    });
   }
 })

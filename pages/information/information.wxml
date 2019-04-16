@@ -15,21 +15,26 @@
     <view class='name-money'>
       <view class='name'>
         <text>{{projectname_hk}}</text>
-        <view>{{issale}}</view>
+        <view wx:if='{{issale}}'>{{issale}}</view>
       </view>
       <view class='money'>
         <view>主力均价:</view>
         <text class='hours-money'>{{mainprice}}</text>
         <view>元/㎡</view>
-        <view class='tanhao' bindtap="handleOpen2">
+        <view class='tanhao' bindtap="handleOpen2" data-type='{{0}}'>
           <image src='../../images/tanhao.png'></image>
         </view>
       </view>
     </view>
     <!-- 主力均价提示 -->
     <view class='money-tip'>
-      <i-modal visible="{{ visible2 }}" bind:ok="handleClose2" bind:cancel="handleClose2">
-        <view>{{mainpricedescription}}</view>
+      <i-modal 
+        visible="{{ visible2 }}" 
+        bind:ok="handleClose2"
+        bind:cancel="handleClose2"
+        >
+        <view wx:if='{{!mainpriceOrCommission}}' class='model-content'>{{mainpricedescription}}</view>
+        <view wx:else  class='model-content'>{{commissionRule}}</view>
       </i-modal>
     </view>
     <!-- 标签 -->
@@ -109,7 +114,8 @@
         <text>{{caption}}</text>
       </view>
       <view class='img'>
-        <image src='{{imgpath+upload_file_path}}' bindtap='goHouseimg' data-imgurl='{{imgpath+upload_file_path}}'></image>
+        <image wx:if='{{upload_file_path}}' src='{{imgpath+upload_file_path}}' bindtap='goHouseimg' data-imgurl='{{imgpath+upload_file_path}}'></image>
+        <image wx:else src=''></image>
         <view class='explain'>
           <text class='totle'>{{price}}</text>
           <text>户型优势</text>
@@ -126,7 +132,7 @@
       </view>
     </view>
     <!-- 楼盘图 -->
-    <view class='hours-imgs' wx:if='{{!isbuildsimg}}'>
+    <view class='hours-imgs' wx:if='{{isbuildsimg}}'>
       <view class='top'>
         <text class='title'>楼盘图</text>
         <view bindtap='goBuildimg' data-id='1'>查看全部
@@ -204,7 +210,7 @@
   </view>
   <!-- 悬浮窗 -->
   <view class='floating'>
-    <view bindtap='getMoneyRule'>佣金规则</view>
+    <view bindtap="handleOpen2" data-type='{{1}}'>佣金规则</view>
     <view bindtap='goRecommend'>
       <view class='icon'>
         <image src='../../images/tuijian.png'></image>

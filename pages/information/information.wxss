@@ -50,13 +50,14 @@ swiper image {
   margin-top: 28rpx;
   display: flex;
   align-items: flex-start;
+  justify-content: space-between;
 }
 
 .info .name-money .name {
-  width: 40%;
+  width: 45%;
   display: flex;
   align-items: flex-start;
-  padding-right: 20rpx;
+  /* padding-right: 20rpx; */
 }
 
 .info .name-money .name text {
@@ -83,7 +84,7 @@ swiper image {
 
 .info .name-money .money {
   display: flex;
-  flex: 1;
+  height: 100%;
   align-items: flex-end;
   justify-content: flex-end;
   padding-left: 5rpx;
@@ -103,7 +104,7 @@ swiper image {
   font-size: 32rpx;
   font-family: 'PingFangTC-Regular';
   color: #fb1414;
-  margin-left: 14rpx;
+  /* margin-left: 14rpx; */
 }
 
 .info .name-money .money view:nth-last-child(2) {
@@ -621,6 +622,8 @@ swiper image {
   line-height: 30rpx;
 }
 
+
+
 .hr {
   margin-top: 30rpx;
   height: 2rpx;
@@ -759,8 +762,13 @@ swiper image {
   height: 100%;
 }
 
+/* 主力均价说明和佣金规则模态窗样式 */
+.info .money-tip .model-content{
+  padding: 0 20rpx;
+}
+
 /* 模态窗 */
-.model-view{
+/* .model-view{
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
@@ -769,13 +777,13 @@ swiper image {
   z-index: 999;
 }
 .model-view .model{
-  /* display: flex; */
+  display: flex;
   width: 80%;
-  /* position: absolute;
+  position: absolute;
   top:0;
   right: 0;
   bottom: 0;
-  left: 0; */
+  left: 0;
   margin:300rpx auto;
   background: #ffffff;
   border-radius: 10rpx;
@@ -791,4 +799,4 @@ swiper image {
   border-top: 2rpx solid #cccccc;
   text-align: center;
   line-height: 100rpx;
-}
+} */

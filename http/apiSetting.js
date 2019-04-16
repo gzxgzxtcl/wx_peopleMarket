@@ -70,10 +70,10 @@ const serviceModule = {
     method: 'post'
   },
   //获取佣金信息
-  recommendCommissionInfoList: {
-    url: '/recommend/commissionInfoList',
-    method: 'post'
-  },
+  // recommendCommissionInfoList: {
+  //   url: '/recommend/commissionInfoList',
+  //   method: 'post'
+  // },
 
 
   projectApiFindProjectInfoById: { //详情-获取项目信息
@@ -124,6 +124,11 @@ const serviceModule = {
     url: '/projectApi/findSettingDict',
     method: 'post'
   },
+  //获取优惠券
+  apiCouponUnreceivedList:{
+    url: '/api/coupon/unreceivedList',
+    method: 'post'
+  },
   //领取卡券
   apiCouponGetCoupon:{
     url: '/api/coupon/getCoupon',
@@ -131,7 +136,7 @@ const serviceModule = {
   },
   //我的优惠券列表
   apiCouponList:{
-    url: '/api/coupon/list',
+    url: '/api/coupon/receivedList',
     method: 'post'
   },
 }

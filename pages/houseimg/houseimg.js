@@ -21,12 +21,10 @@ Page({
   // 户型图切换
   selImg(e){
     var num = e.currentTarget.dataset.num;
-    console.log(num)
     this.setData({ selItem:num})
   },
   // 获取大图
   getBigImg(e){
-    console.log(e.currentTarget.dataset.imglist)
     let imgList = e.currentTarget.dataset.imglist
     for(let i=0;i<imgList.length;i++){
       imgList[i] = this.data.imgpath + imgList[i]
@@ -42,9 +40,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     let arr = JSON.parse(options.buildsimg)
-    console.log(arr)
     let _arr=[]
     for(let i=0;i<arr.length;i++){
       if(arr[i].imgs.length){
