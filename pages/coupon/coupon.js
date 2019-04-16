@@ -1,4 +1,8 @@
 // pages/coupon /coupon.js
+const app = getApp()
+import apiSetting from '../../http/apiSetting.js'
+import $http from '../../http/http.js'
+
 Page({
 
   /**
@@ -7,16 +11,27 @@ Page({
   data: {
     isGet: false /*是否领取*/
   },
-
-  getCoupon() {
-    wx.showToast({
-      title: '领取成功',
-      icon: '../../images/getOK.png',
-      duration: 2000
-    })
-    this.setData({
-      isGet: true
-    })
+  //点击领取优惠券
+  getCoupon(e) {
+    let that=this
+    let promise = {
+      couponId: e.currentTarget.detail.id,          //卡券ID
+      userId: app.globalData.userId                 //用户ID
+    }
+    console.log(app.globalData.userId)
+    $http(apiSetting.apiCouponGetCoupon, promise).then((data) => {
+     console.log(data)
+    }, (error) => {
+      console.log(error)
+    });
+    // wx.showToast({
+    //   title: '领取成功',
+    //   icon: '../../images/getOK.png',
+    //   duration: 2000
+    // })
+    // this.setData({
+    //   isGet: true
+    // })
   },
 
 

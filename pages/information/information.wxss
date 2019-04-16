@@ -144,6 +144,7 @@ swiper image {
   margin-right: 20rpx;
 }
 
+
 /* 地址样式 */
 
 .info .address {
@@ -754,4 +755,38 @@ swiper image {
 .floating>view:last-child .icon image {
   width: 100%;
   height: 100%;
+}
+
+/* 模态窗 */
+.model-view{
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  z-index: 999;
+}
+.model-view .model{
+  /* display: flex; */
+  width: 80%;
+  /* position: absolute;
+  top:0;
+  right: 0;
+  bottom: 0;
+  left: 0; */
+  margin:300rpx auto;
+  background: #ffffff;
+  border-radius: 10rpx;
+  padding: 20rpx 20rpx 0 20rpx;
+}
+.model-view .top{
+  max-height: 500rpx;
+  overflow-y: scroll
+}
+.model-view .bottom{
+  width: 100%;
+  height: 100rpx;
+  border-top: 2rpx solid #cccccc;
+  text-align: center;
+  line-height: 100rpx;
 }

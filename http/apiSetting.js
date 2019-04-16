@@ -123,7 +123,17 @@ const serviceModule = {
   projectApiFindSettingDict: {
     url: '/projectApi/findSettingDict',
     method: 'post'
-  }
+  },
+  //领取卡券
+  apiCouponGetCoupon:{
+    url: '/api/coupon/getCoupon',
+    method: 'post'
+  },
+  //我的优惠券列表
+  apiCouponList:{
+    url: '/api/coupon/list',
+    method: 'post'
+  },
 }
 const ApiSetting = { ...serviceModule
 }
