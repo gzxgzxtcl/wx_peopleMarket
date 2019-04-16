@@ -17,7 +17,7 @@
               <text>中海天钻</text>
             </view>
             <text bindtap='getCoupon' wx:if='{{!isGet}}'>点击领取</text>
-            <text wx:else>已领取</text>
+            <text wx:else style="color:{{'#9699a9'}}">已领取</text>
           </view>
           <view class='bottom'>
             <view>使用规则：

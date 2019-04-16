@@ -27,7 +27,7 @@
       </view>
     </view>
     <!-- 主力均价提示 -->
-    <view>
+    <view class='money-tip'>
       <i-modal visible="{{ visible2 }}" bind:ok="handleClose2" bind:cancel="handleClose2">
         <view>{{mainpricedescription}}</view>
       </i-modal>
@@ -213,3 +213,10 @@
     </view>
   </view>
 </view>
+
+<!-- <view class='model-view' catchtouchmove='true'>
+  <view class='model' bindtouchmove='true'>
+    <view class='top' >容内容容</view>
+    <view class='bottom'>关闭</view>
+  </view>
+</view> -->
