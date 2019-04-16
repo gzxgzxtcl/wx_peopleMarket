@@ -1,7 +1,8 @@
 <!-- 户型图页面 -->
 <view class='house-img-page'>
   <view class='house-img'>
-    <image src='{{imgpath}}{{buildImgList[selItem].imgs[0]}}' bindtap='getBigImg' data-imglist='{{buildImgList[selItem].imgs}}'></image>
+    <image wx:if='{{buildImgList[selItem].imgs[0]}}' src='{{imgpath+buildImgList[selItem].imgs[0]}}' bindtap='getBigImg' data-imglist='{{buildImgList[selItem].imgs}}'></image>
+    <image wx:else src=''></image>
   </view>
   <view class='tabbar'>
     <view 

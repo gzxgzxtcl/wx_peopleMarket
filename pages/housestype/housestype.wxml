@@ -21,7 +21,8 @@
         <text>{{item.caption}}</text>
       </view>
       <view class='img'>
-        <image src='{{imgpath+hourseImgList[0].upload_file_path}}' bindtap='goHouseimg' data-imglist='{{imgpath+hourseImgList[0].upload_file_path}}'></image>
+        <image wx:if='{{hourseImgList[0].upload_file_path}}' src='{{imgpath+hourseImgList[0].upload_file_path}}' bindtap='goHouseimg' data-imglist='{{imgpath+hourseImgList[0].upload_file_path}}'></image>
+        <image wx:else src=''></image>
         <view class='explain'>
           <text class='totle'>{{item.price}}</text>
           <text>{{item.decoration}}</text>

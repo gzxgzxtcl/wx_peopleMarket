@@ -18,6 +18,8 @@ Page({
     ishaveall:false,          /*是否大于5条亮点 */
     islookall:false,         /*是否查看全部*/
 
+    mainpriceOrCommission:0,      //0代表显示主力均价提示，1表示佣金规则
+
     phone:'',                 //联系我们-电话
     /*
       项目信息
@@ -68,7 +70,7 @@ Page({
     projectInfoNum:0,                //项目详情条数
    
     exemption:'',                           /*免责条款*/
-    commissionRule:'',                    //佣金规则
+    commissionRule: '',                    //佣金规则  
     /*
       房型列表
     */
@@ -122,14 +124,12 @@ Page({
   getClauseAndRule(){
     let promise1 = { dictname: '免责条款'}
     $http(apiSetting.projectApiFindOtherDictValues, promise1).then((data) => {
-      console.log(data.data)
       this.setData({ exemption:data.data})
     }), (error) => {
       console.log(error)
     }
     let promise2 = { dictname: '佣金规则' }
     $http(apiSetting.projectApiFindOtherDictValues, promise2).then((data) => {
-      console.log(data.data)
       this.setData({ commissionRule:data.data})
     }), (error) => {
       console.log(error)
@@ -214,8 +214,11 @@ Page({
     let promise = { houserhold_id:id}
     $http(apiSetting.projectApiFindProjectHouserholdFileListById, promise).then((data) => {
       let imgArr=data.data[0]
-      console.log(data)
-      this.setData({ upload_file_path: imgArr.upload_file_path})
+      if (imgArr){
+        this.setData({ upload_file_path: imgArr.upload_file_path })
+      }else{
+        this.setData({ upload_file_path: '' })
+      }
     }), (error) => {
       console.log(error)
     }
@@ -225,7 +228,7 @@ Page({
     let promise = { project_id: id}
     $http(apiSetting.projectApiFindProjectHouserholdListById, promise).then((data) => {
       let hourserholdlist=data.data[0];
-      // console.log(data.data)
+      if (!hourserholdlist)  return
       this.setData({
         hourselist: data.data,
         caption: hourserholdlist.caption,	
@@ -246,12 +249,11 @@ Page({
     }
   },
   //通过id获取项目详情
-  
   getProjectDetails(id) {
     let promise = { project_id: id }
     $http(apiSetting.projectApiFindProjectDetailsById, promise).then((data) => {
       let projectdetails = data.data
-      console.log(data.data)
+      if (!projectdetails)  return
       let _projectInfo=[]
       _projectInfo.push(
         { name: '开发商', value: projectdetails.developer},   
@@ -295,7 +297,6 @@ Page({
         exemption: projectdetails.exemption,
         phone: projectdetails.phone
       })
-      console.log(this.data.projectInfo)
     }), (error) => {
       console.log(error)
     }
@@ -306,7 +307,7 @@ Page({
     let promise = { project_id:id}
     $http(apiSetting.projectApiFindProjectInfoById, promise).then((data) => {
       let projectinfo=data.data
-      console.log('项目信息：',projectinfo)
+      if (!projectinfo) return
       this.setData({
         project_id: projectinfo.id,
         projectname_hk: projectinfo.projectname_hk,
@@ -372,7 +373,6 @@ Page({
     this.setData({
       isAttention: !this.data.isAttention
     })
-    console.log("is:",this.data.isAttention)
     if (this.data.isAttention) {                  //isAttention为true,则发起关注请求
       let promise = this.data.attentionList
       $http(apiSetting.projectApiInsertMyConc, promise).then((data) => {
@@ -410,7 +410,14 @@ Page({
   },
 
   // 主力均价提示 
-  handleOpen2(){
+  handleOpen2(e){
+    let type = e.currentTarget.dataset.type 
+    if(type===0){
+      this.setData({ mainpriceOrCommission:0})
+    }
+    if(type===1){
+      this.setData({ mainpriceOrCommission: 1 })
+    }
     this.setData({
       visible2: true
     });
@@ -449,9 +456,10 @@ Page({
     }
   },
   //查看佣金规则
-  getMoneyRule(){
-    console.log('佣金规则')
-  },
+  // getMoneyRule(e){
+  //   console.log('佣金规则')
+
+  // },
   //去推荐
   goRecommend(){
     // console.log(this.data.city_id)

@@ -402,6 +402,13 @@
 .drawer .content .project .section picker{
   width: 100%;
 }
+.drawer .content .project .section picker text{
+  width: 100%;
+  height: 56rpx;
+  display: block;
+  text-align: left;
+  line-height: 56rpx;
+}
 
 
 /* 时间区间样式 */
