@@ -158,7 +158,7 @@ Page({
     let that = this
     let promise = {
       mobile: that.data.userInfo.phone,
-      type: 2
+      openid: app.globalData.openid
     }
     $http(apiSetting.userGetCode, promise).then((data) => {
       wx.hideLoading()
@@ -205,7 +205,8 @@ Page({
     let that = this
     let promise = {
       mobile: that.data.userInfo.phone,
-      code: this.data.noteCodeVal
+      code: this.data.noteCodeVal,
+      openid: app.globalData.openid
     }
     $http(apiSetting.userCheckSMSCode, promise).then((data) => {
       if (data.code == 0) {

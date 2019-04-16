@@ -38,7 +38,7 @@
     </view>
     <!-- 地址 -->
     <view class='address'>
-      <view class='add1'>
+      <view class='add1' wx:if='{{salesaddr!=""}}'>
         <text class='title1'>售楼处地址</text>
         <text class='title2'>{{salesaddr}}</text>
         <view bindtap='pageToMap'>导航

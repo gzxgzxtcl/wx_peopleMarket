@@ -136,6 +136,7 @@
 
 /* 无关注信息提示 */
 .null-tip{
+  width:100%;
   text-align: center;
   margin-top: 300rpx;
   font-family: 'PingFang-SC-Medium';

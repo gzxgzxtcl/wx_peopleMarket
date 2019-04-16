@@ -136,6 +136,7 @@ swiper image {
 
 .goneneng .gn3 image {
   width: 64rpx;
+  height:50rpx;
 }
 
 .hours {
