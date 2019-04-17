@@ -35,6 +35,7 @@
       <i-modal 
         visible="{{ visible2 }}" 
         bind:ok="handleClose2"
+        show-cancel="{{!visible2}}"
         bind:cancel="handleClose2"
         >
         <view wx:if='{{!mainpriceOrCommission}}' class='model-content'>{{mainpricedescription}}</view>
