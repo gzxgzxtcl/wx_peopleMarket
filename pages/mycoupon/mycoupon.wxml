@@ -19,8 +19,8 @@
         <view class='explain'>
           <view class='top'>
             <view>
-              <!-- <text>深圳</text>
-              <text>·</text> -->
+              <text>{{item.city}}</text>
+              <text>·</text>
               <text>{{item.projectName}}</text>
             </view>
             <text wx:if='{{usedIndex===0}}'>未使用</text>
