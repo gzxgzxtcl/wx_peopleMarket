@@ -152,7 +152,7 @@ Page({
     $http(apiSetting.recommendGetProjectList, promise).then((data) => {
       if (that.data.reportList.projectId) {
         let findI = data.data.findIndex((n) => {
-          return n.wxProjectId = that.data.reportList.projectId
+          return n.wxProjectId == that.data.reportList.projectId
         })
         that.setData({
           arrayProject: data.data,
@@ -189,7 +189,6 @@ Page({
   },
   //确认推荐
   bindSub() {
-    console.log(this.data.reportList)
     if (this.data.reportList.customName == "") {
       $Message({
         content: '请输入客户姓名',

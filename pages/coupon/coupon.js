@@ -31,8 +31,8 @@ Page({
           icon: '../../images/getOK.png',
           duration: 2000
         })
-        
-         this.setData({ 'couponList.receivedStatus':true})
+         let a = 'couponList['+index+'].receivedStatus'
+         this.setData({ a:true})
        }
       // wx.showToast({
       //   title: '领取成功',

@@ -3,5 +3,5 @@
     "i-input": "../../dist/input/index",
     "i-drawer": "../../dist/drawer/index"
   },
-  "navigationBarTitleText": "我的客户"
+  "navigationBarTitleText": "我的推荐"
 }

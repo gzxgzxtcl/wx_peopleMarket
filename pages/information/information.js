@@ -627,7 +627,6 @@ Page({
   // },
   //去推荐
   goRecommend() {
-    // console.log(this.data.city_id)
     wx.navigateTo({
       url: '../recommend/recommend?project_id=' + this.data.project_id,
     })
