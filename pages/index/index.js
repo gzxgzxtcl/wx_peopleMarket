@@ -216,11 +216,8 @@ Page({
       openid: val
     }).then((data) => {
       app.globalData.bindUserInfo = data.data
-
-      // 隐藏导航栏加载框
-      wx.hideNavigationBarLoading();
-      // 停止下拉动作
-      wx.stopPullDownRefresh();
+      
+      that.stopRefresh()
     })
   },
 
@@ -237,5 +234,12 @@ Page({
     // 显示导航栏加载框
     wx.showNavigationBarLoading()
     this.onLoad()
+  },
+  // 停止刷新
+  stopRefresh() {
+    // 隐藏导航栏加载框
+    wx.hideNavigationBarLoading();
+    // 停止下拉动作
+    wx.stopPullDownRefresh();
   }
 })

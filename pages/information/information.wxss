@@ -268,6 +268,7 @@ swiper image {
 }
 
 .info .hours-type .bottom-list {
+  box-sizing:border-box;
   width: 100%;
   padding-left: 40rpx;
   display: flex;
@@ -284,31 +285,29 @@ swiper image {
 }
 
 .info .hours-type .bottom-list .type text:first-child {
-  width: 120rpx;
+  width: 170rpx;
   font-size: 28rpx;
   color: #333;
   float: left;
   overflow: hidden;
+  white-space:nowrap;
 }
 
 .info .hours-type .bottom-list .type text:nth-of-type(2) {
   /* display: block; */
   /* width: 240rpx; */
   font-size: 28rpx;
-  font-family: 'PingFang-SC-Regular';
   color: #333;
   float: left;
   /* display: flex; */
   flex: 1;
-  margin-left: 36rpx;
+  margin-left: 2rpx;
 }
 
 .info .hours-type .bottom-list .type text:nth-of-type(3) {
-  width: 294rpx;
+  width: 290rpx;
   font-size: 28rpx;
-  font-family: 'PingFang-SC-Regular';
   color: #8d91a2;
-  margin-right:68rpx;
   float: right;
 }
 
