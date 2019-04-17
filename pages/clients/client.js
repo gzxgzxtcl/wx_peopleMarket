@@ -168,7 +168,6 @@ Page({
   findCustomList(){
     let promise = { openID: app.globalData.openid }
     $http(apiSetting.recommendFindCustomList, promise).then((data) => {
-      // console.log(data.data)
       this.setData({ recommendPersonList:data.data})
     }, (error) => {
       console.log(error)
@@ -179,7 +178,6 @@ Page({
     let promise = { openID: app.globalData.openid}
     $http(apiSetting.recommendFindRecommendPerson, promise).then((data) => {
       this.setData({ peoplesArray:data.data})
-      console.log(data.data)
     }, (error) => {
       console.log(error)
     });

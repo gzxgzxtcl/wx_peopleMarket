@@ -43,7 +43,7 @@
     <view class='cilent-info'>
       <view class='name'>
         <text>{{item.name}}</text>
-        <text>{{item.refer_mobile}}</text>
+        <text>{{item.mobile}}</text>
       </view>
       <view>
         <text>{{item.cityName}}</text>
@@ -99,7 +99,7 @@
   </view>
 </view>
  <!-- 抽屉 -->
-<view class='drawer' wx:if='{{showRight}}'>
+<view class='drawer' wx:if='{{showRight}}' catchtouchmove='true' >
   <view class='shade' bindtap='hideDrawer'></view>
   <view class='content'>
     <view class='city'>

@@ -185,6 +185,7 @@ Page({
       city: app.globalData.storLocalCity.id
     }
     $http(apiSetting.projectApiFindProjectListByCity, promise).then((data) => {
+     
       let rimbuildinfo
       if (data.list) {
         rimbuildinfo = data.list
@@ -199,6 +200,8 @@ Page({
       for (let i = 0; i < rimbuildinfo.length; i++) {
         if (rimbuildinfo[i].labels) {
           _arr.push(rimbuildinfo[i].labels.split(','))
+        }else{
+          _arr.push('')
         }
       }
       that.setData({
