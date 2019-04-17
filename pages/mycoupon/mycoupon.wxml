@@ -13,8 +13,7 @@
       <image wx:else src='../../images/reduced_due.png'></image>
       <view class='info'>
         <view class='num'>
-          <!-- <text>98</text>
-          <text>折</text> -->
+          <!-- 98<text>折</text>   -->
           <text>{{item.couponname}}</text>
         </view>
         <view class='explain'>
