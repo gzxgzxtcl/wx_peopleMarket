@@ -50,7 +50,7 @@ Page({
   getAllCouponList(){
     let that=this
     let promise = {
-      city: "0-166-907-205-",
+      city: app.globalData.storLocalCity.id,
       page: 1,
       perpage: 10
     }

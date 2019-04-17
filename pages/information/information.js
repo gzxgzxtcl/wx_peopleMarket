@@ -24,7 +24,7 @@ Page({
     /*
       项目信息
      */
-    projectname_hk:'',                  	/*海客案名（项目名）*/
+    projectname_cswx:'',                  	/*海客案名（项目名）*/
     issale:'',                          	/*在售状态，如（开盘）*/
     salesaddr:'',                         /*售楼地址*/
     showhall:'',  	                      /*展厅地址*/
@@ -296,7 +296,8 @@ Page({
       this.setData({
         projectInfo: _arr,
         exemption: projectdetails.exemption,
-        phone: projectdetails.phone
+        phone: projectdetails.phone,
+        projectname_cswx: projectdetails.projectname_cswx
       })
     }), (error) => {
       console.log(error)
@@ -311,7 +312,7 @@ Page({
       if (!projectinfo) return
       this.setData({
         project_id: projectinfo.id,
-        projectname_hk: projectinfo.projectname_hk,
+        // projectname_hk: projectinfo.projectname_hk,
         issale: projectinfo.issale,
         salesaddr: projectinfo.salesaddr,
         showhall: projectinfo.showhall,
@@ -358,7 +359,6 @@ Page({
       if(!imgs[i].imgs.length) continue
       _arr.push('1')
     }
-    console.log(imgs)
     if(_arr.length===0){
       this.setData({ isbuildsimg:false})
     }else{
