@@ -405,9 +405,6 @@ swiper image {
   font-size: 24rpx;
 }
 
-.info .hours-lightspot .other-list .big-weight{
-  width: 100%;
-}
 
 /* 户型样式 */
 

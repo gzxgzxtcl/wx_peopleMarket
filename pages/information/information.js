@@ -87,7 +87,8 @@ Page({
     projectInfo: [], //项目详情
     isMoreInfo: false, //是否有更多详情
     projectInfoNum: 0, //项目详情条数
-
+    lightspot:'',      //亮点概述
+    spots:0,          //亮点条数
     exemption: '',
     /*免责条款*/
     commissionRule: '', //佣金规则  
@@ -138,18 +139,13 @@ Page({
       'attentionList.login_by': app.globalData.userId,
       'attentionList.project_id': project_id
     })
-    // console.log(app.globalData,project_id)
     this.isAttentionProject()
-
-    // this.resetBanner(imgurl);                     //初始化轮播图
-    this.getSpotLength(); //获取亮点条数
-    this.getProjectInfo(project_id); // 通过id获取项目信息
-    // this.getProjectDetails(project_id);          //通过id获取项目详情
-    this.getProjectDetails(project_id) //通过id获取项目详情
-
-    this.getProjectHouserholdList(project_id); //通过id查询户型列表
-    this.getHourseImgList(project_id); //通过类型查询楼盘图
-    this.getClauseAndRule(); //获取免责条款和佣金规则
+    
+    this.getProjectInfo(project_id);              // 通过id获取项目信息
+    this.getProjectDetails(project_id)                //通过id获取项目详情
+    this.getProjectHouserholdList(project_id);        //通过id查询户型列表
+    this.getHourseImgList(project_id);                //通过类型查询楼盘图
+    this.getClauseAndRule();                          //获取免责条款和佣金规则
   },
   //查询免责条款和佣金规则
   getClauseAndRule() {
@@ -202,13 +198,11 @@ Page({
       picturetype: "规划图"
     }
     this.getHourseImgFun(promise5)
-    // console.log(this.data.buildsimg)
   },
   //请求楼盘图接口函数
   getHourseImgFun(promise) { //楼盘主图,实景图,效果图,配套图,规划图
     $http(apiSetting.projectApiFindProjectImagesListByType, promise).then((data) => {
       let _arr = data.data
-      // console.log(_arr)
       let _arr2 = []
       if (promise.picturetype === "项目主图") {
         for (let i = 0; i < _arr.length; i++) {
@@ -311,11 +305,9 @@ Page({
         decoration: hourserholdlist.decoration,
         houserholdremark: hourserholdlist.houserholdremark,
       })
-      // console.log(hourserholdlist)
       this.setData({
         pointList: hourserholdlist.buyingpoint.split(',')
       })
-      // console.log(this.data.pointList)
       this.getProjectHouserholdFileList(hourserholdlist.id);
     }), (error) => {
       console.log(error)
@@ -329,6 +321,7 @@ Page({
     $http(apiSetting.projectApiFindProjectDetailsById, promise).then((data) => {
       let projectdetails = data.data
       if (!projectdetails) return
+      this.setData({ lightspot: projectdetails.highlights})
       let _projectInfo = []
       _projectInfo.push({
         name: '开发商',
@@ -354,10 +347,7 @@ Page({
       }, {
         name: '物业费',
         value: projectdetails.propertyexpenses
-      }, {
-        name: '免责条款',
-        value: projectdetails.exemption
-      }, {
+      },{
         name: '佣金信息',
         value: projectdetails.commissioninfo
       }, {
@@ -375,9 +365,6 @@ Page({
       }, {
         name: '绿化情况',
         value: projectdetails.greencoverage
-      }, {
-        name: '亮点概述',
-        value: projectdetails.highlights
       }, {
         name: '建筑规划',
         value: projectdetails.panning
@@ -438,6 +425,7 @@ Page({
     $http(apiSetting.projectApiFindProjectInfoById, promise).then((data) => {
       let projectinfo = data.data
       if (!projectinfo) return
+      this.getSpotLength(projectinfo.brightspotsList);                         //获取亮点条数
       this.setData({
         project_id: projectinfo.id,
         // projectname_hk: projectinfo.projectname_hk,
@@ -473,7 +461,6 @@ Page({
   },
   //户型图片点击事件
   goHouseimg(e) {
-    console.log(e)
     let imgurl = e.currentTarget.dataset.imgurl;
     wx.previewImage({
       current: imgurl, // 当前显示图片的http链接
@@ -503,7 +490,6 @@ Page({
   },
   //楼盘图查看更多事件
   goBuildimg(e) {
-    // console.log(e)
     // let id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '../houseimg/houseimg?buildsimg=' + JSON.stringify(this.data.buildsimg)
@@ -608,16 +594,16 @@ Page({
     })
   },
   //判断亮点条数
-  getSpotLength() {
-    let spots = this.data.brightspotsList.length
-    if (spots > 5) {
+  getSpotLength(list) {
+    let spots = list.length
+    if (spots > 4) {
       ishaveall: true
       this.setData({
-        ishaveall: true
+        ishaveall: true,
+        spots: 4
       })
-    }
-    else {
-      return
+    }else{
+      this.setData({ spots: spots})
     }
   },
   //查看佣金规则

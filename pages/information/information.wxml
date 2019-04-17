@@ -91,20 +91,23 @@
     <!-- 楼盘亮点 -->
     <view class='hours-lightspot' wx:if='{{brightspotsList.length}}'>
       <text class='title'>楼盘亮点</text>
-      <!-- <view class='overview'>
+      <view class='overview' wx:if='{{lightspot}}'>
         <text>亮点概述</text>
-        <text>首创5M智慧健康社区；60分钟直达香港</text>
-      </view> -->
-      <view class='other-list' style="height:{{islookall?'':'330'}}rpx">
-        <view wx:for='{{brightspotsList}}' wx:key='{{index}}' class="other-list-item {{!index?'big-weight':''}}">
-          <text>{{item.labels}}</text>
+        <text>{{lightspot}}</text>
+      </view>
+      <view class='other-list' >
+        <view wx:for='{{brightspotsList}}' wx:key='{{index}}' class="other-list-item" wx:if='{{islookall}}'>
+          <text >{{item.labels}}</text>
           <view class='tip'>{{item.remark}}</view>
+        </view>
+        <view wx:for='{{spots}}' wx:key='{{index}}' class="other-list-item" wx:if='{{!islookall}}'>
+          <text >{{brightspotsList[index].labels}}</text>
+          <view class='tip'>{{brightspotsList[index].remark}}</view>
         </view>
       </view>
       <view class='look-all' wx:if='{{ishaveall}}'>
         <text bindtap='lookAll' wx:if='{{!islookall}}'>查看全部</text>
         <text bindtap='lookAll' wx:else>关闭</text>
-        <text class='iconfont iconxiajiantou'></text>
       </view>
     </view>
     <!-- 户型 -->
@@ -179,7 +182,7 @@
     <view class='product-detail' wx:if='{{projectInfo.length}}'>
       <text class='title'>项目详情</text>
       <view class='detail-list'>
-        <view class='list1' wx:for='{{projectInfo}}' wx:key='{{index}}'>
+        <view class='list1' wx:for='{{projectInfo}}' wx:key='{{index}}' >
           <text class='txt1' wx:if='{{index<=projectInfoNum}}'>{{item.name}}</text>
           <text class='txt2' wx:if='{{index<=projectInfoNum}}'>{{item.value}}</text>
         </view>
