@@ -1,7 +1,7 @@
 // 测试地址
-const url = 'http://39.98.191.16/zhwx-api'
+// const url = 'http://39.98.191.16/zhwx-api'
 // 正式地址
-// const url = 'https://haiketest.coli688.com/zhwx-api'
+const url = 'https://qmyx.coli688.com/zhwx-api'
 
 let $httpServer = function(opts, data) {
   // console.log(getApp().globalData.token)
