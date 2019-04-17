@@ -131,7 +131,6 @@ Page({
         // console.log(res.longitude)
         that.data.cityInfo.latitude = res.latitude.toString()
         that.data.cityInfo.longitude = res.longitude.toString()
-        // console.log(that.data.cityInfo.latitude)
         that.getCityFindBuildInfoByCity()
       },
       fail: function(res) {
@@ -154,11 +153,9 @@ Page({
         imgUrls: data.data.rollImg,
         buildinfolist: data.data.buildInfo,
       })
-      // console.log(data.data.buildInfo)
       let buildInfo = data.data.buildInfo
       let _tagArr=[]
       for (let j = 0; j < buildInfo.length;j++){
-        // console.log(buildInfo[j].labels)
         if (buildInfo[j].labels===undefined){
           _tagArr.push('')
         }else{
@@ -169,34 +166,21 @@ Page({
 
       // 获取周边楼盘
       this.getRimBuildInfo();
-      // let _arr = []
-      // console.log(data.data.buildInfo)
-      // for (let i = 0; i < data.data.buildInfo.length; i++) {
-      //   if (!data.data.buildInfo[i].labels) return
-      //   _arr.push(data.data.buildInfo[i].labels.split(','))
-      //   // console.log(_arr)
-      // }
-      // that.setData({
-      //   buildinfotaglist: _arr
-      // })
+
     }, (error) => {
       console.log(error)
-      // that.hideLoading()
     });
   },
 
   //获取周边城市信息
   getRimBuildInfo() {
     let that = this
-    // console.log(app.globalData.storLocalCity.id)
     let promise = {
       page: 1,
       perpage: 10,
       login_by: app.globalData.userId,
       city: app.globalData.storLocalCity.id
     }
-    console.log("globalData:", app.globalData)
-    // console.log(promise)
     $http(apiSetting.projectApiFindProjectListByCity, promise).then((data) => {
       let rimbuildinfo
       if (data.list) {
@@ -230,7 +214,6 @@ Page({
       openid: val
     }).then((data) => {
       app.globalData.bindUserInfo = data.data
-      console.log(app.globalData.isCheck)
     })
   },
 

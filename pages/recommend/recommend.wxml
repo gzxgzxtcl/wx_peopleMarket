@@ -58,7 +58,7 @@
       <span class="">{{reportList.reportMobile}}</span>
     </li>
     <li>
-      <span class='title'>推荐身份</span>
+      <span class='title'>推荐人身份</span>
       <span class="">{{reportList.reportType}}</span>
     </li>
   </ul>

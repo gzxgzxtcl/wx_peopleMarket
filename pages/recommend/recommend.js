@@ -11,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    placeholderText:'请输入客户相关描述，如意向户型、面积等',
+    placeholderText: '请输入客户相关描述，如意向户型、面积等',
     isCitySelect: false, // 是否选择城市
     visible: false,
     visible2: false, //确认推荐模态窗
@@ -53,7 +53,7 @@ Page({
     } else {
       this.getRecommendGetProjectList()
     }
-   
+
     if (app.globalData.isCheck) {
       let reportList = that.data.reportList
       reportList.openId = app.globalData.bindUserInfo.wxid
@@ -76,7 +76,7 @@ Page({
   onShow: function() {
     // 判断是否是从选择城市进入
     if (this.data.isCitySelect) {
-      if (app.globalData.transienceCity.id){
+      if (app.globalData.transienceCity.id) {
         this.data.city_id = app.globalData.transienceCity.id
         this.setData({
           'city_id': app.globalData.transienceCity.id,
@@ -146,19 +146,18 @@ Page({
     }
     let promise = {
       cityId: this.data.city_id
-    } // cityId: '0-166-884-202-',
+    }
 
     //获取楼盘列表
     $http(apiSetting.recommendGetProjectList, promise).then((data) => {
-      if (this.data.reportList.projectId) {
-        for (let i = 0; i < data.data.length; i++) {
-          if (data.data[i].wxProjectId === this.data.reportList.projectId) {
-            that.setData({
-              'arrayProject[0]': data.data[i]
-            })
-            return
-          }
-        }
+      if (that.data.reportList.projectId) {
+        let findI = data.data.findIndex((n) => {
+          return n.wxProjectId = that.data.reportList.projectId
+        })
+        that.setData({
+          arrayProject: data.data,
+          arrayProjectIndex: findI
+        })
       } else {
         this.setData({
           arrayProject: data.data
@@ -219,7 +218,7 @@ Page({
           visible2: true,
           placeholderText: '',
         })
-      }else{
+      } else {
         $Message({
           content: data.message,
           type: 'error'
