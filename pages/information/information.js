@@ -5,6 +5,7 @@ const app=getApp()
 
 Page({
   data: {
+    optionsObj:null,
     imgpath:'http://39.98.191.16/zhwx/userfiles',     //图片根路径
     isAttention: false,          /*是否关注*/
     imgUrls: [],                  //轮播图列表 
@@ -101,6 +102,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.data.optionsObj = options
     let project_id=options.project_id          //index-->information 项目id
     let imgurl=options.imgurl                 //index-->information  项目主图
     this.setData({
