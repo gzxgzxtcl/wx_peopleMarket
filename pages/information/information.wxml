@@ -1,8 +1,12 @@
 <!--pages/information/information.wxml-->
 <view class='information'>
   <!-- banner图 -->
-  <view class='num'>
-    <text>{{bannerindex+1}}</text>/{{bannerlength}}</view>
+  <view class='num' wx:if='{{bannerlength>0}}'>
+    <text >{{bannerindex+1}}</text>/{{bannerlength}}
+  </view>
+  <view class='num' wx:else>
+    <text >{{bannerindex}}</text>/{{bannerlength}}
+  </view>
   <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange='bannerChange'>
     <block wx:for="{{imgUrls}}" wx:key="{{index}}">
       <swiper-item>

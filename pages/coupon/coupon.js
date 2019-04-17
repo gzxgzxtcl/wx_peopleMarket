@@ -11,12 +11,11 @@ Page({
   data: {
     isGet: false,                  /*是否领取*/
     couponList:[],                 //优惠券列表
-
+    couponIndex:null,                  //领取优惠券下标
 
   },
   //点击领取优惠券
   getCoupon(e) {
-    console.log(this)
     let that=this
     let promise = {
       couponId: e.currentTarget.dataset.couponid,          //卡券ID
@@ -24,16 +23,17 @@ Page({
     }
     console.log(promise)
     $http(apiSetting.apiCouponGetCoupon, promise).then((data) => {
-      //  console.log(data)
-      console.log("领了")
-      wx.showToast({
-        title: '领取成功',
-        icon: '../../images/getOK.png',
-        duration: 2000
-      })
-      this.setData({
-        isGet: true
-      })
+       console.log(data)
+       if(data.code===-1) console.log('领取过了')
+      // wx.showToast({
+      //   title: '领取成功',
+      //   icon: '../../images/getOK.png',
+      //   duration: 2000
+      // })
+      // this.setData({
+      //   isGet: true,
+      //   couponIndex: e.currentTarget.dataset.index
+      // })
     }, (error) => {
       console.log(error)
     });
