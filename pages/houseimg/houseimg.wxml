@@ -5,6 +5,7 @@
     <image wx:else src=''></image>
   </view>
   <view class='tabbar'>
+  
     <view 
       wx:for='{{buildImgList}}' 
       wx:key='{{index}}' 

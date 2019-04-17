@@ -10,7 +10,7 @@ Page({
    */
   data: {
     showRight: false,
-    citySelArr:[true,false,false] ,  /*城市是否选中列表*/
+    //citySelArr:[true,false,false] ,  /*城市是否选中列表*/
     // planSelArr:[true,false,false,false,false],   /*进度是否选中*/
     // array: ['项目1', '项目2', '项目3', '项目4'],
     itemPakerIndex: null,
