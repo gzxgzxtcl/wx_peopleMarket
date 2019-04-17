@@ -3,7 +3,7 @@
   <view class='attention-item' wx:for='{{attentionList}}' wx:key="{{index}}">
     <view class='hours-list' bindtap='goInformation' data-project_id='{{item.id}}'>
       <view class='img'>
-        <image src=''></image>
+        <image src='{{imgpath+item.pictureurl}}'></image>
       </view>
       <view class='hours-info'>
         <view class='top-info'>

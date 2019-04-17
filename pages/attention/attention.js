@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgpath: 'http://39.98.191.16/',     //图片根路径
     isHide :false,
     attentionList:[],       //我的关注列表
     tagList:[],             //标签数组

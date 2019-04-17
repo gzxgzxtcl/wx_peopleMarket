@@ -204,6 +204,7 @@ Page({
         }
         this.setData({ 'buildsimg[3].imgs': _arr2 })
       }
+      this.isHaveBuildsImg()
     }), (error) => {
       console.log(error)
     }
@@ -352,7 +353,13 @@ Page({
   //判断是否有楼盘图
   isHaveBuildsImg(){
     let imgs = this.data.buildsimg;
-    if(imgs===[]){
+    let _arr=[]
+    for(let i=0;i<imgs.length;i++){
+      if(!imgs[i].imgs.length) continue
+      _arr.push('1')
+    }
+    console.log(imgs)
+    if(_arr.length===0){
       this.setData({ isbuildsimg:false})
     }else{
       this.setData({ isbuildsimg: true })
