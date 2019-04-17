@@ -18,7 +18,7 @@
   <view class='info'>
     <view class='name-money'>
       <view class='name'>
-        <text>{{projectname_hk}}</text>
+        <text>{{projectname_cswx}}</text>
         <view wx:if='{{issale}}'>{{issale}}</view>
       </view>
       <view class='money'>
