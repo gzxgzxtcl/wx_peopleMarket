@@ -8,7 +8,7 @@ const {
 } = require('../../dist/base/index');
 Page({
   data: {
-    isPermit:false,
+    isPermit: false,
     imgpath: 'http://39.98.191.16',
     cityNametext: '',
     imgUrls: [],
@@ -82,10 +82,10 @@ Page({
           } else {
             app.globalData.isCheck = false
           }
-          
-          if (data.data.status == 401){
+
+          if (data.data.status == 401) {
             that.setData({
-              isPermit:true
+              isPermit: true
             })
           }
           app.globalData.userId = data.data.USERID
@@ -154,15 +154,17 @@ Page({
         buildinfolist: data.data.buildInfo,
       })
       let buildInfo = data.data.buildInfo
-      let _tagArr=[]
-      for (let j = 0; j < buildInfo.length;j++){
-        if (buildInfo[j].labels===undefined){
+      let _tagArr = []
+      for (let j = 0; j < buildInfo.length; j++) {
+        if (buildInfo[j].labels === undefined) {
           _tagArr.push('')
-        }else{
+        } else {
           _tagArr.push(buildInfo[j].labels.split(','))
         }
       }
-      this.setData({ buildinfotaglist: _tagArr})
+      this.setData({
+        buildinfotaglist: _tagArr
+      })
 
       // 获取周边楼盘
       this.getRimBuildInfo();
@@ -214,6 +216,11 @@ Page({
       openid: val
     }).then((data) => {
       app.globalData.bindUserInfo = data.data
+
+      // 隐藏导航栏加载框
+      wx.hideNavigationBarLoading();
+      // 停止下拉动作
+      wx.stopPullDownRefresh();
     })
   },
 
@@ -223,5 +230,12 @@ Page({
     wx.navigateTo({
       url: pageUrl
     })
+  },
+
+  // 下拉刷新
+  onPullDownRefresh() {
+    // 显示导航栏加载框
+    wx.showNavigationBarLoading()
+    this.onLoad()
   }
 })

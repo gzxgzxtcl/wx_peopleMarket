@@ -284,11 +284,11 @@ swiper image {
 }
 
 .info .hours-type .bottom-list .type text:first-child {
-  width: 60rpx;
+  width: 120rpx;
   font-size: 28rpx;
-  font-family: 'PingFang-SC-Medium';
   color: #333;
   float: left;
+  overflow: hidden;
 }
 
 .info .hours-type .bottom-list .type text:nth-of-type(2) {
