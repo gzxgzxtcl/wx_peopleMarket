@@ -24,7 +24,7 @@ Page({
     /*
       项目信息
      */
-    projectname_cswx:'',                  	/*海客案名（项目名）*/
+    projectname_cswx:'',                  	/*案名（项目名）*/
     issale:'',                          	/*在售状态，如（开盘）*/
     salesaddr:'',                         /*售楼地址*/
     showhall:'',  	                      /*展厅地址*/
@@ -480,9 +480,9 @@ Page({
       phoneNumber: this.data.phone
     })
   },
-  pageToMap() {
+  pageToMap(e) {
     wx.navigateTo({
-      url: '../map/map?projectName=中海天钻'
+      url: '../map/map?projectName=' + e.target.dataset.projectname
     })
   }
 })

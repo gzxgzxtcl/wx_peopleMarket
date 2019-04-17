@@ -6,9 +6,8 @@
       <image src='../../images/reduced.png'></image>
       <view class='info'>
         <view class='num'>
-          <text></text>
-          <text>{{item.couponname}}</text>
-          <!-- <text>折</text> -->
+          98<text>折</text>
+          <!-- <text>{{item.couponname}}</text> -->
         </view>
         <view class='explain'>
           <view class='top'>

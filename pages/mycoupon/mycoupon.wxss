@@ -68,23 +68,28 @@
 
 .coupon-item .info .num {
   width: 200rpx;
-  height: 200rpx;
+  height: 150rpx;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   font-size: 66rpx;
   font-family: 'DINCondensed-Bold';
   color: #fff;
+  padding-bottom: 50rpx;
 }
 
-/* .coupon-item .info .num text:first-child {
+.coupon-item .info .num text:first-child {
   display: flex;
-  width: 66rpx;
-  height: 84rpx;
-  margin-top: 60rpx;
+  /* width: 66rpx;
+  height: 84rpx; */
+  /* margin-top: 60rpx; */
+  margin-left: 10rpx;
+  margin-bottom: 10rpx;
+  font-size: 24rpx;
+  font-family: 'PingFang-SC-Medium';
 }
 
-.coupon-item .info .num text:last-child {
+/* .coupon-item .info .num text:last-child {
   font-size: 24rpx;
   font-family: 'PingFang-SC-Medium';
   margin-top: 104rpx;
