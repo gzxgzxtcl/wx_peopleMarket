@@ -15,7 +15,7 @@ Page({
     userInfo: {
       agencyAccount: '',
       agencyUid: '',
-      brokertype: '独立经纪人',
+      brokertype: '',
       channelCode: '',
       idno: '',
       myName: '',
@@ -41,7 +41,7 @@ Page({
       id: 3,
       name: '中介'
     }],
-    arrayIndex: 0,
+    arrayIndex: null,
 
     // 存放计时器
     setInter: '',
@@ -59,7 +59,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
- 
+
     if (app.globalData.isCheck) {
       // 经纪人账号
       this.data.userInfo.agencyAccount = app.globalData.bindUserInfo.agencyAccount
@@ -136,7 +136,6 @@ Page({
   },
 
   bindPickerChange(e) {
-
     this.setData({
       arrayIndex: e.detail.value
     })
@@ -320,6 +319,15 @@ Page({
       return
     }
 
+    // 是否选择经济人类型
+    if (this.data.arrayIndex == null) {
+      $Message({
+        content: '请选择经济人类型验证',
+        type: 'warning'
+      });
+      return
+    }
+
     if (this.data.arrayIndex == 1) {
       if (this.data.userInfo.idno == "") {
         $Message({
@@ -346,7 +354,7 @@ Page({
     $http(apiSetting.userIdentifyUser, promise).then((data) => {
       if (data.code == 0) {
         that.getUserGetUserInfo(app.globalData.openid)
-      }else{
+      } else {
         $Message({
           content: data.message,
           type: 'error'
@@ -358,10 +366,10 @@ Page({
   },
 
 
-// 修改
-  amendSub(){
+  // 修改
+  amendSub() {
     this.setData({
-      isEdit:true
+      isEdit: true
     })
   },
 
@@ -371,7 +379,7 @@ Page({
     $http(apiSetting.userGetUserInfo, {
       openid: val
     }).then((data) => {
-      if (data.data.ischeck == 0){
+      if (data.data.ischeck == 0) {
         app.globalData.ischeck = true
       }
       wx.hideLoading()

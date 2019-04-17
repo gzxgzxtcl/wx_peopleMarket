@@ -42,13 +42,11 @@
     </li>
 
     <li>
-      <span class='title'>业主类型</span>
-      <!-- <span style='float:right;color:#B2B2B2;'>请选择业主类型</span> -->
+      <span class='title'>经纪人类型</span>
       <span style='float:right;'>
         <picker mode="selector" bindchange="bindPickerChange" range-key="name" value='{{arrayIndex}}' range="{{array}}" disabled="{{!isEdit}}">
           <view class="picker">
-            <!-- 请选择业主类型 -->
-            {{array[arrayIndex].name}}
+            <text wx:if="{{arrayIndex == null}}">请选择</text> {{array[arrayIndex].name}}
           </view>
         </picker>
       </span>
