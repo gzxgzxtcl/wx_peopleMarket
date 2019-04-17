@@ -16,7 +16,7 @@ Page({
   },
 
   onLoad(option) {
-    console.log(option.projectName)
+    //设置页面标题
     wx.setNavigationBarTitle({
       title: option.projectName
     })

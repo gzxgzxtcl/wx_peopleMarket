@@ -124,9 +124,9 @@ const serviceModule = {
     url: '/projectApi/findSettingDict',
     method: 'post'
   },
-  //获取优惠券
-  apiCouponUnreceivedList:{
-    url: '/api/coupon/unreceivedList',
+  //获取优惠券列表
+  apiCouponCouponForCityList: {
+    url: '/api/coupon/couponForCityList',
     method: 'post'
   },
   //领取卡券

@@ -16,23 +16,28 @@ Page({
   },
   //点击领取优惠券
   getCoupon(e) {
+    let index = e.target.dataset.index
     let that=this
     let promise = {
-      couponId: e.currentTarget.dataset.couponid,          //卡券ID
+      couponId: e.currentTarget.dataset.couponid,    //卡券ID
       userId: app.globalData.userId                 //用户ID
     }
     console.log(promise)
     $http(apiSetting.apiCouponGetCoupon, promise).then((data) => {
        console.log(data)
-       if(data.code===-1) console.log('领取过了')
+       if(data.code===0){
+        wx.showToast({
+          title: '领取成功',
+          icon: '../../images/getOK.png',
+          duration: 2000
+        })
+        
+         this.setData({ 'couponList.receivedStatus':true})
+       }
       // wx.showToast({
       //   title: '领取成功',
       //   icon: '../../images/getOK.png',
       //   duration: 2000
-      // })
-      // this.setData({
-      //   isGet: true,
-      //   couponIndex: e.currentTarget.dataset.index
       // })
     }, (error) => {
       console.log(error)
@@ -48,13 +53,15 @@ Page({
   },
   //获取未领取优惠券
   getAllCouponList(){
+    // console.log(app.globalData)
     let that=this
     let promise = {
       city: app.globalData.storLocalCity.id,
       page: 1,
-      perpage: 10
+      perpage: 10,
+      userId: app.globalData.userId
     }
-    $http(apiSetting.apiCouponUnreceivedList, promise).then((data) => {
+    $http(apiSetting.apiCouponCouponForCityList, promise).then((data) => {
       // console.log(data.data.list)
       let _arr = data.data.list
       for(let i=0;i<_arr.length;i++){
