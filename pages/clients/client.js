@@ -197,4 +197,10 @@ Page({
       console.log(error)
     });
   },
+  //跳转推荐页面
+  goRecommend(){
+    wx.navigateTo({
+      url: '../recommend/recommend',
+    })
+  },
 })

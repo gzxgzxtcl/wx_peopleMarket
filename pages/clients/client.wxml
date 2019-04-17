@@ -80,17 +80,17 @@
         <text>{{item.cjDate}}</text>
       </view>
     </view>
-    <view class='luck'>
+    <view class='luck' wx:if='{{0}}'>
       <view class='icon'>
         <image src='../../images/xingzhuang.png'></image>
       </view>
-      <text>恭喜您，获得推荐佣金5000元</text>
+      <text >恭喜您，获得推荐佣金5000元</text>
     </view>
   </view>
   <!-- 悬浮窗 -->
   <view class='floating'>
     <view>佣金规则</view>
-    <view>
+    <view bindtap='goRecommend'>
       <view class='icon'>
         <image src='../../images/tuijian.png'></image>
       </view>
