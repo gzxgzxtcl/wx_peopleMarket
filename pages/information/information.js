@@ -15,7 +15,7 @@ Page({
     optionsObj: null,
     imgpath: 'http://39.98.191.16/zhwx/userfiles', //图片根路径
     // imgpath: 'https://qmyx.coli688.com/zhwx/userfiles',     //图片根路径
-    // imgpath: 'http://haiketest.coli688.com:8090/zhwx/userfiles',     //图片根路径
+    // imgpath: 'http://haiketest.coli688.com:8081/zhwx/userfiles',     //图片根路径
     isAttention: false,
     /*是否关注*/
     imgUrls: [], //轮播图列表 

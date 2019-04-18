@@ -9,9 +9,9 @@ const {
 Page({
   data: {
     isPermit: false,
-    imgpath: 'http://39.98.191.16',
-    // imgpath: 'https://qmyx.coli688.com',     //图片根路径
-    // imgpath: 'http://haiketest.coli688.com:8090',     //图片根路径
+    imgpath: 'http://39.98.191.16/zhwx/userfiles',
+    // imgpath: 'https://qmyx.coli688.com/zhwx/userfiles',     //图片根路径
+    // imgpath: 'http://haiketest.coli688.com:8081/zhwx/userfiles',     //图片根路径
     cityNametext: '',
     imgUrls: [],
     autoplay: true,
