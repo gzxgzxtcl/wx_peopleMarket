@@ -10,7 +10,8 @@ Page({
   data: {
     isPermit: false,
     imgpath: 'http://39.98.191.16',
-    // imgpath: 'http://haiketest.coli688.com:8090',
+    // imgpath: 'https://qmyx.coli688.com',     //图片根路径
+    // imgpath: 'http://haiketest.coli688.com:8090',     //图片根路径
     cityNametext: '',
     imgUrls: [],
     autoplay: true,

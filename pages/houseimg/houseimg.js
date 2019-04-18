@@ -6,6 +6,8 @@ Page({
    */
   data: {
     imgpath: 'http://39.98.191.16/zhwx/userfiles',     //图片根路径
+    // imgpath: 'https://qmyx.coli688.com/zhwx/userfiles',     //图片根路径
+    // imgpath: 'http://haiketest.coli688.com:8090/zhwx/userfiles',     //图片根路径
     isLeftSel:true,   /*是否选中户型图*/
     isRightSel: false,   /*是否选中样板图*/
     // selArr:[
