@@ -44,12 +44,16 @@ Page({
   // },
   // 获取大图
   goHouseimg(e) {
-    console.log(e.currentTarget.dataset.imglist)
-    let imgList =[ e.currentTarget.dataset.imglist]
-    let current = e.currentTarget.dataset.imglist
+    let index = e.currentTarget.dataset.index
+    let _arr = this.data.hourseImgList[index]
+    let urlList=[]
+    for (let i = 0; i < _arr.length;i++){
+      urlList.push(this.data.imgpath+_arr[i].upload_file_path)
+    }  
+    let current = this.data.imgpath + this.data.hourseImgList[index][0].upload_file_path
     wx.previewImage({
       current: current, // 当前显示图片的http链接
-      urls: imgList // 需要预览的图片http链接列表
+      urls: urlList // 需要预览的图片http链接列表
     })
   },
 
@@ -101,10 +105,17 @@ Page({
     let promise = { houserhold_id: id }
     $http(apiSetting.projectApiFindProjectHouserholdFileListById, promise).then((data) => {
       if(!data.data)  return
-      this.setData({ hourseImgList:data.data})
+      if (this.data.hourseImgList.length){
+        let _arr = this.data.hourseImgList
+        _arr.push(data.data)
+        this.setData({ hourseImgList: _arr })
+      }else{
+        let _arr1=[]
+        _arr1.push(data.data)
+        this.setData({ hourseImgList: _arr1})
+      }
     }), (error) => {
       console.log(error)
     }
   },
-
 })
