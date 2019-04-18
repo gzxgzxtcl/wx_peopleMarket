@@ -1,6 +1,7 @@
 // pages/housestype/housestype.js
 import apiSetting from '../../http/apiSetting.js'
 import $http from '../../http/http.js'
+import fileUrl from '../../http/fileServeUrl.js'
 
 Page({
 
@@ -8,9 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgpath: 'http://39.98.191.16/zhwx/userfiles',     //图片根路径
-    // imgpath: 'https://qmyx.coli688.com/zhwx/userfiles',     //图片根路径
-    // imgpath: 'http://haiketest.coli688.com:8081/zhwx/userfiles',     //图片根路径
+    imgpath: fileUrl,     //图片根路径
     selIndex:0,
     hourseViewList:[],              //户型显示列表
     allhourseList:[],                //全部户型列表

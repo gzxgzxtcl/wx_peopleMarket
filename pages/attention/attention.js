@@ -2,15 +2,14 @@
 const app = getApp()
 import apiSetting from '../../http/apiSetting.js'
 import $http from '../../http/http.js'
+import fileUrl from '../../http/fileServeUrl.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    imgpath: 'http://39.98.191.16/zhwx/userfiles',     //图片根路径
-    // imgpath: 'https://qmyx.coli688.com/zhwx/userfiles',     //图片根路径
-    // imgpath: 'http://haiketest.coli688.com:8081/zhwx/userfiles',     //图片根路径
+    imgpath: fileUrl,     //图片根路径
     isHide :false,
     attentionList:[],       //我的关注列表
     tagList:[],             //标签数组
