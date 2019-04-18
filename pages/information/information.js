@@ -357,7 +357,7 @@ Page({
           value: projectdetails.isup
         }, {
           name: '物业费',
-          value: projectdetails.propertyexpenses + '元/㎡'
+          value: projectdetails.propertyexpenses 
         },
         // {
         //   name: '佣金信息',
@@ -401,6 +401,9 @@ Page({
       let _arr = []
       for (let i = 0; i < _projectInfo.length; i++) {
         if (_projectInfo[i].value) {
+          if (_projectInfo[i].name === '物业费') {
+            _projectInfo[i].value = _projectInfo[i].value + '元/㎡'
+          }
           _arr.push(_projectInfo[i])
         }
       }

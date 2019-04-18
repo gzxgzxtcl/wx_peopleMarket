@@ -80,7 +80,6 @@ Page({
   },
   // 选择城市标签
   selCity(e){
-    console.log(e.target.dataset, this.data.cityInfo)
     if (e.target.dataset.citytagid === undefined) return
     let tagId=e.target.dataset.citytagid;
     this.setData({ cityDefaultIndex:tagId})
@@ -92,12 +91,10 @@ Page({
   },
   // 选择进度标签
   selPlan(e) {
-    console.log(e.target.dataset, this.data.recommendInfo)
     if (e.target.dataset.plantagid===undefined) return
     let tagId = e.target.dataset.plantagid;
     this.setData({ planDefaultIndex:tagId })
     this.setData({ 'selectList.searchType': this.data.recommendInfo[tagId] })
-    console.log(this.data.selectList)
   },
   // 重置
   reset(){
