@@ -322,7 +322,7 @@ Page({
     // 是否选择经济人类型
     if (this.data.arrayIndex == null) {
       $Message({
-        content: '请选择经济人类型验证',
+        content: '请选择经济人类型',
         type: 'warning'
       });
       return

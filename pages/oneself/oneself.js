@@ -2,12 +2,16 @@
 const app = getApp()
 import apiSetting from '../../http/apiSetting.js'
 import $http from '../../http/http.js'
+const {
+  $Message
+} = require('../../dist/base/index');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    isPermit:false,
     visible: false,
     brokertype: ''
   },
@@ -17,6 +21,13 @@ Page({
    */
   onLoad: function(options) {
     let that = this
+
+    if (app.globalData.status == 401) {
+      that.setData({
+        isPermit: true
+      })
+    }
+   
     if (app.globalData.isCheck) {
       that.setData({
         brokertype: app.globalData.bindUserInfo.brokertype

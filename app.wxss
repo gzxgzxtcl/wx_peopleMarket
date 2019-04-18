@@ -21,3 +21,9 @@ page {
   padding: 200rpx 0;
   box-sizing: border-box;
 }
+
+.wxexit {
+  font-size: 34rpx;
+  margin-top: 70rpx;
+  color: #20a0ff;
+}
