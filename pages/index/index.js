@@ -10,6 +10,7 @@ Page({
   data: {
     isPermit: false,
     imgpath: 'http://39.98.191.16',
+    // imgpath: 'http://haiketest.coli688.com:8090',
     cityNametext: '',
     imgUrls: [],
     autoplay: true,

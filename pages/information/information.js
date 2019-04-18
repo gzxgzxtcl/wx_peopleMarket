@@ -5,8 +5,16 @@ const app = getApp()
 
 Page({
   data: {
+    mapInfo: {
+      name: '',
+      salesLongitude: '',
+      salesLatitude: '',
+      showLongitude: '',
+      showLlatitude: '',
+    },
     optionsObj: null,
     imgpath: 'http://39.98.191.16/zhwx/userfiles', //图片根路径
+    // imgpath: 'http://haiketest.coli688.com:8090/zhwx/userfiles',
     isAttention: false,
     /*是否关注*/
     imgUrls: [], //轮播图列表 
@@ -87,8 +95,8 @@ Page({
     projectInfo: [], //项目详情
     isMoreInfo: false, //是否有更多详情
     projectInfoNum: 0, //项目详情条数
-    lightspot:'',      //亮点概述
-    spots:0,          //亮点条数
+    lightspot: '', //亮点概述
+    spots: 0, //亮点条数
     exemption: '',
     /*免责条款*/
     commissionRule: '', //佣金规则  
@@ -140,12 +148,12 @@ Page({
       'attentionList.project_id': project_id
     })
     this.isAttentionProject()
-    
-    this.getProjectInfo(project_id);              // 通过id获取项目信息
-    this.getProjectDetails(project_id)                //通过id获取项目详情
-    this.getProjectHouserholdList(project_id);        //通过id查询户型列表
-    this.getHourseImgList(project_id);                //通过类型查询楼盘图
-    this.getClauseAndRule();                          //获取免责条款和佣金规则
+
+    this.getProjectInfo(project_id); // 通过id获取项目信息
+    this.getProjectDetails(project_id) //通过id获取项目详情
+    this.getProjectHouserholdList(project_id); //通过id查询户型列表
+    this.getHourseImgList(project_id); //通过类型查询楼盘图
+    this.getClauseAndRule(); //获取免责条款和佣金规则
   },
   //查询免责条款和佣金规则
   getClauseAndRule() {
@@ -321,7 +329,9 @@ Page({
     $http(apiSetting.projectApiFindProjectDetailsById, promise).then((data) => {
       let projectdetails = data.data
       if (!projectdetails) return
-      this.setData({ lightspot: projectdetails.highlights})
+      this.setData({
+        lightspot: projectdetails.highlights
+      })
       let _projectInfo = []
       _projectInfo.push({
         name: '开发商',
@@ -347,7 +357,7 @@ Page({
       }, {
         name: '物业费',
         value: projectdetails.propertyexpenses
-      },{
+      }, {
         name: '佣金信息',
         value: projectdetails.commissioninfo
       }, {
@@ -403,6 +413,13 @@ Page({
           projectInfoNum: 8
         })
       }
+      // console.log(data.data)
+      this.data.mapInfo.name = data.data.projectname_cswx
+      this.data.mapInfo.salesLongitude = data.data.salesaddry
+      this.data.mapInfo.salesLatitude = data.data.salesaddrx
+      this.data.mapInfo.showLongitude = data.data.showhally
+      this.data.mapInfo.showLlatitude = data.data.showhallx
+      // console.log(this.data.mapInfo)
       this.setData({
         projectInfo: _arr,
         exemption: projectdetails.exemption,
@@ -425,7 +442,7 @@ Page({
     $http(apiSetting.projectApiFindProjectInfoById, promise).then((data) => {
       let projectinfo = data.data
       if (!projectinfo) return
-      this.getSpotLength(projectinfo.brightspotsList);                         //获取亮点条数
+      this.getSpotLength(projectinfo.brightspotsList); //获取亮点条数
       this.setData({
         project_id: projectinfo.id,
         // projectname_hk: projectinfo.projectname_hk,
@@ -602,8 +619,11 @@ Page({
         ishaveall: true,
         spots: 4
       })
-    }else{
-      this.setData({ spots: spots})
+    }
+    else {
+      this.setData({
+        spots: spots
+      })
     }
   },
   //查看佣金规则
@@ -624,9 +644,16 @@ Page({
     })
   },
   pageToMap(e) {
-    wx.navigateTo({
-      url: '../map/map?projectName=' + e.target.dataset.projectname
-    })
+    if (e.target.dataset.type == 1){
+      wx.navigateTo({
+        url: '../map/map?projectName=' + this.data.mapInfo.name + '&longitude=' + this.data.mapInfo.salesLongitude + '&latitude=' + this.data.mapInfo.salesLatitude
+      })
+    }
+    if (e.target.dataset.type == 2) {
+      wx.navigateTo({
+        url: '../map/map?projectName=' + this.data.mapInfo.name + '&longitude=' + this.data.mapInfo.showLongitude + '&latitude=' + this.data.mapInfo.showLlatitude
+      })
+    }
   },
 
   // 下拉刷新
@@ -636,7 +663,7 @@ Page({
     this.onLoad(this.data.optionsObj)
   },
   // 停止刷新
-  stopRefresh(){
+  stopRefresh() {
     // 隐藏导航栏加载框
     wx.hideNavigationBarLoading();
     // 停止下拉动作

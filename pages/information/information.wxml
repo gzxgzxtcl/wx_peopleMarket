@@ -51,14 +51,14 @@
       <view class='add1' wx:if='{{salesaddr!=""}}'>
         <text class='title1'>售楼处地址</text>
         <text class='title2'>{{salesaddr}}</text>
-        <view bindtap='pageToMap' data-projectName='{{projectname_cswx}}'>导航
+        <view bindtap='pageToMap' data-type='1'>导航
           <image src='../../images/right.png'></image>
         </view>
       </view>
       <view class='add2' wx:if='{{showhall!=""}}'>
         <text class='title1'>展厅地址</text>
         <text class='title2'>{{showhall}}</text>
-        <view bindtap='pageToMap'>导航
+        <view bindtap='pageToMap' data-type='2'>导航
           <image src='../../images/right.png'></image>
         </view>
       </view>
