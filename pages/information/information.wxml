@@ -43,11 +43,11 @@
       </i-modal>
     </view>
     <!-- 标签 -->
-    <view class='tag'>
+    <view class='tag' wx:if='{{labelsList.length}}'>
       <view wx:for='{{labelsList}}' wx:key='{{index}}'>{{item.labels}}</view>
     </view>
     <!-- 地址 -->
-    <view class='address'>
+    <view class='address' wx:if='{{salesaddr!="" || showhall!=""}}'>
       <view class='add1' wx:if='{{salesaddr!=""}}'>
         <text class='title1'>售楼处地址</text>
         <text class='title2'>{{salesaddr}}</text>

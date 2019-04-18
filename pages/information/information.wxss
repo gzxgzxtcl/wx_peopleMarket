@@ -133,9 +133,10 @@ swiper image {
 
 .information .tag {
   display: flex;
-  height: 120rpx;
+  /* height: 120rpx; */
   align-items: center;
-  flex-wrap: wrap
+  flex-wrap: wrap;
+  margin-top: 36rpx;
 }
 
 .information .tag view {
@@ -155,6 +156,7 @@ swiper image {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-top: 40rpx;
 }
 
 .info .address>view {

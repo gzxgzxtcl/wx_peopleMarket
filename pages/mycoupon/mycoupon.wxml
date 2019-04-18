@@ -18,16 +18,30 @@
         </view>
         <view class='explain'>
           <view class='top'>
-            <view>
+          <view wx:if='{{usedIndex===2}}' class='isOldUsedName'>
               <text>{{item.city}}</text>
               <text>·</text>
               <text>{{item.projectName}}</text>
             </view>
+            <view wx:else>
+              <text>{{item.city}}</text>
+              <text>·</text>
+              <text>{{item.projectName}}</text>
+            </view>
+            
             <text wx:if='{{usedIndex===0}}'>未使用</text>
             <text wx:if='{{usedIndex===1}}' class='isUsed'>已使用</text>
             <text wx:if='{{usedIndex===2}}' class='isOldUsed'>已过期</text>
           </view>
-          <view class='bottom'>
+          <view wx:if='{{usedIndex===2}}' class='isOldUsedBottom'>
+            <view>使用规则：
+              <text>{{item.usageRule}}</text>
+            </view>
+            <view>使用期限：
+              <text>{{item.startDate}}-{{item.endDate}}</text>
+            </view>
+          </view>
+          <view class='bottom' wx:else>
             <view>使用规则：
               <text>{{item.usageRule}}</text>
             </view>
