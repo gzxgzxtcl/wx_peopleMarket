@@ -346,14 +346,16 @@ Page({
         value: projectdetails.isup
       }, {
         name: '物业费',
-        value: projectdetails.propertyexpenses
-      },{
-        name: '佣金信息',
-        value: projectdetails.commissioninfo
-      }, {
-        name: '优惠信息',
-        value: projectdetails.couponinfo
-      }, {
+        value: projectdetails.propertyexpenses +'元/㎡'
+      },
+      // {
+      //   name: '佣金信息',
+      //   value: projectdetails.commissioninfo
+      // }, {
+      //   name: '优惠信息',
+      //   value: projectdetails.couponinfo
+      // }, 
+      {
         name: '所属区县',
         value: projectdetails.district
       }, {

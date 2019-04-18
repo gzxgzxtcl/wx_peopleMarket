@@ -42,9 +42,11 @@ Page({
     }
     $http(apiSetting.apiCouponList, promise).then((data) => {
       let _arr = data.data.list
+      console.log(_arr)
       for(let i=0;i<_arr.length;i++){
         _arr[i].startDate = _arr[i].startDate.split(' ')[0].split('-').join('.')
         _arr[i].endDate = _arr[i].endDate.split(' ')[0].split('-').join('.')
+        _arr[i].couponname = parseInt(_arr[i].couponname) 
       }
       that.setData({ myCouponList: _arr})
     }, (error) => {

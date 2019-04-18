@@ -21,6 +21,7 @@ Page({
     threePointList:[],            //三室优势列表
 
     hourseImgList:[],             //户型图片列表
+    t:0,                        //循环变量
   },
   changeHouse(e){
     let index = e.currentTarget.dataset.index
@@ -67,6 +68,7 @@ Page({
   //获取详情传递的户型列表数据
   getHourseList(options){
     let hourselist = JSON.parse(options.hourselist)
+    console.log("列表：",hourselist)
     this.setData({ allhourseList: hourselist, hourseViewList:hourselist })     //赋值给全部户型列表
     let _arr1=[]
     let _arr2=[]
@@ -96,24 +98,36 @@ Page({
     this.setData({ allPointList: point, pointViewList: point, twoPointList: point1, threePointList:point2})
 
     //查询户型图片列表
-    for (let i = 0; i < hourselist.length; i++){
-      this.getProjectHouserholdFileList(hourselist[i].id)
-    }
+    // for (let i = 0; i < hourselist.length; i++){
+    //   this.getProjectHouserholdFileList(hourselist[i].id)
+    // }
+    let houserHoldFileLength = hourselist.length
+    this.getProjectHouserholdFileList(houserHoldFileLength)
   },
   //通过id获取户型图片列表
-  getProjectHouserholdFileList(id) {
-    let promise = { houserhold_id: id }
+//   getProjectHouserholdFileList(id) {
+//     let promise = { houserhold_id: id }
+//     let _arr = this.data.hourseImgList
+//     console.log(promise)
+//     $http(apiSetting.projectApiFindProjectHouserholdFileListById, promise).then((data) => {
+//       // if(!data.data)  return
+//       _arr.push(data.data)
+//       this.setData({ hourseImgList: _arr })
+//     }), (error) => {
+//       console.log(error)
+//     }
+//     console.log("显示列表：", _arr)
+//   },
+
+  getProjectHouserholdFileList(imgListLength) {
+    let _t=this.data.t
+    if (_t >= imgListLength)  return
+    let promise = { houserhold_id: this.data.allhourseList[_t].id }
+    let _arr = this.data.hourseImgList
     $http(apiSetting.projectApiFindProjectHouserholdFileListById, promise).then((data) => {
-      if(!data.data)  return
-      if (this.data.hourseImgList.length){
-        let _arr = this.data.hourseImgList
-        _arr.push(data.data)
-        this.setData({ hourseImgList: _arr })
-      }else{
-        let _arr1=[]
-        _arr1.push(data.data)
-        this.setData({ hourseImgList: _arr1})
-      }
+      _arr.push(data.data)
+      this.setData({ hourseImgList: _arr,t:_t+1})
+      this.getProjectHouserholdFileList(imgListLength)
     }), (error) => {
       console.log(error)
     }
