@@ -105,6 +105,7 @@
     <view class='city'>
       <view class='title'>城市</view>
       <view class='city-list' bindtap='selCity'>
+        <view class="{{cityDefaultIndex===-1?'active':''}}" bindtap='allCity'>全部</view>
         <view 
           wx:for='{{cityInfo}}'
           wx:key='{{index}}' 
