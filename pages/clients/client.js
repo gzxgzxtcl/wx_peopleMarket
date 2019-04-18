@@ -23,7 +23,7 @@ Page({
     itemInfo:[],              //项目列表
     recommendInfo: [],      //进度列表   
     planDefaultIndex:0,       //进度默认下标
-    cityDefaultIndex: 0,       //城市默认下标
+    cityDefaultIndex: -1,       //城市默认下标
 
     recommendPersonList:[],     //推荐人信息列表
     _val:'',                    //搜索框临时数据
@@ -86,6 +86,10 @@ Page({
     this.setData({ cityDefaultIndex:tagId})
     this.setData({ 'selectList.cityId': this.data.cityInfo[e.target.dataset.citytagid].cityId})
   },
+  //选择全部城市
+  allCity(){
+    this.setData({ cityDefaultIndex: -1,'selectList.cityId':''})
+  },
   // 选择进度标签
   selPlan(e) {
     console.log(e.target.dataset, this.data.recommendInfo)
@@ -93,11 +97,12 @@ Page({
     let tagId = e.target.dataset.plantagid;
     this.setData({ planDefaultIndex:tagId })
     this.setData({ 'selectList.searchType': this.data.recommendInfo[tagId] })
+    console.log(this.data.selectList)
   },
   // 重置
   reset(){
     //城市重置,进度
-    this.setData({ cityDefaultIndex: 0, planDefaultIndex:0});
+    this.setData({ cityDefaultIndex: -1, planDefaultIndex:0});
     // 项目重置
     this.setData({ itemPakerIndex: null})
     this.setData({ dataIntervalStart: null, dataIntervalEnd: null})
@@ -106,6 +111,10 @@ Page({
   // 确认筛选
   submit(){
     let promise = this.data.selectList
+    console.log(this.data.selectList.searchType)
+    if (!promise.searchType){
+      promise.searchType='全部'
+    }
     $http(apiSetting.recommendFindCustomList, promise).then((data) => {
       this.setData({ recommendPersonList: data.data })
     }, (error) => {
