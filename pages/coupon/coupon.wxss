@@ -48,7 +48,7 @@ page {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  font-size: 66rpx;
+  font-size: 84rpx;
   font-family: 'DINCondensed-Bold';
   color: #fff;
   padding-bottom: 50rpx;
@@ -102,7 +102,7 @@ page {
   font-size: 24rpx;
   font-family: 'PingFang-SC-Medium';
   color: #20a0ff;
-  margin-right: 40rpx;
+  /* margin-right: 40rpx; */
 }
 
 .coupon-item .info .explain .bottom {

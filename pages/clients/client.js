@@ -80,7 +80,7 @@ Page({
   },
   // 选择城市标签
   selCity(e){
-    // console.log(e.target.dataset, this.data.cityInfo)
+    console.log(e.target.dataset, this.data.cityInfo)
     if (e.target.dataset.citytagid === undefined) return
     let tagId=e.target.dataset.citytagid;
     this.setData({ cityDefaultIndex:tagId})
@@ -88,11 +88,11 @@ Page({
   },
   // 选择进度标签
   selPlan(e) {
-    // console.log(e.target.dataset, this.data.recommendInfo)
+    console.log(e.target.dataset, this.data.recommendInfo)
     if (e.target.dataset.plantagid===undefined) return
     let tagId = e.target.dataset.plantagid;
     this.setData({ planDefaultIndex:tagId })
-    this.setData({ 'selectList.searchType': this.data.recommendInfo[e.target.dataset.plantagid] })
+    this.setData({ 'selectList.searchType': this.data.recommendInfo[tagId] })
   },
   // 重置
   reset(){
@@ -112,7 +112,7 @@ Page({
       console.log(error)
     });
     this.setData({ showRight: false });
-    this.resetParameter();
+    // this.resetParameter();
   },
   //搜索图标点击
   selItem(){
@@ -123,7 +123,7 @@ Page({
     }, (error) => {
       console.log(error)
     });
-    this.resetParameter();
+    // this.resetParameter();
   },
   //文本框监听
   valueChange(e){

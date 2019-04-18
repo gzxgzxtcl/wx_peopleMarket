@@ -33,7 +33,7 @@
   color: #fff;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
 }
 
@@ -42,6 +42,7 @@
   font-family: 'PingFang-SC-Medium';
   color: #fff;
   padding-left: 20rpx;
+  margin-bottom: 7rpx;
 }
 
 .clients .top>view:first-child {

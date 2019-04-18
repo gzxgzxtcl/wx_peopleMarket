@@ -334,66 +334,68 @@ Page({
       })
       let _projectInfo = []
       _projectInfo.push({
-        name: '开发商',
-        value: projectdetails.developer
-      }, {
-        name: '物业公司',
-        value: projectdetails.propertycompany
-      }, {
-        name: '开盘时间',
-        value: projectdetails.opening_date
-      }, {
-        name: '交房时间',
-        value: projectdetails.delivery_date
-      }, {
-        name: '产权年限',
-        value: projectdetails.years
-      }, {
-        name: '建筑类别',
-        value: projectdetails.buildingtype
-      }, {
-        name: '装修状态',
-        value: projectdetails.isup
-      }, {
-        name: '物业费',
-        value: projectdetails.propertyexpenses
-      }, {
-        name: '佣金信息',
-        value: projectdetails.commissioninfo
-      }, {
-        name: '优惠信息',
-        value: projectdetails.couponinfo
-      }, {
-        name: '所属区县',
-        value: projectdetails.district
-      }, {
-        name: '建筑面积',
-        value: projectdetails.floorarea
-      }, {
-        name: '主面积',
-        value: projectdetails.mainarea
-      }, {
-        name: '绿化情况',
-        value: projectdetails.greencoverage
-      }, {
-        name: '建筑规划',
-        value: projectdetails.panning
-      }, {
-        name: '咨询电话',
-        value: projectdetails.phone
-      }, {
-        name: '容积率',
-        value: projectdetails.plotratio
-      }, {
-        name: '预售许可证',
-        value: projectdetails.presalepermit
-      }, {
-        name: '楼盘地址',
-        value: projectdetails.projectaddr
-      }, {
-        name: '物业类别',
-        value: projectdetails.propertytype
-      }, )
+          name: '开发商',
+          value: projectdetails.developer
+        }, {
+          name: '物业公司',
+          value: projectdetails.propertycompany
+        }, {
+          name: '开盘时间',
+          value: projectdetails.opening_date
+        }, {
+          name: '交房时间',
+          value: projectdetails.delivery_date
+        }, {
+          name: '产权年限',
+          value: projectdetails.years
+        }, {
+          name: '建筑类别',
+          value: projectdetails.buildingtype
+        }, {
+          name: '装修状态',
+          value: projectdetails.isup
+        }, {
+          name: '物业费',
+          value: projectdetails.propertyexpenses + '元/㎡'
+        },
+        // {
+        //   name: '佣金信息',
+        //   value: projectdetails.commissioninfo
+        // }, {
+        //   name: '优惠信息',
+        //   value: projectdetails.couponinfo
+        // }, 
+        {
+          name: '所属区县',
+          value: projectdetails.district
+        }, {
+          name: '建筑面积',
+          value: projectdetails.floorarea
+        }, {
+          name: '主面积',
+          value: projectdetails.mainarea
+        }, {
+          name: '绿化情况',
+          value: projectdetails.greencoverage
+        }, {
+          name: '建筑规划',
+          value: projectdetails.panning
+        }, {
+          name: '咨询电话',
+          value: projectdetails.phone
+        }, {
+          name: '容积率',
+          value: projectdetails.plotratio
+        }, {
+          name: '预售许可证',
+          value: projectdetails.presalepermit
+        }, {
+          name: '楼盘地址',
+          value: projectdetails.projectaddr
+        }, {
+          name: '物业类别',
+          value: projectdetails.propertytype
+        }, )
       //筛选有值的详情项
       let _arr = []
       for (let i = 0; i < _projectInfo.length; i++) {
@@ -644,7 +646,7 @@ Page({
     })
   },
   pageToMap(e) {
-    if (e.target.dataset.type == 1){
+    if (e.target.dataset.type == 1) {
       wx.navigateTo({
         url: '../map/map?projectName=' + this.data.mapInfo.name + '&longitude=' + this.data.mapInfo.salesLongitude + '&latitude=' + this.data.mapInfo.salesLatitude
       })

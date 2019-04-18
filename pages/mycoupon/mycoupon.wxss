@@ -72,7 +72,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  font-size: 66rpx;
+  font-size: 84rpx;
   font-family: 'DINCondensed-Bold';
   color: #fff;
   padding-bottom: 50rpx;
