@@ -80,11 +80,11 @@
         <text>{{item.cjDate}}</text>
       </view>
     </view>
-    <view class='luck' wx:if='{{0}}'>
+    <view class='luck' wx:if='{{item.cjDate}}'>
       <view class='icon'>
         <image src='../../images/xingzhuang.png'></image>
       </view>
-      <text >恭喜您，获得推荐佣金5000元</text>
+      <text >恭喜您，获得推荐佣金{{item.commissioninfo}}元</text>
     </view>
   </view>
   <!-- 悬浮窗 -->
