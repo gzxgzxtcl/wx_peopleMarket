@@ -76,7 +76,7 @@ swiper image {
   font-size: 18rpx;
   font-family: 'PingFangTC';
   border-radius: 4rpx;
-  margin-left: 20rpx;
+  margin-left: 10rpx;
   margin-bottom: 8rpx;
   color: #fff;
   margin-top: 20rpx;
@@ -85,10 +85,10 @@ swiper image {
 .info .name-money .money {
   display: flex;
   height: 100%;
+  flex: 1;
   align-items: flex-end;
   justify-content: flex-end;
   padding-left: 5rpx;
-  
 }
 
 .info .name-money .money view:first-child {

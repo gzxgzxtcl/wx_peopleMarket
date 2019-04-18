@@ -19,6 +19,7 @@
     <view class='name-money'>
       <view class='name'>
         <text>{{projectname_cswx}}</text>
+        <!-- <text>北京中海国际</text> -->
         <view wx:if='{{issale}}'>{{issale}}</view>
       </view>
       <view class='money'>
