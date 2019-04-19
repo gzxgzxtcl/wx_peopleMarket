@@ -59,7 +59,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.getProjectApiFindOtherDictValues()
     if (app.globalData.isCheck) {
       // 经纪人账号
       this.data.userInfo.agencyAccount = app.globalData.bindUserInfo.agencyAccount
@@ -272,6 +272,17 @@ Page({
     var that = this;
     //清除计时器  即清除setInter
     clearInterval(that.data.setInter)
+  },
+
+  // 获取经纪人类型
+  getProjectApiFindOtherDictValues(val) {
+    let that = this
+    let promise = {
+      dictname: '经纪人类型'
+    }
+    $http(apiSetting.projectApiFindOtherDictValues, promise).then((data) => {
+      // console.log(data)
+    })
   },
 
   // 获取海客中介用户

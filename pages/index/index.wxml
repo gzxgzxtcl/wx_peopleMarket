@@ -18,7 +18,7 @@
   <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" current="{{swiperCurrent}}" bindanimationfinish="swiperChange">
     <block wx:for="{{imgUrls}}" wx:key='{{index}}'>
       <swiper-item>
-        <image src="{{imgpath}}{{item.url}}" class="slide-image" width="355" height="150" />
+        <image mode="aspectFill" src="{{imgpath}}{{item.url}}" class="slide-image" width="355" height="150" />
       </swiper-item>
     </block>
   </swiper>
@@ -48,7 +48,7 @@
   <!-- 楼盘详情 -->
   <view class='hours-list' bindtap='goInformation' data-project_id='{{item.projectid_id}}'  wx:for='{{buildinfolist}}' wx:key='index'>
     <view class='img'>
-      <image src='{{imgpath}}{{item.pictureurl}}'></image>
+      <image mode="aspectFill" src='{{imgpath}}{{item.pictureurl}}'></image>
     </view>
     <view class='hours-info'>
       <view class='top-info'>
@@ -82,7 +82,7 @@
   <!-- 周边楼盘详情 -->
   <view class='hours-list' bindtap='goInformation' data-project_id='{{item.id}}' data-imgurl='{{item.pictureurl}}' wx:for='{{rimbuildinfolist}}' wx:key='index' wx:if="{{rimbuildinfolist.length}}">
     <view class='img'>
-      <image src='{{imgpath}}{{item.pictureurl}}'></image>
+      <image mode="aspectFill" src='{{imgpath}}{{item.pictureurl}}'></image>
     </view>
     <view class='hours-info'>
       <view class='top-info'>
