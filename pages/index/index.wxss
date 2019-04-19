@@ -118,7 +118,6 @@ swiper image {
   font-family: "PingFang-SC-Medium";
   color: #8d91a2;
   font-size: 24rpx;
-  background: pink；;
 }
 
 .goneneng view image {
