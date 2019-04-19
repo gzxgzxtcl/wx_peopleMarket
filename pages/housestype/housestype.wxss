@@ -76,7 +76,6 @@ page{
   /* display: flex; */
   /* flex-direction: column; */
   /* justify-content: space-around; */
-  /* background: pink; */
 }
 
 .house-type .huxing .img .explain .totle {
@@ -95,10 +94,10 @@ page{
   color: #333;
   font-size: 28rpx;
   font-family: 'PingFangTC-Light';
-  margin-bottom: 10rpx;
+  /* margin-bottom: 10rpx; */
 }
-.house-type .huxing .img .explain view{
-  margin: 0
+.house-type .huxing .img .explain>view{
+  margin-top: 0rpx;
 }
 .house-type .huxing .img .explain view text{
   color: #8d91a2;
