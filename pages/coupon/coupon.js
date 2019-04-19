@@ -31,14 +31,10 @@ Page({
           icon: '../../images/getOK.png',
           duration: 2000
         })
-         let a = 'couponList['+index+'].receivedStatus'
-         this.setData({ a:true})
+        //  let a = 'couponList['+index+'].receivedStatus'
+        //  this.setData({ a:true})
+         this.getAllCouponList()
        }
-      // wx.showToast({
-      //   title: '领取成功',
-      //   icon: '../../images/getOK.png',
-      //   duration: 2000
-      // })
     }, (error) => {
       console.log(error)
     });
@@ -67,7 +63,7 @@ Page({
       for(let i=0;i<_arr.length;i++){
         _arr[i].startDate = _arr[i].startDate.split(' ')[0].split('-').join('.')
         _arr[i].endDate = _arr[i].endDate.split(' ')[0].split('-').join('.')
-        _arr[i].couponname = parseInt(_arr[i].couponname) 
+        _arr[i].couponname = parseFloat(_arr[i].couponname) 
       } 
       console.log(_arr)
     

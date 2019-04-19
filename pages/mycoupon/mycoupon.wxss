@@ -78,25 +78,13 @@
   padding-bottom: 50rpx;
 }
 
-/* .coupon-item .info .num text:first-child {
+.coupon-item .info .num text:first-child {
   display: flex;
-  width: 66rpx;
-  height: 84rpx;
-  margin-top: 60rpx;
-  margin-left: 10rpx;
+  margin-left: 5rpx;
   margin-bottom: 10rpx;
   font-size: 24rpx;
   font-family: 'PingFang-SC-Medium';
-} */
-
-/* .coupon-item .info .num text:last-child {
-  font-size: 24rpx;
-  font-family: 'PingFang-SC-Medium';
-  margin-top: 104rpx;
-  margin-left: 20rpx;
-} */
-
-
+}
 
 .coupon-item .info .explain {
   width: 410rpx;
@@ -104,7 +92,7 @@
   /* padding-right: 40rpx; */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .coupon-item .info .explain .top {
@@ -113,7 +101,7 @@
   align-items: center;
   justify-content: space-between;
   margin-top: 20rpx;
-  /* margin-bottom: 42rpx; */
+  margin-bottom: 42rpx;
   }
 
 .coupon-item .info .explain .top>view {
@@ -177,6 +165,15 @@
   justify-content: space-between;
   margin-bottom: 20rpx;
 }
+
+.coupon-item .info .explain .bottom>view{
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
 .coupon-item .info .explain .isOldUsedBottom {
   height: 76rpx;
   font-size: 24rpx;

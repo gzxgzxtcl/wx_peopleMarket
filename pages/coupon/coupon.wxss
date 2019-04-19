@@ -46,13 +46,13 @@ page {
   padding-bottom: 50rpx;
 }
 
-/* .coupon-item .info .num text:first-child {
+.coupon-item .info .num text:first-child {
   display: flex;
-  margin-left: 10rpx;
+  margin-left: 5rpx;
   margin-bottom: 10rpx;
   font-size: 24rpx;
   font-family: 'PingFang-SC-Medium';
-} */
+}
 
 
 .coupon-item .info .explain {
@@ -62,7 +62,7 @@ page {
   /* padding-right: 40rpx; */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .coupon-item .info .explain .top {
@@ -71,7 +71,7 @@ page {
   align-items: center;
   margin-top: 20rpx;
   justify-content: space-between;
-  /* margin-bottom: 42rpx; */
+  margin-bottom: 42rpx;
 }
 
 .coupon-item .info .explain .top>view {
@@ -99,4 +99,10 @@ page {
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 20rpx;
+}
+.coupon-item .info .explain .bottom>view{
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

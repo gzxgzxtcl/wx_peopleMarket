@@ -46,7 +46,7 @@ Page({
       for(let i=0;i<_arr.length;i++){
         _arr[i].startDate = _arr[i].startDate.split(' ')[0].split('-').join('.')
         _arr[i].endDate = _arr[i].endDate.split(' ')[0].split('-').join('.')
-        _arr[i].couponname = parseInt(_arr[i].couponname) 
+        _arr[i].couponname = parseFloat(_arr[i].couponname) 
       }
       that.setData({ myCouponList: _arr})
     }, (error) => {
