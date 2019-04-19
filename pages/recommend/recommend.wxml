@@ -63,7 +63,7 @@
     </li>
   </ul>
 
-  <button class='bindSub' bindtap='bindSub'>确认推荐</button>
+  <button class='bindSub' disabled='{{subDisabled}}' bindtap='bindSub'>确认推荐</button>
 </view>
 
 <i-modal visible="{{ visible }}" ok-text="绑定用户" bind:ok="visibleOk" bind:cancel="visibleOkClose">
