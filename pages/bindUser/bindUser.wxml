@@ -44,9 +44,9 @@
     <li>
       <span class='title'>经纪人类型</span>
       <span style='float:right;'>
-        <picker mode="selector" bindchange="bindPickerChange" range-key="name" value='{{arrayIndex}}' range="{{array}}" disabled="{{!isEdit}}">
+        <picker mode="selector" bindchange="bindPickerChange" range-key="" value='{{arrayIndex}}' range="{{array}}" disabled="{{!isEdit}}">
           <view class="picker">
-            <text wx:if="{{arrayIndex == null}}">请选择</text> {{array[arrayIndex].name}}
+            <text wx:if="{{arrayIndex == null}}">请选择</text> {{array[arrayIndex]}}
           </view>
         </picker>
       </span>

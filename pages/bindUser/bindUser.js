@@ -75,14 +75,13 @@ Page({
       this.data.userInfo.sex = app.globalData.bindUserInfo.sex
       this.data.userInfo.wxid = app.globalData.bindUserInfo.wxid
 
-      let findIndex = this.data.array.findIndex((n) => {
-        return n.name == app.globalData.bindUserInfo.brokertype
-      })
+      // let findIndex = this.data.array.findIndex((n) => {
+      //   return n.name == app.globalData.bindUserInfo.brokertype
+      // })
 
       this.setData({
         userInfo: this.data.userInfo,
         gender: this.data.userInfo.sex,
-        arrayIndex: findIndex,
         isEdit: false,
         showAgencyAccount: app.globalData.bindUserInfo.agencyAccount,
         modalPhone: app.globalData.bindUserInfo.phone
@@ -139,7 +138,7 @@ Page({
     this.setData({
       arrayIndex: e.detail.value
     })
-    this.data.userInfo.brokertype = this.data.array[e.detail.value].name
+    this.data.userInfo.brokertype = this.data.array[e.detail.value]
   },
 
   // 获取验证码
@@ -281,7 +280,18 @@ Page({
       dictname: '经纪人类型'
     }
     $http(apiSetting.projectApiFindOtherDictValues, promise).then((data) => {
-      // console.log(data)
+      if (app.globalData.isCheck) {
+        let findIndex = data.data.findIndex((n) => {
+          return n == app.globalData.bindUserInfo.brokertype
+        })
+        console.log(findIndex)
+        that.setData({
+          arrayIndex: findIndex
+        })
+      }
+      that.setData({
+        array: data.data
+      })
     })
   },
 
