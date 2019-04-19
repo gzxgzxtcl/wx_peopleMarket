@@ -12,9 +12,13 @@
       <image wx:if='{{usedIndex!==2}}' src='../../images/reduced.png'></image>
       <image wx:else src='../../images/reduced_due.png'></image>
       <view class='info'>
-        <view class='num'>
-          <!-- {{item.couponname}}<text>折</text>   -->
-          {{item.couponname}}
+        <view class='num' wx:if='{{item.couponname}}'>
+          {{item.couponname}}<text>折</text>  
+          <!-- {{item.couponname}} -->
+        </view>
+        <view class='num' wx:else>
+          <text>暂无优惠</text>  
+          <!-- {{item.couponname}} -->
         </view>
         <view class='explain'>
           <view class='top'>

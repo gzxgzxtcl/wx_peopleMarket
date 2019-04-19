@@ -24,18 +24,12 @@
         <image wx:if='{{hourseImgList[index][0].upload_file_path}}' src='{{imgpath+hourseImgList[index][0].upload_file_path}}' bindtap='goHouseimg' data-index='{{index}}'></image>
         <image wx:else src=''></image>
         <view class='explain'>
-          <text class='totle'>{{item.price}}</text>
+          <text class='totle' wx:if='{{item.price}}'>{{item.price}}元/m²</text>
           <text>{{item.decoration}}</text>
           <text>户型优势</text>
           <view wx:for="{{pointViewList[index]}}" wx:key='index'>
             <text wx:if='{{item}}'>{{item}}</text>
           </view>
-          <!-- <view>
-            <text>黄金地段</text>
-          </view>
-          <view>
-            <text>海景房</text>
-          </view> -->
         </view>
       </view>
       <view class='house-info'>

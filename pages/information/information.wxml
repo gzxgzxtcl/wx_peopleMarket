@@ -40,7 +40,7 @@
         bind:cancel="handleClose2"
         >
         <view wx:if='{{!mainpriceOrCommission}}' class='model-content'>{{mainpricedescription}}</view>
-        <view wx:else  class='model-content'>{{commissionRule}}</view>
+        <view wx:else  class='model-content'>{{commissioninfo}}</view>
       </i-modal>
     </view>
     <!-- 标签 -->
@@ -126,7 +126,8 @@
         <image wx:if='{{upload_file_path}}' src='{{imgpath+upload_file_path}}' bindtap='goHouseimg' data-imgurl='{{imgpath+upload_file_path}}'></image>
         <image wx:else src=''></image>
         <view class='explain'>
-          <text class='totle'>{{price}}</text>
+          <view class='totle' wx:if='{{price}}'>{{price}}<text>元/m²</text></view>
+          <view class='no-money' wx:else>暂无定价</view>
           <text>户型优势</text>
           <view class='house-tag' wx:for='{{pointList}}' wx:key='{{index}}'>
             <text wx:if='{{item}}'>{{item}}</text>

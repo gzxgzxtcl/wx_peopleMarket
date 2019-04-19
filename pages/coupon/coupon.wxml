@@ -5,9 +5,13 @@
     <view class='coupon-item' wx:for='{{couponList}}' wx:key='{{index}}'>
       <image src='../../images/reduced.png'></image>
       <view class='info'>
-        <view class='num'>
-          <!-- {{item.couponname}}<text>折</text> -->
-          {{item.couponname}}
+        <view class='num' wx:if='{{item.couponname}}'>
+          {{item.couponname}}<text>折</text>
+          <!-- {{item.couponname}} -->
+        </view>
+        <view class='num' wx:else>
+          <text>暂无优惠</text>
+          <!-- {{item.couponname}} -->
         </view>
         <view class='explain'>
           <view class='top'>

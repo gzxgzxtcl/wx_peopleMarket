@@ -99,7 +99,8 @@ Page({
     spots: 0, //亮点条数
     exemption: '',
     /*免责条款*/
-    commissionRule: '', //佣金规则  
+    // commissionRule: '',     //佣金规则  
+    commissioninfo:'',      //佣金信息
     /*
       房型列表
     */
@@ -167,16 +168,16 @@ Page({
     }), (error) => {
       console.log(error)
     }
-    let promise2 = {
-      dictname: '佣金规则'
-    }
-    $http(apiSetting.projectApiFindOtherDictValues, promise2).then((data) => {
-      this.setData({
-        commissionRule: data.data
-      })
-    }), (error) => {
-      console.log(error)
-    }
+    // let promise2 = {
+    //   dictname: '佣金规则'
+    // }
+    // $http(apiSetting.projectApiFindOtherDictValues, promise2).then((data) => {
+    //   this.setData({
+    //     commissionRule: data.data
+    //   })
+    // }), (error) => {
+    //   console.log(error)
+    // }
 
   },
   //通过类型查询楼盘图列表
@@ -328,9 +329,11 @@ Page({
     }
     $http(apiSetting.projectApiFindProjectDetailsById, promise).then((data) => {
       let projectdetails = data.data
+      console.log(projectdetails)
       if (!projectdetails) return
       this.setData({
-        lightspot: projectdetails.highlights
+        lightspot: projectdetails.highlights,
+        commissioninfo: projectdetails.commissioninfo
       })
       let _projectInfo = []
       _projectInfo.push({
@@ -631,11 +634,7 @@ Page({
       })
     }
   },
-  //查看佣金规则
-  // getMoneyRule(e){
-  //   console.log('佣金规则')
-
-  // },
+  
   //去推荐
   goRecommend() {
     wx.navigateTo({
