@@ -76,15 +76,17 @@ page{
   /* display: flex; */
   /* flex-direction: column; */
   /* justify-content: space-around; */
+  /* background: pink; */
 }
 
 .house-type .huxing .img .explain .totle {
   display: block;
   height: 50rpx;
   color: #b4b9cb;
-  font-size: 36rpx;
+  font-size: 34rpx;
   font-family: 'PingFangTC-Light';
   margin-bottom: 10rpx;
+  /* background: yellow; */
 }
 
 .house-type .huxing .img .explain text:nth-of-type(2),.house-type .huxing .img .explain text:nth-of-type(3) {

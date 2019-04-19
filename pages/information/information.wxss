@@ -476,10 +476,18 @@ swiper image {
   display: block;
   height: 50rpx;
   width: 100%;
-  color: #b4b9cb;
+  /* color: #b4b9cb; */
+  color: red;
   font-size: 36rpx;
   font-family: 'PingFangTC-Light';
   margin-right: 20rpx;
+}
+.info .huxing .img .explain .totle text{
+  color: #333333;
+}
+
+.info .huxing .img .explain .no-money{
+  color: #b4b9cb;
 }
 
 .info .huxing .img .explain text:nth-of-type(2) {

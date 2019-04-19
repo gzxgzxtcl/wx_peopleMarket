@@ -30,12 +30,6 @@
           <view wx:for="{{pointViewList[index]}}" wx:key='index'>
             <text wx:if='{{item}}'>{{item}}</text>
           </view>
-          <!-- <view>
-            <text>黄金地段</text>
-          </view>
-          <view>
-            <text>海景房</text>
-          </view> -->
         </view>
       </view>
       <view class='house-info'>
