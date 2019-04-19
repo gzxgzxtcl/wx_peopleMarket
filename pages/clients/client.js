@@ -27,6 +27,24 @@ Page({
 
     recommendPersonList:[],     //推荐人信息列表
 
+    // aa:[
+    //   {
+    //     cityId:"0-166-1044-204-",
+    //     cityName : "成都",
+    //     cjDate: "2019-04-18",
+    //     commissioninfo : 555,
+    //     lfDate: "2019-04-18",
+    //     mobile : "17865352222",
+    //     name :"推一个",
+    //     projectId: "0-166-1044-204-100001-",
+    //     projectName  : "123123",
+    //     refer_mobile  : "17865353357",
+    //     rgDate: "2019-04-18",
+    //     tjDate:"2019-04-18 "
+    //   }
+    // ],
+
+
     _val:'',                    //搜索框临时数据
     //筛选条件
     selectList:{
@@ -39,7 +57,7 @@ Page({
       projectID: "",                  //项目id
       searchVal: "",                  //搜索框条件                
       openID: ""    
-    },             
+    },              
 
   },
 
@@ -175,7 +193,17 @@ Page({
   findCustomList(){
     let promise = { openID: app.globalData.openid }
     $http(apiSetting.recommendFindCustomList, promise).then((data) => {
-      this.setData({ recommendPersonList:data.data})
+      console.log(data.data)
+      let list=data.data
+      for (let i = 0; i < list.length;i++){
+        if(!list[i].lfDate){
+          list[i].rgDate=''
+          list[i].cjDate=''
+        } else if (list[i].lfDate && !list[i].rgDate){
+          list[i].cjDate = ''
+        }
+      }
+      this.setData({ recommendPersonList: list})
     }, (error) => {
       console.log(error)
     });

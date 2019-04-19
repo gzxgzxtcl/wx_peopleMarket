@@ -252,6 +252,7 @@
   padding-bottom: 20rpx;
 }
 
+
 .client .luck .icon {
   width: 24rpx;
   height: 24rpx;
