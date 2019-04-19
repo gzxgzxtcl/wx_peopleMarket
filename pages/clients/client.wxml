@@ -89,7 +89,7 @@
   </view>
   <!-- 悬浮窗 -->
   <view class='floating'>
-    <view>佣金规则</view>
+    <!-- <view>佣金规则</view> -->
     <view bindtap='goRecommend'>
       <view class='icon'>
         <image src='../../images/tuijian.png'></image>
