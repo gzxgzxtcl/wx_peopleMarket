@@ -458,7 +458,7 @@ swiper image {
 }
 
 .info .huxing .img image {
-  width: 442rpx;
+  width: 440rpx;
   height: 100%;
   border-radius: 6rpx;
 }
@@ -469,14 +469,17 @@ swiper image {
   /* display: flex;
   flex-direction: column;
   justify-content: space-around; */
+  flex: 1;
 }
 
 .info .huxing .img .explain .totle {
   display: block;
   height: 50rpx;
+  width: 100%;
   color: #b4b9cb;
   font-size: 36rpx;
   font-family: 'PingFangTC-Light';
+  margin-right: 20rpx;
 }
 
 .info .huxing .img .explain text:nth-of-type(2) {
