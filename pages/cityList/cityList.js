@@ -23,10 +23,12 @@ Page({
   onLoad: function(options) {
     // console.log(app.globalData.storLocalCity)
     // console.log(this.data.localCity)
-    this.setData({
-      localCity: app.globalData.storLocalCity,
-      selectCity: app.globalData.storLocalCity.id
-    })
+    if (app.globalData.storLocalCity) {
+      this.setData({
+        localCity: app.globalData.storLocalCity,
+        selectCity: app.globalData.storLocalCity.id
+      })
+    }
     this.getCityList()
   },
 

@@ -1,5 +1,5 @@
 <!--pages/cityList/cityList.wxml-->
-<view class='vPack vTitle'>
+<view class='vPack vTitle' wx:if="{{selectCity != null}}">
   <view style='margin-bottom:20rpx'>当前位置</view>
   <span class="cityName selectColor">{{localCity.city}}</span>
 </view>
