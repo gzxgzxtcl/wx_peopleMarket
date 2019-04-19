@@ -1,17 +1,28 @@
 <!-- 户型列表页 -->
 <view class='house-type'>
   <view class='top-sel' >
-    <view bindtap='changeHouse' data-index="{{0}}" data-type='{{0}}' class="{{selIndex===0?'active':''}}">
+    <view bindtap='changeHouse' data-index="{{-1}}" data-type='{{-1}}' class="{{selIndex===-1?'active':''}}">
       <text>全部({{allhourseList.length}})</text>
       <view></view>
     </view>
-    <view bindtap='changeHouse' data-index="{{1}}" data-type='{{1}}' class="{{selIndex===1?'active':''}}">
-      <text>两室({{twohourse.length}})</text>
-      <view></view>
-    </view>
-    <view bindtap='changeHouse' data-index="{{2}}" data-type='{{2}}' class="{{selIndex===2?'active':''}}">
-      <text>三室({{threehourse.length}})</text>
-      <view></view>
+    <view bindtap='changeHouse' wx:for='{{hourseTypeList}}' wx:key='{{index}}' data-index="{{index}}" data-type='{{index}}' class="{{selIndex===index?'active':''}}">
+      <text wx:if='{{index===0 && onehourse.length}}'>{{item}}({{onehourse.length}})</text>
+      <text wx:if='{{index===1 && twohourse.length}}'>{{item}}({{twohourse.length}})</text>
+      <text wx:if='{{index===2 && threehourse.length}}'>{{item}}({{threehourse.length}})</text>
+      <text wx:if='{{index===3 && fourhourse.length}}'>{{item}}({{fourhourse.length}})</text>
+      <text wx:if='{{index===4 && otherhourse.length}}'>{{item}}({{otherhourse.length}})</text>
+
+      <!-- <text wx:if='{{index===0}}'>{{item}}({{onehourse.length}})</text>
+      <text wx:if='{{index===1}}'>{{item}}({{twohourse.length}})</text>
+      <text wx:if='{{index===2}}'>{{item}}({{threehourse.length}})</text>
+      <text wx:if='{{index===3 }}'>{{item}}({{fourhourse.length}})</text>
+      <text wx:if='{{index===4 }}'>{{item}}({{otherhourse.length}})</text> -->
+      
+      <view wx:if='{{index===0 && onehourse.length}}'></view>
+      <view wx:if='{{index===1 && twohourse.length}}'></view>
+      <view wx:if='{{index===2 && threehourse.length}}'></view>
+      <view wx:if='{{index===3 && fourhourse.length}}'></view>
+      <view wx:if='{{index===4 && otherhourse.length}}'></view>
     </view>
   </view>
   <!-- 户型信息 -->
@@ -24,10 +35,11 @@
         <image wx:if='{{hourseImgList[index][0].upload_file_path}}' src='{{imgpath+hourseImgList[index][0].upload_file_path}}' bindtap='goHouseimg' data-index='{{index}}'></image>
         <image wx:else src=''></image>
         <view class='explain'>
-          <text class='totle' wx:if='{{item.price}}'>{{item.price}}元/m²</text>
+          <view class='totle' wx:if='{{item.price}}'>{{item.price}}<text>元/m²</text></view>
+          <view class='no-money' wx:else>暂无定价</view>
           <text>{{item.decoration}}</text>
           <text>户型优势</text>
-          <view wx:for="{{pointViewList[index]}}" wx:key='index'>
+          <view class='tags' wx:for="{{pointViewList[index]}}" wx:key='index'>
             <text wx:if='{{item}}'>{{item}}</text>
           </view>
         </view>

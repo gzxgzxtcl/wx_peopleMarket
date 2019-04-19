@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    subDisabled:false,
     placeholderText: '请输入客户相关描述，如意向户型、面积等',
     isCitySelect: false, // 是否选择城市
     visible: false,
@@ -211,13 +212,19 @@ Page({
       return
     }
     let promise = this.data.reportList
+    this.setData({
+      subDisabled: true
+    })
     $http(apiSetting.recommendAddAgencyCustom, promise).then((data) => {
       if (!data.code) {
         this.setData({
           visible2: true,
-          placeholderText: '',
+          placeholderText: ''
         })
       } else {
+        this.setData({
+          subDisabled: false
+        })
         $Message({
           content: data.message,
           type: 'error'
