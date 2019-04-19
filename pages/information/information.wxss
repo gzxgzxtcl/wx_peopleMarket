@@ -146,6 +146,7 @@ swiper image {
   border: 1rpx solid #979797;
   border-radius: 4rpx;
   margin-right: 20rpx;
+  margin-bottom: 20rpx;
 }
 
 
@@ -156,7 +157,7 @@ swiper image {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 40rpx;
+  margin-top: 20rpx;
 }
 
 .info .address>view {
