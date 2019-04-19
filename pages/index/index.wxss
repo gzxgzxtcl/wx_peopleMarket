@@ -230,12 +230,15 @@ swiper image {
 
 
 .hours-list .tag {
-  display: flex;
+  /* display: flex; */
   align-items: center;
+  width:calc(100% - 70rpx);
+  height:60rpx;
+overflow:hidden;
 }
 
 .hours-list .tag text {
-  display: block;
+  display: inline-block;
   padding: 0 10rpx;
   margin: 0 10rpx 0 0;
   border-radius: 4rpx;
