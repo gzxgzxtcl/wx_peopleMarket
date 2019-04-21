@@ -10,7 +10,7 @@
   <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange='bannerChange'>
     <block wx:for="{{imgUrls}}" wx:key="{{index}}">
       <swiper-item>
-        <image src="{{imgpath}}{{item}}" class="slide-image" width="355" height="150" />
+        <image mode="aspectFill" src="{{imgpath}}{{item}}" class="slide-image" width="355" height="150" />
       </swiper-item>
     </block>
   </swiper>
@@ -154,7 +154,7 @@
         <view class="section section_gap">
           <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
             <view class='imgs' style='width:{{440*item.imgs.length+20*(item.imgs.length-1)}}rpx'>
-              <image wx:for='{{item.imgs}}' wx:key="{{index}}" src='{{imgpath}}{{item}}'></image>
+              <image mode="aspectFill" wx:for='{{item.imgs}}' wx:key="{{index}}" src='{{imgpath}}{{item}}'></image>
             </view>
           </scroll-view>
         </view>

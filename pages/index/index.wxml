@@ -46,7 +46,7 @@
     <text>楼盘信息</text>
   </view>
   <!-- 楼盘详情 -->
-  <view class='hours-list' bindtap='goInformation' data-project_id='{{item.projectid_id}}'  wx:for='{{buildinfolist}}' wx:key='index'>
+  <view class='hours-list' bindtap='goInformation' data-project_id='{{item.projectid_id}}' wx:for='{{buildinfolist}}' wx:key='index'>
     <view class='img'>
       <image mode="aspectFill" src='{{imgpath}}{{item.pictureurl}}'></image>
     </view>
@@ -112,6 +112,21 @@
 
 <i-message id="message" />
 <i-modal visible="{{ isPermit }}" show-ok='{{!isPermit}}' show-cancel='{{!isPermit}}' bind:ok="handleClose2" bind:cancel="handleClose2">
-    <view>无使用权限</view>
-    <navigator class='wxexit' open-type="exit" target="miniProgram">确定</navigator>
+  <view>无使用权限</view>
+  <navigator class='wxexit' open-type="exit" target="miniProgram">确定</navigator>
 </i-modal>
+
+<view wx:if="{{showBgpack}}" class='bgpack'>
+  <view class='wicket'>
+    <view style='text-align:center;margin-bottom:16rpx;color:#ccc;'>提示</view>
+    <view style='text-align:center;line-height:30px;color:#333;'>请允许小程序使用用户信息</view>
+    <view style='margin-top:30rpx;'>
+      <button bindtap="accreditOperate">
+        取消
+      </button>
+      <button style='color:#20a0ff' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
+        允许
+      </button>
+    </view>
+  </view>
+</view>

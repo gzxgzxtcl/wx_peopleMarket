@@ -61,9 +61,7 @@ swiper image {
   width: 100%;
   /* height: 30rpx; */
   text-align: center;
-  /* display: flex; */
-  /* justify-content: space-around; */
-  /* align-items: center; */
+  /* display: flex; *//* justify-content: space-around; *//* align-items: center; */
   position: absolute;
   top: 370rpx;
   z-index: 30;
@@ -135,7 +133,7 @@ swiper image {
 
 .goneneng .gn3 image {
   width: 64rpx;
-  height:50rpx;
+  height: 50rpx;
 }
 
 .hours {
@@ -151,7 +149,7 @@ swiper image {
 
 .hours-list {
   width: 658rpx;
-  margin-bottom:20rpx;
+  margin-bottom: 20rpx;
 }
 
 .hours-list .img {
@@ -218,22 +216,21 @@ swiper image {
 .hours-list .sale text {
   display: block;
   height: 26rpx;
-  background: rgba(32,160,255,0.6);
+  background: rgba(32, 160, 255, 0.6);
   font-family: PingFangTC;
   font-size: 18rpx;
-  color: #FFFFFF;
+  color: #fff;
   padding: 0 6rpx 0 4rpx;
   border-radius: 4rpx;
   margin-left: 20rpx;
 }
 
-
 .hours-list .tag {
   /* display: flex; */
   align-items: center;
-  width:calc(100% - 70rpx);
-  height:60rpx;
-overflow:hidden;
+  width: calc(100% - 70rpx);
+  height: 60rpx;
+  overflow: hidden;
 }
 
 .hours-list .tag text {
@@ -261,3 +258,33 @@ overflow:hidden;
   font-size: 20rpx;
 }
 
+.bgpack {
+  display: flex;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 30rpx;
+}
+
+.bgpack .wicket {
+  width: 460rpx;
+  box-sizing: border-box;
+  margin: auto;
+  padding: 10rpx 10rpx 0rpx 10rpx;
+  border-radius: 6rpx;
+  background-color: #fff;
+}
+
+.bgpack button {
+  display: inline-block;
+  width: 50%;
+  background: none;
+  font-size: 24rpx;
+}
+
+.bgpack button::after {
+  border: none;
+}

@@ -9,6 +9,7 @@ const {
 } = require('../../dist/base/index');
 Page({
   data: {
+    showBgpack: false,
     isPermit: false,
     imgpath: fileUrl,
     cityNametext: '',
@@ -64,6 +65,15 @@ Page({
   },
 
   onLoad: function(option) {
+    // wx.authorize({
+    //   scope: 'scope.userInfo',
+    //   success() {
+    //     console.log(11)
+    //   },
+    //   fail() {
+    //     console.log(222)
+    //   }
+    // })
     let that = this
     // 登录
     wx.login({
@@ -98,6 +108,42 @@ Page({
       }
     })
 
+    // that.accreditOperate()
+
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userInfo']) {
+          wx.hideTabBar()
+          that.setData({
+            showBgpack: true
+          })
+        } else {
+          that.accreditOperate();
+        }
+      }
+    })
+  },
+
+  // 获取微信用户信息
+  onGotUserInfo(e) {
+    wx.showTabBar()
+    // console.log(e.detail.userInfo)
+    wx.setStorageSync('wxUserInfo', e.detail.userInfo)
+    // wx.getUserInfo({
+    //   success(res) {
+    //     console.log(res.userInfo)
+    //   }
+    // })
+    this.accreditOperate()
+  },
+
+  // 位置授权操作
+  accreditOperate() {
+    wx.showTabBar()
+    this.setData({
+      showBgpack: false
+    })
+    let that = this;
     // 判断本地是否有数据
     if (app.globalData.storLocalCity) {
       that.data.cityInfo.cityName = app.globalData.storLocalCity.city
@@ -186,7 +232,7 @@ Page({
       city: app.globalData.storLocalCity.id
     }
     $http(apiSetting.projectApiFindProjectListByCity, promise).then((data) => {
-     
+
       let rimbuildinfo
       if (data.list) {
         rimbuildinfo = data.list
@@ -201,7 +247,7 @@ Page({
       for (let i = 0; i < rimbuildinfo.length; i++) {
         if (rimbuildinfo[i].labels) {
           _arr.push(rimbuildinfo[i].labels.split(','))
-        }else{
+        } else {
           _arr.push('')
         }
       }
@@ -221,7 +267,7 @@ Page({
       openid: val
     }).then((data) => {
       app.globalData.bindUserInfo = data.data
-      
+
       that.stopRefresh()
     })
   },
