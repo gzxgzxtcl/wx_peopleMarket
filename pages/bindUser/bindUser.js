@@ -59,6 +59,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    // console.log(app.globalData.bindUserInfo)
     this.getProjectApiFindOtherDictValues()
     if (app.globalData.isCheck) {
       // 经纪人账号
@@ -138,6 +139,7 @@ Page({
     this.setData({
       arrayIndex: e.detail.value
     })
+    // this.getRecommendFindCanalByUser()
     this.data.userInfo.brokertype = this.data.array[e.detail.value]
   },
 
@@ -314,6 +316,28 @@ Page({
         $Message({
           content: data.message,
           type: 'warning'
+        });
+      }
+    })
+  },
+
+  getRecommendFindCanalByUser(){
+    // let promise = {
+    //   userID: app.globalData.bindUserInfo.id,
+    //   agentType:"独立经纪人"
+    // }
+    let promise = {
+      userID: "5CFC94D83E8B421FA1267D8089E56C2C",
+      agentType: "中海业主"
+    }
+    let that = this
+    $http(apiSetting.recommendFindCanalByUser, promise).then((data) => {
+      if (data.code == 0) {
+        console.log(data.data)
+      } else {
+        $Message({
+          content: data.message,
+          type: 'error'
         });
       }
     })

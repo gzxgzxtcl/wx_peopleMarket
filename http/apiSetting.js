@@ -44,6 +44,12 @@ const serviceModule = {
     method: 'post'
   },
 
+  // 根据用户及经纪人类型获取渠道
+  recommendFindCanalByUser: {
+    url: '/recommend/findCanalByUser',
+    method: 'post'
+  },
+
   // 获取楼盘列表
   recommendGetProjectList: {
     url: '/recommend/getProjectList',
