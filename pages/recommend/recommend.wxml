@@ -24,6 +24,17 @@
     </li>
     <li>
       <span class='title required'>客户电话</span>
+      <!-- <span class='phone-header'></span> -->
+
+      <view class="section">
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" range-key='city'>
+          <view class="picker phone-header">
+            {{array[index].mobileFlag}}
+          </view>
+        </picker>
+      </view>
+
+
       <span class="inp">
         <input placeholder-class="phcolor" type='number' bindinput='customPhoneBind' placeholder="请输入客户电话" />
       </span>
