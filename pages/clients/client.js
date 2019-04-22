@@ -267,7 +267,6 @@ Page({
   onReachBottom() {
     // 判断是否翻页
     if (this.data.isPage) {
-      console.log("到底了")
       this.data.selectList.startRow++
       this.findCustomList()
     }
