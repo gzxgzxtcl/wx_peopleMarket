@@ -12,7 +12,7 @@ Page({
     // 授权窗口
     showBgpack: false,
     // 是否显示优惠券
-    isHaveCoupon:true,
+    isHaveCoupon: true,
     // 是否有使用权限
     isPermit: false,
     imgpath: fileUrl,
@@ -39,6 +39,12 @@ Page({
     rimbuildinfolist: [],
     //周边楼盘信息标签列表
     rimbuildinfotaglist: [],
+    // 周边翻页
+    rimBuildPage: {
+      page: 1,
+      perpage: 10,
+      isPage: true
+    },
     // 周边楼盘信息图片
     rimbuildinfoimg: ''
   },
@@ -231,18 +237,18 @@ Page({
   getRimBuildInfo() {
     let that = this
     let promise = {
-      page: 1,
-      perpage: 10,
+      page: that.data.rimBuildPage.page,
+      perpage: that.data.rimBuildPage.perpage,
       login_by: app.globalData.userId,
       city: app.globalData.storLocalCity.id
     }
     $http(apiSetting.projectApiFindProjectListByCity, promise).then((data) => {
-
-      let rimbuildinfo
-      if (data.list) {
-        rimbuildinfo = data.list
+      let rimbuildinfo = []
+      if (data.list.length > 0) {
+        rimbuildinfo = [...that.data.rimbuildinfolist, ...data.list]
       } else {
-        rimbuildinfo = []
+        that.data.rimBuildPage.isPage = false
+        return
       }
       that.setData({
         rimbuildinfolist: rimbuildinfo
@@ -297,5 +303,13 @@ Page({
     wx.hideNavigationBarLoading();
     // 停止下拉动作
     wx.stopPullDownRefresh();
+  },
+  // 页面到达底部
+  onReachBottom() {
+    // 判断是否翻页
+    if (this.data.rimBuildPage.isPage) {
+      this.data.rimBuildPage.page++
+        this.getRimBuildInfo()
+    }
   }
 })
