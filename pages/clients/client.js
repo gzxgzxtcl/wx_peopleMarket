@@ -48,16 +48,19 @@ Page({
     _val:'',                    //搜索框临时数据
     //筛选条件
     selectList:{
-      startRow: 0,        
-      perRow: 10,
+      startRow: 1,        
+      perRow: 3,
       searchType: "",                  //进度
       startDate: "",                 //开始时间
       endDate: "",                    //结束时间
       cityId: "",                     //城市id
       projectID: "",                  //项目id
       searchVal: "",                  //搜索框条件                
-      openID: ""    
-    },              
+      openID: "" ,
+    },    
+    
+    isPage: true
+             
 
   },
 
@@ -127,7 +130,8 @@ Page({
   // 确认筛选
   submit(){
     let promise = this.data.selectList
-    console.log(this.data.selectList.searchType)
+    promise.startRow=1
+    promise.perRow=3
     if (!promise.searchType){
       promise.searchType='全部'
     }
@@ -141,7 +145,11 @@ Page({
   },
   //搜索图标点击
   selItem(){
-    this.setData({ 'selectList.searchVal': this.data._val })
+    this.setData({
+      'selectList.searchVal': this.data._val, 
+      'selectList.startRow': 1,
+      'selectList.perRow': 3,
+       })
     let promise = this.data.selectList
     $http(apiSetting.recommendFindCustomList, promise).then((data) => {
       this.setData({ recommendPersonList: data.data })
@@ -171,14 +179,19 @@ Page({
   //初始化请求参数
   resetParameter(){
     this.setData({
-      'selectList.searchType': '',            //进度
-      'selectList.startDate': '',      //开始时间
-      'selectList.endDate': '',        //结束时间
-      'selectList.cityId': '',       //城市id
+      'selectList.searchType': '',              //进度
+      'selectList.startDate': '',               //开始时间
+      'selectList.endDate': '',                //结束时间
+      'selectList.cityId': '',                  //城市id
       'selectList.projectID': '',                  //项目id
-      'selectList.searchVal': '',                  //搜索框条件                
+      'selectList.searchVal': '',                  //搜索框条件     
+      'selectList.startRow': 1, 
+      'selectList.perRow': 3,
     })
     // console.log(this.data.selectList)
+    this.setData({
+      isPage: true,
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -189,12 +202,26 @@ Page({
     this.getRecommendItemList();
     this.findRecommendPerson();
   },
+
+
   //获取推荐人状态信息
   findCustomList(){
-    let promise = { openID: app.globalData.openid }
+    let that=this
+    // let promise = {
+    //   startRow: that.data.customPage.startRow,
+    //   perRow: that.data.customPage.perRow,
+    //   openID: that.data.customPage.openID
+    // }
+    let promise = this.data.selectList
     $http(apiSetting.recommendFindCustomList, promise).then((data) => {
-      console.log(data.data)
-      let list=data.data
+      let customList = []
+      if (data.data.length>0){
+        customList = [...that.data.recommendPersonList,...data.data]
+      }else{
+        that.data.isPage = false
+        return
+      }
+      let list = customList
       for (let i = 0; i < list.length;i++){
         if(!list[i].lfDate){
           list[i].rgDate=''
@@ -236,4 +263,13 @@ Page({
       url: '../recommend/recommend',
     })
   },
+  // 页面到达底部
+  onReachBottom() {
+    // 判断是否翻页
+    if (this.data.isPage) {
+      console.log("到底了")
+      this.data.selectList.startRow++
+      this.findCustomList()
+    }
+  }
 })

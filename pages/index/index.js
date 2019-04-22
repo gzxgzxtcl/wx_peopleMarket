@@ -309,7 +309,7 @@ Page({
     // 判断是否翻页
     if (this.data.rimBuildPage.isPage) {
       this.data.rimBuildPage.page++
-        this.getRimBuildInfo()
+      this.getRimBuildInfo()
     }
   }
 })
