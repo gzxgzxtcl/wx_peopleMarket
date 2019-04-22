@@ -22,7 +22,7 @@ Page({
       customName: '',
       customPhone: '',
       hkProjectId: '',
-      mobileFlag: '+86',
+      mobileFlag: '+86', 
       openId: '',
       projectId: '',
       remark: '',
@@ -37,7 +37,16 @@ Page({
     gender: 1,
 
     arrayProject: [],
-    arrayProjectIndex: null
+    arrayProjectIndex: null,
+
+    index:0,            //客户电话区号选择默认下标
+    //+86(港:+852,澳:+853,台:+886)
+    array:[
+      { city: '大陆', mobileFlag:'+86'},
+      { city: '香港', mobileFlag: '+852'},
+      { city: '澳门', mobileFlag: '+853' },
+      { city: '台湾', mobileFlag: '+886' }
+    ]
   },
 
   /**
@@ -109,6 +118,14 @@ Page({
     this.setData({
       gender: val
     })
+  },
+  //电话地区选择
+  bindPickerChange(e) {
+    this.setData({
+      index: e.detail.value,
+      'reportList.mobileFlag': this.data.array[e.detail.value].mobileFlag
+    })
+    console.log(this.data.reportList)
   },
 
   // 城市选择

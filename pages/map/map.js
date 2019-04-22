@@ -11,6 +11,7 @@ Page({
   },
 
   onLoad(option) {
+    console.log(option)
     // console.log(option.projectName)
     // console.log(option.longitude)
     // console.log(option.latitude)
@@ -28,6 +29,7 @@ Page({
       latitude: option.latitude,
       markers: mapObj
     })
+    console.log(this.data.markers)
   }
 
 })

@@ -18,7 +18,10 @@
   width: 200rpx;
   position: relative;
 }
-
+.phone-header{
+  float: left;
+  width: 80rpx;
+}
 .required::before {
   content: '*';
   color: #fb1414;
@@ -32,6 +35,7 @@
   align-items: center;
   justify-content: center;
   height: 50px;
+  padding-left: 20rpx;
 }
 
 .inp input {

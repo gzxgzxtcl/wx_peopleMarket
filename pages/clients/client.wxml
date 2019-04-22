@@ -29,6 +29,7 @@
         value="{{ value5 }}" 
         placeholder="请输入姓名或手机号" 
         bindinput='valueChange'
+        catchtap='hideDrawer'
         />
     </view>
     <view class='search-icon' bindtap='selItem'>
@@ -100,7 +101,7 @@
 </view>
  <!-- 抽屉 -->
 <view class='drawer' wx:if='{{showRight}}' catchtouchmove='true' >
-  <view class='shade' bindtap='hideDrawer'></view>
+  <view class='shade' bindtap='hideDrawer' ></view>
   <view class='content'>
     <view class='city'>
       <view class='title'>城市</view>
