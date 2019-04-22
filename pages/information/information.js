@@ -329,7 +329,6 @@ Page({
     }
     $http(apiSetting.projectApiFindProjectDetailsById, promise).then((data) => {
       let projectdetails = data.data
-      console.log(projectdetails)
       if (!projectdetails) return
       this.setData({
         lightspot: projectdetails.highlights,
@@ -403,9 +402,9 @@ Page({
       let _arr = []
       for (let i = 0; i < _projectInfo.length; i++) {
         if (_projectInfo[i].value) {
-          if (_projectInfo[i].name === '物业费') {
-            _projectInfo[i].value = _projectInfo[i].value + '元/㎡'
-          }
+          // if (_projectInfo[i].name === '物业费') {
+          //   _projectInfo[i].value = _projectInfo[i].value + '元/㎡'
+          // }
           _arr.push(_projectInfo[i])
         }
       }
@@ -462,9 +461,16 @@ Page({
         mainpricedescription: projectinfo.mainpricedescription,
         mainhouseholdList: projectinfo.mainhouseholdList,
         labelsList: projectinfo.labelsList,
-        brightspotsList: projectinfo.brightspotsList,
+        // brightspotsList: projectinfo.brightspotsList,
         city_id: projectinfo.city
       })
+      let _arr=[]
+      for (let i = 0; i < projectinfo.brightspotsList.length;i++){
+        if (projectinfo.brightspotsList[i].remark !== null && projectinfo.brightspotsList[i].remark !== undefined && projectinfo.brightspotsList[i].remark !== ''){
+          _arr.push(projectinfo.brightspotsList[i])
+        }
+      }
+      this.setData({ brightspotsList:_arr})
       if (projectinfo.is_myconc == 0) {
         this.setData({
           isAttention: true

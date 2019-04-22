@@ -15,7 +15,7 @@
   <view class='dot'>
     <view wx:for="{{imgUrls}}" wx:key="{{index}}" class="{{swiperCurrent==index?'active':''}}" bindtap='changeImg' data-index='{{index}}'></view>
   </view>
-  <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" current="{{swiperCurrent}}" bindanimationfinish="swiperChange">
+  <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" current="{{swiperCurrent}}" bindanimationfinish="swiperChange" circular='true'>
     <block wx:for="{{imgUrls}}" wx:key='{{index}}'>
       <swiper-item>
         <image mode="aspectFill" src="{{imgpath}}{{item.url}}" class="slide-image" width="355" height="150" />

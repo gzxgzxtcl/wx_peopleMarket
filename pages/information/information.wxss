@@ -326,7 +326,7 @@ swiper image {
 }
 
 .info .hours-lightspot .overview {
-  height: 86rpx;
+  /* height: 86rpx; */
   padding-left: 32rpx;
   display: flex;
   flex-direction: column;
@@ -343,11 +343,12 @@ swiper image {
   font-size: 28rpx;
   font-family: 'PingFang-SC-Medium';
   color: #333;
+  margin-bottom: 12rpx;
 }
 
 .info .hours-lightspot .overview text:last-child {
   display: block;
-  height: 34rpx;
+  /* height: 34rpx; */
   width: 100%;
   line-height: 34rpx;
   font-size: 24rpx;

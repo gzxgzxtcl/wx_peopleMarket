@@ -39,8 +39,10 @@
         show-cancel="{{!visible2}}"
         bind:cancel="handleClose2"
         >
-        <view wx:if='{{!mainpriceOrCommission}}' class='model-content'>{{mainpricedescription}}</view>
-        <view wx:else  class='model-content'>{{commissioninfo}}</view>
+        <view wx:if='{{mainpriceOrCommission===0 && mainpricedescription}}' class='model-content'>{{mainpricedescription}}</view>
+        <view wx:if='{{mainpriceOrCommission===0 && !mainpricedescription}}' class='model-content'>暂无价格提示</view>
+        <view wx:if='{{mainpriceOrCommission===1 && commissioninfo}}'  class='model-content'>{{commissioninfo}}</view>
+        <view wx:if='{{mainpriceOrCommission===1 && !commissioninfo}}'  class='model-content'>暂无佣金规则</view>
       </i-modal>
     </view>
     <!-- 标签 -->
