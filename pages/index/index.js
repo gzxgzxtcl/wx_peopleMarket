@@ -9,7 +9,11 @@ const {
 } = require('../../dist/base/index');
 Page({
   data: {
+    // 授权窗口
     showBgpack: false,
+    // 是否显示优惠券
+    isHaveCoupon:true,
+    // 是否有使用权限
     isPermit: false,
     imgpath: fileUrl,
     cityNametext: '',
@@ -200,6 +204,7 @@ Page({
         cityNametext: data.data.cityInfo.city,
         imgUrls: data.data.rollImg,
         buildinfolist: data.data.buildInfo,
+        isHaveCoupon: data.data.isHaveCoupon
       })
       let buildInfo = data.data.buildInfo
       let _tagArr = []

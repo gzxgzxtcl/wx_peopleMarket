@@ -34,7 +34,7 @@
         <image data-url='../clients/client' src='../../images/client.png'></image>
         <text data-url='../clients/client'>我的客户</text>
       </view>
-      <view class='gn3' data-url='../coupon/coupon' bindtap='pageTobind'>
+      <view class='gn3' wx:if='{{isHaveCoupon}}' data-url='../coupon/coupon' bindtap='pageTobind'>
         <image data-url='../coupon/coupon' src='../../images/discounts.png'></image>
         <text data-url='../coupon/coupon'>优惠券</text>
       </view>
