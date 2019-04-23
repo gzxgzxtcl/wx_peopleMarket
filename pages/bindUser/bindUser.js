@@ -71,7 +71,10 @@ Page({
       // let findIndex = this.data.array.findIndex((n) => {
       //   return n.name == app.globalData.bindUserInfo.brokertype
       // })
-      this.getUserGetHaikeAgencyInfo(app.globalData.bindUserInfo.agencyMobile)
+      if (app.globalData.bindUserInfo.brokertype == '中介'){
+        this.getUserGetHaikeAgencyInfo(app.globalData.bindUserInfo.agencyMobile)
+      }
+  
       this.setData({
         userInfo: this.data.userInfo,
         gender: this.data.userInfo.sex,
