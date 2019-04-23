@@ -197,17 +197,18 @@ Page({
       project_id:id
     }
     $http(apiSetting.projectApiFindProjectImagesListByType, promise).then((data) => {
+      console.log(data.data)
       let _arrBannerImg=data.data
       let _arrBannerImg2=[]
       for (let i = 0; i < _arrBannerImg.length;i++){
-        if (_arrBannerImg[i].upload_file_path == undefined) {
+        if (_arrBannerImg[i].upload_file_path == undefined || _arrBannerImg[i].upload_file_path == null) {
           continue
         } else {
           _arrBannerImg2.push(_arrBannerImg[i].upload_file_path)
         }
       }
       for (let i = 0; i < _arrBannerImg2.length;i++){
-        _arrBannerImg2[i].upload_file_path = this.data.imgpath + _arrBannerImg2[i].upload_file_path
+        _arrBannerImg2[i] = this.data.imgpath + _arrBannerImg2[i].upload_file_path
       }
       this.resetBanner(_arrBannerImg2)
       promiseTypeIndex++
@@ -217,14 +218,14 @@ Page({
       let _arrSJImg=data.data
       let _arrSJImg2=[]
       for (let i = 0; i < _arrSJImg.length;i++){
-        if (_arrSJImg[i].upload_file_path == undefined) {
+        if (_arrSJImg[i].upload_file_path == undefined || _arrSJImg[i].upload_file_path == null) {
           continue
         } else {
           _arrSJImg2.push(_arrSJImg[i].upload_file_path)
         }
       }
       for (let i = 0; i < _arrSJImg2.length; i++) {
-        _arrSJImg2[i].upload_file_path = this.data.imgpath + _arrSJImg2[i].upload_file_path
+        _arrSJImg2[i] = this.data.imgpath + _arrSJImg2[i].upload_file_path
       }
       this.setData({ 'buildsimg[0].imgs': _arrSJImg2 })
       promiseTypeIndex++
@@ -234,14 +235,14 @@ Page({
       let _arrXGImg=data.data
       let _arrXGImg2=[]
       for (let i = 0; i < _arrXGImg.length; i++) {
-        if (_arrXGImg[i].upload_file_path == undefined) {
+        if (_arrXGImg[i].upload_file_path == undefined || _arrXGImg[i].upload_file_path == null) {
           continue
         } else {
           _arrXGImg2.push(_arrXGImg[i].upload_file_path)
         }
       }
       for (let i = 0; i < _arrXGImg2.length; i++) {
-        _arrXGImg2[i].upload_file_path = this.data.imgpath + _arrXGImg2[i].upload_file_path
+        _arrXGImg2[i] = this.data.imgpath + _arrXGImg2[i].upload_file_path
       }
       this.setData({ 'buildsimg[1].imgs': _arrXGImg2 })
       promiseTypeIndex++
@@ -251,14 +252,14 @@ Page({
       let _arrPTImg=data.data
       let _arrPTImg2=[]
       for (let i = 0; i < _arrPTImg.length; i++) {
-        if (_arrPTImg[i].upload_file_path == undefined) {
+        if (_arrPTImg[i].upload_file_path == undefined || _arrPTImg[i].upload_file_path == null) {
           continue
         } else {
           _arrPTImg2.push(_arrPTImg[i].upload_file_path)
         }
       }
       for (let i = 0; i < _arrPTImg2.length; i++) {
-        _arrPTImg2[i].upload_file_path = this.data.imgpath + _arrPTImg2[i].upload_file_path
+        _arrPTImg2[i] = this.data.imgpath + _arrPTImg2[i].upload_file_path
       }
       this.setData({ 'buildsimg[2].imgs': _arrPTImg2 })
       promiseTypeIndex++
@@ -268,14 +269,14 @@ Page({
       let _arrGHImg=data.data
       let _arrGHImg2=[]
       for (let i = 0; i < _arrGHImg.length; i++) {
-        if (_arrGHImg[i].upload_file_path == undefined) {
+        if (_arrGHImg[i].upload_file_path == undefined || _arrGHImg[i].upload_file_path == null) {
           continue
         } else {
           _arrGHImg2.push(_arrGHImg[i].upload_file_path)
         }
       }
       for (let i = 0; i < _arrGHImg2.length; i++) {
-        _arrGHImg2[i].upload_file_path = this.data.imgpath + _arrGHImg2[i].upload_file_path
+        _arrGHImg2[i] = this.data.imgpath + _arrGHImg2[i].upload_file_path
       }
       this.setData({ 'buildsimg[3].imgs': _arrGHImg2 })
     }).then(()=>{
