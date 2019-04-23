@@ -129,6 +129,7 @@ Page({
   },
   // 确认筛选
   submit(){
+    this.setData({ 'selectList.isPage': true})
     let promise = this.data.selectList
     promise.startRow=1
     promise.perRow=3
@@ -149,6 +150,7 @@ Page({
       'selectList.searchVal': this.data._val, 
       'selectList.startRow': 1,
       'selectList.perRow': 3,
+      'selectList.isPage':true
        })
     let promise = this.data.selectList
     $http(apiSetting.recommendFindCustomList, promise).then((data) => {

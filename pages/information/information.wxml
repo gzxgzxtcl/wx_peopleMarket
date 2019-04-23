@@ -31,20 +31,7 @@
         </view>
       </view>
     </view>
-    <!-- 主力均价提示 -->
-    <view class='money-tip' >
-      <i-modal 
-        visible="{{ visible2 }}" 
-        bind:ok="handleClose2"
-        show-cancel="{{!visible2}}"
-        bind:cancel="handleClose2"
-        >
-        <view wx:if='{{mainpriceOrCommission===0 && mainpricedescription}}' class='model-content'>{{mainpricedescription}}</view>
-        <view wx:if='{{mainpriceOrCommission===0 && !mainpricedescription}}' class='model-content'>暂无价格提示</view>
-        <view wx:if='{{mainpriceOrCommission===1 && commissioninfo}}'  class='model-content'>{{commissioninfo}}</view>
-        <view wx:if='{{mainpriceOrCommission===1 && !commissioninfo}}'  class='model-content'>暂无佣金规则</view>
-      </i-modal>
-    </view>
+  
     <!-- 标签 -->
     <view class='tag' wx:if='{{labelsList.length}}'>
       <view wx:for='{{labelsList}}' wx:key='{{index}}'>{{item.labels}}</view>
@@ -151,7 +138,7 @@
           <text class='iconfont iconjiantou'></text>
         </view>
       </view>
-      <view class='img-list' wx:for='{{buildsimg}}' wx:key='{{index}}' wx:if='{{item.imgs.length}}'>
+      <view class='img-list' wx:for='{{buildsimg}}' wx:key='{{index}}' >
         <text>{{item.name}}({{item.imgs.length}}）</text>
         <view class="section section_gap">
           <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
@@ -232,9 +219,15 @@
   </view>
 </view>
 
-<!-- <view class='model-view' catchtouchmove='true'>
-  <view class='model' bindtouchmove='true'>
-    <view class='top' >容内容容</view>
-    <view class='bottom'>关闭</view>
-  </view>
-</view> -->
+
+  <!-- 主力均价提示 -->
+    <view class='model-view' wx:if='{{visible2}}'>
+      <view class='shadow'  catchtouchmove='stopMove' ></view>
+      <view class='model-content' >
+        <view wx:if='{{mainpriceOrCommission===0 && mainpricedescription}}' >{{mainpricedescription}}</view>
+        <view wx:if='{{mainpriceOrCommission===0 && !mainpricedescription}}'>暂无价格提示</view>
+        <view wx:if='{{mainpriceOrCommission===1 && commissioninfo}}' >{{commissioninfo}}</view>
+        <view wx:if='{{mainpriceOrCommission===1 && !commissioninfo}}' >暂无佣金规则</view>
+        <view class='bottom' bindtap='handleClose2'>关闭</view>
+      </view>
+    </view>
