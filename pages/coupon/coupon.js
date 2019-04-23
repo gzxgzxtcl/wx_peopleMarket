@@ -12,7 +12,12 @@ Page({
     isGet: false,                  /*是否领取*/
     couponList:[],                 //优惠券列表
     couponIndex:null,                  //领取优惠券下标
-
+    // 翻页
+    pageData: {
+      page: 1,
+      perpage: 20,
+      isPage: true
+    },
   },
   //点击领取优惠券
   getCoupon(e) {
@@ -22,7 +27,7 @@ Page({
       couponId: e.currentTarget.dataset.couponid,    //卡券ID
       userId: app.globalData.userId                 //用户ID
     }
-    console.log(promise)
+    // console.log(promise)
     $http(apiSetting.apiCouponGetCoupon, promise).then((data) => {
        console.log(data)
        if(data.code===0){
@@ -53,23 +58,38 @@ Page({
     let that=this
     let promise = {
       city: app.globalData.storLocalCity.id,
-      page: 1,
-      perpage: 10,
+      page: that.data.pageData.page,
+      perpage: that.data.pageData.perpage,
       userId: app.globalData.userId
     }
     $http(apiSetting.apiCouponCouponForCityList, promise).then((data) => {
-      // console.log(data.data.list)
-      let _arr = data.data.list
+      console.log(data.data.list)
+      let _arr = []
+      if (data.data.list.length>0){
+        _arr = [...that.data.couponList, ...data.data.list]
+      }else{
+        that.data.pageData.isPage = false
+        return
+      }
+      
       for(let i=0;i<_arr.length;i++){
         _arr[i].startDate = _arr[i].startDate.split(' ')[0].split('-').join('.')
         _arr[i].endDate = _arr[i].endDate.split(' ')[0].split('-').join('.')
         _arr[i].couponname = parseFloat(_arr[i].couponname) 
       } 
-      console.log(_arr)
     
       this.setData({ couponList: _arr})
     }, (error) => {
       console.log(error)
     });
+  },
+
+  // 页面到达底部
+  onReachBottom() {
+    // 判断是否翻页
+    if (this.data.pageData.isPage) {
+      this.data.pageData.page++
+      this.getAllCouponList()
+    }
   }
 })

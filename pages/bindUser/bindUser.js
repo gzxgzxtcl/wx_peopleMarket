@@ -257,9 +257,9 @@ Page({
       this.getUserGetHaikeAgencyInfo(val)
     }
   },
-  agencyAccountBind(e) {
-    this.data.userInfo.agencyAccount = e.detail.value
-  },
+  // agencyAccountBind(e) {
+  //   this.data.userInfo.agencyAccount = e.detail.value
+  // },
   // 验证码输入
   inpBind(e) {
     this.setData({
