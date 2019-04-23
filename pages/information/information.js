@@ -66,9 +66,10 @@ Page({
     /*城市id*/
 
     //楼盘主图,实景图,效果图,配套图,规划图
+    buildsRequestArr: ['项目主图', '实景图', '效果图', '配套图', '规划图'],
     buildsimg: [
       // {
-      //   name:'楼盘主图',
+      //   name:'项目主图',
       //   imgs:[]
       // },
       {
@@ -141,22 +142,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    /*
+      首页传递项目id到详情页，并将项目id进行保存，并使用
+    */
     this.data.optionsObj = options
-    let project_id = options.project_id //index-->information 项目id
-    let imgurl = options.imgurl //index-->information  项目主图
+    let project_id = options.project_id          //index-->information 项目id
+    //let imgurl = options.imgurl                //index-->information  项目主图
+
+    //对关注接口的请求参数进行赋值
     this.setData({
       'attentionList.login_by': app.globalData.userId,
       'attentionList.project_id': project_id
     })
-    this.isAttentionProject()
 
-    this.getProjectInfo(project_id); // 通过id获取项目信息
-    this.getProjectDetails(project_id) //通过id获取项目详情
-    this.getProjectHouserholdList(project_id); //通过id查询户型列表
-    this.getHourseImgList(project_id); //通过类型查询楼盘图
-    this.getClauseAndRule(); //获取免责条款和佣金规则
+    this.getProjectInfo(project_id);            // 通过id获取项目信息
+    this.getProjectDetails(project_id)          //通过id获取项目详情
+    this.getProjectHouserholdList(project_id);  //通过id查询户型列表
+    this.getHourseImgList(project_id);         //通过类型查询楼盘图
+    this.getClauseAndRule();                  //获取免责条款
+    this.isAttentionProject();                //判断是否关注项目
+    
   },
-  //查询免责条款和佣金规则
+  //查询免责条款
   getClauseAndRule() {
     let promise1 = {
       dictname: '免责条款'
@@ -180,100 +187,184 @@ Page({
     // }
 
   },
-  //通过类型查询楼盘图列表
-  getHourseImgList(id) {
-    let promise1 = {
-      project_id: id,
-      picturetype: "项目主图"
-    }
-    this.getHourseImgFun(promise1)
-    let promise2 = {
-      project_id: id,
-      picturetype: "实景图"
-    }
-    this.getHourseImgFun(promise2)
-    let promise3 = {
-      project_id: id,
-      picturetype: "效果图"
-    }
-    this.getHourseImgFun(promise3)
-    let promise4 = {
-      project_id: id,
-      picturetype: "配套图"
-    }
-    this.getHourseImgFun(promise4)
-    let promise5 = {
-      project_id: id,
-      picturetype: "规划图"
-    }
-    this.getHourseImgFun(promise5)
-  },
-  //请求楼盘图接口函数
-  getHourseImgFun(promise) { //楼盘主图,实景图,效果图,配套图,规划图
-    $http(apiSetting.projectApiFindProjectImagesListByType, promise).then((data) => {
-      let _arr = data.data
-      let _arr2 = []
-      if (promise.picturetype === "项目主图") {
-        for (let i = 0; i < _arr.length; i++) {
-          if (_arr[i].upload_file_path == undefined) {
-            continue
-          } else {
-            _arr2.push(_arr[i].upload_file_path)
-          }
-        }
 
-        this.resetBanner(_arr2)
-        // this.setData({['buildsimg[0].imgs']:_arr2})
-      } else if (promise.picturetype === "实景图") {
-        for (let i = 0; i < _arr.length; i++) {
-          if (_arr[i].upload_file_path == undefined) {
-            continue
-          } else {
-            _arr2.push(_arr[i].upload_file_path)
-          }
+//通过类型查询楼盘图列表
+  getHourseImgList(id){
+    let promiseTypeIndex=0
+    let promise = {
+      picturetype: this.data.buildsRequestArr[promiseTypeIndex],
+      project_id:id
+    }
+    $http(apiSetting.projectApiFindProjectImagesListByType, promise).then((data) => {
+      let _arrBannerImg=data.data
+      let _arrBannerImg2=[]
+      for(let i=0;i<_arrBannerImg.length;i++){
+        if (_arrBannerImg[i].upload_file_path == undefined) {
+          continue
+        } else {
+          _arrBannerImg2.push(_arrBannerImg[i].upload_file_path)
         }
-        this.setData({
-          'buildsimg[0].imgs': _arr2
-        })
-      } else if (promise.picturetype === "效果图") {
-        for (let i = 0; i < _arr.length; i++) {
-          if (_arr[i].upload_file_path == undefined) {
-            continue
-          } else {
-            _arr2.push(_arr[i].upload_file_path)
-          }
-        }
-        this.setData({
-          'buildsimg[1].imgs': _arr2
-        })
-      } else if (promise.picturetype === "配套图") {
-        for (let i = 0; i < _arr.length; i++) {
-          if (_arr[i].upload_file_path == undefined) {
-            continue
-          } else {
-            _arr2.push(_arr[i].upload_file_path)
-          }
-        }
-        this.setData({
-          'buildsimg[2].imgs': _arr2
-        })
-      } else if (promise.picturetype === "规划图") {
-        for (let i = 0; i < _arr.length; i++) {
-          if (_arr[i].upload_file_path == undefined) {
-            continue
-          } else {
-            _arr2.push(_arr[i].upload_file_path)
-          }
-        }
-        this.setData({
-          'buildsimg[3].imgs': _arr2
-        })
       }
-      this.isHaveBuildsImg()
+      this.resetBanner(_arrBannerImg2)
+      promiseTypeIndex++
+      promise.picturetype = this.data.buildsRequestArr[promiseTypeIndex]
+      return $http(apiSetting.projectApiFindProjectImagesListByType, promise)
+    }).then((data) => {
+      let _arrSJImg=data.data
+      let _arrSJImg2=[]
+      for (let i = 0; i < _arrSJImg.length;i++){
+        if (_arrSJImg[i].upload_file_path == undefined) {
+          continue
+        } else {
+          _arrSJImg2.push(_arrSJImg[i].upload_file_path)
+        }
+      }
+      this.setData({ 'buildsimg[0].imgs': _arrSJImg2 })
+      promiseTypeIndex++
+      promise.picturetype = this.data.buildsRequestArr[promiseTypeIndex]
+      return $http(apiSetting.projectApiFindProjectImagesListByType, promise)
+    }).then((data)=>{
+      let _arrXGImg=data.data
+      let _arrXGImg2=[]
+      for (let i = 0; i < _arrXGImg.length; i++) {
+        if (_arrXGImg[i].upload_file_path == undefined) {
+          continue
+        } else {
+          _arrXGImg2.push(_arrXGImg[i].upload_file_path)
+        }
+      }
+      this.setData({ 'buildsimg[1].imgs': _arrXGImg2 })
+      promiseTypeIndex++
+      promise.picturetype = this.data.buildsRequestArr[promiseTypeIndex]
+      return $http(apiSetting.projectApiFindProjectImagesListByType, promise)
+    }).then((data)=>{
+      let _arrPTImg=data.data
+      let _arrPTImg2=[]
+      for (let i = 0; i < _arrPTImg.length; i++) {
+        if (_arrPTImg[i].upload_file_path == undefined) {
+          continue
+        } else {
+          _arrPTImg2.push(_arrPTImg[i].upload_file_path)
+        }
+      }
+      this.setData({ 'buildsimg[2].imgs': _arrPTImg2 })
+      promiseTypeIndex++
+      promise.picturetype = this.data.buildsRequestArr[promiseTypeIndex]
+      return $http(apiSetting.projectApiFindProjectImagesListByType, promise)
+    }).then((data)=>{
+      let _arrGHImg=data.data
+      let _arrGHImg2=[]
+      for (let i = 0; i < _arrGHImg.length; i++) {
+        if (_arrGHImg[i].upload_file_path == undefined) {
+          continue
+        } else {
+          _arrGHImg2.push(_arrGHImg[i].upload_file_path)
+        }
+      }
+      this.setData({ 'buildsimg[3].imgs': _arrGHImg2 })
+    }).then(()=>{
+      this.isHaveBuildsImg(this.data.buildsimg)
     }), (error) => {
       console.log(error)
     }
   },
+
+
+  //通过类型查询楼盘图列表
+  // getHourseImgList(id) {
+  //   let promise1 = {
+  //     project_id: id,
+  //     picturetype: "项目主图"
+  //   }
+  //   this.getHourseImgFun(promise1)
+  //   let promise2 = {
+  //     project_id: id,
+  //     picturetype: "实景图"
+  //   }
+  //   this.getHourseImgFun(promise2)
+  //   let promise3 = {
+  //     project_id: id,
+  //     picturetype: "效果图"
+  //   }
+  //   this.getHourseImgFun(promise3)
+  //   let promise4 = {
+  //     project_id: id,
+  //     picturetype: "配套图"
+  //   }
+  //   this.getHourseImgFun(promise4)
+  //   let promise5 = {
+  //     project_id: id,
+  //     picturetype: "规划图"
+  //   }
+  //   this.getHourseImgFun(promise5)
+  // },
+
+  //请求楼盘图接口函数
+  // getHourseImgFun(promise) { //楼盘主图,实景图,效果图,配套图,规划图
+  //   $http(apiSetting.projectApiFindProjectImagesListByType, promise).then((data) => {
+  //     let _arr = data.data
+  //     let _arr2 = []
+  //     if (promise.picturetype === "项目主图") {
+  //       for (let i = 0; i < _arr.length; i++) {
+  //         if (_arr[i].upload_file_path == undefined) {
+  //           continue
+  //         } else {
+  //           _arr2.push(_arr[i].upload_file_path)
+  //         }
+  //       }
+
+  //       this.resetBanner(_arr2)
+  //       // this.setData({['buildsimg[0].imgs']:_arr2})
+  //     } else if (promise.picturetype === "实景图") {
+  //       for (let i = 0; i < _arr.length; i++) {
+  //         if (_arr[i].upload_file_path == undefined) {
+  //           continue
+  //         } else {
+  //           _arr2.push(_arr[i].upload_file_path)
+  //         }
+  //       }
+  //       this.setData({
+  //         'buildsimg[0].imgs': _arr2
+  //       })
+  //     } else if (promise.picturetype === "效果图") {
+  //       for (let i = 0; i < _arr.length; i++) {
+  //         if (_arr[i].upload_file_path == undefined) {
+  //           continue
+  //         } else {
+  //           _arr2.push(_arr[i].upload_file_path)
+  //         }
+  //       }
+  //       this.setData({
+  //         'buildsimg[1].imgs': _arr2
+  //       })
+  //     } else if (promise.picturetype === "配套图") {
+  //       for (let i = 0; i < _arr.length; i++) {
+  //         if (_arr[i].upload_file_path == undefined) {
+  //           continue
+  //         } else {
+  //           _arr2.push(_arr[i].upload_file_path)
+  //         }
+  //       }
+  //       this.setData({
+  //         'buildsimg[2].imgs': _arr2
+  //       })
+  //     } else if (promise.picturetype === "规划图") {
+  //       for (let i = 0; i < _arr.length; i++) {
+  //         if (_arr[i].upload_file_path == undefined) {
+  //           continue
+  //         } else {
+  //           _arr2.push(_arr[i].upload_file_path)
+  //         }
+  //       }
+  //       this.setData({
+  //         'buildsimg[3].imgs': _arr2
+  //       })
+  //     }
+  //     this.isHaveBuildsImg()
+  //   }), (error) => {
+  //     console.log(error)
+  //   }
+  // },
 
   //通过id获取户型图片列表
   getProjectHouserholdFileList(id) {
@@ -304,7 +395,7 @@ Page({
       let hourserholdlist = data.data[0];
       if (!hourserholdlist) return
       this.setData({
-        hourselist: data.data,
+        hourselist: data.data,                         
         caption: hourserholdlist.caption,
         houserhold: hourserholdlist.houserhold,
         price: hourserholdlist.price,
@@ -314,14 +405,17 @@ Page({
         decoration: hourserholdlist.decoration,
         houserholdremark: hourserholdlist.houserholdremark,
       })
+      //截取亮点标签
       this.setData({
         pointList: hourserholdlist.buyingpoint.split(',')
       })
+      //通过户型id请求户型图片
       this.getProjectHouserholdFileList(hourserholdlist.id);
     }), (error) => {
       console.log(error)
     }
   },
+
   //通过id获取项目详情
   getProjectDetails(id) {
     let promise = {
@@ -331,9 +425,10 @@ Page({
       let projectdetails = data.data
       if (!projectdetails) return
       this.setData({
-        lightspot: projectdetails.highlights,
-        commissioninfo: projectdetails.commissioninfo
+        lightspot: projectdetails.highlights,               //亮点概述信息
+        commissioninfo: projectdetails.commissioninfo       //佣金规则
       })
+      //项目详情列表
       let _projectInfo = []
       _projectInfo.push({
           name: '开发商',
@@ -401,7 +496,7 @@ Page({
       //筛选有值的详情项
       let _arr = []
       for (let i = 0; i < _projectInfo.length; i++) {
-        if (_projectInfo[i].value) {
+        if (_projectInfo[i].value && _projectInfo[i].value !== 'null') {
           // if (_projectInfo[i].name === '物业费') {
           //   _projectInfo[i].value = _projectInfo[i].value + '元/㎡'
           // }
@@ -420,18 +515,18 @@ Page({
           projectInfoNum: 8
         })
       }
-      // console.log(data.data)
+      //地图名和售楼处及展厅经纬度
       this.data.mapInfo.name = data.data.projectname_cswx
       this.data.mapInfo.salesLongitude = data.data.salesaddry
       this.data.mapInfo.salesLatitude = data.data.salesaddrx
       this.data.mapInfo.showLongitude = data.data.showhally
       this.data.mapInfo.showLlatitude = data.data.showhallx
-      // console.log(this.data.mapInfo)
+      
       this.setData({
-        projectInfo: _arr,
-        exemption: projectdetails.exemption,
-        phone: projectdetails.phone,
-        projectname_cswx: projectdetails.projectname_cswx
+        projectInfo: _arr,                        //项目详情列表
+        //exemption: projectdetails.exemption,      //免责条款
+        phone: projectdetails.phone,              //联系电话
+        projectname_cswx: projectdetails.projectname_cswx       //项目名
       })
 
       this.stopRefresh()
@@ -442,6 +537,7 @@ Page({
   },
 
   // 通过id获取项目信息
+ 
   getProjectInfo(id) {
     let promise = {
       project_id: id
@@ -449,7 +545,7 @@ Page({
     $http(apiSetting.projectApiFindProjectInfoById, promise).then((data) => {
       let projectinfo = data.data
       if (!projectinfo) return
-      this.getSpotLength(projectinfo.brightspotsList); //获取亮点条数
+      this.getSpotLength(projectinfo.brightspotsList);            //获取亮点条数
       this.setData({
         project_id: projectinfo.id,
         // projectname_hk: projectinfo.projectname_hk,
@@ -464,6 +560,7 @@ Page({
         // brightspotsList: projectinfo.brightspotsList,
         city_id: projectinfo.city
       })
+      //判断亮点信息是否为空，并筛选有数据的项
       let _arr=[]
       for (let i = 0; i < projectinfo.brightspotsList.length;i++){
         if (projectinfo.brightspotsList[i].remark !== null && projectinfo.brightspotsList[i].remark !== undefined && projectinfo.brightspotsList[i].remark !== ''){
@@ -471,15 +568,17 @@ Page({
         }
       }
       this.setData({ brightspotsList:_arr})
-      if (projectinfo.is_myconc == 0) {
-        this.setData({
-          isAttention: true
-        })
-      } else {
-        this.setData({
-          isAttention: false
-        })
-      }
+
+      //判断是否关注
+      // if (projectinfo.is_myconc == 0) {
+      //   this.setData({
+      //     isAttention: true
+      //   })
+      // } else {
+      //   this.setData({
+      //     isAttention: false
+      //   })
+      // }
     }, (error) => {
       console.log(error)
     });
@@ -502,11 +601,10 @@ Page({
     // })
   },
   //判断是否有楼盘图
-  isHaveBuildsImg() {
-    let imgs = this.data.buildsimg;
+  isHaveBuildsImg(data) {
     let _arr = []
-    for (let i = 0; i < imgs.length; i++) {
-      if (!imgs[i].imgs.length) continue
+    for (let i = 0; i < data.length; i++) {
+      if (!data[i].imgs.length) continue
       _arr.push('1')
     }
     if (_arr.length === 0) {
@@ -665,6 +763,11 @@ Page({
       })
     }
   },
+//滑动bug
+  stopMove(){
+    return
+  },
+
 
   // 下拉刷新
   onPullDownRefresh() {
