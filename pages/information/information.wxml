@@ -112,8 +112,9 @@
         <text>{{caption}}</text>
       </view>
       <view class='img'>
-        <image wx:if='{{upload_file_path}}' src='{{imgpath+upload_file_path}}' bindtap='goHouseimg' data-imgurl='{{imgpath+upload_file_path}}'></image>
-        <image wx:else src=''></image>
+        <!-- <image wx:if='{{upload_file_path}}' src='{{imgpath+upload_file_path}}' bindtap='goHouseimg' data-imgurl='{{imgpath+upload_file_path}}'></image> -->
+        <image mode="aspectFill" src="{{upload_file_path==''?defaultImg:upload_file_path}}"  binderror="erroImage1" data-index='{{index}}'></image>
+        <!-- <image wx:else src=''></image> -->
         <view class='explain'>
           <view class='totle' wx:if='{{price}}'>{{price}}<text>元/m²</text></view>
           <view class='no-money' wx:else>暂无定价</view>
@@ -144,6 +145,7 @@
           <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
             <view class='imgs' style='width:{{440*item.imgs.length+20*(item.imgs.length-1)}}rpx'>
               <image mode="aspectFill" wx:for='{{item.imgs}}' wx:key="{{index}}" src='{{imgpath}}{{item}}'></image>
+              <!-- <image mode="aspectFill"  wx:for='{{item.imgs}}' src="{{item==''?defaultImg:item}}"  binderror="erroImage2" data-index='{{index}}' data-name=''></image> -->
             </view>
           </scroll-view>
         </view>

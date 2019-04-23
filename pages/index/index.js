@@ -198,10 +198,21 @@ Page({
     let promise = that.data.cityInfo
     $http(apiSetting.cityFindBuildInfoByCity, promise).then((data) => {
       app.globalData.storLocalCity = data.data.cityInfo
+      console.log(data.data.buildInfo)
+      //修改楼盘图路径
+      let _list1 = data.data.buildInfo
+      for(let i=0;i<_list1.length;i++){
+         _list1[i].pictureurl = this.data.imgpath + _list1[i].pictureurl
+      }
+      let _list2 = data.data.rollImg
+      for (let i = 0; i < _list2.length; i++) {
+        _list2[i].url = this.data.imgpath + _list2[i].url
+      }
+
       that.setData({
         cityNametext: data.data.cityInfo.city,
-        imgUrls: data.data.rollImg,
-        buildinfolist: data.data.buildInfo,
+        imgUrls: _list2,
+        buildinfolist: _list1,
         isHaveCoupon: data.data.isHaveCoupon
       })
       let buildInfo = data.data.buildInfo
@@ -242,8 +253,13 @@ Page({
         that.data.rimBuildPage.isPage = false
         return
       }
+      //周边列表图片路径修改
+      let _list3 = rimbuildinfo
+      for(let i=0;i<_list3.length;i++){
+        _list3[i].pictureurl = this.data.imgpath + _list3[i].pictureurl
+      }
       that.setData({
-        rimbuildinfolist: rimbuildinfo
+        rimbuildinfolist: _list3
       })
       let _arr = []
       // if (rimbuildinfo.length<=1) return
@@ -282,13 +298,30 @@ Page({
       url: pageUrl
     })
   },
-
-// 错误图片
+//轮播图错误图片
+  erroImage1(e){
+    if (e.type == 'error') {
+      this.data.imgUrls[e.target.dataset.index].url = this.data.defaultImg
+      this.setData({
+        imgUrls: this.data.imgUrls
+      })
+    }
+  },
+// 楼盘信息错误图片
   erroImage(e){
     if(e.type == 'error'){
       this.data.buildinfolist[e.target.dataset.index].pictureurl = this.data.defaultImg
       this.setData({
         buildinfolist: this.data.buildinfolist
+      })
+    }
+  },
+  //周边列表错误图片
+  erroImage2(e){
+    if (e.type == 'error') {
+      this.data.rimbuildinfolist[e.target.dataset.index].pictureurl = this.data.defaultImg
+      this.setData({
+        rimbuildinfolist: this.data.rimbuildinfolist
       })
     }
   },

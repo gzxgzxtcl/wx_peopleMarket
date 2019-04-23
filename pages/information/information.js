@@ -6,6 +6,7 @@ const app = getApp()
 
 Page({
   data: {
+    defaultImg: '../../images/defaultImg.png',
     mapInfo: {
       name: '',
       salesLongitude: '',
@@ -198,12 +199,15 @@ Page({
     $http(apiSetting.projectApiFindProjectImagesListByType, promise).then((data) => {
       let _arrBannerImg=data.data
       let _arrBannerImg2=[]
-      for(let i=0;i<_arrBannerImg.length;i++){
+      for (let i = 0; i < _arrBannerImg.length;i++){
         if (_arrBannerImg[i].upload_file_path == undefined) {
           continue
         } else {
           _arrBannerImg2.push(_arrBannerImg[i].upload_file_path)
         }
+      }
+      for (let i = 0; i < _arrBannerImg2.length;i++){
+        _arrBannerImg2[i].upload_file_path = this.data.imgpath + _arrBannerImg2[i].upload_file_path
       }
       this.resetBanner(_arrBannerImg2)
       promiseTypeIndex++
@@ -219,6 +223,9 @@ Page({
           _arrSJImg2.push(_arrSJImg[i].upload_file_path)
         }
       }
+      for (let i = 0; i < _arrSJImg2.length; i++) {
+        _arrSJImg2[i].upload_file_path = this.data.imgpath + _arrSJImg2[i].upload_file_path
+      }
       this.setData({ 'buildsimg[0].imgs': _arrSJImg2 })
       promiseTypeIndex++
       promise.picturetype = this.data.buildsRequestArr[promiseTypeIndex]
@@ -232,6 +239,9 @@ Page({
         } else {
           _arrXGImg2.push(_arrXGImg[i].upload_file_path)
         }
+      }
+      for (let i = 0; i < _arrXGImg2.length; i++) {
+        _arrXGImg2[i].upload_file_path = this.data.imgpath + _arrXGImg2[i].upload_file_path
       }
       this.setData({ 'buildsimg[1].imgs': _arrXGImg2 })
       promiseTypeIndex++
@@ -247,6 +257,9 @@ Page({
           _arrPTImg2.push(_arrPTImg[i].upload_file_path)
         }
       }
+      for (let i = 0; i < _arrPTImg2.length; i++) {
+        _arrPTImg2[i].upload_file_path = this.data.imgpath + _arrPTImg2[i].upload_file_path
+      }
       this.setData({ 'buildsimg[2].imgs': _arrPTImg2 })
       promiseTypeIndex++
       promise.picturetype = this.data.buildsRequestArr[promiseTypeIndex]
@@ -260,6 +273,9 @@ Page({
         } else {
           _arrGHImg2.push(_arrGHImg[i].upload_file_path)
         }
+      }
+      for (let i = 0; i < _arrGHImg2.length; i++) {
+        _arrGHImg2[i].upload_file_path = this.data.imgpath + _arrGHImg2[i].upload_file_path
       }
       this.setData({ 'buildsimg[3].imgs': _arrGHImg2 })
     }).then(()=>{
@@ -375,7 +391,7 @@ Page({
       let imgArr = data.data[0]
       if (imgArr) {
         this.setData({
-          upload_file_path: imgArr.upload_file_path
+          upload_file_path: this.data.imgpath+imgArr.upload_file_path
         })
       } else {
         this.setData({
@@ -767,6 +783,30 @@ Page({
   stopMove(){
     return
   },
+  //户型图片错误
+  erroImage1(e){
+    console.log(e)
+    if (e.type == 'error') {
+      this.data.upload_file_path = this.data.defaultImg
+      this.setData({
+        upload_file_path: this.data.upload_file_path
+      })
+    }
+  },
+  //楼盘图错误
+  // erroImage2(e){
+  //   if (e.type == 'error') {
+  //     buildsimg
+  //     let _arr = this.data.buildsimg
+  //     for (let i = 0; i < _arr.length;i++){
+  //       _arr[i] = this.data.defaultImg
+  //     }
+  //     this.data.upload_file_path = this.data.defaultImg
+  //     this.setData({
+  //       upload_file_path: this.data.upload_file_path
+  //     })
+  //   }
+  // },
 
 
   // 下拉刷新
