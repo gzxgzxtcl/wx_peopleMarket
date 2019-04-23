@@ -64,12 +64,12 @@
         <input placeholder-class="phcolor" type='number' value='{{userInfo.channelCode}}' placeholder="请输入渠道验证码" disabled="{{!isEdit}}" maxlength='11' bindinput='channelCodeBind' />
       </span>
     </li>
-    <li wx-if="{{arrayIndex == 2}}">
+    <!-- <li wx-if="{{arrayIndex == 2}}">
       <span class='title'>留电渠道</span>
       <span class="inp">
         <input placeholder-class="phcolor" type='text' value='{{userInfo.myName}}' placeholder="" disabled />
       </span>
-    </li>
+    </li> -->
     <li wx-if="{{arrayIndex == 2}}">
       <span class='title'>中介账户</span>
       <span class="inp">

@@ -48,7 +48,8 @@
   <!-- 楼盘详情 -->
   <view class='hours-list' bindtap='goInformation' data-project_id='{{item.projectid_id}}' wx:for='{{buildinfolist}}' wx:key='index'>
     <view class='img'>
-      <image mode="aspectFill" src='{{imgpath}}{{item.pictureurl}}'></image>
+          <!-- <image mode="aspectFill" src='{{imgpath+item.pictureurl}}' binderror="erroImage" data-index='{{index}}'></image> -->
+      <image mode="aspectFill" src='{{item.pictureurl==""?defaultImg:imgpath+item.pictureurl}}' binderror="erroImage" data-index='{{index}}'></image>
     </view>
     <view class='hours-info'>
       <view class='top-info'>
@@ -118,13 +119,14 @@
 
 <view wx:if="{{showBgpack}}" class='bgpack'>
   <view class='wicket'>
-    <view style='text-align:center;margin-bottom:16rpx;color:#ccc;'>提示</view>
-    <view style='text-align:center;line-height:30px;color:#333;'>请允许小程序使用用户信息</view>
-    <view style='margin-top:30rpx;'>
+    <view style='text-align:center;margin-bottom:16rpx;font-size:36rpx'>温馨提示</view>
+    <view style='text-align:center;color:#888;'>请允许小程序使用</view>
+    <view style='text-align:center;color:#888;'>用户信息</view>
+    <view style='margin-top:24px;border-top:rgba(0,0,0,0.10) 1px solid'>
       <button bindtap="accreditOperate">
         取消
       </button>
-      <button style='color:#20a0ff' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
+      <button style='color:#20A0FF;border-left:rgba(0,0,0,0.10) 1px solid' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
         允许
       </button>
     </view>

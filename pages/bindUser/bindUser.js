@@ -60,6 +60,7 @@ Page({
    */
   onLoad: function(options) {
     // console.log(app.globalData.bindUserInfo)
+    this.getRecommendFindCanalByUser() 
     this.getProjectApiFindOtherDictValues()
     if (app.globalData.isCheck) {
       // 经纪人账号

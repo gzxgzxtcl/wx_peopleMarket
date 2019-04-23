@@ -1,7 +1,7 @@
 <!--pages/setting/setting.wxml-->
 <view>
   <ul>
-    <li>经济人使用帮助
+    <li>经纪人使用帮助
       <span class="iconImg">
         <image src='../../images/right.png'></image>
       </span>

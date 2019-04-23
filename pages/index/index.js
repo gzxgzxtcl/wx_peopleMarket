@@ -9,6 +9,7 @@ const {
 } = require('../../dist/base/index');
 Page({
   data: {
+    defaultImg:'../../images/defaultImg.png',
     // 授权窗口
     showBgpack: false,
     // 是否显示优惠券
@@ -75,15 +76,6 @@ Page({
   },
 
   onLoad: function(option) {
-    // wx.authorize({
-    //   scope: 'scope.userInfo',
-    //   success() {
-    //     console.log(11)
-    //   },
-    //   fail() {
-    //     console.log(222)
-    //   }
-    // })
     let that = this
     // 登录
     wx.login({
@@ -289,6 +281,16 @@ Page({
     wx.navigateTo({
       url: pageUrl
     })
+  },
+
+// 错误图片
+  erroImage(e){
+    if(e.type == 'error'){
+      this.data.buildinfolist[e.target.dataset.index].pictureurl = this.data.defaultImg
+      this.setData({
+        buildinfolist: this.data.buildinfolist
+      })
+    }
   },
 
   // 下拉刷新

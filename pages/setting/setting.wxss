@@ -10,7 +10,7 @@ ul li {
   color: #111;
   padding-left: 30rpx;
   padding-right: 30rpx;
-  border: 1rpx solid #e6e6e6;
+  border-bottom: 1rpx solid #e6e6e6;
   box-sizing: border-box;
 }
 
