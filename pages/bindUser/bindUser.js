@@ -23,6 +23,7 @@ Page({
       sex: '男',
       wxid: ''
     },
+    trench:'',
     showAgencyAccount: '',
     // 验证码窗
     noteCodeVisible: false,
@@ -31,16 +32,7 @@ Page({
     modalPhone: null,
     // 验证是否成功
     noteResult: false,
-    array: [{
-      id: 1,
-      name: '独立经纪人'
-    }, {
-      id: 2,
-      name: '中海业主'
-    }, {
-      id: 3,
-      name: '中介'
-    }],
+    array: [],
     arrayIndex: null,
 
     // 存放计时器
@@ -60,7 +52,6 @@ Page({
    */
   onLoad: function(options) {
     // console.log(app.globalData.bindUserInfo)
-    this.getRecommendFindCanalByUser() 
     this.getProjectApiFindOtherDictValues()
     if (app.globalData.isCheck) {
       // 经纪人账号
@@ -80,7 +71,7 @@ Page({
       // let findIndex = this.data.array.findIndex((n) => {
       //   return n.name == app.globalData.bindUserInfo.brokertype
       // })
-
+      this.getUserGetHaikeAgencyInfo(app.globalData.bindUserInfo.agencyMobile)
       this.setData({
         userInfo: this.data.userInfo,
         gender: this.data.userInfo.sex,
@@ -287,7 +278,6 @@ Page({
         let findIndex = data.data.findIndex((n) => {
           return n == app.globalData.bindUserInfo.brokertype
         })
-        console.log(findIndex)
         that.setData({
           arrayIndex: findIndex
         })
@@ -311,34 +301,13 @@ Page({
         that.data.userInfo.agencyUid = data.data.agencyUid
         that.setData({
           showAgencyAccount: data.data.agencyAccount,
+          trench: data.data.channels[0].name
         })
       }
       if (data.code == -1) {
         $Message({
           content: data.message,
           type: 'warning'
-        });
-      }
-    })
-  },
-
-  getRecommendFindCanalByUser(){
-    // let promise = {
-    //   userID: app.globalData.bindUserInfo.id,
-    //   agentType:"独立经纪人"
-    // }
-    let promise = {
-      userID: "5CFC94D83E8B421FA1267D8089E56C2C",
-      agentType: "中海业主"
-    }
-    let that = this
-    $http(apiSetting.recommendFindCanalByUser, promise).then((data) => {
-      if (data.code == 0) {
-        console.log(data.data)
-      } else {
-        $Message({
-          content: data.message,
-          type: 'error'
         });
       }
     })

@@ -163,7 +163,8 @@ Page({
       })
     }
     let promise = {
-      cityId: this.data.city_id
+      cityId: this.data.city_id,
+      openid:app.globalData.bindUserInfo.wxid
     }
 
     //获取楼盘列表
