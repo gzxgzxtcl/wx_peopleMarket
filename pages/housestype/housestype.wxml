@@ -26,7 +26,7 @@
     </view>
   </view>
   <!-- 户型信息 -->
-  <view class='house-item' wx:for='{{hourseViewList}}' wx:key='{{index}}'>
+  <view class='house-item' wx:for='{{hourseViewList}}' wx:key='{{index}}' wx:if='{{hourseViewList.length}}'>
     <view class='huxing'>
       <view class='tip'>
         <text>{{item.caption}}</text>
@@ -46,7 +46,7 @@
         <view class='explain'>
           <view class='totle' wx:if='{{item.price}}'>{{item.price}}<text>元/m²</text></view>
           <view class='no-money' wx:else>暂无定价</view>
-          <text>{{item.decoration}}</text>
+          <text wx:if='{{item.decoration}}'>{{item.decoration}}</text>
           <text>户型优势</text>
           <view class='tags' wx:for="{{item.buyingpoint}}" wx:for-item='point' wx:for-index='pointIndex' wx:key='pointIndex'>
             <text wx:if='{{point}}'>{{point}}</text>
@@ -57,18 +57,22 @@
         <view class='top'>
           <view>
             <text>户型</text>
-            <text>{{item.houserhold}}</text>
+            <text wx:if='{{item.houserhold}}'>{{item.houserhold}}</text>
+            <text wx:else>暂无信息</text>
           </view>
           <view>
             <text>建筑面积</text>
-            <text>{{item.area}}</text>
+            <text wx:if='{{item.area}}'>{{item.area}}</text>
+            <text wx:else>暂无信息</text>
           </view>
           <view>
             <text>产品</text>
-            <text>{{item.category}}</text>
+            <text wx:if='{{item.category}}'>{{item.category}}</text>
+            <text wx:else>暂无信息</text>
           </view>
         </view>
-        <view class='miaoshu'>户型描述：<text>{{item.houserholdremark}}</text></view>
+        <view class='miaoshu' wx:if='{{item.houserholdremark}}'>户型描述：<text>{{item.houserholdremark}}</text></view>
+        <view class='miaoshu' wx:else>户型描述：<text>暂无描述</text></view>
       </view>
     </view>
   </view>
