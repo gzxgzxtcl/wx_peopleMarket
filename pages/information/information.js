@@ -143,6 +143,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    let bannerImgUrl = options.imgurl
+    this.setData({ 'imgUrls[0]': bannerImgUrl})
     /*
       首页传递项目id到详情页，并将项目id进行保存，并使用
     */
@@ -197,18 +199,22 @@ Page({
       project_id:id
     }
     $http(apiSetting.projectApiFindProjectImagesListByType, promise).then((data) => {
-      console.log(data.data)
       let _arrBannerImg=data.data
       let _arrBannerImg2=[]
-      for (let i = 0; i < _arrBannerImg.length;i++){
-        if (_arrBannerImg[i].upload_file_path == undefined || _arrBannerImg[i].upload_file_path == null) {
-          continue
-        } else {
-          _arrBannerImg2.push(_arrBannerImg[i].upload_file_path)
+      if (_arrBannerImg.length>0){
+        for (let i = 0; i < _arrBannerImg.length; i++) {
+          if (_arrBannerImg[i].upload_file_path == undefined || _arrBannerImg[i].upload_file_path == null) {
+            continue
+          } else {
+            _arrBannerImg2.push(_arrBannerImg[i].upload_file_path)
+          }
         }
+      }else{
+        _arrBannerImg2 = [this.data.defaultImg]
       }
+      
       for (let i = 0; i < _arrBannerImg2.length;i++){
-        _arrBannerImg2[i] = this.data.imgpath + _arrBannerImg2[i].upload_file_path
+        _arrBannerImg2[i] = this.data.imgpath + _arrBannerImg2[i]
       }
       this.resetBanner(_arrBannerImg2)
       promiseTypeIndex++
@@ -225,7 +231,7 @@ Page({
         }
       }
       for (let i = 0; i < _arrSJImg2.length; i++) {
-        _arrSJImg2[i] = this.data.imgpath + _arrSJImg2[i].upload_file_path
+        _arrSJImg2[i] = this.data.imgpath + _arrSJImg2[i]
       }
       this.setData({ 'buildsimg[0].imgs': _arrSJImg2 })
       promiseTypeIndex++
@@ -242,7 +248,7 @@ Page({
         }
       }
       for (let i = 0; i < _arrXGImg2.length; i++) {
-        _arrXGImg2[i] = this.data.imgpath + _arrXGImg2[i].upload_file_path
+        _arrXGImg2[i] = this.data.imgpath + _arrXGImg2[i]
       }
       this.setData({ 'buildsimg[1].imgs': _arrXGImg2 })
       promiseTypeIndex++
@@ -259,7 +265,7 @@ Page({
         }
       }
       for (let i = 0; i < _arrPTImg2.length; i++) {
-        _arrPTImg2[i] = this.data.imgpath + _arrPTImg2[i].upload_file_path
+        _arrPTImg2[i] = this.data.imgpath + _arrPTImg2[i]
       }
       this.setData({ 'buildsimg[2].imgs': _arrPTImg2 })
       promiseTypeIndex++
@@ -276,7 +282,7 @@ Page({
         }
       }
       for (let i = 0; i < _arrGHImg2.length; i++) {
-        _arrGHImg2[i] = this.data.imgpath + _arrGHImg2[i].upload_file_path
+        _arrGHImg2[i] = this.data.imgpath + _arrGHImg2[i]
       }
       this.setData({ 'buildsimg[3].imgs': _arrGHImg2 })
     }).then(()=>{
@@ -613,9 +619,6 @@ Page({
       current: imgurl, // 当前显示图片的http链接
       urls: [imgurl] // 需要预览的图片http链接列表
     })
-    // wx.navigateTo({
-    //   url: '../houseimg/houseimg?id=' + id
-    // })
   },
   //判断是否有楼盘图
   isHaveBuildsImg(data) {
@@ -718,8 +721,10 @@ Page({
   },
   // 初始化轮播图
   resetBanner(url) {
+    let _arr = this.data.imgUrls
+    _arr.push(...url)
     this.setData({
-      imgUrls: url
+      imgUrls: _arr
     })
     this.setData({
       bannerlength: this.data.imgUrls.length
@@ -794,20 +799,48 @@ Page({
       })
     }
   },
+  //项目主图错误
+  erroImage2(e){
+    if (e.type == 'error') {
+      this.data.imgUrls[e.target.dataset.index] = this.data.defaultImg
+      this.setData({
+        imgUrls: this.data.imgUrls
+      })
+    }
+
+    if (e.type == 'error') {
+      var _errImg = e.target.dataset.index
+
+    }
+  },
   //楼盘图错误
-  // erroImage2(e){
-  //   if (e.type == 'error') {
-  //     buildsimg
-  //     let _arr = this.data.buildsimg
-  //     for (let i = 0; i < _arr.length;i++){
-  //       _arr[i] = this.data.defaultImg
-  //     }
-  //     this.data.upload_file_path = this.data.defaultImg
-  //     this.setData({
-  //       upload_file_path: this.data.upload_file_path
-  //     })
-  //   }
-  // },
+  erroImage3(e){
+    let index = e.target.dataset.index
+    let name = e.target.dataset.name
+    if (e.type == 'error') {
+      if(name=='实景图'){
+        this.data.buildsimg[0].imgs[index] = this.data.defaultImg
+        this.setData({
+          'buildsimg[0]': this.data.buildsimg[0]
+        })
+      }else if(name=='效果图'){
+        this.data.buildsimg[1].imgs[index] = this.data.defaultImg
+        this.setData({
+          'buildsimg[1]': this.data.buildsimg[1]
+        })
+      } else if (name == '配套图') {
+        this.data.buildsimg[2].imgs[index] = this.data.defaultImg
+        this.setData({
+          'buildsimg[2]': this.data.buildsimg[2]
+        })
+      } else if (name == '规划图') {
+        this.data.buildsimg[3].imgs[index] = this.data.defaultImg
+        this.setData({
+          'buildsimg[3]': this.data.buildsimg[3]
+        })
+      }
+    }
+  },
 
 
   // 下拉刷新

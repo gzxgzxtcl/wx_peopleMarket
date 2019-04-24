@@ -28,9 +28,9 @@ Page({
   getBigImg(e){
     let imgList = e.currentTarget.dataset.imglist
     for(let i=0;i<imgList.length;i++){
-      imgList[i] = this.data.imgpath + imgList[i]
+      imgList[i] = imgList[i]
     }
-    let current = this.data.imgpath + imgList[0]
+    let current = imgList[0]
     wx.previewImage({
       current: current, // 当前显示图片的http链接
       urls: imgList // 需要预览的图片http链接列表
@@ -48,9 +48,7 @@ Page({
         _arr.push(arr[i])
       }
     }
-    console.log(_arr)
     this.setData({ buildImgList:_arr})
-
   },
 
   /**

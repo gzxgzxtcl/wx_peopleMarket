@@ -198,7 +198,6 @@ Page({
     let promise = that.data.cityInfo
     $http(apiSetting.cityFindBuildInfoByCity, promise).then((data) => {
       app.globalData.storLocalCity = data.data.cityInfo
-      console.log(data.data.buildInfo)
       //修改楼盘图路径
       let _list1 = data.data.buildInfo
       for(let i=0;i<_list1.length;i++){

@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    defaultImg: '../../images/defaultImg.png',
     imgpath: fileUrl, //图片根路径
     isHide: false,
     attentionList: [], //我的关注列表
@@ -80,7 +81,13 @@ Page({
         this.data.pageData.isPage = false
         return
       }
-
+      for (let i = 0; i < newArr.length;i++){
+        if (newArr[i].pictureurl==='null'){
+          newArr[i].pictureurl=''
+        }else{
+          newArr[i].pictureurl = this.data.imgpath + newArr[i].pictureurl
+        }
+      }
       this.setData({
         attentionList: newArr
       })
@@ -113,6 +120,16 @@ Page({
     if (this.data.pageData.isPage) {
       this.data.pageData.page++;
       this.getProjectApiFindProjectListByMyConc()
+    }
+  },
+
+  //关注列表图片错误
+  erroImage(e){
+    if (e.type == 'error') {
+      this.data.attentionList[e.target.dataset.index].pictureurl = this.data.defaultImg
+      this.setData({
+        attentionList: this.data.attentionList
+      })
     }
   }
 })

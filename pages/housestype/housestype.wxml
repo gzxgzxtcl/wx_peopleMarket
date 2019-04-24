@@ -32,15 +32,24 @@
         <text>{{item.caption}}</text>
       </view>
       <view class='img'>
-        <image wx:if='{{hourseImgList[index][0].upload_file_path}}' src='{{imgpath+hourseImgList[index][0].upload_file_path}}' bindtap='goHouseimg' data-index='{{index}}'></image>
-        <image wx:else src=''></image>
+        <!-- <image wx:if='{{hourseImgList[index][0].upload_file_path}}'  src='{{item.imgArr[0].upload_file_path}}' bindtap='goHouseimg' data-index='{{index}}'></image> -->
+        <!-- <image wx:else src=''></image> -->
+        <image 
+          mode="aspectFill" 
+          src="{{item.imgArr[0].upload_file_path==''?defaultImg:item.imgArr[0].upload_file_path}}" 
+          binderror="erroImage1"
+          data-index='{{index}}'
+          bindtap='goHouseimg' 
+          data-imgIndex='{{index}}'
+          ></image>
+ <!-- data-imgIndex='{{index}}' -->
         <view class='explain'>
           <view class='totle' wx:if='{{item.price}}'>{{item.price}}<text>元/m²</text></view>
           <view class='no-money' wx:else>暂无定价</view>
           <text>{{item.decoration}}</text>
           <text>户型优势</text>
-          <view class='tags' wx:for="{{pointViewList[index]}}" wx:key='index'>
-            <text wx:if='{{item}}'>{{item}}</text>
+          <view class='tags' wx:for="{{item.buyingpoint}}" wx:for-item='point' wx:for-index='pointIndex' wx:key='pointIndex'>
+            <text wx:if='{{point}}'>{{point}}</text>
           </view>
         </view>
       </view>
