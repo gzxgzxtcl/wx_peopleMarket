@@ -80,12 +80,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getHourseTypeList(options)
+    this.getProjectHouserholdList(options)
+  },
+  //获取户型列表
+  getProjectHouserholdList(options){
+    let promise = {
+      project_id: options.project_id
+    }
+    $http(apiSetting.projectApiFindProjectHouserholdListById, promise).then((data) => {
+      let hourserholdlist = data.data;
+      if (!hourserholdlist) return
+      this.getHourseTypeList(hourserholdlist)
+    }), (error) => {
+      console.log(error)
+    }
   },
 
-  //获取详情传递的户型列表数据
-  getHourseList(options){
-    let hourselist = JSON.parse(options.hourselist)
+  //户型列表数据格式整理
+  getHourseList(hourserholdlist){
+    // let hourselist = JSON.parse(options.hourselist)
+    let hourselist = hourserholdlist
     //this.setData({ allhourseList: hourselist, hourseViewList:hourselist })     //赋值给全部户型列表
     let _arr0=[]      //全部户型数组
     let _arr1=[]      //一室临时数组
@@ -173,12 +187,12 @@ Page({
     this.getProjectHouserholdFileList(houserHoldFileLength)
   },
   //查询户型分类列表
-  getHourseTypeList(options){
+  getHourseTypeList(hourserholdlist){
     let promise = { dictname: "户型分类"}
     $http(apiSetting.projectApiFindOtherDictValues, promise).then((data) => {
       let _arr=data.data.split(',')
       this.setData({ hourseTypeList:_arr})
-      this.getHourseList(options)
+      this.getHourseList(hourserholdlist)
     }), (error) => {
       console.log(error)
     }

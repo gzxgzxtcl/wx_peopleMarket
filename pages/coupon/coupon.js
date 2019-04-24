@@ -63,7 +63,6 @@ Page({
       userId: app.globalData.userId
     }
     $http(apiSetting.apiCouponCouponForCityList, promise).then((data) => {
-      console.log(data.data.list)
       let _arr = []
       if (data.data.list.length>0){
         _arr = [...that.data.couponList, ...data.data.list]

@@ -609,7 +609,7 @@ Page({
   // 查看更多户型，跳转到户型列表页
   goHousetype() {
     wx.navigateTo({
-      url: '../housestype/housestype?hourselist=' + JSON.stringify(this.data.hourselist),
+      url: '../housestype/housestype?hourselist=' + JSON.stringify(this.data.hourselist) + '&&project_id=' + this.data.project_id,
     })
   },
   //户型图片点击事件
@@ -722,6 +722,7 @@ Page({
   // 初始化轮播图
   resetBanner(url) {
     let _arr = this.data.imgUrls
+    _arr.splice(1)
     _arr.push(...url)
     this.setData({
       imgUrls: _arr

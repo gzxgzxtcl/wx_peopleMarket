@@ -160,7 +160,7 @@ Page({
                 that.getMapLocation();
               },
               fail(res) {
-                console.log(res)
+                that.getCityList()
               }
             })
           } else {
@@ -177,6 +177,7 @@ Page({
     wx.getLocation({
       type: 'wgs84',
       success: function(res) {
+        console.log(res)
         // console.log(res.latitude)
         // console.log(res.longitude)
         that.data.cityInfo.latitude = res.latitude.toString()
@@ -184,13 +185,30 @@ Page({
         that.getCityFindBuildInfoByCity()
       },
       fail: function(res) {
-
+        that.getCityList()
       },
       complete: function(res) {
-
+        
       }
     })
   },
+  //获取城市列表信息
+  getCityList(){
+    let that=this
+    let promise = {}
+    $http(apiSetting.cityFindCityItems, promise).then((data) => {
+      let cityList=data.data
+      if (that.data.cityInfo){
+        that.setData({ 'cityInfo.cityName': cityList[0].city })
+      }
+      that.getCityFindBuildInfoByCity()
+    }, (error) => {
+      console.log(error)
+      that.hideLoading()
+    });
+  },
+
+
 
   // 获取轮播图及城市信息
   getCityFindBuildInfoByCity() {
