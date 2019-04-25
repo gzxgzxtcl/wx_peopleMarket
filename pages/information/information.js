@@ -143,8 +143,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    let bannerImgUrl = options.imgurl
-    this.setData({ 'imgUrls[0]': bannerImgUrl})
+    if (options.imgurl){
+      let bannerImgUrl = options.imgurl
+      this.setData({ 'imgUrls[0]': bannerImgUrl })
+    }
     /*
       首页传递项目id到详情页，并将项目id进行保存，并使用
     */
@@ -608,8 +610,8 @@ Page({
   },
   // 查看更多户型，跳转到户型列表页
   goHousetype() {
-    wx.navigateTo({
-      url: '../housestype/housestype?hourselist=' + JSON.stringify(this.data.hourselist) + '&&project_id=' + this.data.project_id,
+    wx.navigateTo({   //hourselist=' + JSON.stringify(this.data.hourselist) + '&&
+      url: '../housestype/housestype?project_id=' + this.data.project_id + '&&projectname_cswx=' + this.data.projectname_cswx,
     })
   },
   //户型图片点击事件

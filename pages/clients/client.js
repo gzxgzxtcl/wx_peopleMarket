@@ -27,24 +27,6 @@ Page({
 
     recommendPersonList:[],     //推荐人信息列表
 
-    // aa:[
-    //   {
-    //     cityId:"0-166-1044-204-",
-    //     cityName : "成都",
-    //     cjDate: "2019-04-18",
-    //     commissioninfo : 555,
-    //     lfDate: "2019-04-18",
-    //     mobile : "17865352222",
-    //     name :"推一个",
-    //     projectId: "0-166-1044-204-100001-",
-    //     projectName  : "123123",
-    //     refer_mobile  : "17865353357",
-    //     rgDate: "2019-04-18",
-    //     tjDate:"2019-04-18 "
-    //   }
-    // ],
-
-
     _val:'',                    //搜索框临时数据
     //筛选条件
     selectList:{
@@ -58,8 +40,7 @@ Page({
       searchVal: "",                  //搜索框条件                
       openID: "" ,
     },    
-    
-    isPage: true
+    isPage: true                    //是否允许触底加载新页面
              
 
   },
@@ -129,7 +110,7 @@ Page({
   },
   // 确认筛选
   submit(){
-    this.setData({ 'selectList.isPage': true})
+    this.setData({ isPage: true})
     let promise = this.data.selectList
     promise.startRow=1
     promise.perRow=3
@@ -150,7 +131,7 @@ Page({
       'selectList.searchVal': this.data._val, 
       'selectList.startRow': 1,
       'selectList.perRow': 3,
-      'selectList.isPage':true
+      isPage:true
        })
     let promise = this.data.selectList
     $http(apiSetting.recommendFindCustomList, promise).then((data) => {
@@ -217,7 +198,7 @@ Page({
     let promise = this.data.selectList
     $http(apiSetting.recommendFindCustomList, promise).then((data) => {
       let customList = []
-      if (data.data.length>0){
+      if (data.data!=null && data.data.length>0){
         customList = [...that.data.recommendPersonList,...data.data]
       }else{
         that.data.isPage = false
@@ -250,6 +231,7 @@ Page({
   getRecommendItemList(){
     let promise = { openID: app.globalData.openid }
     $http(apiSetting.recommendItemList, promise).then((data) => {
+      if(!data.data) return
       this.setData({
         cityInfo: data.data.cityInfo,
         itemInfo: data.data.itemInfo,
@@ -272,5 +254,9 @@ Page({
       this.data.selectList.startRow++
       this.findCustomList()
     }
+  },
+  //阻止遮罩穿透
+  stopMove(){
+    return
   }
 })

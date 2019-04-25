@@ -127,14 +127,14 @@ page{
 }
 
 .house-type .huxing .house-info .top{
-  height: 86rpx;
+  /* height: 86rpx; */
   display: flex;
   margin-top: 30rpx;
 }
 .house-type .huxing .house-info .top>view{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
 }   
 .house-type .huxing .house-info .top>view:nth-of-type(1){
@@ -147,6 +147,7 @@ page{
   flex: 1;
 }
 .house-type .huxing .house-info .top>view text:first-child{
+  margin-bottom: 4rpx;
   font-size: 28rpx;
   font-family: 'PingFang-SC-Regular';
   color: #8D91A2;

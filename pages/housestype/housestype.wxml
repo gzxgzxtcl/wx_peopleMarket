@@ -40,7 +40,7 @@
           binderror="erroImage1"
           data-index='{{index}}'
           bindtap='goHouseimg' 
-          data-imgIndex='{{index}}'
+          data-imgArr='{{item.imgArr}}'
           ></image>
  <!-- data-imgIndex='{{index}}' -->
         <view class='explain'>

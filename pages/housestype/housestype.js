@@ -64,15 +64,14 @@ Page({
   // 获取大图
   goHouseimg(e) {
     let index = e.currentTarget.dataset.imgindex
-    let _arr = this.data.allhourseList[index].imgArr
-    let urlList=[]
-    for (let i = 0; i < _arr.length;i++){
-      urlList.push(_arr[i].upload_file_path)
+    let imgArr=e.currentTarget.dataset.imgarr
+    let urls=[]
+    for (let i = 0; i < imgArr.length;i++){
+      urls.push(imgArr[i].upload_file_path)
     }  
-    let current = this.data.allhourseList[index].imgArr[0].upload_file_path
     wx.previewImage({
-      current: current, // 当前显示图片的http链接
-      urls: urlList // 需要预览的图片http链接列表
+      current: urls[0], // 当前显示图片的http链接
+      urls: urls // 需要预览的图片http链接列表
     })
   },
 
@@ -80,6 +79,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let projectname_cswx = options.projectname_cswx
+    wx.setNavigationBarTitle({
+      title: projectname_cswx
+    })
     this.getProjectHouserholdList(options)    //获取户型列表
   },
   //获取户型列表
