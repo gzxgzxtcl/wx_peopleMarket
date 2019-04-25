@@ -64,14 +64,14 @@ page{
 }
 
 .house-type .huxing .img {
-  height: 332rpx;
+  /* height: 332rpx; */
   margin-top: 32rpx;
   display: flex;
 }
 
 .house-type .huxing .img image {
   width: 442rpx;
-  height: 100%;
+  height: 332rpx;
   border-radius: 6rpx;
 }
 

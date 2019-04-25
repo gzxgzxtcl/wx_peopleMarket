@@ -21,7 +21,7 @@
         </view>
         <view class='bottom-info'>
           <view class='tag'>
-            <text wx:for='{{tagList[index]}}' wx:key='{{index}}'>{{item}}</text>
+            <text wx:for='{{item.labels}}' wx:for-item='aLabel' wx:index='aindex' wx:key='{{aindex}}'>{{aLabel}}</text>
           </view>
           <view class='hours-address'>
             <view class='icon'>

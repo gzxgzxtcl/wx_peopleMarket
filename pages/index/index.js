@@ -69,9 +69,9 @@ Page({
   //跳转详情页
   goInformation(e) {
     let project_id = e.currentTarget.dataset.project_id
-    let imgurl = e.currentTarget.dataset.imgurl
+    // let imgurl = e.currentTarget.dataset.imgurl
     wx.navigateTo({
-      url: '../information/information?project_id=' + project_id + '&&imgurl=' + imgurl
+      url: '../information/information?project_id=' + project_id   //+ '&&imgurl=' + imgurl
     })
   },
 

@@ -17,7 +17,7 @@ Page({
     // 翻页
     pageData: {
       page: 1,
-      perpage: 10,
+      perpage: 5,
       isPage: true
     }
   },
@@ -26,7 +26,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getProjectApiFindProjectListByMyConc()
+    this.getProjectApiFindProjectListByMyConc(this.data.attentionList)
   },
 
   /**
@@ -40,10 +40,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    // if (this.data.isHide){
-    //   this.getProjectApiFindProjectListByMyConc()
-    // }
+    if (this.data.isHide){
+      this.setData({ 'pageData.page': 1,'pageData.isPage':true})
+      // this.data.pageData.isPage = false
+      this.getProjectApiFindProjectListByMyConc([])
+    }
   },
+
+
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -56,7 +60,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-
+   
   },
 
   /**
@@ -67,45 +71,90 @@ Page({
   },
 
   //获取我的关注列表
-  getProjectApiFindProjectListByMyConc() {
+  // getProjectApiFindProjectListByMyConc(list) {
+  //   let promise = {
+  //     page: this.data.pageData.page,
+  //     perpage: this.data.pageData.perpage,
+  //     login_by: app.globalData.userId
+  //   }
+  //   $http(apiSetting.projectApiFindProjectListByMyConc, promise).then((data) => {
+  //     let attentions=data.list
+  //     if(!attentions.length)  return
+  //     for (let i = 0; i < attentions.length; i++) {
+  //       if (attentions[i].pictureurl === 'null') {
+  //         attentions[i].pictureurl = ''
+  //       } else {
+  //         attentions[i].pictureurl = this.data.imgpath + attentions[i].pictureurl
+  //       }
+  //     }
+  //     let newArr = []
+  //     if (data.list.length > 0) {
+  //       newArr = [...list, ...attentions]
+  //     } else {
+  //       this.data.pageData.isPage = false
+  //       return
+  //     }
+      
+  //     this.setData({
+  //       attentionList: newArr
+  //     })
+
+  //     let _arr = newArr
+  //     let _arr1 = []
+  //     for (let i = 0; i < _arr.length; i++) {
+  //       if (!_arr[i].labels) {
+  //         _arr1.push('')
+  //       } else {
+  //         _arr1.push(_arr[i].labels.split(','))
+  //       }
+  //     }
+  //     this.setData({
+  //       tagList: _arr1
+  //     })
+  //   })
+  // },
+
+
+
+
+  //获取我的关注列表
+  getProjectApiFindProjectListByMyConc(list) {
     let promise = {
       page: this.data.pageData.page,
       perpage: this.data.pageData.perpage,
       login_by: app.globalData.userId
     }
     $http(apiSetting.projectApiFindProjectListByMyConc, promise).then((data) => {
-      let newArr = []
-      if (data.list.length > 0) {
-        newArr = [...this.data.attentionList, ...data.list]
-      } else {
+      let attentions = data.list
+      if (attentions.length >= 0) {
+        //修改图片路径
+        for (let i = 0; i < attentions.length; i++) {
+          if (attentions[i].pictureurl === 'null') {
+            attentions[i].pictureurl = ''
+          } else {
+            attentions[i].pictureurl = this.data.imgpath + attentions[i].pictureurl
+          }
+        }
+        let _arr1 = []
+        for (let i = 0; i < attentions.length; i++) {
+          if (!attentions[i].labels) {
+            attentions[i].labels = []
+          } else {
+             attentions[i].labels = attentions[i].labels.split(',')
+          }
+        }
+        let newArr=[]
+        newArr = [...list, ...attentions]
+        this.setData({
+          attentionList: newArr
+        })
+      }else {
         this.data.pageData.isPage = false
         return
       }
-      for (let i = 0; i < newArr.length;i++){
-        if (newArr[i].pictureurl==='null'){
-          newArr[i].pictureurl=''
-        }else{
-          newArr[i].pictureurl = this.data.imgpath + newArr[i].pictureurl
-        }
-      }
-      this.setData({
-        attentionList: newArr
-      })
-
-      let _arr = newArr
-      let _arr1 = []
-      for (let i = 0; i < _arr.length; i++) {
-        if (!_arr[i].labels) {
-          _arr1.push('')
-        } else {
-          _arr1.push(_arr[i].labels.split(','))
-        }
-      }
-      this.setData({
-        tagList: _arr1
-      })
     })
   },
+
   //查看关注列表楼盘详情
   goInformation(e) {
     let project_id = e.currentTarget.dataset.project_id
@@ -119,7 +168,7 @@ Page({
     // 判断是否翻页
     if (this.data.pageData.isPage) {
       this.data.pageData.page++;
-      this.getProjectApiFindProjectListByMyConc()
+      this.getProjectApiFindProjectListByMyConc(this.data.attentionList)
     }
   },
 

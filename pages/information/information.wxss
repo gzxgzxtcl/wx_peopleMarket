@@ -454,14 +454,14 @@ swiper image {
 }
 
 .info .huxing .img {
-  height: 332rpx;
+  /* height: 332rpx; */
   margin-top: 32rpx;
   display: flex;
 }
 
 .info .huxing .img image {
   width: 440rpx;
-  height: 100%;
+  height: 332rpx;
   border-radius: 6rpx;
 }
 

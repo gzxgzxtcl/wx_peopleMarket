@@ -312,6 +312,10 @@ Page({
           content: data.message,
           type: 'warning'
         });
+        that.setData({
+          showAgencyAccount:'',
+          trench:''
+        })
       }
     })
   },

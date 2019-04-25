@@ -143,10 +143,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if (options.imgurl){
-      let bannerImgUrl = options.imgurl
-      this.setData({ 'imgUrls[0]': bannerImgUrl })
-    }
+    // if (options.imgurl){
+    //   let bannerImgUrl = options.imgurl
+    //   this.setData({ 'imgUrls[0]': bannerImgUrl })
+    // }
     /*
       首页传递项目id到详情页，并将项目id进行保存，并使用
     */
@@ -723,11 +723,11 @@ Page({
   },
   // 初始化轮播图
   resetBanner(url) {
-    let _arr = this.data.imgUrls
-    _arr.splice(1)
-    _arr.push(...url)
+    // let _arr = this.data.imgUrls
+    // _arr.splice(1)
+    // _arr.push(...url)
     this.setData({
-      imgUrls: _arr
+      imgUrls: url
     })
     this.setData({
       bannerlength: this.data.imgUrls.length

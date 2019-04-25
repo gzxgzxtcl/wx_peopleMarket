@@ -29,7 +29,6 @@ Page({
     }
     // console.log(promise)
     $http(apiSetting.apiCouponGetCoupon, promise).then((data) => {
-       console.log(data)
        if(data.code===0){
         wx.showToast({
           title: '领取成功',
@@ -38,7 +37,8 @@ Page({
         })
         //  let a = 'couponList['+index+'].receivedStatus'
         //  this.setData({ a:true})
-         this.getAllCouponList()
+         this.setData({ couponList: [], 'pageData.page':1})
+          this.getAllCouponList()
        }
     }, (error) => {
       console.log(error)

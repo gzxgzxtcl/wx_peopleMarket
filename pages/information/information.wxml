@@ -234,7 +234,7 @@
 
 
   <!-- 主力均价提示 -->
-    <view class='model-view' wx:if='{{visible2}}'>
+    <view class='model-view' wx:if='{{visible2}}' >
       <view class='shadow'  catchtouchmove='stopMove' ></view>
       <view class='model-content' >
         <view wx:if='{{mainpriceOrCommission===0 && mainpricedescription}}' >{{mainpricedescription}}</view>
