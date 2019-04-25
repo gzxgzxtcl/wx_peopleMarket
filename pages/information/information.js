@@ -656,7 +656,7 @@ Page({
     if (this.data.isAttention) { //isAttention为true,则发起关注请求
       let promise = this.data.attentionList
       $http(apiSetting.projectApiInsertMyConc, promise).then((data) => {
-        console.log(data)
+        // console.log(data)
       }, (error) => {
         console.log(error)
       });

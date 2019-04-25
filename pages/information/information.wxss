@@ -796,10 +796,12 @@ swiper image {
   height: 100%;
   position: fixed;
   top: 0;
-  z-index: 999;
+  left: 0;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 .model-view .shadow{
  
@@ -810,6 +812,7 @@ swiper image {
   bottom: 0;
   margin: auto;
    background: rgba(0, 0, 0, 0.3);
+   z-index: 20
 }
 .model-view .model-content{
   display: block;
@@ -823,6 +826,7 @@ swiper image {
   font-family: PingFang-SC-Medium;
   font-size: 28rpx;
   color: #333333;
+  z-index: 30;
 }
 .model-view .model-content view:first-child{
   overflow-y: scroll;
@@ -830,6 +834,7 @@ swiper image {
   min-height: 50rpx;
   max-height: 500rpx;
   padding: 20rpx;
+
 }
 .model-view .bottom{
   width: 100%;

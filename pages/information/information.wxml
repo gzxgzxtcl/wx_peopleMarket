@@ -233,14 +233,14 @@
 </view>
 
 
-  <!-- 主力均价提示 -->
-    <view class='model-view' wx:if='{{visible2}}' >
-      <view class='shadow'  catchtouchmove='stopMove' ></view>
-      <view class='model-content' >
-        <view wx:if='{{mainpriceOrCommission===0 && mainpricedescription}}' >{{mainpricedescription}}</view>
-        <view wx:if='{{mainpriceOrCommission===0 && !mainpricedescription}}'>暂无价格提示</view>
-        <view wx:if='{{mainpriceOrCommission===1 && commissioninfo}}' >{{commissioninfo}}</view>
-        <view wx:if='{{mainpriceOrCommission===1 && !commissioninfo}}' >暂无佣金规则</view>
-        <view class='bottom' bindtap='handleClose2'>关闭</view>
-      </view>
-    </view>
+<!-- 主力均价提示 -->
+<view class='model-view' wx:if='{{visible2}}'>
+  <view class='shadow' catchtouchmove='stopMove'></view>
+  <view class='model-content'>
+    <view wx:if='{{mainpriceOrCommission===0 && mainpricedescription}}' >{{mainpricedescription}}</view>
+    <view wx:if='{{mainpriceOrCommission===0 && !mainpricedescription}}'>暂无价格提示</view>
+    <view wx:if='{{mainpriceOrCommission===1 && commissioninfo}}' >{{commissioninfo}}</view>
+    <view wx:if='{{mainpriceOrCommission===1 && !commissioninfo}}' >暂无佣金规则</view>
+    <view class='bottom' bindtap='handleClose2'>关闭</view>
+  </view>
+</view>
