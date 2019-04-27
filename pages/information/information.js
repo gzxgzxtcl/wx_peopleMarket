@@ -641,9 +641,13 @@ Page({
   },
   //楼盘图查看更多事件
   goBuildimg(e) {
+    let obj = this.data.imgUrls
+    let bannerObj = { name: '项目主图', imgs: this.data.imgUrls}
+    let _imgArr = JSON.parse(JSON.stringify(this.data.buildsimg)) 
+    _imgArr.unshift(bannerObj)
     // let id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../houseimg/houseimg?buildsimg=' + JSON.stringify(this.data.buildsimg)
+      url: '../houseimg/houseimg?buildsimg=' + JSON.stringify(_imgArr)
     })
   },
 

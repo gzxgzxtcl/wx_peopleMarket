@@ -11,7 +11,7 @@
     <block wx:for="{{imgUrls}}" wx:key="{{index}}">
       <swiper-item>
         <!-- <image mode="aspectFill" src="{{defaultImg}}" class="slide-image" width="355" height="150" /> -->
-        <image mode="aspectFill" src='{{item==""?defaultImg:item}}' binderror="erroImage2" data-index='{{index}}'></image>
+        <image mode="aspectFill" src='{{item==""?defaultImg:item}}' binderror="erroImage2" data-index='{{index}}' bindtap='goBuildimg'></image>
       </swiper-item>
     </block>
   </swiper>

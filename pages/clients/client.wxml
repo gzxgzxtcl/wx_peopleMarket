@@ -100,9 +100,9 @@
   </view>
 </view>
  <!-- 抽屉 -->
-<view class='drawer' wx:if='{{showRight}}' catchtouchmove='stopMove' >
+<view class='drawer' wx:if='{{showRight}}' catchtouchmove='stopMove'>
   <view class='shade' bindtap='hideDrawer' ></view>
-  <view class='content'>
+  <view class='content' >
     <view class='city'>
       <view class='title'>城市</view>
       <view class='city-list' bindtap='selCity'>

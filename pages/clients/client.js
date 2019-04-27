@@ -57,7 +57,6 @@ Page({
   },
   // 时间区间选择
   bindDateChangeStart(e) {
-    console.log(e.detail.value)
     this.setData({
       dataIntervalStart: e.detail.value
     })
