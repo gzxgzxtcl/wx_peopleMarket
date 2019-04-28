@@ -17,6 +17,8 @@ Page({
     visible: false,
     visible2: false, //确认推荐模态窗
 
+
+    showBgpack: false,//是否显示授权窗口
     reportList: {
       city: '',
       customName: '',
@@ -48,12 +50,46 @@ Page({
       { city: '台湾', mobileFlag: '+886' }
     ]
   },
+//新增用户授权------------------------------------------------------------------↓
+  // 获取微信用户信息
+  onGotUserInfo(e) {
+    wx.showTabBar()
+    // console.log(e.detail.userInfo)
+    wx.setStorageSync('wxUserInfo', e.detail.userInfo)
+    this.setData({
+      showBgpack: false
+    })
+   
+  },
+  //取消授权窗
+  cancelTip(){
+    this.setData({ showBgpack:false})
+    wx.navigateBack({
+      delta: 1
+    })
+  },
 
+
+//-------------------------------------------------------------------↑
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     let that = this;
+
+    //新增---》用户信息授权----------↓
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userInfo']) {
+          wx.hideTabBar()
+          that.setData({
+            showBgpack: true
+          })
+        }
+      }
+    })
+//----------------------------↑
+   
     //判断是否有传递的项目id，如果有，直接复制给data中的变量，即详情页的跳转
     if (options.project_id) {
       this.setData({
@@ -63,7 +99,6 @@ Page({
     } else {
       this.getRecommendGetProjectList()
     }
-
     if (app.globalData.isCheck) {
       let reportList = that.data.reportList
       reportList.openId = app.globalData.bindUserInfo.wxid
@@ -81,10 +116,12 @@ Page({
         placeholderText: ''
       })
     }
+   
+    
   },
 
   onShow: function() {
-    // 判断是否是从选择城市进入
+    //判断是否是从选择城市进入
     if (this.data.isCitySelect) {
       if (app.globalData.transienceCity.id) {
         this.data.city_id = app.globalData.transienceCity.id
@@ -157,6 +194,7 @@ Page({
     let that = this
     if (!this.data.city_id) {
       let cityInfo = wx.getStorageSync('storLocalCity')
+      if (!cityInfo) return           //待定--------------》》可以直接修改首页，存入城市信息
       this.setData({
         'reportList.city': cityInfo.city,
         city_id: cityInfo.id

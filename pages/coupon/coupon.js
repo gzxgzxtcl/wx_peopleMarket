@@ -12,6 +12,7 @@ Page({
     isGet: false,                  /*是否领取*/
     couponList:[],                 //优惠券列表
     couponIndex:null,                  //领取优惠券下标
+    showBgpack: false,    //是否显示授权弹窗
     // 翻页
     pageData: {
       page: 1,
@@ -46,11 +47,46 @@ Page({
   },
 
 
+  //新增用户授权------------------------------------------------------------------↓
+  // 获取微信用户信息
+  onGotUserInfo(e) {
+    wx.showTabBar()
+    // console.log(e.detail.userInfo)
+    wx.setStorageSync('wxUserInfo', e.detail.userInfo)
+    this.setData({
+      showBgpack: false
+    })
+  },
+  //取消授权窗
+  cancelTip() {
+    this.setData({ showBgpack: false })
+    wx.navigateBack({
+      delta: 1
+    })
+  },
+
+
+//-------------------------------------------------------------------↑
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getAllCouponList()
+    let that=this
+    //新增---》用户信息授权----------↓
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userInfo']) {
+          wx.hideTabBar()
+          that.setData({
+            showBgpack: true
+          })
+        }
+      }
+    })
+//----------------------------↑
+
+
+    that.getAllCouponList()
   },
   //获取未领取优惠券
   getAllCouponList(){

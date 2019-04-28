@@ -110,34 +110,34 @@ Page({
       }
     })
 
-    // that.accreditOperate()
-
-    wx.getSetting({
-      success(res) {
-        if (!res.authSetting['scope.userInfo']) {
-          wx.hideTabBar()
-          that.setData({
-            showBgpack: true
-          })
-        } else {
-          that.accreditOperate();
-        }
-      }
-    })
+    that.accreditOperate()
+    // //用户信息授权
+    // wx.getSetting({
+    //   success(res) {
+    //     if (!res.authSetting['scope.userInfo']) {
+    //       wx.hideTabBar()
+    //       that.setData({
+    //         showBgpack: true
+    //       })
+    //     } else {
+    //       that.accreditOperate();
+    //     }
+    //   }
+    // })
   },
 
   // 获取微信用户信息
-  onGotUserInfo(e) {
-    wx.showTabBar()
-    // console.log(e.detail.userInfo)
-    wx.setStorageSync('wxUserInfo', e.detail.userInfo)
-    // wx.getUserInfo({
-    //   success(res) {
-    //     console.log(res.userInfo)
-    //   }
-    // })
-    this.accreditOperate()
-  },
+  // onGotUserInfo(e) {
+  //   wx.showTabBar()
+  //   // console.log(e.detail.userInfo)
+  //   wx.setStorageSync('wxUserInfo', e.detail.userInfo)
+  //   // wx.getUserInfo({
+  //   //   success(res) {
+  //   //     console.log(res.userInfo)
+  //   //   }
+  //   // })
+  //   this.accreditOperate()
+  // },
 
   // 位置授权操作
   accreditOperate() {
@@ -195,6 +195,7 @@ Page({
   },
   //获取城市列表信息
   getCityList(){
+    
     let that=this
     let promise = {}
     $http(apiSetting.cityFindCityItems, promise).then((data) => {
