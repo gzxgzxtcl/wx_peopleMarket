@@ -103,7 +103,7 @@ swiper image {
   justify-content: space-around;
   border-radius: 16rpx;
   background: #fff;
-  box-shadow: 0 0.5rpx 0.5rpx 0.5rpx #eee;
+  box-shadow: 0 6rpx 20rpx 0 rgba(0,0,0,0.03);
 }
 
 .goneneng view {
@@ -146,32 +146,46 @@ swiper image {
   padding: 30rpx 0 30rpx 30rpx;
   display: flex;
 }
-
-.hours-list {
-  width: 658rpx;
-  margin-bottom: 20rpx;
+.build-info{
+  margin-top: 34rpx;
+  /* margin-bottom: 20rpx; */
+  /* background: pink; */
 }
 
-.hours-list .img {
+.hours-list,.rim-list{
+  width: 658rpx;
+  /* margin-bottom: 25rpx; */
+  padding-bottom: 25rpx;
+}
+
+.hours-list .img,.rim-list .img {
   width: 100%;
   height: 328rpx;
   border-radius: 14rpx;
 }
 
-.hours-list .img image {
+.hours-list .img image,.rim-list .img image {
   width: 100%;
   height: 100%;
   border-radius: 14rpx;
 }
 
-.hours-list .hours-info {
+.hours-list .hours-info,.rim-list .hours-info {
   width: 658rpx;
+  height: 102rpx;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
+  padding-bottom: 25rpx;
+  border-bottom: 2rpx solid #eeeeee;
 }
 
-.hours-list .top-info {
+.rim-info{
+  border-top: 2rpx solid #eeeeee;
+}
+
+.hours-list .top-info,.rim-list .top-info {
   display: flex;
   height: 44rpx;
   width: 100%;
@@ -179,19 +193,19 @@ swiper image {
   justify-content: space-between;
 }
 
-.hours-list .hours-name {
+.hours-list .hours-name,.rim-list .hours-name {
   display: flex;
   align-items: center;
 }
 
-.hours-list .hours-name>text {
+.hours-list .hours-name>text,.rim-list .hours-name>text {
   font-family: 'PingFang-SC-Medium';
   font-size: 28rpx;
   color: #333;
   margin-right: 16rpx;
 }
 
-.hours-list .top-info .price {
+.hours-list .top-info .price,.rim-list .top-info .price {
   display: flex;
   align-items: center;
   font-family: 'PingFangTC-Regular';
@@ -200,20 +214,20 @@ swiper image {
   letter-spacing: 0.24rpx;
 }
 
-.hours-list .top-info .price text:first-child {
+.hours-list .top-info .price text:first-child,.rim-list .top-info .price text:first-child {
   color: #fb1414;
 }
 
-.hours-list .bottom-info {
+.hours-list .bottom-info,.rim-list .bottom-info {
   height: 30rpx;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 22rpx;
+  /* margin-top: 20rpx; */
 }
 
-.hours-list .sale text {
+.hours-list .sale text,.rim-list .sale text {
   display: block;
   height: 26rpx;
   background: rgba(32, 160, 255, 0.6);
@@ -225,7 +239,7 @@ swiper image {
   margin-left: 20rpx;
 }
 
-.hours-list .tag {
+.hours-list .tag,.rim-list .tag {
   /* display: flex; */
   align-items: center;
   width: calc(100% - 70rpx);
@@ -233,7 +247,7 @@ swiper image {
   overflow: hidden;
 }
 
-.hours-list .tag text {
+.hours-list .tag text,.rim-list .tag text {
   display: inline-block;
   padding: 0 10rpx;
   margin: 0 10rpx 0 0;
@@ -248,15 +262,30 @@ swiper image {
   margin-bottom: 5rpx;
 }
 
-.hours-list .bottom-info .hours-address {
+.hours-list .bottom-info .hours-address,.rim-list .bottom-info .hours-address {
   font-family: 'PingFangTC-Light';
   font-size: 20rpx;
   color: #333;
+  margin-top: 5rpx;
 }
 
-.hours-list .bottom-info .hours-address .hours-address-icon {
+.hours-list .bottom-info .hours-address .hours-address-icon,.rim-list .bottom-info .hours-address .hours-address-icon {
   font-size: 20rpx;
 }
+
+.last-hourse-list{
+  padding-bottom: 0;
+}
+.last-hourse-list .hours-info{
+  border: none;
+}
+.rim-list:last-child{
+  padding-bottom: 0;
+}
+.rim-list:last-child .hours-info{
+  border: none;
+}
+
 
 .bgpack {
   display: flex;

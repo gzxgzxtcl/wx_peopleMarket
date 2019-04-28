@@ -186,6 +186,7 @@ Page({
       },
       fail: function(res) {
         that.getCityList()
+        
       },
       complete: function(res) {
         
@@ -200,6 +201,8 @@ Page({
       let cityList=data.data
       if (that.data.cityInfo){
         that.setData({ 'cityInfo.cityName': cityList[0].city })
+        wx.setStorageSync('storLocalCity', cityList[0])
+        app.globalData.storLocalCity = cityList[0]
       }
       that.getCityFindBuildInfoByCity()
     }, (error) => {

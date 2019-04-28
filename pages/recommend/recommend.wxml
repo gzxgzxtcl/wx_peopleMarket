@@ -4,7 +4,7 @@
     <li>
       <span class='title required'>客户姓名</span>
       <span class="inp">
-        <input placeholder-class="phcolor" type='text' bindinput='customNameBind' placeholder="请输入客户姓名" />
+        <input placeholder-class="phcolor" type='text' bindinput='customNameBind' placeholder="请输入姓名" placeholder-style='color:#B4B9CB;'/>
       </span>
     </li>
     <li>
@@ -13,12 +13,12 @@
         <button class='genderSty' data-val='1' bindtap='genderChange'>
           <icon wx:if="{{gender==1}}" type="success" size="14" />
           <icon wx:else class='iconSty' />
-          <text style='margin-left:20rpx'>男</text>
+          <text style='margin-left:20rpx;font-size:28rpx;'>男</text>
         </button>
         <button class='genderSty' data-val='0' bindtap='genderChange'>
           <icon wx:if="{{gender==0}}" type="success" size="14" />
           <icon wx:else class='iconSty' />
-          <text style='margin-left:20rpx'>女</text>
+          <text style='margin-left:20rpx;font-size:28rpx;'>女</text>
         </button>
       </span>
     </li>
@@ -34,15 +34,14 @@
         </picker>
       </view>
 
-
       <span class="inp">
-        <input placeholder-class="phcolor" type='number' bindinput='customPhoneBind' placeholder="请输入客户电话" />
+        <input placeholder-class="phcolor" type='number' bindinput='customPhoneBind' placeholder="请输入客户电话" placeholder-style='color:#B4B9CB;'/>
       </span>
     </li>
     <li>
       <span class='title required'>城市</span>
       <span class="inp" bindtap='citySelcet'>
-        <input placeholder-class="phcolor" type='text' value="{{reportList.city}}" disabled />
+        <input placeholder-class="phcolor" placeholder-style='color:#B4B9CB;' type='text' value="{{reportList.city}}" disabled  style='font-size:28rpx;'/>
       </span>
     </li>
     <li>
@@ -52,25 +51,25 @@
         <picker style='width:100%' mode="selector" bindchange="arrayProjectChange" range-key="wxProjectName" value='{{arrayProjectIndex}}' range="{{arrayProject}}">
           <view class="picker">
             <!-- 请选择 -->
-            <text wx:if="{{arrayProjectIndex == null}}">请选择</text> {{arrayProject[arrayProjectIndex].wxProjectName}}
+            <text wx:if="{{arrayProjectIndex == null}}" style='color:#B4B9CB;'>请选择</text> {{arrayProject[arrayProjectIndex].wxProjectName}}
           </view>
         </picker>
       </span>
     </li>
     <li style="height:200rpx;margin-top:20rpx;margin-bottom:40rpx">
-      <textarea wx:if="{{placeholderText !== ''}}" class='textsty' style='' bindinput='remarkBind' placeholder="{{placeholderText}}" />
+      <textarea wx:if="{{placeholderText !== ''}}" class='textsty' style='' bindinput='remarkBind' placeholder="{{placeholderText}}" placeholder-style='color:#B4B9CB;'/>
     </li>
     <li>
       <span class='title'>推荐人</span>
-      <span class="">{{reportList.reportName}}</span>
+      <span class="" style='font-size:28rpx;color:#B4B9CB;'>{{reportList.reportName}}</span>
     </li>
     <li>
       <span class='title'>推荐人电话</span>
-      <span class="">{{reportList.reportMobile}}</span>
+      <span class="" style='font-size:28rpx;color:#B4B9CB;'>{{reportList.reportMobile}}</span>
     </li>
     <li>
       <span class='title'>推荐人身份</span>
-      <span class="">{{reportList.reportType}}</span>
+      <span class="" style='font-size:28rpx;color:#B4B9CB;'>{{reportList.reportType}}</span>
     </li>
   </ul>
 
@@ -87,3 +86,5 @@
 </i-modal>
 
 <i-message id="message" />
+
+

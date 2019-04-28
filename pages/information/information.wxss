@@ -164,7 +164,9 @@ swiper image {
   height: 40rpx;
   display: flex;
 }
-
+.info .address>view:nth-of-type(2){
+  margin-top: 10rpx;
+}
 .info .address .title1 {
   display: block;
   width: 142rpx;

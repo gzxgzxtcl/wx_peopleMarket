@@ -19,8 +19,9 @@ swiper{
   /* padding-top: 192rpx; */
   width: 100%;
   /* height: 500rpx; */
-  height: calc(100% - 100rpx);
-  padding-bottom: 74rpx;
+  height: calc(100% - 74rpx);
+  /* height: 100%; */
+  padding-bottom: 70rpx;
   display: flex;
   align-items: center;
 }
@@ -60,6 +61,7 @@ swiper{
 }
 .house-img-page .tabbar>view{
   width: 50%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

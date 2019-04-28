@@ -36,6 +36,7 @@
   justify-content: center;
   height: 50px;
   padding-left: 20rpx;
+  font-size: 28rpx;
 }
 
 .inp input {
@@ -48,6 +49,7 @@
   line-height: 50rpx;
   padding: 10rpx 0;
   box-sizing: border-box;
+  font-size: 28rpx;
 }
 
 .bindSub {
@@ -67,12 +69,22 @@
 
 .genderSty {
   width: 200rpx;
+  height: 100%;
   background: none;
-  display: inline-block;
+  /* display: inline-block; */
   padding: 0;
   text-align: left;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  float: left;
 }
 
 .genderSty::after {
   border: none;
 }
+
+
+
+
+
