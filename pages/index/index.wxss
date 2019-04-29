@@ -34,17 +34,27 @@
 }
 
 .city-sel .right-check {
+  display: flex;
+  align-items: center;
+}
+.city-sel .right-check text{
   font-family: 'PingFang-SC-Medium';
   font-size: 24rpx;
   color: #8d91a2;
-  display: flex;
 }
 
 .city-sel .right-check view {
   margin-right: 20rpx;
   margin-left: 10rpx;
+  width: 11rpx;
+  height: 19rpx;
   margin-top: 5rpx;
-  font-size: 25rpx;
+  font-size: 20rpx;
+  display: flex;
+}
+.city-sel .right-check view image{
+  width: 100%;
+  height: 100%;
 }
 
 swiper {

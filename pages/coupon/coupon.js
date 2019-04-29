@@ -51,7 +51,9 @@ Page({
   // 获取微信用户信息
   onGotUserInfo(e) {
     wx.showTabBar()
-    // console.log(e.detail.userInfo)
+    if (!e.detail.userInfo) {
+      return
+    }
     wx.setStorageSync('wxUserInfo', e.detail.userInfo)
     this.setData({
       showBgpack: false

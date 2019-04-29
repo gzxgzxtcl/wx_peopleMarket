@@ -8,7 +8,9 @@
     </view>
     <view class='right-check' bindtap='changeCity'>
       <text>切换城市</text>
-      <view class='right-icon iconfont iconjiantou'></view>
+      <!-- <view class='right-icon iconfont iconjiantou'></view>  -->
+      <view class='right-icon'><image src='../../images/right.png'></image></view>
+
     </view>
   </view>
   <!-- banner -->

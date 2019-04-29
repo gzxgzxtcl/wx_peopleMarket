@@ -74,6 +74,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options.selIndex !== "undefined"){
+      this.setData({ selItem: Number(options.selIndex)+1})
+    }else{
+      this.setData({ selItem: 0 })
+    }
     let arr = JSON.parse(options.buildsimg)
     let _arr=[]
     for(let i=0;i<arr.length;i++){

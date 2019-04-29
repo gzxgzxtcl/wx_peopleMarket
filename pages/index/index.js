@@ -125,6 +125,9 @@ Page({
     //   }
     // })
   },
+  onShow:function(){
+  
+  },
 
   // 获取微信用户信息
   // onGotUserInfo(e) {

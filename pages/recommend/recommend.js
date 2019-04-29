@@ -55,11 +55,21 @@ Page({
   onGotUserInfo(e) {
     wx.showTabBar()
     // console.log(e.detail.userInfo)
+    console.log(e)
+    if (!e.detail.userInfo) {
+      // this.setData({
+      //   showBgpack: false
+      // })
+      // wx.navigateBack({
+      //   delta: 1
+      // })
+      // this.cancelTip()
+      return
+    }
     wx.setStorageSync('wxUserInfo', e.detail.userInfo)
     this.setData({
       showBgpack: false
     })
-   
   },
   //取消授权窗
   cancelTip(){
@@ -68,8 +78,6 @@ Page({
       delta: 1
     })
   },
-
-
 //-------------------------------------------------------------------↑
   /**
    * 生命周期函数--监听页面加载
@@ -82,6 +90,9 @@ Page({
       success(res) {
         if (!res.authSetting['scope.userInfo']) {
           wx.hideTabBar()
+          // if (that.data.visible){
+          //   return
+          // }
           that.setData({
             showBgpack: true
           })

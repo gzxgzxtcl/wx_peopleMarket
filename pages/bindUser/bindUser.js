@@ -151,42 +151,57 @@ Page({
       title: '正在发送',
     })
     let that = this
-    let promise = {
+    let promise1 = {
       mobile: that.data.userInfo.phone,
       openid: app.globalData.openid
     }
-    $http(apiSetting.userGetCode, promise).then((data) => {
-      wx.hideLoading()
-      if (data.code == 0) {
-        // 开启计时器
-        that.data.setInter = setInterval(function() {
-          that.data.downTime = that.data.downTime - 1
-          if (that.data.downTime <= 0) {
-            that.endSetInter()
-            that.setData({
-              isnote: true,
-              downTime: 180
-            })
+    if (promise1.openid==null){
+      wx.login({
+        success: res => {
+          let promise = {
+            code: res.code
           }
+          $http(apiSetting.userDecodeUserInfo, promise).then((data) => {
+            app.globalData.openid = data.data.openid
+            this.getNoteCode()
+          }, (error) => {
+            console.log(error)
+          });
+        }
+      })
+    }else{
+      $http(apiSetting.userGetCode, promise1).then((data) => {
+        wx.hideLoading()
+        if (data.code == 0) {
+          // 开启计时器
+          that.data.setInter = setInterval(function () {
+            that.data.downTime = that.data.downTime - 1
+            if (that.data.downTime <= 0) {
+              that.endSetInter()
+              that.setData({
+                isnote: true,
+                downTime: 180
+              })
+            }
+            that.setData({
+              downTime: that.data.downTime
+            })
+          }, 1000)
           that.setData({
-            downTime: that.data.downTime
+            isnote: false,
+            noteCodeVisible: true
           })
-        }, 1000)
-        that.setData({
-          isnote: false,
-          noteCodeVisible: true
-        })
-      } else {
-        $Message({
-          content: data.message,
-          type: 'error'
-        });
-      }
-    }, (error) => {
-      // console.log(error)
-      wx.hideLoading()
-    });
-
+        } else {
+          $Message({
+            content: data.message,
+            type: 'error'
+          });
+        }
+      }, (error) => {
+        // console.log(error)
+        wx.hideLoading()
+      });
+    }
   },
 
   // 显示验证窗口

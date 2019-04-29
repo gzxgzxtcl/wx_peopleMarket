@@ -615,13 +615,13 @@ Page({
     })
   },
   //户型图片点击事件
-  goHouseimg(e) {
-    let imgurl = e.currentTarget.dataset.imgurl;
-    wx.previewImage({
-      current: imgurl, // 当前显示图片的http链接
-      urls: [imgurl] // 需要预览的图片http链接列表
-    })
-  },
+  // goHouseimg(e) {
+  //   let imgurl = e.currentTarget.dataset.imgurl;
+  //   wx.previewImage({
+  //     current: imgurl, // 当前显示图片的http链接
+  //     urls: [imgurl] // 需要预览的图片http链接列表
+  //   })
+  // },
   //判断是否有楼盘图
   isHaveBuildsImg(data) {
     let _arr = []
@@ -643,11 +643,11 @@ Page({
   goBuildimg(e) {
     let obj = this.data.imgUrls
     let bannerObj = { name: '项目主图', imgs: this.data.imgUrls}
-    let _imgArr = JSON.parse(JSON.stringify(this.data.buildsimg)) 
+    let _imgArr = JSON.parse(JSON.stringify(this.data.buildsimg))     //切除引用关系
     _imgArr.unshift(bannerObj)
-    // let id = e.currentTarget.dataset.id;
+    let selIndex = e.currentTarget.dataset.selindex;
     wx.navigateTo({
-      url: '../houseimg/houseimg?buildsimg=' + JSON.stringify(_imgArr)
+      url: '../houseimg/houseimg?buildsimg=' + JSON.stringify(_imgArr) + "&&selIndex=" + selIndex
     })
   },
 
