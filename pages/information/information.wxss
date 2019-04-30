@@ -497,7 +497,7 @@ swiper image {
   font-size: 36rpx;
 }
 
-.info .huxing .img .explain>text:nth-of-type(2) {
+.info .huxing .img .explain>text {
   display: block;
   height: 40rpx;
   color: #333;

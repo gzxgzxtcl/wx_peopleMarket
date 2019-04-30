@@ -55,7 +55,6 @@ Page({
   onGotUserInfo(e) {
     wx.showTabBar()
     // console.log(e.detail.userInfo)
-    console.log(e)
     if (!e.detail.userInfo) {
       // this.setData({
       //   showBgpack: false
@@ -84,15 +83,15 @@ Page({
    */
   onLoad: function(options) {
     let that = this;
-
+    
     //新增---》用户信息授权----------↓
     wx.getSetting({
       success(res) {
         if (!res.authSetting['scope.userInfo']) {
           wx.hideTabBar()
-          // if (that.data.visible){
-          //   return
-          // }
+          if (that.data.visible){
+            return
+          }
           that.setData({
             showBgpack: true
           })
@@ -173,7 +172,6 @@ Page({
       index: e.detail.value,
       'reportList.mobileFlag': this.data.array[e.detail.value].mobileFlag
     })
-    console.log(this.data.reportList)
   },
 
   // 城市选择
@@ -254,6 +252,11 @@ Page({
     wx.reLaunch({
       url: "../index/index"
     })
+   
+    // wx.navigateBack({
+    //   delta: 1
+    // })
+
   },
   //确认推荐
   bindSub() {

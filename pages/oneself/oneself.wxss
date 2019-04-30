@@ -35,6 +35,8 @@
   font-size: 28rpx;
   color: #333;
   margin-top: 20rpx;
+  text-align: left;
+  margin-left:190rpx;
 }
 
 .controlList {

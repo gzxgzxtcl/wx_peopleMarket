@@ -141,7 +141,7 @@
         </view>
       </view>
       <view class='img-list' wx:for='{{buildsimg}}' wx:for-item='keyName' wx:for-index='value' wx:key='{{index}}' wx:if='{{keyName.imgs.length}}'>
-        <text>{{keyName.name}}({{keyName.imgs.length}}）</text>
+        <text>{{keyName.name}}（{{keyName.imgs.length}}）</text>
         <view class="section section_gap" bindtap='goBuildimg' data-selIndex='{{value}}'>
           <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
             <view class='imgs' style='width:{{440*keyName.imgs.length+20*(keyName.imgs.length-1)}}rpx'>

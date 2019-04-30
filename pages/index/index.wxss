@@ -226,6 +226,8 @@ swiper image {
 
 .hours-list .top-info .price text:first-child,.rim-list .top-info .price text:first-child {
   color: #fb1414;
+  font-size: 32rpx;
+  line-height: 32rpx;
 }
 
 .hours-list .bottom-info,.rim-list .bottom-info {

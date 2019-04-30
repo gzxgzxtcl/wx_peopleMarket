@@ -47,7 +47,7 @@
         <text>{{item.mobile}}</text>
       </view>
       <view>
-        <text>{{item.cityName}}</text>
+        <text>{{item.cityName}}{{item.projectName}}</text>
       </view>
     </view>
     <view class='step'>
