@@ -57,7 +57,8 @@
       </span>
     </li>
     <li style="height:200rpx;margin-top:20rpx;margin-bottom:40rpx">
-      <textarea wx:if="{{placeholderText !== ''}}" class='textsty' style='' bindinput='remarkBind' placeholder="{{placeholderText}}" placeholder-style='color:#B4B9CB;'/>
+      <textarea wx:if="{{!showBgpack}}" class='textsty' style='' bindinput='remarkBind' placeholder="{{placeholderText}}" placeholder-style='color:#B4B9CB;'/>
+      <textarea wx:else class='textsty' />
     </li>
     <li>
       <span class='title'>推荐人</span>

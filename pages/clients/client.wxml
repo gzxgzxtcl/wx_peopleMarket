@@ -47,7 +47,8 @@
         <text>{{item.mobile}}</text>
       </view>
       <view>
-        <text>{{item.cityName}}{{item.projectName}}</text>
+        <text wx:if='{{item.projectName}}'>{{item.projectName}}</text>
+        <text wx:else>{{item.cityName}}</text>
       </view>
     </view>
     <view class='step'>

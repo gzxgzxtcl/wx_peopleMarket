@@ -189,7 +189,7 @@ swiper image {
   flex-wrap: wrap;
   padding-bottom: 25rpx;
   border-bottom: 2rpx solid #eeeeee;
-}
+  }
 
 .rim-info{
   border-top: 2rpx solid #eeeeee;
@@ -255,8 +255,10 @@ swiper image {
   /* display: flex; */
   align-items: center;
   width: calc(100% - 70rpx);
-  height: 60rpx;
+  height: 50rpx;
   overflow: hidden;
+  box-sizing: border-box;
+  margin-bottom: 10rpx;
 }
 
 .hours-list .tag text,.rim-list .tag text {

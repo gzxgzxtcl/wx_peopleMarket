@@ -26,7 +26,7 @@ Page({
     cityDefaultIndex: -1,       //城市默认下标
 
     recommendPersonList:[],     //推荐人信息列表
-
+    
     _val:'',                    //搜索框临时数据
     //筛选条件
     selectList:{
