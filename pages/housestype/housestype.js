@@ -79,6 +79,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this
+    wx.showLoading({
+      title: '加载中',
+      mask: false,
+    })
+
     let projectname_cswx = options.projectname_cswx
     wx.setNavigationBarTitle({
       title: projectname_cswx
@@ -175,7 +181,6 @@ Page({
     // for (let i = 0; i < hourselist.length; i++){
     //   this.getProjectHouserholdFileList(hourselist[i].id)
     // }
-
   },
 
   //通过id获取户型图片列表
@@ -213,9 +218,9 @@ Page({
         allList[i].imgArr = _arr1[i]
       }
       this.setData({ allhourseList: allList, hourseViewList: allList })
+      wx.hideLoading()
       return
     }  
-
 
 
     let _allhourseList = this.data.allhourseList

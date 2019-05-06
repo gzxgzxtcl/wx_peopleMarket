@@ -87,7 +87,10 @@ Page({
     })
 //----------------------------↑
 
-
+    wx.showLoading({
+      title: '加载中',
+      mask: true,
+    })
     that.getAllCouponList()
   },
   //获取未领取优惠券
@@ -106,6 +109,7 @@ Page({
         _arr = [...that.data.couponList, ...data.data.list]
       }else{
         that.data.pageData.isPage = false
+        wx.hideLoading()
         return
       }
       
@@ -116,6 +120,7 @@ Page({
       } 
     
       this.setData({ couponList: _arr})
+      wx.hideLoading()
     }, (error) => {
       console.log(error)
     });

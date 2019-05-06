@@ -143,6 +143,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    let that=this
+    wx.showLoading({
+      title: '加载中',
+      mask: true,
+    })
     // if (options.imgurl){
     //   let bannerImgUrl = options.imgurl
     //   this.setData({ 'imgUrls[0]': bannerImgUrl })
@@ -289,6 +294,7 @@ Page({
       this.setData({ 'buildsimg[3].imgs': _arrGHImg2 })
     }).then(()=>{
       this.isHaveBuildsImg(this.data.buildsimg)
+      wx.hideLoading()
     }), (error) => {
       console.log(error)
     }

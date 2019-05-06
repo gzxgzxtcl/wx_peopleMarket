@@ -1,12 +1,12 @@
 <!--pages/setting/setting.wxml-->
 <view>
   <ul>
-    <li>经纪人使用帮助
+    <li bindtap='showSetText' data-index='{{0}}'>经纪人使用帮助
       <span class="iconImg">
         <image src='../../images/right.png'></image>
       </span>
     </li>
-    <li>经纪人须知
+    <li bindtap='showSetText' data-index='{{1}}'>经纪人须知
       <span class="iconImg">
         <image src='../../images/right.png'></image>
       </span>

@@ -179,6 +179,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    let that = this
+    wx.showLoading({
+      title: '加载中',
+      mask: true,
+    })
     this.setData({ 'selectList.openID': app.globalData.openid})
     this.findCustomList();
     this.getRecommendItemList();
@@ -213,6 +218,7 @@ Page({
         }
       }
       this.setData({ recommendPersonList: list})
+      wx.hideLoading()
     }, (error) => {
       console.log(error)
     });

@@ -26,6 +26,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    let that=this
+    wx.showLoading({
+      title: '加载中',
+      mask: true,
+    })
     this.getProjectApiFindProjectListByMyConc(this.data.attentionList)
   },
 
@@ -148,8 +153,10 @@ Page({
         this.setData({
           attentionList: newArr
         })
+        wx.hideLoading()
       }else {
         this.data.pageData.isPage = false
+        wx.hideLoading()
         return
       }
     })

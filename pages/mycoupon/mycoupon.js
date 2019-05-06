@@ -32,6 +32,11 @@ Page({
     * 生命周期函数--监听页面加载
     */
   onLoad: function (options) {
+    let that = this
+    wx.showLoading({
+      title: '加载中',
+      mask: true,
+    })
     this.setData({ 'requestData.userId': app.globalData.userId })         //用户ID
     this.getMyConuponList()
   },
@@ -51,8 +56,10 @@ Page({
         }
         _arr1 = [...this.data.myCouponList,..._arr]
         this.setData({ myCouponList: _arr1 })
+        wx.hideLoading()
       }else{
         this.data.isPage = false
+        wx.hideLoading()
         return
       }
     }, (error) => {

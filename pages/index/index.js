@@ -10,6 +10,7 @@ const {
 Page({
   data: {
     defaultImg:'../../images/defaultImg.png',
+    isLoading:false,    //是否加载数据中
     // 授权窗口
     showBgpack: false,
     // 是否显示优惠券
@@ -76,7 +77,18 @@ Page({
   },
 
   onLoad: function(option) {
-    let that = this
+    let that=this
+    wx.showLoading({
+      title: '加载中',
+      mask: true,
+    })
+    that.setData({ rimbuildinfolist:[]})
+    that.data.rimBuildPage.isPage=true
+    that.setData({
+      'rimBuildPage.page': 1,
+      'rimBuildPage.perpage': 10,
+      'rimBuildPage.isPage': true
+    })
     // 登录
     wx.login({
       success: res => {
@@ -104,13 +116,14 @@ Page({
           }
           app.globalData.userId = data.data.USERID
           that.getUserGetUserInfo(data.data.openid)
+          that.accreditOperate()
         }, (error) => {
           console.log(error)
         });
       }
     })
 
-    that.accreditOperate()
+    
     // //用户信息授权
     // wx.getSetting({
     //   success(res) {
@@ -270,13 +283,16 @@ Page({
       city: app.globalData.storLocalCity.id
     }
     $http(apiSetting.projectApiFindProjectListByCity, promise).then((data) => {
+      wx.hideLoading()
       let rimbuildinfo = []
       if (data.list.length > 0) {
         rimbuildinfo = [...that.data.rimbuildinfolist, ...data.list]
       } else {
         that.data.rimBuildPage.isPage = false
+        wx.hideLoading()
         return
       }
+      
       //周边列表图片路径修改
       let _list3 = rimbuildinfo
       for(let i=0;i<_list3.length;i++){
