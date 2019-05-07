@@ -21,9 +21,8 @@ Page({
 
   getProjectApiFindSettingDict: function() {
     let that = this
-    let promise = { dictname: '经纪人使用帮助'}
+    let promise = { dictname: '当前版本'}
     $http(apiSetting.projectApiFindSettingDict, promise).then((data) => {
-      console.log(data.data)
       that.setData({
         versions: data.data[0].dictdoc
       })

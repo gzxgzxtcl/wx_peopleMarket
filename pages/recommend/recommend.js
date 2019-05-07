@@ -150,7 +150,9 @@ Page({
     this.data.reportList.customName = e.detail.value
   },
   customPhoneBind(e) {
-    this.data.reportList.customPhone = e.detail.value
+    let phone=e.detail.value
+    phone = phone.replace(/\s*/g, "")
+    this.setData({ 'reportList.customPhone': phone})
   },
   remarkBind(e) {
     this.data.reportList.remark = e.detail.value
