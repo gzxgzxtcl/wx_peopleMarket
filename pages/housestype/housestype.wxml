@@ -44,7 +44,7 @@
           ></image>
  <!-- data-imgIndex='{{index}}' -->
         <view class='explain'>
-          <view class='totle' wx:if='{{item.price}}'>{{item.price}}<text>元/m²</text></view>
+          <view class='totle' wx:if='{{item.price}}'>{{item.price}}<text wx:if="{{item.pricetype==1}}">元/m²</text><text wx:if="{{item.pricetype==2}}">元/套</text></view>
           <view class='no-money' wx:else>暂无定价</view>
           <text wx:if='{{item.decoration}}'>{{item.decoration}}</text>
           <text>户型优势</text>

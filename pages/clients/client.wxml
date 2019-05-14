@@ -194,5 +194,8 @@
       <view class='ok' bindtap='submit'>确认</view>
     </view>
   </view>
-
 </view>
+
+<i-modal visible="{{ visible }}" ok-text="绑定用户" bind:ok="visibleOk" bind:cancel="visibleOkClose">
+  <view>暂无绑定用户信息</view>
+</i-modal>

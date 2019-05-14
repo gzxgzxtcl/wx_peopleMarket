@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    visible:false,
     showRight: false,
     //citySelArr:[true,false,false] ,  /*城市是否选中列表*/
     // planSelArr:[true,false,false,false,false],   /*进度是否选中*/
@@ -180,25 +181,26 @@ Page({
    */
   onLoad: function(options) {
     let that = this
+    if (!app.globalData.isCheck) {
+      that.setData({
+        visible: true,
+        placeholderText: ''
+      })
+      return
+    }
     wx.showLoading({
       title: '加载中',
       mask: true,
     })
-    this.setData({ 'selectList.openID': app.globalData.openid})
+    this.setData({ 'selectList.openID': app.globalData.openid })
     this.findCustomList();
     this.getRecommendItemList();
     this.findRecommendPerson();
   },
 
-
   //获取推荐人状态信息
   findCustomList(){
     let that=this
-    // let promise = {
-    //   startRow: that.data.customPage.startRow,
-    //   perRow: that.data.customPage.perRow,
-    //   openID: that.data.customPage.openID
-    // }
     let promise = this.data.selectList
     $http(apiSetting.recommendFindCustomList, promise).then((data) => {
       let customList = []
@@ -263,5 +265,17 @@ Page({
   //阻止遮罩穿透
   stopMove(){
     return
+  },
+
+//判断用户是否绑定信息
+  visibleOk() {
+    wx.navigateTo({
+      url: "../bindUser/bindUser"
+    })
+  },
+  visibleOkClose() {
+    wx.reLaunch({
+      url: "../index/index"
+    })
   }
 })

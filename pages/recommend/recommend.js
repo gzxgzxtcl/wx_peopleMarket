@@ -119,15 +119,12 @@ Page({
       that.setData({
         reportList: reportList
       })
-
     } else {
       that.setData({
         visible: true,
         placeholderText: ''
       })
     }
-   
-    
   },
 
   onShow: function() {

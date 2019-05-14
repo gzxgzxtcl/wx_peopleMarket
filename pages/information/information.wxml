@@ -26,7 +26,8 @@
       <view class='money'>
         <view>主力均价:</view>
         <text class='hours-money'>{{mainprice}}</text>
-        <view>元/㎡</view>
+        <view wx:if="{{mainpriceType===1}}">元/㎡</view>
+        <view wx:if="{{mainpriceType===2}}">元/套</view>
         <view class='tanhao' bindtap="handleOpen2" data-type='{{0}}'>
           <image src='../../images/tanhao.png'></image>
         </view>
@@ -117,7 +118,7 @@
         <image mode="aspectFill" src="{{upload_file_path==''?defaultImg:upload_file_path}}"  binderror="erroImage1" data-index='{{index}}'></image>
         <!-- <image wx:else src=''></image> -->
         <view class='explain'>
-          <view class='totle' wx:if='{{price}}'>{{price}}<text>元/m²</text></view>
+          <view class='totle' wx:if='{{price}}'>{{price}}<text wx:if="{{mainpriceType===1}}">元/m²</text><text wx:if="{{mainpriceType===2}}">元/套</text></view>
           <view class='no-money' wx:else>暂无定价</view>
           <text>户型优势</text>
           <view class='house-tag' wx:for='{{pointList}}' wx:key='{{index}}'>

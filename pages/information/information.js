@@ -51,6 +51,8 @@ Page({
     /*优惠信息*/
     mainprice: '',
     /*主力产品均价*/
+    mainpriceType:1,
+    /*价格类型，单价or总价*/
     mainpricedescription: '',
     /*主力产品均价后方价格说明详情*/
     mainhouseholdList: [],
@@ -588,6 +590,7 @@ Page({
         mainpricedescription: projectinfo.mainpricedescription,
         mainhouseholdList: projectinfo.mainhouseholdList,
         labelsList: projectinfo.labelsList,
+        mainpriceType: projectinfo.mainpriceType,
         // brightspotsList: projectinfo.brightspotsList,
         city_id: projectinfo.city
       })
