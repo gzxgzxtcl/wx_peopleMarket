@@ -1,15 +1,35 @@
 <!--pages/map/map.wxml-->
-<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" style="width: 100%; height: 100%;"></map>
-<!-- <view class='bottom'>
-  <view class='line'></view>
+
+
+<view class='map-box' style='height: calc(100% - {{cutHeight}}rpx);'>
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" polyline="{{polyline}}"></map>
+</view>
+<web-view wx:if="{{goOtherUrl==0}}" src="https://map.qq.com/m/"></web-view>
+<web-view wx:if="{{goOtherUrl==1}}" src="https://map.baidu.com/"></web-view>
+<web-view wx:if="{{goOtherUrl==2}}" src="https://map.baidu.com/"></web-view>
+<!-- 功能操作 -->
+<view class='bottom' bindtap='selLine' wx:if="{{!showMapSel}}">
   <view class='info'>
     <view class='left'>
-      <view class='name'>中海天钻</view>
-      <view class='address'>地址：<text>罗湖-蔡屋围-滨河路1005路</text></view>
-      <view class='tel'>电话：<text>0755-82826666</text></view>
+      <view class='name'>中海·云麓九里</view>
+      <view class='address'>青云街道半青玉路与金瓦路交叉口以北约600米</view>
     </view>
     <view class='right'>
-      <image src=''></image>
+      <image src='../../images/gps.png'></image>
     </view>
   </view>
-</view> -->
+</view>
+<!-- 显示路线/选择地图 -->
+  <view class='map-picker' wx:if="{{showMapSel}}">
+    <view class='shadow' catchtap='noClick'></view>
+    <view class='sel-picker'>
+      <view class='show-line' bindtap='showLine' wx:if="{{!isShowLine}}">显示路线</view>
+      <view class='show-line' bindtap='hideLine' wx:else>隐藏路线</view>
+      <view class='sel-map'>
+        <view data-type="{{0}}" bindtap='goOtherMap'>腾讯地图</view>
+        <view data-type="{{1}}" bindtap='goOtherMap'>百度地图</view>
+        <view data-type="{{2}}" bindtap='goOtherMap'>Apple地图</view>
+      </view>
+      <view class='cancel' bindtap='cancelLine'>取消</view>
+    </view>
+  </view>

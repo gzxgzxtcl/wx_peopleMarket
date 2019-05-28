@@ -161,6 +161,7 @@ Page({
           let promise = {
             code: res.code
           }
+
           $http(apiSetting.userDecodeUserInfo, promise).then((data) => {
             app.globalData.openid = data.data.openid
             this.getNoteCode()
@@ -170,6 +171,9 @@ Page({
         }
       })
     }else{
+      let cityPromise = wx.getStorageSync("cityPromise")
+      promise.currentCity = cityPromise.currentCity
+      promise.positionCity = cityPromise.positionCity
       $http(apiSetting.userGetCode, promise1).then((data) => {
         wx.hideLoading()
         if (data.code == 0) {
@@ -218,6 +222,9 @@ Page({
       code: this.data.noteCodeVal,
       openid: app.globalData.openid
     }
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
     $http(apiSetting.userCheckSMSCode, promise).then((data) => {
       if (data.code == 0) {
         $Message({

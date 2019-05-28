@@ -37,6 +37,9 @@
   height: 50px;
   padding-left: 20rpx;
   font-size: 28rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 
 .inp input {
@@ -120,4 +123,125 @@
 
 .bgpack button::after {
   border: none;
+}
+
+.place-sel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  padding-left: 20rpx;
+  font-size: 28rpx;
+  color: #B4B9CB;
+}
+
+
+
+
+/* picker样式 */
+.picker-view{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 30;
+}
+.picker-view .content{
+  width: 100%;
+  /* height: 580rpx; */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background: #ffffff;
+}
+.picker-view .content .top{
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2rpx solid #dddddd;
+  font-size: 34rpx;
+  font-family: 'PingFangSC-Regular';
+  color:#20A0FF;
+  padding: 0 30rpx;
+}
+.picker-view .content .top text{
+  width: 110rpx;
+}
+.picker-view .content .top text:first-child{
+  text-align: left;
+}
+.picker-view .content .top text:last-child{
+  text-align: right;
+}
+.picker-view .content .bottom{
+  height: 500rpx;
+  font-size: 30rpx;
+  font-family: 'PingFangSC-Regular';
+  color: #333333;
+  overflow: scroll;
+}
+.picker-view .content .bottom .list{
+  height: 100rpx;
+  padding: 0 51rpx 0 40rpx;
+  border-bottom: 2rpx solid #dddddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
+.picker-view .content .bottom .list image{
+  width: 51rpx;
+  height: 37rpx;
+}
+
+/* 推荐成功弹窗 */
+
+.back-box{
+  padding-top: 40rpx;
+  padding-left: 80rpx;
+  padding-right: 40rpx;
+}
+.back-box>view{
+  display: flex;
+  margin-bottom:50rpx;
+}
+.back-box .success-list{
+  /* height: 62rpx; */
+}
+
+.back-box .icon_left{
+  width: 44rpx;
+  height: 44rpx;
+  margin-right: 32rpx;
+}
+.back-box .icon_left image{
+  width: 100%;
+  height: 100%;
+}
+.back-box .tip_right{
+  height: 88%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.back-box .tip_right view{
+  text-align: left;
+}
+.back-box .tip_right view:first-child{
+  font-family: "PingFangSC-Regular";
+  font-size: 30rpx;
+  color: #000000;
+}
+.back-box .tip_right view:last-child{
+  font-family: "PingFangSC-Regular";
+  font-size: 30rpx;
+  color: #888888;
+}
+
+.i-modal-body{
+  max-height: 700rpx !important;
 }

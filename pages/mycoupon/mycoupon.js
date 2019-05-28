@@ -24,7 +24,6 @@ Page({
     isPage:true                             //是否加载
   },
 
-
   /**
     * 生命周期函数--监听页面加载
     */
@@ -43,15 +42,19 @@ Page({
     let that=this
     that.setData({ 'requestData.isUsage': that.data.usedIndex})
     let promise = that.data.requestData
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
     $http(apiSetting.apiCouponList, promise).then((data) => {
       let _arr = data.data.list
+      this.setData({ test: JSON.stringify(_arr) })
       let _arr1=[]
       if(_arr.length>0){
         for (let i = 0; i < _arr.length; i++) {
-          if (_arr[i].startDate){
+          if (_arr[i].startDate && _arr[i].startDate.indexOf(' ') != -1 && _arr[i].startDate.indexOf('-') != -1){
             _arr[i].startDate = _arr[i].startDate.split(' ')[0].split('-').join('.')
           }
-          if (_arr[i].endDate){
+          if (_arr[i].endDate && _arr[i].endDate.indexOf(' ') != -1 && _arr[i].endDate.indexOf('-') != -1){
             _arr[i].endDate = _arr[i].endDate.split(' ')[0].split('-').join('.')
           }
           if (_arr[i].couponname){
@@ -62,7 +65,8 @@ Page({
         that.setData({ myCouponList: _arr1 })
         wx.hideLoading()
       }else{
-        that.data.isPage = false
+        // that.data.isPage = false
+        this.setData({ isPage:false})
         wx.hideLoading()
         return
       }

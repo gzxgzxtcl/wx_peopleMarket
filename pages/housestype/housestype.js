@@ -222,7 +222,6 @@ Page({
       return
     }  
 
-
     let _allhourseList = this.data.allhourseList
     if (_t > imgListLength-1) return
     let promise = { houserhold_id: _allhourseList[_t].id }

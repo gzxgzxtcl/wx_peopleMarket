@@ -13,15 +13,17 @@
           <text>暂无优惠</text>
           <!-- {{item.couponname}} -->
         </view>
-        <view class='explain'>
+        <view class='explain' bindtap='getCoupon' data-couponId='{{item.couponid}}' data-index='{{index}}'>
           <view class='top'>
             <view>
               <text>{{item.city}}</text>
               <text>·</text>
               <text>{{item.projectName}}</text>
             </view>
+            <!-- <text wx:if='{{item.currentStock==0}}' style="color:{{'#9699a9'}}">已领光</text> -->
             <text wx:if='{{item.receivedStatus}}' style="color:{{'#9699a9'}}">已领取</text>
-            <text wx:else bindtap='getCoupon' data-couponId='{{item.couponid}}' data-index='{{index}}'>点击领取</text>
+            <!-- <text wx:else bindtap='getCoupon' data-couponId='{{item.couponid}}' data-index='{{index}}'>点击领取</text> -->
+            <text wx:else>点击领取</text>
           </view>
           <view class='bottom'>
             <view>使用规则：

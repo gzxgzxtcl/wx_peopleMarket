@@ -62,7 +62,7 @@
 }
 
 .my-attention .hours-list .sale text {
-  background: #20a0ff 60%;
+  /* background: #20a0ff 60%; */
 }
 
 .my-attention .hours-list .sale .t3 {
@@ -99,7 +99,7 @@
 }
 
 .my-attention .hours-list .bottom-info .tag text {
-  display: inline-block;
+  /* display: inline-block;
   padding: 0 5rpx;
   margin: 0 10rpx 0 0;
   border-radius: 4rpx;
@@ -110,7 +110,7 @@
   line-height: 28rpx;
   letter-spacing: 0.2rpx;
   text-align: center;
-  margin-bottom: 5rpx;
+  margin-bottom: 5rpx; */
 }
 
 .my-attention .hours-list .bottom-info .hours-address {

@@ -11,12 +11,6 @@
       <text wx:if='{{index===2 && threehourse.length}}'>{{item}}({{threehourse.length}})</text>
       <text wx:if='{{index===3 && fourhourse.length}}'>{{item}}({{fourhourse.length}})</text>
       <text wx:if='{{index===4 && otherhourse.length}}'>{{item}}({{otherhourse.length}})</text>
-
-      <!-- <text wx:if='{{index===0}}'>{{item}}({{onehourse.length}})</text>
-      <text wx:if='{{index===1}}'>{{item}}({{twohourse.length}})</text>
-      <text wx:if='{{index===2}}'>{{item}}({{threehourse.length}})</text>
-      <text wx:if='{{index===3 }}'>{{item}}({{fourhourse.length}})</text>
-      <text wx:if='{{index===4 }}'>{{item}}({{otherhourse.length}})</text> -->
       
       <view wx:if='{{index===0 && onehourse.length}}'></view>
       <view wx:if='{{index===1 && twohourse.length}}'></view>
@@ -32,8 +26,6 @@
         <text>{{item.caption}}</text>
       </view>
       <view class='img'>
-        <!-- <image wx:if='{{hourseImgList[index][0].upload_file_path}}'  src='{{item.imgArr[0].upload_file_path}}' bindtap='goHouseimg' data-index='{{index}}'></image> -->
-        <!-- <image wx:else src=''></image> -->
         <image 
           mode="aspectFill" 
           src="{{item.imgArr[0].upload_file_path==''?defaultImg:item.imgArr[0].upload_file_path}}" 
@@ -42,14 +34,16 @@
           bindtap='goHouseimg' 
           data-imgArr='{{item.imgArr}}'
           ></image>
- <!-- data-imgIndex='{{index}}' -->
         <view class='explain'>
-          <view class='totle' wx:if='{{item.price}}'>{{item.price}}<text wx:if="{{item.pricetype==1}}">元/m²</text><text wx:if="{{item.pricetype==2}}">元/套</text></view>
+          <view class='totle' wx:if='{{item.price}}'>{{item.price}}
+            <text wx:if="{{item.pricetype==1}}">元/m²</text>
+            <text wx:if="{{item.pricetype==2}}">万元/套</text>
+          </view>
           <view class='no-money' wx:else>暂无定价</view>
           <text wx:if='{{item.decoration}}'>{{item.decoration}}</text>
           <text>户型优势</text>
-          <view class='tags' wx:for="{{item.buyingpoint}}" wx:for-item='point' wx:for-index='pointIndex' wx:key='pointIndex'>
-            <text wx:if='{{point}}'>{{point}}</text>
+          <view class='tags' >
+            <text class='house-type-tag' wx:for="{{item.buyingpoint}}" wx:for-item='point' wx:for-index='pointIndex' wx:key='pointIndex' wx:if='{{point}}'>{{point}}</text>
           </view>
         </view>
       </view>

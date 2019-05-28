@@ -97,6 +97,14 @@ Page({
         let promise = {
           code: res.code
         }
+        let cityPromise = wx.getStorageSync("cityPromise")||[]
+        if (cityPromise.length>0){
+          promise.currentCity = cityPromise.currentCity
+          promise.positionCity = cityPromise.positionCity
+        }else{
+          promise.currentCity = ""
+          promise.positionCity = ""
+        }
         $http(apiSetting.userDecodeUserInfo, promise).then((data) => {
           console.log('openid:' + data.data.openid)
           console.log('status:' + data.data.status)
@@ -122,38 +130,10 @@ Page({
         });
       }
     })
-
-    
-    // //用户信息授权
-    // wx.getSetting({
-    //   success(res) {
-    //     if (!res.authSetting['scope.userInfo']) {
-    //       wx.hideTabBar()
-    //       that.setData({
-    //         showBgpack: true
-    //       })
-    //     } else {
-    //       that.accreditOperate();
-    //     }
-    //   }
-    // })
   },
   onShow:function(){
   
   },
-
-  // 获取微信用户信息
-  // onGotUserInfo(e) {
-  //   wx.showTabBar()
-  //   // console.log(e.detail.userInfo)
-  //   wx.setStorageSync('wxUserInfo', e.detail.userInfo)
-  //   // wx.getUserInfo({
-  //   //   success(res) {
-  //   //     console.log(res.userInfo)
-  //   //   }
-  //   // })
-  //   this.accreditOperate()
-  // },
 
   // 位置授权操作
   accreditOperate() {
@@ -165,6 +145,7 @@ Page({
     // 判断本地是否有数据
     if (app.globalData.storLocalCity) {
       that.data.cityInfo.cityName = app.globalData.storLocalCity.city
+      // console.log(app.globalData)
       that.getCityFindBuildInfoByCity()
     } else {
       wx.getSetting({
@@ -211,15 +192,20 @@ Page({
   },
   //获取城市列表信息
   getCityList(){
-    
     let that=this
     let promise = {}
+    // let cityPromise = wx.getStorageSync("cityPromise")||[]
+    promise.currentCity = ""
+    promise.positionCity = ""
+    promise.loginby = app.globalData.userId
     $http(apiSetting.cityFindCityItems, promise).then((data) => {
       let cityList=data.data
       if (that.data.cityInfo){
         that.setData({ 'cityInfo.cityName': cityList[0].city })
         wx.setStorageSync('storLocalCity', cityList[0])
         app.globalData.storLocalCity = cityList[0]
+         // currentCity = 当前选择城市，positionCity = 当前定位城市
+        wx.setStorageSync('cityPromise', { currentCity: cityList[0].city, positionCity:''})
       }
       that.getCityFindBuildInfoByCity()
     }, (error) => {
@@ -234,6 +220,9 @@ Page({
   getCityFindBuildInfoByCity() {
     let that = this
     let promise = that.data.cityInfo
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
     $http(apiSetting.cityFindBuildInfoByCity, promise).then((data) => {
       app.globalData.storLocalCity = data.data.cityInfo
       //修改楼盘图路径
@@ -282,6 +271,9 @@ Page({
       login_by: app.globalData.userId,
       city: app.globalData.storLocalCity.id
     }
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
     $http(apiSetting.projectApiFindProjectListByCity, promise).then((data) => {
       wx.hideLoading()
       let rimbuildinfo = []
@@ -322,9 +314,16 @@ Page({
   // 获取绑定用户信息
   getUserGetUserInfo(val) {
     let that = this
-    $http(apiSetting.userGetUserInfo, {
-      openid: val
-    }).then((data) => {
+    let promise = { openid: val}
+    let cityPromise = wx.getStorageSync("cityPromise") || []
+    if (cityPromise.length > 0) {
+      promise.currentCity = cityPromise.currentCity
+      promise.positionCity = cityPromise.positionCity
+    } else {
+      promise.currentCity = ""
+      promise.positionCity = ""
+    }
+    $http(apiSetting.userGetUserInfo, promise).then((data) => {
       app.globalData.bindUserInfo = data.data
 
       that.stopRefresh()

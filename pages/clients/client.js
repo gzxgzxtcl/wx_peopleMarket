@@ -18,7 +18,7 @@ Page({
     dataIntervalStart:null,
     dataIntervalEnd:null,
 
-    peoplesArray:[],            //人数数组
+    peoplesArray:null,            //人数数组
     drawerList:[],              //筛选条目列表
     cityInfo:[],              //城市列表
     itemInfo:[],              //项目列表
@@ -117,6 +117,9 @@ Page({
     if (!promise.searchType){
       promise.searchType='全部'
     }
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
     $http(apiSetting.recommendFindCustomList, promise).then((data) => {
       this.setData({ recommendPersonList: data.data })
     }, (error) => {
@@ -134,6 +137,9 @@ Page({
       isPage:true
        })
     let promise = this.data.selectList
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
     $http(apiSetting.recommendFindCustomList, promise).then((data) => {
       this.setData({ recommendPersonList: data.data })
     }, (error) => {
@@ -193,21 +199,25 @@ Page({
       mask: true,
     })
     this.setData({ 'selectList.openID': app.globalData.openid })
-    this.findCustomList();
-    this.getRecommendItemList();
-    this.findRecommendPerson();
+    this.findCustomList()
+    this.getRecommendItemList()
+    this.findRecommendPerson()
   },
 
   //获取推荐人状态信息
   findCustomList(){
     let that=this
     let promise = this.data.selectList
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
     $http(apiSetting.recommendFindCustomList, promise).then((data) => {
       let customList = []
       if (data.data!=null && data.data.length>0){
         customList = [...that.data.recommendPersonList,...data.data]
       }else{
         that.data.isPage = false
+        wx.hideLoading()
         return
       }
       let list = customList
@@ -228,8 +238,17 @@ Page({
   //推荐客户人数
   findRecommendPerson(){
     let promise = { openID: app.globalData.openid}
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
     $http(apiSetting.recommendFindRecommendPerson, promise).then((data) => {
-      this.setData({ peoplesArray:data.data})
+      let peopleNum = data.data
+      for (let prop in peopleNum){
+        if (!Number(peopleNum[prop])){
+          peopleNum[prop]=0
+        }
+      }
+      this.setData({ peoplesArray: peopleNum})
     }, (error) => {
       console.log(error)
     });
@@ -237,11 +256,16 @@ Page({
   //筛选条目获取
   getRecommendItemList(){
     let promise = { openID: app.globalData.openid }
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
     $http(apiSetting.recommendItemList, promise).then((data) => {
       if(!data.data) return
+      let cityInfo = data.data.cityInfo.filter(item => item)
+      let itemInfo = data.data.itemInfo.filter(item => item)
       this.setData({
-        cityInfo: data.data.cityInfo,
-        itemInfo: data.data.itemInfo,
+        cityInfo: cityInfo,
+        itemInfo: itemInfo,
         recommendInfo: data.data.recommendInfo
       })
     }, (error) => {

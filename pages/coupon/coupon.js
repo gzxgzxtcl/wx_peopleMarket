@@ -29,6 +29,9 @@ Page({
       userId: app.globalData.userId                 //用户ID
     }
     // console.log(promise)
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
     $http(apiSetting.apiCouponGetCoupon, promise).then((data) => {
        if(data.code===0){
         wx.showToast({
@@ -40,6 +43,18 @@ Page({
         //  this.setData({ a:true})
          this.setData({ couponList: [], 'pageData.page':1})
           this.getAllCouponList()
+       }else if(data.code===-1){
+         wx.showToast({
+           title: '请勿重复领取',
+           icon: 'none',
+           duration: 2000
+         })
+       }else{
+         wx.showToast({
+           title: '领取失败!\r\n优惠券已被领取完',
+           icon: 'none',
+           duration: 2000
+         })
        }
     }, (error) => {
       console.log(error)
@@ -103,6 +118,8 @@ Page({
       perpage: that.data.pageData.perpage,
       userId: app.globalData.userId
     }
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.positionCity = cityPromise.positionCity
     $http(apiSetting.apiCouponCouponForCityList, promise).then((data) => {
       let _arr = []
       if (data.data.list.length>0){

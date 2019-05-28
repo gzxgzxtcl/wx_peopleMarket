@@ -53,7 +53,6 @@ Page({
   },
 
 
-
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -76,62 +75,18 @@ Page({
   },
 
   //获取我的关注列表
-  // getProjectApiFindProjectListByMyConc(list) {
-  //   let promise = {
-  //     page: this.data.pageData.page,
-  //     perpage: this.data.pageData.perpage,
-  //     login_by: app.globalData.userId
-  //   }
-  //   $http(apiSetting.projectApiFindProjectListByMyConc, promise).then((data) => {
-  //     let attentions=data.list
-  //     if(!attentions.length)  return
-  //     for (let i = 0; i < attentions.length; i++) {
-  //       if (attentions[i].pictureurl === 'null') {
-  //         attentions[i].pictureurl = ''
-  //       } else {
-  //         attentions[i].pictureurl = this.data.imgpath + attentions[i].pictureurl
-  //       }
-  //     }
-  //     let newArr = []
-  //     if (data.list.length > 0) {
-  //       newArr = [...list, ...attentions]
-  //     } else {
-  //       this.data.pageData.isPage = false
-  //       return
-  //     }
-      
-  //     this.setData({
-  //       attentionList: newArr
-  //     })
-
-  //     let _arr = newArr
-  //     let _arr1 = []
-  //     for (let i = 0; i < _arr.length; i++) {
-  //       if (!_arr[i].labels) {
-  //         _arr1.push('')
-  //       } else {
-  //         _arr1.push(_arr[i].labels.split(','))
-  //       }
-  //     }
-  //     this.setData({
-  //       tagList: _arr1
-  //     })
-  //   })
-  // },
-
-
-
-
-  //获取我的关注列表
   getProjectApiFindProjectListByMyConc(list) {
     let promise = {
       page: this.data.pageData.page,
       perpage: this.data.pageData.perpage,
       login_by: app.globalData.userId
     }
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
     $http(apiSetting.projectApiFindProjectListByMyConc, promise).then((data) => {
       let attentions = data.list
-      if (attentions.length >= 0) {
+      if (attentions.length > 0) {
         //修改图片路径
         for (let i = 0; i < attentions.length; i++) {
           if (attentions[i].pictureurl === 'null') {
@@ -155,7 +110,8 @@ Page({
         })
         wx.hideLoading()
       }else {
-        this.data.pageData.isPage = false
+        // this.data.pageData.isPage = false
+        this.setData({'pageData.isPage':false})
         wx.hideLoading()
         return
       }

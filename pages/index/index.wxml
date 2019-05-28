@@ -20,8 +20,6 @@
   <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" current="{{swiperCurrent}}" bindanimationfinish="swiperChange" circular='true'>
     <block wx:for="{{imgUrls}}" wx:key='{{index}}'>
       <swiper-item>
-        <!-- <image mode="aspectFill" src="{{imgpath}}{{item.url}}" class="slide-image" width="355" height="150" /> -->
-        <!-- <image mode="aspectFill" src='{{item.pictureurl==""?defaultImg:item.pictureurl}}' binderror="erroImage" data-index='{{index}}'></image> -->
         <image mode="aspectFill" src="{{item.url==''?defaultImg:item.url}}" width="355" height="150" binderror="erroImage1" data-index='{{index}}'></image>
       </swiper-item>
     </block>
@@ -52,7 +50,6 @@
   <!-- 楼盘详情 -->
   <view class='hours-list {{buildinfolist.length===index+1?"last-hourse-list":"hours-list"}}' bindtap='goInformation' data-project_id='{{item.projectid_id}}' data-imgurl='{{item.pictureurl}}' wx:for='{{buildinfolist}}' wx:key='index'>
     <view class='img'>
-          <!-- <image mode="aspectFill" src='{{imgpath+item.pictureurl}}' binderror="erroImage" data-index='{{index}}'></image> -->
       <image mode="aspectFill" src='{{item.pictureurl==""?defaultImg:item.pictureurl}}' binderror="erroImage" data-index='{{index}}'></image>
     </view>
     <view class='hours-info'>
@@ -60,17 +57,18 @@
         <view class='hours-name'>
           <text>{{item.projectname_cswx}}</text>
           <view class='sale'>
-            <text class='t3'>{{item.issale}}</text>
+            <text id="all-sale" class='t3 all-sale'>{{item.issale}}</text>
           </view>
         </view>
         <view class='price'>主力均价：
           <text>{{item.mainprice}}</text>
-          <text>元/㎡</text>
+          <text wx:if="{{item.mainpriceType==1}}">元/㎡</text>
+          <text wx:if="{{item.mainpriceType==2}}">万元/套</text>
         </view>
       </view>
       <view class='bottom-info'>
         <view class='tag'>
-          <text wx:for='{{buildinfotaglist[index]}}' wx:key='{{index}}'>{{item}}</text>
+          <text class='all-tag' wx:for='{{buildinfotaglist[index]}}' wx:key='{{index}}'>{{item}}</text>
         </view>
         <view class='hours-address'>
           <text class='hours-address-icon iconfont iconweizhi'></text>
@@ -87,25 +85,22 @@
   <!-- 周边楼盘详情 -->
   <view class='rim-list ' bindtap='goInformation' data-project_id='{{item.id}}' data-imgurl='{{item.pictureurl}}' wx:for='{{rimbuildinfolist}}' wx:key='index' wx:if="{{rimbuildinfolist.length}}">
     <view class='img'>
-      <!-- <image mode="aspectFill" src='{{imgpath}}{{item.pictureurl}}'></image> -->
       <image mode="aspectFill" src="{{item.pictureurl==''?defaultImg:item.pictureurl}}"  binderror="erroImage2" data-index='{{index}}'></image>
     </view>
     <view class='hours-info'>
       <view class='top-info'>
         <view class='hours-name'>
           <text>{{item.projectname_cswx}}</text>
-          <!-- <view class='sale'>
-            <text class='t3'>{{item.issale}}</text>
-          </view> -->
         </view>
         <view class='price'>主力均价：
           <text>{{item.mainprice}}</text>
-          <text>元/㎡</text>
+          <text wx:if="{{item.mainpriceType==1}}">元/㎡</text>
+          <text wx:if="{{item.mainpriceType==2}}">万元/套</text>
         </view>
       </view>
       <view class='bottom-info'>
         <view class='tag'>
-          <text wx:for='{{rimbuildinfotaglist[index]}}' wx:key='{{index}}'>{{item}}</text>
+          <text class='all-tag' wx:for='{{rimbuildinfotaglist[index]}}' wx:key='{{index}}'>{{item}}</text>
         </view>
         <view class='hours-address'>
           <text class='hours-address-icon iconfont iconweizhi'></text>

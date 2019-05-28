@@ -14,6 +14,7 @@ Page({
       showLongitude: '',
       showLlatitude: '',
     },
+    project_id:'',
     optionsObj: null,
     imgpath: fileUrl, //图片根路径
     isAttention: false,
@@ -52,6 +53,7 @@ Page({
     mainprice: '',
     /*主力产品均价*/
     mainpriceType:1,
+    pricetype:1,    
     /*价格类型，单价or总价*/
     mainpricedescription: '',
     /*主力产品均价后方价格说明详情*/
@@ -150,15 +152,13 @@ Page({
       title: '加载中',
       mask: true,
     })
-    // if (options.imgurl){
-    //   let bannerImgUrl = options.imgurl
-    //   this.setData({ 'imgUrls[0]': bannerImgUrl })
-    // }
+   
     /*
       首页传递项目id到详情页，并将项目id进行保存，并使用
     */
     this.data.optionsObj = options
     let project_id = options.project_id          //index-->information 项目id
+    this.setData({ project_id: options.project_id})
     //let imgurl = options.imgurl                //index-->information  项目主图
 
     //对关注接口的请求参数进行赋值
@@ -180,6 +180,10 @@ Page({
     let promise1 = {
       dictname: '免责条款'
     }
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise1.currentCity = cityPromise.currentCity
+    promise1.positionCity = cityPromise.positionCity
+    promise1.loginby = app.globalData.userId
     $http(apiSetting.projectApiFindOtherDictValues, promise1).then((data) => {
       this.setData({
         exemption: data.data
@@ -187,17 +191,6 @@ Page({
     }), (error) => {
       console.log(error)
     }
-    // let promise2 = {
-    //   dictname: '佣金规则'
-    // }
-    // $http(apiSetting.projectApiFindOtherDictValues, promise2).then((data) => {
-    //   this.setData({
-    //     commissionRule: data.data
-    //   })
-    // }), (error) => {
-    //   console.log(error)
-    // }
-
   },
 
 //通过类型查询楼盘图列表
@@ -207,6 +200,10 @@ Page({
       picturetype: this.data.buildsRequestArr[promiseTypeIndex],
       project_id:id
     }
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
+    promise.loginby = app.globalData.userId
     $http(apiSetting.projectApiFindProjectImagesListByType, promise).then((data) => {
       let _arrBannerImg=data.data
       let _arrBannerImg2=[]
@@ -294,6 +291,13 @@ Page({
         _arrGHImg2[i] = this.data.imgpath + _arrGHImg2[i]
       }
       this.setData({ 'buildsimg[3].imgs': _arrGHImg2 })
+      let _buildArr = this.data.buildsimg
+      for (let i = 0; i < _buildArr.length;i++){
+        if (!_buildArr[i].imgs.length){
+          _buildArr.splice(i,1)
+        }
+      }
+      this.setData({ buildsimg: _buildArr})
     }).then(()=>{
       this.isHaveBuildsImg(this.data.buildsimg)
       wx.hideLoading()
@@ -302,108 +306,16 @@ Page({
     }
   },
 
-
-  //通过类型查询楼盘图列表
-  // getHourseImgList(id) {
-  //   let promise1 = {
-  //     project_id: id,
-  //     picturetype: "项目主图"
-  //   }
-  //   this.getHourseImgFun(promise1)
-  //   let promise2 = {
-  //     project_id: id,
-  //     picturetype: "实景图"
-  //   }
-  //   this.getHourseImgFun(promise2)
-  //   let promise3 = {
-  //     project_id: id,
-  //     picturetype: "效果图"
-  //   }
-  //   this.getHourseImgFun(promise3)
-  //   let promise4 = {
-  //     project_id: id,
-  //     picturetype: "配套图"
-  //   }
-  //   this.getHourseImgFun(promise4)
-  //   let promise5 = {
-  //     project_id: id,
-  //     picturetype: "规划图"
-  //   }
-  //   this.getHourseImgFun(promise5)
-  // },
-
-  //请求楼盘图接口函数
-  // getHourseImgFun(promise) { //楼盘主图,实景图,效果图,配套图,规划图
-  //   $http(apiSetting.projectApiFindProjectImagesListByType, promise).then((data) => {
-  //     let _arr = data.data
-  //     let _arr2 = []
-  //     if (promise.picturetype === "项目主图") {
-  //       for (let i = 0; i < _arr.length; i++) {
-  //         if (_arr[i].upload_file_path == undefined) {
-  //           continue
-  //         } else {
-  //           _arr2.push(_arr[i].upload_file_path)
-  //         }
-  //       }
-
-  //       this.resetBanner(_arr2)
-  //       // this.setData({['buildsimg[0].imgs']:_arr2})
-  //     } else if (promise.picturetype === "实景图") {
-  //       for (let i = 0; i < _arr.length; i++) {
-  //         if (_arr[i].upload_file_path == undefined) {
-  //           continue
-  //         } else {
-  //           _arr2.push(_arr[i].upload_file_path)
-  //         }
-  //       }
-  //       this.setData({
-  //         'buildsimg[0].imgs': _arr2
-  //       })
-  //     } else if (promise.picturetype === "效果图") {
-  //       for (let i = 0; i < _arr.length; i++) {
-  //         if (_arr[i].upload_file_path == undefined) {
-  //           continue
-  //         } else {
-  //           _arr2.push(_arr[i].upload_file_path)
-  //         }
-  //       }
-  //       this.setData({
-  //         'buildsimg[1].imgs': _arr2
-  //       })
-  //     } else if (promise.picturetype === "配套图") {
-  //       for (let i = 0; i < _arr.length; i++) {
-  //         if (_arr[i].upload_file_path == undefined) {
-  //           continue
-  //         } else {
-  //           _arr2.push(_arr[i].upload_file_path)
-  //         }
-  //       }
-  //       this.setData({
-  //         'buildsimg[2].imgs': _arr2
-  //       })
-  //     } else if (promise.picturetype === "规划图") {
-  //       for (let i = 0; i < _arr.length; i++) {
-  //         if (_arr[i].upload_file_path == undefined) {
-  //           continue
-  //         } else {
-  //           _arr2.push(_arr[i].upload_file_path)
-  //         }
-  //       }
-  //       this.setData({
-  //         'buildsimg[3].imgs': _arr2
-  //       })
-  //     }
-  //     this.isHaveBuildsImg()
-  //   }), (error) => {
-  //     console.log(error)
-  //   }
-  // },
-
   //通过id获取户型图片列表
   getProjectHouserholdFileList(id) {
     let promise = {
       houserhold_id: id
     }
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
+    promise.loginby = app.globalData.userId
+    promise.project_id = this.data.project_id
     $http(apiSetting.projectApiFindProjectHouserholdFileListById, promise).then((data) => {
       let imgArr = data.data[0]
       if (imgArr) {
@@ -424,6 +336,10 @@ Page({
     let promise = {
       project_id: id
     }
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
+    promise.loginby = app.globalData.userId
     $http(apiSetting.projectApiFindProjectHouserholdListById, promise).then((data) => {
       let hourserholdlist = data.data[0];
       if (!hourserholdlist) return
@@ -436,6 +352,7 @@ Page({
         area: hourserholdlist.area,
         category: hourserholdlist.category,
         decoration: hourserholdlist.decoration,
+        pricetype: hourserholdlist.pricetype,
         houserholdremark: hourserholdlist.houserholdremark,
       })
       //截取亮点标签
@@ -454,6 +371,10 @@ Page({
     let promise = {
       project_id: id
     }
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
+    promise.loginby = app.globalData.userId
     $http(apiSetting.projectApiFindProjectDetailsById, promise).then((data) => {
       let projectdetails = data.data
       if (!projectdetails) return
@@ -530,12 +451,15 @@ Page({
       let _arr = []
       for (let i = 0; i < _projectInfo.length; i++) {
         if (_projectInfo[i].value && _projectInfo[i].value !== 'null') {
-          // if (_projectInfo[i].name === '物业费') {
-          //   _projectInfo[i].value = _projectInfo[i].value + '元/㎡'
-          // }
+          //截掉开盘时间字段中的时分秒
+          if(i===2||i===3){
+            if (_projectInfo[i].value.indexOf(' ') != -1) {
+              _projectInfo[i].value = _projectInfo[i].value.split(' ')[0]
+            }
+          }
           _arr.push(_projectInfo[i])
         }
-      }
+      }     
       //判断符合的数量，大于8个即产生'查看更多'
       if (_arr.length > 8) {
         this.setData({
@@ -570,15 +494,23 @@ Page({
   },
 
   // 通过id获取项目信息
- 
   getProjectInfo(id) {
     let promise = {
       project_id: id
     }
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
+    promise.loginby= app.globalData.userId
     $http(apiSetting.projectApiFindProjectInfoById, promise).then((data) => {
       let projectinfo = data.data
       if (!projectinfo) return
       this.getSpotLength(projectinfo.brightspotsList);            //获取亮点条数
+      if (projectinfo.mainprice){
+        if (projectinfo.mainprice.indexOf('.')!==-1){
+          this.setData({ mainprice: projectinfo.mainprice.split('.')[0]})
+        }
+      }
       this.setData({
         project_id: projectinfo.id,
         // projectname_hk: projectinfo.projectname_hk,
@@ -586,7 +518,7 @@ Page({
         salesaddr: projectinfo.salesaddr,
         showhall: projectinfo.showhall,
         couponinfo: projectinfo.couponinfo,
-        mainprice: projectinfo.mainprice,
+        // mainprice: projectinfo.mainprice,
         mainpricedescription: projectinfo.mainpricedescription,
         mainhouseholdList: projectinfo.mainhouseholdList,
         labelsList: projectinfo.labelsList,
@@ -623,14 +555,7 @@ Page({
       url: '../housestype/housestype?project_id=' + this.data.project_id + '&&projectname_cswx=' + this.data.projectname_cswx,
     })
   },
-  //户型图片点击事件
-  // goHouseimg(e) {
-  //   let imgurl = e.currentTarget.dataset.imgurl;
-  //   wx.previewImage({
-  //     current: imgurl, // 当前显示图片的http链接
-  //     urls: [imgurl] // 需要预览的图片http链接列表
-  //   })
-  // },
+
   //判断是否有楼盘图
   isHaveBuildsImg(data) {
     let _arr = []
@@ -654,6 +579,7 @@ Page({
     let bannerObj = { name: '项目主图', imgs: this.data.imgUrls}
     let _imgArr = JSON.parse(JSON.stringify(this.data.buildsimg))     //切除引用关系
     _imgArr.unshift(bannerObj)
+    let _t=0
     let selIndex = e.currentTarget.dataset.selindex;
     wx.navigateTo({
       url: '../houseimg/houseimg?buildsimg=' + JSON.stringify(_imgArr) + "&&selIndex=" + selIndex
@@ -668,6 +594,9 @@ Page({
     })
     if (this.data.isAttention) { //isAttention为true,则发起关注请求
       let promise = this.data.attentionList
+      let cityPromise = wx.getStorageSync("cityPromise")
+      promise.currentCity = cityPromise.currentCity
+      promise.positionCity = cityPromise.positionCity
       $http(apiSetting.projectApiInsertMyConc, promise).then((data) => {
         // console.log(data)
       }, (error) => {
@@ -675,6 +604,9 @@ Page({
       });
     } else { //isAttention为false,则发起取消关注请求
       let promise = this.data.attentionList
+      let cityPromise = wx.getStorageSync("cityPromise")
+      promise.currentCity = cityPromise.currentCity
+      promise.positionCity = cityPromise.positionCity
       $http(apiSetting.projectApiUpdateMyConc, promise).then((data) => {
         console.log(data)
       }, (error) => {
@@ -685,6 +617,9 @@ Page({
   //判断是否已经关注
   isAttentionProject() {
     let promise = this.data.attentionList
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
     $http(apiSetting.projectApiUpdateMyConc, promise).then((data) => {
       if (data.code === -1) { //返回值为-1，表示项目暂时没有被关注
         this.setData({
@@ -807,7 +742,6 @@ Page({
   },
   //户型图片错误
   erroImage1(e){
-    console.log(e)
     if (e.type == 'error') {
       this.data.upload_file_path = this.data.defaultImg
       this.setData({

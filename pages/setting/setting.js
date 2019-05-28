@@ -22,6 +22,10 @@ Page({
   getProjectApiFindSettingDict: function() {
     let that = this
     let promise = { dictname: '当前版本'}
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
+    promise.loginby = app.globalData.userId
     $http(apiSetting.projectApiFindSettingDict, promise).then((data) => {
       that.setData({
         versions: data.data[0].dictdoc

@@ -46,19 +46,19 @@
     </li>
     <li>
       <span class='title required'>推荐楼盘</span>
-      <span class="inp" style="text-align:left;display:block;">
+      <span wx:if="{{recommentStr!==''}}" class="inp" style="text-align:left;display:block;" bindtap="setProject">{{recommentStr}}</span>
+      <span wx:if="{{recommentStr===''}}" class="place-sel" style="text-align:left;display:block;" bindtap="setProject">请选择</span>  
         <!-- <input placeholder-class="phcolor" type='text' placeholder="请选择" /> -->
-        <picker style='width:100%' mode="selector" bindchange="arrayProjectChange" range-key="wxProjectName" value='{{arrayProjectIndex}}' range="{{arrayProject}}">
-          <view class="picker">
+        <!-- <picker style='width:100%' mode="selector" bindchange="arrayProjectChange" range-key="wxProjectName" value='{{arrayProjectIndex}}' range="{{arrayProject}}">
+          <view class="picker"> -->
             <!-- 请选择 -->
-            <text wx:if="{{arrayProjectIndex == null}}" style='color:#B4B9CB;'>请选择</text> {{arrayProject[arrayProjectIndex].wxProjectName}}
+            <!-- <text wx:if="{{arrayProjectIndex == null}}" style='color:#B4B9CB;'>请选择</text> {{arrayProject[arrayProjectIndex].wxProjectName}}
           </view>
-        </picker>
-      </span>
+        </picker> -->
     </li>
     <li style="height:200rpx;margin-top:20rpx;margin-bottom:40rpx">
-      <textarea wx:if="{{!showBgpack && !visible2 && !visible}}" class='textsty' style='' bindinput='remarkBind' placeholder="{{placeholderText}}" placeholder-style='color:#B4B9CB;'/>
-      <textarea wx:else class='textsty' />
+      <textarea wx:if="{{!showBgpack && !visible2 && !visible && !showPicker}}" class='textsty' style='' bindinput='remarkBind' placeholder="{{placeholderText}}" placeholder-style='color:#B4B9CB;'/>
+      <view wx:else class='textsty' />
     </li>
     <li>
       <span class='title'>推荐人</span>
@@ -77,13 +77,35 @@
   <button class='bindSub' disabled='{{subDisabled}}' bindtap='bindSub'>确认推荐</button>
 </view>
 
+
+
 <i-modal visible="{{ visible }}" ok-text="绑定用户" bind:ok="visibleOk" bind:cancel="visibleOkClose">
   <view>暂无绑定用户信息</view>
 </i-modal>
 
 <i-modal visible="{{visible2}}" bind:ok="handleCloseOk" bind:cancel="handleCloseNo" ok-text="我的推荐" cancel-text="首页">
-  <image mode="aspectFit" style="width: 200rpx;height:80rpx;" src='../../images/ok.png'></image>
-  <view>推荐成功</view>
+  <view class='back-box'>
+    <view class='success-list' wx:if="{{successProjectArr.length}}"  wx:for="{{successProjectArr}}" wx:key="{{index}}">
+      <view class='icon_left'>
+        <image src='../../images/tjsuccess.png'></image>
+      </view>
+      <view class='tip_right'>
+        <view>{{item}}推荐成功</view>
+      </view>
+    </view>
+
+    <view class='error-list' wx:if="{{errorProjectArr.length}}" wx:for="{{errorProjectArr}}" wx:key="{{index}}">
+      <view class='icon_left'>
+        <image src='../../images/tjerror.png'></image>
+      </view>
+      <view class='tip_right'>
+        <view>{{item}}推荐失败</view>
+        <view>此客户已是该项目的客户</view>
+      </view>
+    </view>
+  </view>
+  <!-- <image mode="aspectFit" style="width: 200rpx;height:80rpx;" src='../../images/ok.png'></image>
+  <view>推荐成功</view> -->
 </i-modal>
 
 <i-message id="message" />
@@ -102,6 +124,21 @@
       <button style='color:#20A0FF;border-left:rgba(0,0,0,0.10) 1px solid' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
         允许
       </button>
+    </view>
+  </view>
+</view>
+
+<view class='picker-view' wx:if="{{showPicker}}">
+  <view class='content'>
+    <view class='top'>
+      <text  bindtap='cancelPicker' data-type='0'>取消</text>
+      <text  bindtap='cancelPicker' data-type='1'>确认</text>
+    </view>
+    <view class='bottom'>
+      <view class='list' wx:for="{{arrayProject}}" wx:key="{{index}}" data-index="{{index}}" bindtap='selTheItem'>
+        <text>{{item.wxProjectName}}</text>
+        <image wx:if="{{item.isSel}}" src='../../images/fxOK.png'></image>
+      </view>
     </view>
   </view>
 </view>

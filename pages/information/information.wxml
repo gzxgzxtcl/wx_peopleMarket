@@ -10,7 +10,6 @@
   <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange='bannerChange'>
     <block wx:for="{{imgUrls}}" wx:key="{{index}}">
       <swiper-item>
-        <!-- <image mode="aspectFill" src="{{defaultImg}}" class="slide-image" width="355" height="150" /> -->
         <image mode="aspectFill" src='{{item==""?defaultImg:item}}' binderror="erroImage2" data-index='{{index}}' bindtap='goBuildimg'></image>
       </swiper-item>
     </block>
@@ -20,14 +19,13 @@
     <view class='name-money'>
       <view class='name'>
         <text>{{projectname_cswx}}</text>
-        <!-- <text>北京中海国际</text> -->
-        <view wx:if='{{issale}}'>{{issale}}</view>
+        <view class='all-sale' wx:if='{{issale}}'>{{issale}}</view>
       </view>
       <view class='money'>
         <view>主力均价:</view>
         <text class='hours-money'>{{mainprice}}</text>
         <view wx:if="{{mainpriceType===1}}">元/㎡</view>
-        <view wx:if="{{mainpriceType===2}}">元/套</view>
+        <view wx:if="{{mainpriceType===2}}">万元/套</view>
         <view class='tanhao' bindtap="handleOpen2" data-type='{{0}}'>
           <image src='../../images/tanhao.png'></image>
         </view>
@@ -36,7 +34,7 @@
   
     <!-- 标签 -->
     <view class='tag' wx:if='{{labelsList.length}}'>
-      <view wx:for='{{labelsList}}' wx:key='{{index}}'>{{item.labels}}</view>
+      <view class="all-tag" wx:for='{{labelsList}}' wx:key='{{index}}'>{{item.labels}}</view>
     </view>
     <!-- 地址 -->
     <view class='address' wx:if='{{salesaddr!="" || showhall!=""}}'>
@@ -114,22 +112,17 @@
         <text>{{caption}}</text>
       </view>
       <view class='img' bindtap='goHousetype'>
-        <!-- <image wx:if='{{upload_file_path}}' src='{{imgpath+upload_file_path}}' bindtap='goHouseimg' data-imgurl='{{imgpath+upload_file_path}}'></image> -->
         <image mode="aspectFill" src="{{upload_file_path==''?defaultImg:upload_file_path}}"  binderror="erroImage1" data-index='{{index}}'></image>
-        <!-- <image wx:else src=''></image> -->
         <view class='explain'>
-          <view class='totle' wx:if='{{price}}'>{{price}}<text wx:if="{{mainpriceType===1}}">元/m²</text><text wx:if="{{mainpriceType===2}}">元/套</text></view>
+          <view class='totle' wx:if='{{price}}'>{{price}}
+            <text wx:if="{{pricetype==1}}">元/m²</text>
+            <text wx:if="{{pricetype==2}}">万元/套</text>
+          </view>
           <view class='no-money' wx:else>暂无定价</view>
           <text>户型优势</text>
-          <view class='house-tag' wx:for='{{pointList}}' wx:key='{{index}}'>
-            <text wx:if='{{item}}'>{{item}}</text>
+          <view class='house-tag' >
+            <text wx:for='{{pointList}}' wx:key='{{index}}' class='house-type-tag' wx:if='{{item}}'>{{item}}</text>
           </view>
-          <!-- <view class='house-tag'>
-            <text>黄金地段</text>
-          </view>
-          <view class='house-tag'>
-            <text>海景房</text>
-          </view> -->
         </view>
       </view>
     </view>
@@ -146,7 +139,6 @@
         <view class="section section_gap" bindtap='goBuildimg' data-selIndex='{{value}}'>
           <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
             <view class='imgs' style='width:{{440*keyName.imgs.length+20*(keyName.imgs.length-1)}}rpx'>
-              <!-- <image mode="aspectFill" wx:for='{{item.imgs}}' wx:key="{{index}}" src='{{item}}'></image> -->
               <image 
                 mode="aspectFill"  
                 wx:for='{{keyName.imgs}}' 
@@ -162,26 +154,6 @@
           </scroll-view>
         </view>
       </view>
-      <!-- <view class='img-list'>
-        <text>配套图（8）</text>
-        <view class="section section_gap">
-          <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
-            <view class='imgs' style='width:{{440*imgUrls.length}}rpx'>
-              <image wx:for='{{imgUrls}}' wx:key="{{index}}" src='{{item}}'></image>
-            </view>
-          </scroll-view>
-        </view>
-      </view>
-      <view class='img-list'>
-        <text>规划图（8）</text>
-        <view class="section section_gap">
-          <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
-            <view class='imgs' style='width:{{440*imgUrls.length}}rpx'>
-              <image wx:for='{{imgUrls}}' wx:key="{{index}}" src='{{item}}'></image>
-            </view>
-          </scroll-view>
-        </view>
-      </view> -->
     </view>
     <!-- 项目详情 -->
     <view class='product-detail' wx:if='{{projectInfo.length}}'>

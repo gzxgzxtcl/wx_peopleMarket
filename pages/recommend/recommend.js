@@ -11,12 +11,16 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showPicker:false,     //是否显示picker
     subDisabled:false,
     placeholderText: '请输入客户相关描述，如意向户型、面积等',
     isCitySelect: false, // 是否选择城市
     visible: false,
     visible2: false, //确认推荐模态窗
 
+    successProjectArr:[],     //推荐成功的项目id
+    errorProjectArr:[],    //未推荐成功项目
+    recommentStr: '',      //推荐项目名
 
     showBgpack: false,//是否显示授权窗口
     reportList: {
@@ -48,7 +52,8 @@ Page({
       { city: '香港', mobileFlag: '+852'},
       { city: '澳门', mobileFlag: '+853' },
       { city: '台湾', mobileFlag: '+886' }
-    ]
+    ],
+    
   },
 //新增用户授权------------------------------------------------------------------↓
   // 获取微信用户信息
@@ -186,6 +191,9 @@ Page({
     let promise = {
       project_id: id
     }
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
     $http(apiSetting.projectApiFindProjectInfoById, promise).then((data) => {
       let projectInfo = data.data
       this.setData({
@@ -212,18 +220,31 @@ Page({
       cityId: this.data.city_id,
       openid:app.globalData.bindUserInfo.wxid
     }
-
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
     //获取楼盘列表
     $http(apiSetting.recommendGetProjectList, promise).then((data) => {
       if (that.data.reportList.projectId) {
         let findI = data.data.findIndex((n) => {
           return n.wxProjectId == that.data.reportList.projectId
         })
+        for (let i = 0; i < data.data.length; i++) {
+          if (i == findI){
+            data.data[i].isSel=true
+            this.setData({ recommentStr: data.data[i].wxProjectName})
+          }else{
+            data.data[i].isSel = false
+          }
+        }
         that.setData({
           arrayProject: data.data,
           arrayProjectIndex: findI
         })
       } else {
+        for(let i=0;i<data.data.length;i++){
+          data.data[i].isSel = false
+        }
         this.setData({
           arrayProject: data.data
         })
@@ -259,6 +280,7 @@ Page({
   },
   //确认推荐
   bindSub() {
+    let that=this
     if (this.data.reportList.customName == "") {
       $Message({
         content: '请输入客户姓名',
@@ -284,20 +306,44 @@ Page({
     this.setData({
       subDisabled: true
     })
+    let cityPromise = wx.getStorageSync("cityPromise")
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
     $http(apiSetting.recommendAddAgencyCustom, promise).then((data) => {
       if (!data.code) {
+        let successProjectId = data.data.successProjectId
+        let errorProjectId = data.data.errorProjectId
+        let arrayProject = that.data.arrayProject
+        let successArr=[]
+        let errorArr = []   
+        for (let i = 0; i < arrayProject.length;i++){
+          for (let j = 0; j < errorProjectId.length;j++){
+            if (arrayProject[i].wxProjectId == errorProjectId[j]){
+              errorArr.push(arrayProject[i].wxProjectName)
+            }
+          }
+          for (let k = 0; k < successProjectId.length; k++) {
+            if (arrayProject[i].wxProjectId == successProjectId[k]) {
+              successArr.push(arrayProject[i].wxProjectName)
+            }
+          }
+        }       
         this.setData({
+          successProjectArr: successArr,
+          errorProjectArr: errorArr,
           visible2: true,
           placeholderText: ''
         })
-      } else {
+      }else {
         this.setData({
-          subDisabled: false
+          subDisabled: false,
+          visible2: true,
+          'errorProjectArr[0]': this.data.recommentStr
         })
-        $Message({
-          content: data.message,
-          type: 'error'
-        });
+        // $Message({
+        //   content: data.message,
+        //   type: 'error'
+        // });
       }
     }, (error) => {
       console.log(error)
@@ -322,5 +368,45 @@ Page({
       visible2: false,
       placeholderText: '请输入客户相关描述，如意向户型、面积等'
     });
-  }
+  },
+  //弹出复选楼盘picker
+  setProject(){
+    this.setData({ showPicker: true})
+  },
+  //选择项目
+  selTheItem(e){
+    let index=e.currentTarget.dataset.index
+    let _arrayProjectItem = "arrayProject[" + index + "].isSel"
+    this.setData({ [_arrayProjectItem]: !this.data.arrayProject[index].isSel})
+  },
+  //隐藏picker
+  cancelPicker(e){
+    let type=e.target.dataset.type
+    if(type=='1'){
+      let arrayProject = this.data.arrayProject
+      let str = ''
+      let strId=''
+      for (let i = 0; i < arrayProject.length; i++) {
+        if (arrayProject[i].isSel){
+          str += arrayProject[i].wxProjectName
+          str+="，"
+          strId += arrayProject[i].wxProjectId
+          strId += ","
+        }
+      }
+      str=str.substring(0,str.length-1)
+      strId = strId.substring(0, strId.length - 1)
+      this.setData({ recommentStr:str})
+      this.setData({ 'reportList.projectId': strId})
+      this.setData({ showPicker: false })
+    }else if(type=='0'){
+      let arrayProject = this.data.arrayProject
+      for (let i = 0; i < arrayProject.length;i++){
+        arrayProject[i].isSel=false
+      }
+      this.setData({ recommentStr:''})
+      this.setData({ arrayProject: arrayProject})
+      this.setData({ showPicker: false })
+    }
+  },
 })
