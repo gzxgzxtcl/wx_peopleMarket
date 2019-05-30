@@ -59,18 +59,16 @@ Page({
   // 获取微信用户信息
   onGotUserInfo(e) {
     wx.showTabBar()
-    // console.log(e.detail.userInfo)
     if (!e.detail.userInfo) {
-      // this.setData({
-      //   showBgpack: false
-      // })
-      // wx.navigateBack({
-      //   delta: 1
-      // })
-      // this.cancelTip()
       return
     }
     wx.setStorageSync('wxUserInfo', e.detail.userInfo)
+    let promise = { openID: app.globalData.openid, wxname: e.detail.userInfo.nickName}
+    $http(apiSetting.userUpdateUserInfo, promise).then((data) => {
+      
+    }, (error) => {
+      console.log(error)
+    });
     this.setData({
       showBgpack: false
     })

@@ -13,7 +13,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.4",
+	"libVersion": "2.6.6",
 	"appid": "wx2c76d1701fb83748",
 	"projectname": "wx_peopleMarket",
 	"debugOptions": {

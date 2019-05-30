@@ -1,35 +1,14 @@
 <!--pages/map/map.wxml-->
 
 
-<view class='map-box' style='height: calc(100% - {{cutHeight}}rpx);'>
-  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" polyline="{{polyline}}"></map>
-</view>
-<web-view wx:if="{{goOtherUrl==0}}" src="https://map.qq.com/m/"></web-view>
-<web-view wx:if="{{goOtherUrl==1}}" src="https://map.baidu.com/"></web-view>
-<web-view wx:if="{{goOtherUrl==2}}" src="https://map.baidu.com/"></web-view>
-<!-- 功能操作 -->
-<view class='bottom' bindtap='selLine' wx:if="{{!showMapSel}}">
-  <view class='info'>
-    <view class='left'>
-      <view class='name'>中海·云麓九里</view>
-      <view class='address'>青云街道半青玉路与金瓦路交叉口以北约600米</view>
-    </view>
-    <view class='right'>
-      <image src='../../images/gps.png'></image>
-    </view>
-  </view>
-</view>
-<!-- 显示路线/选择地图 -->
-  <view class='map-picker' wx:if="{{showMapSel}}">
-    <view class='shadow' catchtap='noClick'></view>
-    <view class='sel-picker'>
-      <view class='show-line' bindtap='showLine' wx:if="{{!isShowLine}}">显示路线</view>
-      <view class='show-line' bindtap='hideLine' wx:else>隐藏路线</view>
-      <view class='sel-map'>
-        <view data-type="{{0}}" bindtap='goOtherMap'>腾讯地图</view>
-        <view data-type="{{1}}" bindtap='goOtherMap'>百度地图</view>
-        <view data-type="{{2}}" bindtap='goOtherMap'>Apple地图</view>
-      </view>
-      <view class='cancel' bindtap='cancelLine'>取消</view>
-    </view>
-  </view>
+<!-- <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" polyline="{{polyline}}" style='height:100%;width:100%;'></map> -->
+<!-- <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" polyline="{{polyline}}" style='height:100%;width:100%;'></map>
+
+<cover-view class='btn-box'>
+  <button bindtap='showLine' wx:if="{{!isShowLine}}">显示路线</button>
+  <button bindtap='hideLine' wx:else>隐藏路线</button>
+  <button bindtap='openMap'>到这里去</button>
+</cover-view>
+ -->
+
+

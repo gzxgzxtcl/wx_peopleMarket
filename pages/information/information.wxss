@@ -61,11 +61,12 @@ swiper image {
 }
 
 .info .name-money .name text {
-  width: 250rpx;
+  max-width: 240rpx;
   font-family: 'PingFang-SC-Medium';
   font-size: 40rpx;
   color: #333;
   line-height: 56rpx;
+  margin-right: 10rpx;
 }
 
 .info .name-money .name view {
@@ -148,7 +149,7 @@ swiper image {
   border: 1rpx solid #979797;
   border-radius: 4rpx;
   margin-right: 20rpx; */
-  margin-bottom: 20rpx;
+  /* margin-bottom: 10rpx; */
 }
 
 
@@ -481,7 +482,7 @@ swiper image {
 
 .info .huxing .img .explain .totle {
   display: flex;
-  height: 50rpx;
+  /* height: 50rpx; */
   width: 100%;
   align-items: center;
   /* color: #b4b9cb; */
@@ -512,12 +513,11 @@ swiper image {
   margin-bottom: 10rpx; */
 }
 .info .huxing .img .explain .house-tag{
-  margin-top: 10rpx;
+  /* margin-top: 10rpx;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  align-items: center; */
 }
-.info .huxing .img .explain .house-tag text {
+.info .huxing .img .explain .house-tag>text {
   /* color: #8d91a2;
   font-family: 'PingFangTC-Light';
   font-size: 24rpx;

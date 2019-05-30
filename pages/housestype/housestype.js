@@ -54,13 +54,6 @@ Page({
       this.setData({ hourseViewList: this.data.otherhourse, pointViewList: this.data.otherPointList })
     }
   },
-  // 查看户型图
-  // goHouseimg(e){
-  //   let id=e.currentTarget.dataset.id
-  //   wx.navigateTo({
-  //     url: '../houseimg/houseimg?id='+id
-  //   })
-  // },
   // 获取大图
   goHouseimg(e) {
     let index = e.currentTarget.dataset.imgindex
@@ -99,6 +92,11 @@ Page({
     $http(apiSetting.projectApiFindProjectHouserholdListById, promise).then((data) => {
       let hourserholdlist = data.data;
       if (!hourserholdlist) return
+      for (let i = 0; i < hourserholdlist.length;i++){
+        if (hourserholdlist[i].price){
+          hourserholdlist[i].price = parseInt(hourserholdlist[i].price)
+        }
+      }
       this.setData({ allhourseList: hourserholdlist})
       this.getHourseTypeList(hourserholdlist)
       let houserHoldFileLength = hourserholdlist.length
@@ -173,30 +171,9 @@ Page({
       fourhourse: _arr4,
       otherhourse: _arr5
     })
-
-    // this.setData({ onehourse: _arr1, twohourse: _arr2, threehourse: _arr3, fourhourse: _arr4, otherhourse:_arr5})
-    // this.setData({ allPointList: point, pointViewList: point, onePointList: point1, twoPointList: point2, threePointList: point3, fourPointList: point4, otherPointList:point5})
-
-    //查询户型图片列表
-    // for (let i = 0; i < hourselist.length; i++){
-    //   this.getProjectHouserholdFileList(hourselist[i].id)
-    // }
   },
 
-  //通过id获取户型图片列表
-//   getProjectHouserholdFileList(id) {
-//     let promise = { houserhold_id: id }
-//     let _arr = this.data.hourseImgList
-//     console.log(promise)
-//     $http(apiSetting.projectApiFindProjectHouserholdFileListById, promise).then((data) => {
-//       // if(!data.data)  return
-//       _arr.push(data.data)
-//       this.setData({ hourseImgList: _arr })
-//     }), (error) => {
-//       console.log(error)
-//     }
-//     console.log("显示列表：", _arr)
-//   },
+
 //查询户型图片
   getProjectHouserholdFileList(imgListLength) {
     let _t=this.data.t              //_t=0

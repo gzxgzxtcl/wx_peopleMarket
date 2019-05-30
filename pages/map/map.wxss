@@ -1,6 +1,32 @@
 /* pages/map/map.wxss */
 
-page {
+page{
+  height: 100%;
+  width: 100%;
+}
+.btn-box{
+  height: 100rpx;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 99999;
+  border: none;
+}
+.btn-box button{
+  width: 50%;
+  height: 100%;
+  border: none;
+  background: #ffffff;
+  opacity: 0.9;
+  color: #000000;
+  float: left;
+  border-radius: 0;
+}
+.btn-box button:first-child{
+  border-right: 2rpx solid #dddddd;
+}
+/* page {
   width: 100%;
   height: 930rpx;
 }
@@ -15,30 +41,35 @@ map{
   width: 100%;
   height: 100%;
 }
-.bottom .info{
-  height: 170rpx;
-  background: #ffffff;
-  border-top: 2rpx solid #dddddd;
+.bottom{
+  height: 172rpx;
+  width: calc(100% - 70rpx);
+  padding: 40rpx 30rpx 30rpx 40rpx;
   position: fixed;
   bottom: 0;
   left: 0;
+  z-index: 60;
+  background: #ffffff;
+  border-top: 2rpx solid #dddddd;
+}
+.bottom .info{
+  height: 170rpx;
+  background: #ffffff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40rpx 30rpx 30rpx 40rpx;
-  z-index: 60;
 }
 .bottom .info .left{
   width: 75%;
   height: 100%;
 }
 .bottom .info .left .name{
-  font-size: 50rpx;
+  font-size: 46rpx;
   color: #000000;
   font-family: "PingFang-SC-Medium";
 }
 .bottom .info .left .address{
-  font-size: 32rpx;
+  font-size: 30rpx;
   color: #333333;
   font-family: "PingFang-SC-Medium";
   display: flex;
@@ -46,17 +77,17 @@ map{
 }
 
 .bottom .right{
-  width: 154rpx;
-  height: 154rpx;
+  width: 130rpx;
+  height: 130rpx;
 }
 .bottom .right image{
   width: 100%;
   height: 100%;
-}
+} */
 
 
 /* 选择地图/查看路线 */
-.map-picker{
+/* .map-picker{
   width: 100%;
   height: 100%;
   position: absolute;
@@ -96,4 +127,4 @@ map{
   font-size: 40rpx;
   text-align: center;
   border-bottom: 2rpx solid #cccccc;
-}
+} */

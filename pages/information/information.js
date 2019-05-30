@@ -11,8 +11,10 @@ Page({
       name: '',
       salesLongitude: '',
       salesLatitude: '',
+      salesAddress:'',
       showLongitude: '',
       showLlatitude: '',
+      showAddress:'',
     },
     project_id:'',
     optionsObj: null,
@@ -48,6 +50,13 @@ Page({
     /*售楼地址*/
     showhall: '',
     /*展厅地址*/
+    mapObj:{
+      latitude: '',
+      longitude: '',
+      name: '',
+      address: '',
+    },
+    /*地图请求参数*/
     couponinfo: '',
     /*优惠信息*/
     mainprice: '',
@@ -73,10 +82,6 @@ Page({
     //楼盘主图,实景图,效果图,配套图,规划图
     buildsRequestArr: ['项目主图', '实景图', '效果图', '配套图', '规划图'],
     buildsimg: [
-      // {
-      //   name:'项目主图',
-      //   imgs:[]
-      // },
       {
         name: '实景图',
         imgs: []
@@ -347,7 +352,6 @@ Page({
         hourselist: data.data,                         
         caption: hourserholdlist.caption,
         houserhold: hourserholdlist.houserhold,
-        price: hourserholdlist.price,
         buyingpoint: hourserholdlist.buyingpoint,
         area: hourserholdlist.area,
         category: hourserholdlist.category,
@@ -355,6 +359,10 @@ Page({
         pricetype: hourserholdlist.pricetype,
         houserholdremark: hourserholdlist.houserholdremark,
       })
+      if (hourserholdlist.price){
+        this.setData({ price: parseInt(hourserholdlist.price)})
+      }
+     
       //截取亮点标签
       this.setData({
         pointList: hourserholdlist.buyingpoint.split(',')
@@ -476,9 +484,12 @@ Page({
       this.data.mapInfo.name = data.data.projectname_cswx
       this.data.mapInfo.salesLongitude = data.data.salesaddry
       this.data.mapInfo.salesLatitude = data.data.salesaddrx
+      this.data.mapInfo.salesAddress = data.data.salesaddr
       this.data.mapInfo.showLongitude = data.data.showhally
       this.data.mapInfo.showLlatitude = data.data.showhallx
-      
+      this.data.mapInfo.showAddress = data.data.showhall
+      console.log()
+
       this.setData({
         projectInfo: _arr,                        //项目详情列表
         //exemption: projectdetails.exemption,      //免责条款
@@ -534,17 +545,6 @@ Page({
         }
       }
       this.setData({ brightspotsList:_arr})
-
-      //判断是否关注
-      // if (projectinfo.is_myconc == 0) {
-      //   this.setData({
-      //     isAttention: true
-      //   })
-      // } else {
-      //   this.setData({
-      //     isAttention: false
-      //   })
-      // }
     }, (error) => {
       console.log(error)
     });
@@ -724,15 +724,46 @@ Page({
       phoneNumber: this.data.phone
     })
   },
+  //打开地图导航
   pageToMap(e) {
+    let that = this
     if (e.target.dataset.type == 1) {
-      wx.navigateTo({
-        url: '../map/map?projectName=' + this.data.mapInfo.name + '&longitude=' + this.data.mapInfo.salesLongitude + '&latitude=' + this.data.mapInfo.salesLatitude
+      if (!this.data.mapInfo.salesLatitude || !this.data.mapInfo.salesAddress ){
+        return
+      }
+      wx.getLocation({
+        type: 'wgs84',
+        success: (res) => {
+          var latitude = res.latitude
+          var longitude = res.longitude
+          wx.openLocation({
+            latitude: Number(that.data.mapInfo.salesLatitude),
+            longitude: Number(that.data.mapInfo.salesLongitude),
+            name: that.data.mapInfo.name,
+            address: that.data.mapInfo.salesAddress,
+            scale: 5
+          })
+        }
       })
     }
     if (e.target.dataset.type == 2) {
-      wx.navigateTo({
-        url: '../map/map?projectName=' + this.data.mapInfo.name + '&longitude=' + this.data.mapInfo.showLongitude + '&latitude=' + this.data.mapInfo.showLlatitude
+      if (!this.data.mapInfo.showLlatitude || !this.data.mapInfo.showLongitude) {
+        return
+      }
+      wx.getLocation({
+        type: 'wgs84',
+        success: (res) => {
+          var latitude = res.latitude
+          var longitude = res.longitude
+          console.log(Number(that.data.latitude), Number(that.data.longitude))
+          wx.openLocation({
+            latitude: Number(that.data.mapInfo.showLlatitude),
+            longitude: Number(that.data.mapInfo.showLongitude),
+            name: that.data.mapInfo.name,
+            address: that.data.mapInfo.showAddress,
+            scale: 5
+          })
+        }
       })
     }
   },
@@ -791,8 +822,7 @@ Page({
       }
     }
   },
-
-
+ 
   // 下拉刷新
   onPullDownRefresh() {
     // 显示导航栏加载框

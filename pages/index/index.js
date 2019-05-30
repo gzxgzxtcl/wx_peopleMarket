@@ -4,6 +4,12 @@ const app = getApp()
 import apiSetting from '../../http/apiSetting.js'
 import $http from '../../http/http.js'
 import fileUrl from '../../http/fileServeUrl.js'
+import mapKey from '../../http/mapKey.js'
+const QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js')
+const wxMap = new QQMapWX({
+  key: mapKey
+});
+
 const {
   $Message
 } = require('../../dist/base/index');
@@ -98,13 +104,8 @@ Page({
           code: res.code
         }
         let cityPromise = wx.getStorageSync("cityPromise")||[]
-        if (cityPromise.length>0){
-          promise.currentCity = cityPromise.currentCity
-          promise.positionCity = cityPromise.positionCity
-        }else{
-          promise.currentCity = ""
-          promise.positionCity = ""
-        }
+        promise.currentCity = cityPromise.currentCity
+        promise.positionCity = cityPromise.positionCity
         $http(apiSetting.userDecodeUserInfo, promise).then((data) => {
           console.log('openid:' + data.data.openid)
           console.log('status:' + data.data.status)
@@ -179,11 +180,27 @@ Page({
         // console.log(res.longitude)
         that.data.cityInfo.latitude = res.latitude.toString()
         that.data.cityInfo.longitude = res.longitude.toString()
-        that.getCityFindBuildInfoByCity()
+        //经纬度逆解析获取城市名
+        wxMap.reverseGeocoder({
+          location: {
+            latitude: that.data.cityInfo.latitude,
+            longitude: that.data.cityInfo.longitude
+          },
+          success: function (res) {
+            let city = res.result.address_component
+            let _storage = wx.getStorageSync('cityPromise') || {}
+            _storage.positionCity = city.city
+            _storage.currentCity = city.city
+            wx.setStorageSync('cityPromise', _storage)
+            that.getCityFindBuildInfoByCity()
+          },
+          fail: function (res) {
+            that.getCityFindBuildInfoByCity()
+          },
+        })
       },
       fail: function(res) {
         that.getCityList()
-        
       },
       complete: function(res) {
         
@@ -194,9 +211,9 @@ Page({
   getCityList(){
     let that=this
     let promise = {}
-    // let cityPromise = wx.getStorageSync("cityPromise")||[]
-    promise.currentCity = ""
-    promise.positionCity = ""
+    let cityPromise = wx.getStorageSync("cityPromise")||[]
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
     promise.loginby = app.globalData.userId
     $http(apiSetting.cityFindCityItems, promise).then((data) => {
       let cityList=data.data
@@ -204,8 +221,11 @@ Page({
         that.setData({ 'cityInfo.cityName': cityList[0].city })
         wx.setStorageSync('storLocalCity', cityList[0])
         app.globalData.storLocalCity = cityList[0]
-         // currentCity = 当前选择城市，positionCity = 当前定位城市
-        wx.setStorageSync('cityPromise', { currentCity: cityList[0].city, positionCity:''})
+        // currentCity = 当前选择城市，positionCity = 当前定位城市
+        // wx.setStorageSync('cityPromise', { currentCity: cityList[0].city, positionCity:''})
+        let _storage = wx.getStorageSync('cityPromise') || {}
+        _storage.currentCity = cityList[0].city
+        wx.setStorageSync('cityPromise', _storage)
       }
       that.getCityFindBuildInfoByCity()
     }, (error) => {
@@ -214,15 +234,14 @@ Page({
     });
   },
 
-
-
   // 获取轮播图及城市信息
   getCityFindBuildInfoByCity() {
     let that = this
     let promise = that.data.cityInfo
     let cityPromise = wx.getStorageSync("cityPromise")
-    promise.currentCity = cityPromise.currentCity
+    // promise.currentCity = cityPromise.currentCity
     promise.positionCity = cityPromise.positionCity
+    promise.loginby = app.globalData.userId
     $http(apiSetting.cityFindBuildInfoByCity, promise).then((data) => {
       app.globalData.storLocalCity = data.data.cityInfo
       //修改楼盘图路径
@@ -241,6 +260,7 @@ Page({
         buildinfolist: _list1,
         isHaveCoupon: data.data.isHaveCoupon
       })
+     
       let buildInfo = data.data.buildInfo
       let _tagArr = []
       for (let j = 0; j < buildInfo.length; j++) {
@@ -272,8 +292,9 @@ Page({
       city: app.globalData.storLocalCity.id
     }
     let cityPromise = wx.getStorageSync("cityPromise")
-    promise.currentCity = cityPromise.currentCity
+    // promise.currentCity = cityPromise.currentCity
     promise.positionCity = cityPromise.positionCity
+    promise.loginby = app.globalData.userId
     $http(apiSetting.projectApiFindProjectListByCity, promise).then((data) => {
       wx.hideLoading()
       let rimbuildinfo = []
@@ -316,16 +337,10 @@ Page({
     let that = this
     let promise = { openid: val}
     let cityPromise = wx.getStorageSync("cityPromise") || []
-    if (cityPromise.length > 0) {
-      promise.currentCity = cityPromise.currentCity
-      promise.positionCity = cityPromise.positionCity
-    } else {
-      promise.currentCity = ""
-      promise.positionCity = ""
-    }
+    promise.currentCity = cityPromise.currentCity
+    promise.positionCity = cityPromise.positionCity
     $http(apiSetting.userGetUserInfo, promise).then((data) => {
       app.globalData.bindUserInfo = data.data
-
       that.stopRefresh()
     })
   },

@@ -120,8 +120,8 @@
           </view>
           <view class='no-money' wx:else>暂无定价</view>
           <text>户型优势</text>
-          <view class='house-tag' >
-            <text wx:for='{{pointList}}' wx:key='{{index}}' class='house-type-tag' wx:if='{{item}}'>{{item}}</text>
+          <view class='house-tag' wx:for='{{pointList}}' wx:key='{{index}}'>
+            <text  class='house-type-tag' wx:if='{{item}}'>{{item}}</text>
           </view>
         </view>
       </view>

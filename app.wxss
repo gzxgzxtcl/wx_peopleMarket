@@ -31,7 +31,7 @@ page {
 .all-tag{
   display: inline-block;
   padding: 0 5rpx;
-  margin: 0 10rpx 0 0;
+  margin: 0 10rpx 10rpx 0;
   border-radius: 4rpx;
   border: 1rpx solid #979797;
   font-family: 'PingFangTC-Light';
@@ -42,8 +42,12 @@ page {
   text-align: center;
 }
 /* 户型标签 */
+.house-tag{
+  margin-top: 10rpx;
+  display: flex;
+  align-items: center;
+}
 .house-type-tag{
-  display: inline-block;
   color: #8d91a2;
   font-family: 'PingFangTC-Light';
   font-size: 24rpx;
@@ -51,7 +55,9 @@ page {
   border: 1rpx solid #8d91a2;
   border-radius: 6rpx;
   box-sizing: border-box;
-  margin-bottom: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 /* 项目开盘标签 */
 .all-sale{

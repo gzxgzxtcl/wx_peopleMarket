@@ -5,7 +5,7 @@
       <text>全部({{allhourseList.length}})</text>
       <view></view>
     </view>
-    <view bindtap='changeHouse' wx:for='{{hourseTypeList}}' wx:key='{{index}}' data-index="{{index}}" data-type='{{index}}' class="{{selIndex===index?'active':''}}">
+    <!-- <view bindtap='changeHouse' wx:for='{{hourseTypeList}}' wx:key='{{index}}' data-index="{{index}}" data-type='{{index}}' class="{{selIndex===index?'active':''}}">
       <text wx:if='{{index===0 && onehourse.length}}'>{{item}}({{onehourse.length}})</text>
       <text wx:if='{{index===1 && twohourse.length}}'>{{item}}({{twohourse.length}})</text>
       <text wx:if='{{index===2 && threehourse.length}}'>{{item}}({{threehourse.length}})</text>
@@ -17,6 +17,26 @@
       <view wx:if='{{index===2 && threehourse.length}}'></view>
       <view wx:if='{{index===3 && fourhourse.length}}'></view>
       <view wx:if='{{index===4 && otherhourse.length}}'></view>
+    </view> -->
+    <view wx:if='{{onehourse.length}}' bindtap='changeHouse' data-index="{{0}}" data-type='{{0}}' class="{{selIndex===0?'active':''}}">
+      <text >{{hourseTypeList[0]}}({{onehourse.length}})</text>
+      <view></view>
+    </view>
+    <view wx:if='{{twohourse.length}}' bindtap='changeHouse' data-index="{{1}}" data-type='{{1}}' class="{{selIndex===1?'active':''}}">
+      <text >{{hourseTypeList[1]}}({{twohourse.length}})</text>
+      <view ></view>
+    </view>
+    <view wx:if='{{threehourse.length}}' bindtap='changeHouse' data-index="{{2}}" data-type='{{2}}' class="{{selIndex===2?'active':''}}">
+      <text >{{hourseTypeList[2]}}({{threehourse.length}})</text>
+      <view ></view>
+    </view>
+    <view wx:if='{{fourhourse.length}}' bindtap='changeHouse' data-index="{{3}}" data-type='{{3}}' class="{{selIndex===3?'active':''}}">
+      <text >{{hourseTypeList[3]}}({{fourhourse.length}})</text>
+      <view></view>
+    </view>
+    <view wx:if='{{otherhourse.length}}' bindtap='changeHouse' data-index="{{4}}" data-type='{{4}}' class="{{selIndex===4?'active':''}}">
+      <text >{{hourseTypeList[4]}}({{otherhourse.length}})</text>
+      <view></view>
     </view>
   </view>
   <!-- 户型信息 -->
@@ -42,8 +62,8 @@
           <view class='no-money' wx:else>暂无定价</view>
           <text wx:if='{{item.decoration}}'>{{item.decoration}}</text>
           <text>户型优势</text>
-          <view class='tags' >
-            <text class='house-type-tag' wx:for="{{item.buyingpoint}}" wx:for-item='point' wx:for-index='pointIndex' wx:key='pointIndex' wx:if='{{point}}'>{{point}}</text>
+          <view class='tags house-tag' wx:for="{{item.buyingpoint}}" wx:for-item='point' wx:for-index='pointIndex' wx:key='pointIndex'>
+            <text class='house-type-tag' wx:if='{{point}}'>{{point}}</text>
           </view>
         </view>
       </view>

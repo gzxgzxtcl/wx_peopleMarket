@@ -9,13 +9,7 @@ Page({
     imgpath: fileUrl,     //图片根路径
     isLeftSel:true,   /*是否选中户型图*/
     isRightSel: false,   /*是否选中样板图*/
-    // selArr:[
-    //   ['户型图'],
-    //   [ '效果图', '配套图', '规划图']
-    // ],
-    // selIndex:0,   /*默认分类数组下标*/
     selItem:0,     /*默认选中第一项*/
-
     buildImgList:[],    //楼盘图片列表
 
     //swiper参数
@@ -23,13 +17,7 @@ Page({
     autoplay: false,
     interval: 100,
     duration: 100,
-
-
-    // swiperHeight:0,            //swiper高度
-    // imgHeightArr:[],             //图片高度数组
-    // imgCurrent:0,               //滑动图片下表
     imgCurrent:0,
-
     startX:0 ,    //图片滑动开始x坐标
     endX:0,       //图片滑动结束x坐标
 
@@ -51,24 +39,10 @@ Page({
     let current = imgList[imgIndex]
     wx.previewImage({
       current: current, // 当前显示图片的http链接
-      urls: imgList // 需要预览的图片http链接列表
+      urls: imgList     // 需要预览的图片http链接列表
     })
   },
-  //获取图片高度
-  // getImgHeigth(e){
-  //   if (!this.data.imgHeightArr) return
-  //   let that=this
-  //   console.log(e)
-  //   if(!e||e.type!=='load') return
-  //   let imgHeight=e.detail.height
-  //   let imgWidth=e.detail.width
-  //   let viewWidth = wx.getSystemInfoSync().windowWidth*2; //获取当前屏幕的宽度
-  //   let swiperHeight = viewWidth*imgHeight/imgWidth
-  //   let _heiArr = that.data.imgHeightArr
-  //   _heiArr.push(swiperHeight*2)
-  //   that.setData({ imgHeightArr: _heiArr})
-  //   console.log(that.data.imgHeightArr)
-  // },
+  
   //项目图册外层图片滑动
   changeImg(e){
     if(this.data.selItem!==e.target.dataset.selitem) return

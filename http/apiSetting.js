@@ -23,6 +23,10 @@ const serviceModule = {
     url: '/user/getUserInfo',
     method: 'post'
   },
+  userUpdateUserInfo:{  //更新用户信息
+    url: '/user/updateUserInfo',
+    method: 'post'
+  },
   userGetCode: { //获取短信验证
     url: '/user/getCode',
     method: 'post'

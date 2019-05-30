@@ -81,7 +81,10 @@ Page({
       localCity: e.target.dataset.item
     })
     wx.setStorageSync('storLocalCity', e.target.dataset.item)
-    wx.setStorageSync('cityPromise', { currentCity: e.target.dataset.item.city, positionCity: '' })
+    let _storage = wx.getStorageSync('cityPromise') || {}
+    _storage.currentCity = e.target.dataset.item.city
+    wx.setStorageSync('cityPromise', _storage)
+    // wx.setStorageSync('cityPromise', { currentCity: e.target.dataset.item.city})
     app.globalData.storLocalCity = e.target.dataset.item
     this.pageTobind()
   },

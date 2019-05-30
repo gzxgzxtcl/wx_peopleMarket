@@ -3,7 +3,7 @@ page{
   background: #ffffff;
 }
 .house-type{
-  padding-left: 50rpx;
+  padding-left: 40rpx;
   padding-right: 40rpx;
 }
 
@@ -15,7 +15,6 @@ page{
   justify-content: flex-start;
 }
 .house-type .top-sel>view{
-  /* margin-right: 40rpx; */
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -26,6 +25,7 @@ page{
   font-family: 'PingFang-SC-Medium';
   margin-right: 10rpx;
 }
+
 .house-type .top-sel>view:last-child{
   margin-right: 0;
 }
@@ -70,7 +70,7 @@ page{
 }
 
 .house-type .huxing .img image {
-  width: 442rpx;
+  width: 440rpx;
   height: 332rpx;
   border-radius: 6rpx;
 }
@@ -83,7 +83,7 @@ page{
   flex-direction: column;
   justify-content: flex-start;
   /* justify-content: space-around; */
-  width: 214rpx;
+  width: 212rpx;
 }
 
 .house-type .huxing .img .explain .totle {
@@ -116,10 +116,15 @@ page{
   font-family: 'PingFangTC-Light';
   margin-top: 5rpx;
 }
+.house-type .huxing .img image{
+  width: 440rpx;
+  height: 332rpx;
+  border-radius: 6rpx;
+}
 .house-type .huxing .img .explain>.tags{
+  /* margin-top: 10rpx;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  align-items: center; */
 }
 .house-type .huxing .img .explain .tags text{
   /* margin-bottom: 10rpx; */

@@ -23,10 +23,10 @@
     <view>
       <text>已获得推荐佣金</text>
       <view  wx:if="{{peoplesArray.totalCommissioninfo}}">{{peoplesArray.totalCommissioninfo}}
-        <text>万元</text>
+        <text>元</text>
       </view>
       <view wx:else>0
-        <text>人</text>
+        <text>元</text>
       </view>
     </view>
   </view>
@@ -73,8 +73,8 @@
         <view class="dot {{item.rgDate?'plan-active':''}} connect2">
           <image src='../../images/duihao.png'></image>
         </view>
-        <view class="striping {{item.cjDate?'plan-active':''}} connect3"></view>
-        <view class="dot {{item.cjDate?'plan-active':''}} connect3">
+        <view class="striping {{item.cjDate && item.commissioninfo !== null && item.commissioninfo !== '' && item.commissioninfo !== undefined && item.commissioninfo !== 'null' ?'plan-active':''}} connect3"></view>
+        <view class="dot {{item.cjDate && item.commissioninfo !== null && item.commissioninfo !== '' && item.commissioninfo !== undefined && item.commissioninfo !== 'null' ?'plan-active':''}} connect3">
           <image src='../../images/duihao.png'></image>
         </view>
       </view>
@@ -88,10 +88,11 @@
         <text>{{item.tjDate}}</text>
         <text>{{item.lfDate}}</text>
         <text>{{item.rgDate}}</text>
-        <text>{{item.cjDate}}</text>
+        <text wx:if="{{item.cjDate && item.commissioninfo !== null && item.commissioninfo !== '' && item.commissioninfo !== undefined && item.commissioninfo !== 'null'}}">{{item.cjDate}}</text>
+        <text wx:else></text>
       </view>
     </view>
-    <view class='luck' wx:if='{{item.cjDate && item.commissioninfo !== null && item.commissioninfo !== null && item.commissioninfo !== undefined}}'>
+    <view class='luck' wx:if="{{item.cjDate && item.commissioninfo !== null && item.commissioninfo !== '' && item.commissioninfo !== undefined}}">
       <view class='icon'>
         <image src='../../images/xingzhuang.png'></image>
       </view>

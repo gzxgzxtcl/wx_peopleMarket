@@ -6,7 +6,7 @@
     "pages/oneself/oneself",
     "pages/bindUser/bindUser",
     "pages/setting/setting",
-    "pages/map/map",
+    
     "pages/coupon/coupon",
     "pages/mycoupon/mycoupon",
     "pages/clients/client",
@@ -51,5 +51,6 @@
   "usingComponents": {
     "i-message": "dist/message/index",
     "i-modal": "../../dist/modal/index"
-  }
+  },
+  "sitemapLocation": "sitemap63.json"
 }
