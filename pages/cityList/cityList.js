@@ -9,20 +9,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // 城市列表
-    cityListData: [],
-    // 当前选中城市id
-    selectCity: null,
-    // 当前选中城市信息
-    localCity: null,
+    cityListData: [],         // 城市列表  
+    selectCity: null,         // 当前选中城市id  
+    localCity: null,          // 当前选中城市信息
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // console.log(app.globalData.storLocalCity)
-    // console.log(this.data.localCity)
     if (app.globalData.storLocalCity) {
       this.setData({
         localCity: app.globalData.storLocalCity,
@@ -84,7 +79,6 @@ Page({
     let _storage = wx.getStorageSync('cityPromise') || {}
     _storage.currentCity = e.target.dataset.item.city
     wx.setStorageSync('cityPromise', _storage)
-    // wx.setStorageSync('cityPromise', { currentCity: e.target.dataset.item.city})
     app.globalData.storLocalCity = e.target.dataset.item
     this.pageTobind()
   },
@@ -94,9 +88,7 @@ Page({
     let that = this
     that.showLoading()
     let promise = {}
-
     $http(apiSetting.cityFindCityItems, promise).then((data) => {
-      // console.log(data.data)
       let newData = data.data
       let listData = []
       for (let i in newData) {

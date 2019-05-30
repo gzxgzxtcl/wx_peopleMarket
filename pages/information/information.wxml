@@ -31,7 +31,7 @@
         </view>
       </view>
     </view>
-  
+
     <!-- 标签 -->
     <view class='tag' wx:if='{{labelsList.length}}'>
       <view class="all-tag" wx:for='{{labelsList}}' wx:key='{{index}}'>{{item.labels}}</view>
@@ -74,7 +74,6 @@
           <text>{{item.houserhold}}</text>
           <text>{{item.area}}</text>
           <text>{{item.layout}}</text>
-          <!-- <text wx:else>{{item.layout}}</text> -->
         </view>
       </view>
     </view>
@@ -85,13 +84,13 @@
         <text>亮点概述</text>
         <text>{{lightspot}}</text>
       </view>
-      <view class='other-list' >
+      <view class='other-list'>
         <view wx:for='{{brightspotsList}}' wx:key='{{index}}' class="other-list-item" wx:if='{{islookall}}'>
-          <text >{{item.labels}}</text>
+          <text>{{item.labels}}</text>
           <view class='tip'>{{item.remark}}</view>
         </view>
         <view wx:for='{{spots}}' wx:key='{{index}}' class="other-list-item" wx:if='{{!islookall}}'>
-          <text >{{brightspotsList[index].labels}}</text>
+          <text>{{brightspotsList[index].labels}}</text>
           <view class='tip'>{{brightspotsList[index].remark}}</view>
         </view>
       </view>
@@ -112,7 +111,7 @@
         <text>{{caption}}</text>
       </view>
       <view class='img' bindtap='goHousetype'>
-        <image mode="aspectFill" src="{{upload_file_path==''?defaultImg:upload_file_path}}"  binderror="erroImage1" data-index='{{index}}'></image>
+        <image mode="aspectFill" src="{{upload_file_path==''?defaultImg:upload_file_path}}" binderror="erroImage1" data-index='{{index}}'></image>
         <view class='explain'>
           <view class='totle' wx:if='{{price}}'>{{price}}
             <text wx:if="{{pricetype==1}}">元/m²</text>
@@ -121,7 +120,7 @@
           <view class='no-money' wx:else>暂无定价</view>
           <text>户型优势</text>
           <view class='house-tag' wx:for='{{pointList}}' wx:key='{{index}}'>
-            <text  class='house-type-tag' wx:if='{{item}}'>{{item}}</text>
+            <text class='house-type-tag' wx:if='{{item}}'>{{item}}</text>
           </view>
         </view>
       </view>
@@ -139,17 +138,7 @@
         <view class="section section_gap" bindtap='goBuildimg' data-selIndex='{{value}}'>
           <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
             <view class='imgs' style='width:{{440*keyName.imgs.length+20*(keyName.imgs.length-1)}}rpx'>
-              <image 
-                mode="aspectFill"  
-                wx:for='{{keyName.imgs}}' 
-                wx:for-item='aImg'
-                wx:for-index='imgIndex'
-                wx:key='{{imgIndex}}'
-                src="{{aImg==''?defaultImg:aImg}}"  
-                binderror="erroImage3" 
-                data-index='{{imgIndex}}' 
-                data-name='{{keyName.name}}'
-                ></image>
+              <image mode="aspectFill" wx:for='{{keyName.imgs}}' wx:for-item='aImg' wx:for-index='imgIndex' wx:key='{{imgIndex}}' src="{{aImg==''?defaultImg:aImg}}" binderror="erroImage3" data-index='{{imgIndex}}' data-name='{{keyName.name}}'></image>
             </view>
           </scroll-view>
         </view>
@@ -159,7 +148,7 @@
     <view class='product-detail' wx:if='{{projectInfo.length}}'>
       <text class='title'>项目详情</text>
       <view class='detail-list'>
-        <view class='list1' wx:for='{{projectInfo}}' wx:key='{{index}}' >
+        <view class='list1' wx:for='{{projectInfo}}' wx:key='{{index}}'>
           <text class='txt1' wx:if='{{index<=projectInfoNum-1}}'>{{item.name}}</text>
           <text class='txt2' wx:if='{{index<=projectInfoNum-1}}'>{{item.value}}</text>
         </view>
@@ -205,15 +194,14 @@
   </view>
 </view>
 
-
 <!-- 主力均价提示 -->
 <view class='model-view' wx:if='{{visible2}}'>
   <view class='shadow' catchtouchmove='stopMove'></view>
   <view class='model-content'>
     <view wx:if='{{mainpriceOrCommission===0 && mainpricedescription}}'>{{mainpricedescription}}</view>
     <view wx:if='{{mainpriceOrCommission===0 && !mainpricedescription}}'>暂无价格提示</view>
-    <view wx:if='{{mainpriceOrCommission===1 && commissioninfo}}' >{{commissioninfo}}</view>
-    <view wx:if='{{mainpriceOrCommission===1 && !commissioninfo}}' >暂无佣金规则</view>
+    <view wx:if='{{mainpriceOrCommission===1 && commissioninfo}}'>{{commissioninfo}}</view>
+    <view wx:if='{{mainpriceOrCommission===1 && !commissioninfo}}'>暂无佣金规则</view>
     <view class='bottom' bindtap='handleClose2'>关闭</view>
   </view>
 </view>

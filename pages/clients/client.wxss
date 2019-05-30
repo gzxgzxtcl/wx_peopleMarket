@@ -71,11 +71,6 @@
   flex: 1;
 }
 
-/* .clients .city-search .search i-input {
-  height: 100%;
- 
-} */
-
 .clients .city-search .search-icon {
   padding: 30rpx 40rpx;
   display: flex;
@@ -291,7 +286,6 @@
   height: 82rpx;
   font-family: 'PingFangTC-Regular';
   font-size: 24rpx;
-  /* border-bottom: 2rpx solid #fff; */
 }
 
 .floating>view:last-child {
@@ -361,7 +355,6 @@
 .drawer .content .city-list {
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-between; */
   margin-bottom: 60rpx;
 }
 

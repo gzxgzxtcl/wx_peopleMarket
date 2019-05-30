@@ -10,11 +10,10 @@ Page({
    */
   data: {
     defaultImg: '../../images/defaultImg.png',
-    imgpath: fileUrl, //图片根路径
-    isHide: false,
-    attentionList: [], //我的关注列表
-    tagList: [], //标签数组
-    // 翻页
+    imgpath: fileUrl,          //图片根路径                      
+    attentionList: [],         //我的关注列表
+    isHide: false,      
+    // 数据请求参数
     pageData: {
       page: 1,
       perpage: 5,
@@ -47,7 +46,6 @@ Page({
   onShow: function() {
     if (this.data.isHide){
       this.setData({ 'pageData.page': 1,'pageData.isPage':true})
-      // this.data.pageData.isPage = false
       this.getProjectApiFindProjectListByMyConc([])
     }
   },
@@ -110,7 +108,6 @@ Page({
         })
         wx.hideLoading()
       }else {
-        // this.data.pageData.isPage = false
         this.setData({'pageData.isPage':false})
         wx.hideLoading()
         return

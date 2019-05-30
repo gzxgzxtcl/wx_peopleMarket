@@ -11,8 +11,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isPermit:false,
-    visible: false,
+    isPermit:false,       //是否显示使用权限弹窗
+    // visible: false,
     brokertype: ''
   },
 

@@ -24,8 +24,6 @@
     </li>
     <li>
       <span class='title required'>客户电话</span>
-      <!-- <span class='phone-header'></span> -->
-
       <view class="section">
         <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" range-key='city'>
           <view class="picker phone-header">
@@ -48,13 +46,6 @@
       <span class='title required'>推荐楼盘</span>
       <span wx:if="{{recommentStr!==''}}" class="inp" style="text-align:left;display:block;" bindtap="setProject">{{recommentStr}}</span>
       <span wx:if="{{recommentStr===''}}" class="place-sel" style="text-align:left;display:block;" bindtap="setProject">请选择</span>  
-        <!-- <input placeholder-class="phcolor" type='text' placeholder="请选择" /> -->
-        <!-- <picker style='width:100%' mode="selector" bindchange="arrayProjectChange" range-key="wxProjectName" value='{{arrayProjectIndex}}' range="{{arrayProject}}">
-          <view class="picker"> -->
-            <!-- 请选择 -->
-            <!-- <text wx:if="{{arrayProjectIndex == null}}" style='color:#B4B9CB;'>请选择</text> {{arrayProject[arrayProjectIndex].wxProjectName}}
-          </view>
-        </picker> -->
     </li>
     <li style="height:200rpx;margin-top:20rpx;margin-bottom:40rpx">
       <textarea wx:if="{{!showBgpack && !visible2 && !visible && !showPicker}}" class='textsty' style='' bindinput='remarkBind' placeholder="{{placeholderText}}" placeholder-style='color:#B4B9CB;'/>
@@ -76,7 +67,6 @@
 
   <button class='bindSub' disabled='{{subDisabled}}' bindtap='bindSub'>确认推荐</button>
 </view>
-
 
 
 <i-modal visible="{{ visible }}" ok-text="绑定用户" bind:ok="visibleOk" bind:cancel="visibleOkClose">
@@ -104,14 +94,12 @@
       </view>
     </view>
   </view>
-  <!-- <image mode="aspectFit" style="width: 200rpx;height:80rpx;" src='../../images/ok.png'></image>
-  <view>推荐成功</view> -->
 </i-modal>
 
 <i-message id="message" />
 
 
-<!-- 新增-----》用户授权弹窗 -->
+<!------用户授权弹窗------>
 <view wx:if="{{showBgpack}}" class='bgpack'>
   <view class='wicket'>
     <view style='text-align:center;margin-bottom:16rpx;font-size:36rpx'>温馨提示</view>

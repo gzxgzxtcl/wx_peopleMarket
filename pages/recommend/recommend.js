@@ -11,18 +11,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showPicker:false,     //是否显示picker
-    subDisabled:false,
-    placeholderText: '请输入客户相关描述，如意向户型、面积等',
-    isCitySelect: false, // 是否选择城市
-    visible: false,
-    visible2: false, //确认推荐模态窗
+    showPicker:false,         //是否显示picker
+    subDisabled:false,        //是否推荐成功
+    placeholderText: '请输入客户相关描述，如意向户型、面积等',    //placeholder文本提示
+    isCitySelect: false,      // 是否选择城市
+    visible: false,           //是否显示绑定用户信息模态窗
+    visible2: false,          //确认推荐模态窗
+    showBgpack: false,        //是否显示授权窗口
 
     successProjectArr:[],     //推荐成功的项目id
-    errorProjectArr:[],    //未推荐成功项目
-    recommentStr: '',      //推荐项目名
+    errorProjectArr:[],       //未推荐成功项目
+    recommentStr: '',         //推荐项目名
 
-    showBgpack: false,//是否显示授权窗口
+    // 请求参数列表
     reportList: {
       city: '',
       customName: '',
@@ -37,25 +38,20 @@ Page({
       reportType: '',
       sex: ''
     },
-    city_id: '',
-
-    //性别
-    gender: 1,
-
-    arrayProject: [],
+    city_id: '',      //城市id
+    gender: 1,        //性别
+    arrayProject: [], 
     arrayProjectIndex: null,
-
-    index:0,            //客户电话区号选择默认下标
-    //+86(港:+852,澳:+853,台:+886)
+    index: 0,            //客户电话区号选择默认下标   
+    // 区号：+86(港:+852,澳:+853,台:+886)
     array:[
       { city: '大陆', mobileFlag:'+86'},
       { city: '香港', mobileFlag: '+852'},
       { city: '澳门', mobileFlag: '+853' },
       { city: '台湾', mobileFlag: '+886' }
     ],
-    
   },
-//新增用户授权------------------------------------------------------------------↓
+
   // 获取微信用户信息
   onGotUserInfo(e) {
     wx.showTabBar()
@@ -80,14 +76,12 @@ Page({
       delta: 1
     })
   },
-//-------------------------------------------------------------------↑
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     let that = this;
-    
-    //新增---》用户信息授权----------↓
+    //用户信息授权
     wx.getSetting({
       success(res) {
         if (!res.authSetting['scope.userInfo']) {
@@ -101,7 +95,6 @@ Page({
         }
       }
     })
-//----------------------------↑
    
     //判断是否有传递的项目id，如果有，直接复制给data中的变量，即详情页的跳转
     if (options.project_id) {
@@ -208,7 +201,7 @@ Page({
     let that = this
     if (!this.data.city_id) {
       let cityInfo = wx.getStorageSync('storLocalCity')
-      if (!cityInfo) return           //待定--------------》》可以直接修改首页，存入城市信息
+      if (!cityInfo) return           
       this.setData({
         'reportList.city': cityInfo.city,
         city_id: cityInfo.id
@@ -270,11 +263,6 @@ Page({
     wx.reLaunch({
       url: "../index/index"
     })
-   
-    // wx.navigateBack({
-    //   delta: 1
-    // })
-
   },
   //确认推荐
   bindSub() {
@@ -338,10 +326,6 @@ Page({
           visible2: true,
           'errorProjectArr[0]': this.data.recommentStr
         })
-        // $Message({
-        //   content: data.message,
-        //   type: 'error'
-        // });
       }
     }, (error) => {
       console.log(error)

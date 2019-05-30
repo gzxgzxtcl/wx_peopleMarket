@@ -11,7 +11,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isEdit: false,
+    isEdit: false,          //是否修改
+    // 用户信息参数
     userInfo: {
       agencyAccount: '',
       agencyUid: '',
@@ -23,27 +24,20 @@ Page({
       sex: '男',
       wxid: ''
     },
-    trench:'',
-    showAgencyAccount: '',
-    // 验证码窗
-    noteCodeVisible: false,
+    trench:'',                //留电渠道
+    showAgencyAccount: '',    //中介账户
+    noteCodeVisible: false,   // 验证码窗
     noteCodeVal: null,
     noteCodeValLeng: 4,
     modalPhone: null,
-    // 验证是否成功
-    noteResult: false,
+    noteResult: false,        // 验证是否成功
     array: [],
     arrayIndex: null,
 
-    // 存放计时器
-    setInter: '',
-    // 验证倒计时
-    downTime: 180,
+    setInter: '',             // 存放计时器
+    downTime: 180,            // 验证倒计时
     isnote: true,
-
-    // 记录切换后台时间
-    onHideTime: null,
-
+    onHideTime: null,         // 记录切换后台时间
     gender: null,
   },
 
@@ -89,7 +83,6 @@ Page({
         isEdit: true
       })
     }
-
   },
 
   /**
@@ -134,7 +127,6 @@ Page({
     this.setData({
       arrayIndex: e.detail.value
     })
-    // this.getRecommendFindCanalByUser()
     this.data.userInfo.brokertype = this.data.array[e.detail.value]
   },
 
@@ -344,7 +336,6 @@ Page({
 
   // 用户信息提交
   bindSub() {
-    // console.log(this.data.userInfo)
     // 是否填写姓名
     if (this.data.userInfo.myName == '') {
       $Message({

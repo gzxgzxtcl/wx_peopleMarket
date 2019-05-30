@@ -6,25 +6,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgpath: fileUrl,     //图片根路径
-    isLeftSel:true,   /*是否选中户型图*/
-    isRightSel: false,   /*是否选中样板图*/
-    selItem:0,     /*默认选中第一项*/
-    buildImgList:[],    //楼盘图片列表
+    imgpath: fileUrl,        //图片根路径
+    selItem: 0,              //默认选中第一项
+    buildImgList:[],         //楼盘图片列表
 
     //swiper参数
     indicatorDots: false,
     autoplay: false,
     interval: 100,
     duration: 100,
-    imgCurrent:0,
-    startX:0 ,    //图片滑动开始x坐标
-    endX:0,       //图片滑动结束x坐标
-
+    imgCurrent:0,   //当前图片下标
+    startX:0 ,      //图片滑动开始x坐标
+    endX:0,         //图片滑动结束x坐标
   },
   // 户型图切换
   selImg(e){
-    var num = e.currentTarget.dataset.num;
+    let num = e.currentTarget.dataset.num;
     this.setData({ selItem:num})
     if (this.data.imgCurrent===0) return
     this.setData({imgCurrent:0})
@@ -38,8 +35,8 @@ Page({
     }
     let current = imgList[imgIndex]
     wx.previewImage({
-      current: current, // 当前显示图片的http链接
-      urls: imgList     // 需要预览的图片http链接列表
+      current: current,     // 当前显示图片的http链接
+      urls: imgList         // 需要预览的图片http链接列表
     })
   },
   

@@ -1,5 +1,4 @@
 .attention-item {
-  /* height: 480rpx; */
   background: #fff;
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.20);
   padding: 20rpx 46rpx 0 46rpx;
@@ -26,7 +25,6 @@
 
 .my-attention .hours-list .hours-info {
   width: 658rpx;
-  /* height: 100rpx; */
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -91,7 +89,6 @@
 }
 
 .my-attention .hours-list .bottom-info .tag {
-  /* display: flex; */
   flex-wrap: wrap;
   width: calc(100% - 90rpx);
   height: 50rpx;
@@ -124,7 +121,6 @@
 .my-attention .hours-list .bottom-info .hours-address .icon {
   width: 14rpx;
   height: 18rpx;
-  /* margin-right: 10rpx; */
   margin-bottom: 7rpx;
 }
 
@@ -136,10 +132,6 @@
 .my-attention .hours-list .bottom-info .hours-address text{
   margin-left: 5rpx;
 }
-
-/* .my-attention .hours-list .bottom-info .hours-address text:last-child {
-  margin-left: 10rpx;
-} */
 
 /* 无关注信息提示 */
 

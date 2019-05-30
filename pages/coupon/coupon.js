@@ -9,26 +9,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isGet: false,                  /*是否领取*/
-    couponList:[],                 //优惠券列表
-    couponIndex:null,                  //领取优惠券下标
-    showBgpack: false,    //是否显示授权弹窗
-    // 翻页
+    couponList:[],                //优惠券列表
+    showBgpack: false,            //是否显示授权弹窗
+    // 请求参数
     pageData: {
       page: 1,
       perpage: 20,
       isPage: true
     },
   },
+
   //点击领取优惠券
   getCoupon(e) {
     let index = e.target.dataset.index
     let that=this
     let promise = {
-      couponId: e.currentTarget.dataset.couponid,    //卡券ID
-      userId: app.globalData.userId                 //用户ID
+      couponId: e.currentTarget.dataset.couponid,     //卡券ID
+      userId: app.globalData.userId                   //用户ID
     }
-    // console.log(promise)
     let cityPromise = wx.getStorageSync("cityPromise")
     promise.currentCity = cityPromise.currentCity
     promise.positionCity = cityPromise.positionCity
@@ -39,9 +37,7 @@ Page({
           icon: '../../images/getOK.png',
           duration: 2000
         })
-        //  let a = 'couponList['+index+'].receivedStatus'
-        //  this.setData({ a:true})
-         this.setData({ couponList: [], 'pageData.page':1})
+          this.setData({ couponList: [], 'pageData.page':1})
           this.getAllCouponList()
        }else if(data.code===-1){
          wx.showToast({
@@ -61,8 +57,6 @@ Page({
     });
   },
 
-
-  //新增用户授权------------------------------------------------------------------↓
   // 获取微信用户信息
   onGotUserInfo(e) {
     wx.showTabBar()
@@ -82,14 +76,12 @@ Page({
     })
   },
 
-
-//-------------------------------------------------------------------↑
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     let that=this
-    //新增---》用户信息授权----------↓
+    //用户信息授权
     wx.getSetting({
       success(res) {
         if (!res.authSetting['scope.userInfo']) {
@@ -100,7 +92,6 @@ Page({
         }
       }
     })
-//----------------------------↑
 
     wx.showLoading({
       title: '加载中',
@@ -110,7 +101,6 @@ Page({
   },
   //获取未领取优惠券
   getAllCouponList(){
-    // console.log(app.globalData)
     let that=this
     let promise = {
       city: app.globalData.storLocalCity.id,

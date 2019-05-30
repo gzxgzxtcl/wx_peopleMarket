@@ -8,12 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // 城市列表
-    cityListData: [],
-    // 当前选中城市id
-    selectCity: null,
-    // 当前选中城市信息
-    localCity: null,
+    cityListData: [], // 城市列表
+    selectCity: null, // 当前选中城市id
+    localCity: null,// 当前选中城市信息
   },
 
   /**
@@ -74,8 +71,6 @@ Page({
       selectCity: e.target.dataset.item.id,
       localCity: e.target.dataset.item
     })
-    // wx.setStorageSync('storLocalCity', e.target.dataset.item)
-    // app.globalData.storLocalCity = e.target.dataset.item
     this.pageTobind()
   },
 

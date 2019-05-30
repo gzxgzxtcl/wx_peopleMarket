@@ -1,7 +1,7 @@
 /* pages/mycoupon/mycoupon.wxss */
 
 .mycoupon {
-  /* margin-bottom: 100rpx; */
+  margin-bottom: 100rpx;
 }
 
 .mycoupon .condition {
@@ -40,7 +40,8 @@
 }
 
 /* 优惠券样式 */
-.coupons-list{
+
+.coupons-list {
   margin-top: 140rpx;
 }
 
@@ -89,10 +90,8 @@
 .coupon-item .info .explain {
   width: 410rpx;
   padding-left: 36rpx;
-  /* padding-right: 40rpx; */
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
 }
 
 .coupon-item .info .explain .top {
@@ -102,17 +101,18 @@
   justify-content: space-between;
   margin-top: 20rpx;
   margin-bottom: 42rpx;
-  }
+}
 
 .coupon-item .info .explain .top>view {
   display: block;
-  /* width: 222rpx; */
   color: #333;
   font-size: 30rpx;
   font-family: 'PingFang-SC-Medium';
   margin-right: 20rpx;
 }
+
 /* 未使用标签 */
+
 .coupon-item .info .explain .top>text {
   display: block;
   text-align: center;
@@ -125,8 +125,10 @@
   background: #20a0ff;
   border-radius: 4rpx;
 }
+
 /* 已使用标签 */
-.coupon-item .info .explain .top .isUsed{
+
+.coupon-item .info .explain .top .isUsed {
   display: block;
   text-align: center;
   line-height: 28rpx;
@@ -135,11 +137,13 @@
   font-size: 18rpx;
   font-family: 'PingFang-SC-Medium';
   color: #fff;
-  background: #cccccc;
+  background: #ccc;
   border-radius: 4rpx;
 }
+
 /* 已过期标签 */
-.coupon-item .info .explain .top .isOldUsed{
+
+.coupon-item .info .explain .top .isOldUsed {
   display: block;
   text-align: center;
   line-height: 28rpx;
@@ -148,15 +152,15 @@
   font-size: 18rpx;
   font-family: 'PingFang-SC-Medium';
   color: #fff;
-  background: #cccccc;
+  background: #ccc;
   border-radius: 4rpx;
 }
-.coupon-item .info .explain .top .isOldUsedName{
-  color: #c1c1c1
+
+.coupon-item .info .explain .top .isOldUsedName {
+  color: #c1c1c1;
 }
 
 .coupon-item .info .explain .bottom {
-  /* height: 76rpx; */
   font-size: 24rpx;
   font-family: 'PingFang-SC-Medium';
   color: #8d91a2;
@@ -166,13 +170,12 @@
   margin-bottom: 20rpx;
 }
 
-.coupon-item .info .explain .bottom>view{
+.coupon-item .info .explain .bottom>view {
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 
 .coupon-item .info .explain .isOldUsedBottom {
   height: 76rpx;

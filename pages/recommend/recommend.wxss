@@ -18,10 +18,12 @@
   width: 200rpx;
   position: relative;
 }
-.phone-header{
+
+.phone-header {
   float: left;
   width: 80rpx;
 }
+
 .required::before {
   content: '*';
   color: #fb1414;
@@ -38,7 +40,7 @@
   padding-left: 20rpx;
   font-size: 28rpx;
   overflow: hidden;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -74,7 +76,6 @@
   width: 200rpx;
   height: 100%;
   background: none;
-  /* display: inline-block; */
   padding: 0;
   text-align: left;
   display: flex;
@@ -87,9 +88,8 @@
   border: none;
 }
 
+/* 获取用户信息弹窗 */
 
-
-/* 新增弹窗--》获取用户信息 */
 .bgpack {
   display: flex;
   position: fixed;
@@ -109,7 +109,7 @@
   margin: auto;
   padding: 40rpx 0rpx 0rpx 0rpx;
   border-radius: 6rpx;
-  background: #F8F8F8;
+  background: #f8f8f8;
 }
 
 .bgpack button {
@@ -117,7 +117,7 @@
   width: 50%;
   height: 100rpx;
   background: none;
-  border-radius:0;
+  border-radius: 0;
   font-size: 36rpx;
 }
 
@@ -125,21 +125,19 @@
   border: none;
 }
 
-.place-sel{
+.place-sel {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 50px;
   padding-left: 20rpx;
   font-size: 28rpx;
-  color: #B4B9CB;
+  color: #b4b9cb;
 }
 
-
-
-
 /* picker样式 */
-.picker-view{
+
+.picker-view {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -148,100 +146,110 @@
   background: rgba(0, 0, 0, 0.5);
   z-index: 30;
 }
-.picker-view .content{
+
+.picker-view .content {
   width: 100%;
-  /* height: 580rpx; */
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 100;
-  background: #ffffff;
+  background: #fff;
 }
-.picker-view .content .top{
+
+.picker-view .content .top {
   height: 80rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2rpx solid #dddddd;
+  border-bottom: 2rpx solid #ddd;
   font-size: 34rpx;
   font-family: 'PingFangSC-Regular';
-  color:#20A0FF;
+  color: #20a0ff;
   padding: 0 30rpx;
 }
-.picker-view .content .top text{
+
+.picker-view .content .top text {
   width: 110rpx;
 }
-.picker-view .content .top text:first-child{
+
+.picker-view .content .top text:first-child {
   text-align: left;
 }
-.picker-view .content .top text:last-child{
+
+.picker-view .content .top text:last-child {
   text-align: right;
 }
-.picker-view .content .bottom{
+
+.picker-view .content .bottom {
   height: 500rpx;
   font-size: 30rpx;
   font-family: 'PingFangSC-Regular';
-  color: #333333;
+  color: #333;
   overflow: scroll;
 }
-.picker-view .content .bottom .list{
+
+.picker-view .content .bottom .list {
   height: 100rpx;
   padding: 0 51rpx 0 40rpx;
-  border-bottom: 2rpx solid #dddddd;
+  border-bottom: 2rpx solid #ddd;
   display: flex;
   align-items: center;
-  justify-content: space-between
+  justify-content: space-between;
 }
-.picker-view .content .bottom .list image{
+
+.picker-view .content .bottom .list image {
   width: 51rpx;
   height: 37rpx;
 }
 
 /* 推荐成功弹窗 */
 
-.back-box{
+.back-box {
   padding-top: 40rpx;
   padding-left: 80rpx;
   padding-right: 40rpx;
 }
-.back-box>view{
+
+.back-box>view {
   display: flex;
-  margin-bottom:50rpx;
-}
-.back-box .success-list{
-  /* height: 62rpx; */
+  margin-bottom: 50rpx;
 }
 
-.back-box .icon_left{
+.back-box .icon_left {
   width: 44rpx;
   height: 44rpx;
   margin-right: 32rpx;
 }
-.back-box .icon_left image{
+
+.back-box .icon_left image {
   width: 100%;
   height: 100%;
 }
-.back-box .tip_right{
+
+.back-box .tip_right {
   height: 88%;
   display: flex;
   flex: 1;
   flex-direction: column;
   justify-content: flex-start;
 }
-.back-box .tip_right view{
+
+.back-box .tip_right view {
   text-align: left;
 }
-.back-box .tip_right view:first-child{
+
+.back-box .tip_right view:first-child {
   font-family: "PingFangSC-Regular";
   font-size: 30rpx;
-  color: #000000;
-}
-.back-box .tip_right view:last-child{
-  font-family: "PingFangSC-Regular";
-  font-size: 30rpx;
-  color: #888888;
+  color: #000;
 }
 
-.i-modal-body{
+.back-box .tip_right view:last-child {
+  font-family: "PingFangSC-Regular";
+  font-size: 30rpx;
+  color: #888;
+}
+
+.i-modal-body {
   max-height: 700rpx !important;
 }

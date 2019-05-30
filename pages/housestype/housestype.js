@@ -10,28 +10,28 @@ Page({
    */
   data: {
     defaultImg: '../../images/defaultImg.png',
-    imgpath: fileUrl,           //图片根路径
+    imgpath: fileUrl,             //图片根路径
     selIndex:-1,                  //选择条默认下标
-    hourseViewList:[],              //户型显示列表
-    allhourseList:[],                //全部户型列表
-    onehourse:[],                   //一室户型列表
-    twohourse:[],                   //两室户型列表
-    threehourse:[],                   //三室户型列表
-    fourhourse: [],                   //四室户型列表
-    otherhourse: [],                   //其他户型列表
+    hourseViewList:[],            //户型显示列表
+    allhourseList:[],             //全部户型列表
+    onehourse:[],                 //一室户型列表
+    twohourse:[],                 //两室户型列表
+    threehourse:[],               //三室户型列表
+    fourhourse: [],               //四室户型列表
+    otherhourse: [],              //其他户型列表
 
     pointViewList:[],             //优势显示列表
     allPointList:[],              //全部优势列表
-    onePointList: [],               //一室优势列表
-    twoPointList:[],               //两室优势列表
+    onePointList: [],             //一室优势列表
+    twoPointList:[],              //两室优势列表
     threePointList:[],            //三室优势列表
-    fourPointList: [],               //四室优势列表
-    otherPointList: [],               //其他优势列表
+    fourPointList: [],            //四室优势列表
+    otherPointList: [],           //其他优势列表
 
     hourseTypeList:[],            //户型分类列表
     hourseImgList:[],             //户型图片列表
     _hourseImgList:[],
-    t:0,                        //循环变量
+    t:0,                          //循环变量
   },
   changeHouse(e){
     let index = e.currentTarget.dataset.index
@@ -63,14 +63,15 @@ Page({
       urls.push(imgArr[i].upload_file_path)
     }  
     wx.previewImage({
-      current: urls[0], // 当前显示图片的http链接
-      urls: urls // 需要预览的图片http链接列表
+      current: urls[0],     // 当前显示图片的http链接
+      urls: urls            // 需要预览的图片http链接列表
     })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+
   onLoad: function (options) {
     let that = this
     wx.showLoading({
@@ -82,7 +83,7 @@ Page({
     wx.setNavigationBarTitle({
       title: projectname_cswx
     })
-    this.getProjectHouserholdList(options)    //获取户型列表
+    this.getProjectHouserholdList(options)     //获取户型列表
   },
   //获取户型列表
   getProjectHouserholdList(options){
@@ -120,23 +121,14 @@ Page({
   },
   //户型列表数据格式整理
   getHourseList(hourserholdlist) {
-    // let hourselist = JSON.parse(options.hourselist)
-    let hourselist = hourserholdlist            //户型数组
-    //this.setData({ allhourseList: hourselist, hourseViewList:hourselist })     //赋值给全部户型列表
-    let _arr0 = []      //全部户型数组
-    let _arr1 = []      //一室临时数组
-    let _arr2 = []      //二室临时数组
-    let _arr3 = []    //三室临时数组
-    let _arr4 = []    //四室临时数组
-    let _arr5 = []    //其他房型临时数组
+    let hourselist = hourserholdlist    //户型数组
+    let _arr0 = []            //全部户型数组
+    let _arr1 = []            //一室临时数组
+    let _arr2 = []            //二室临时数组
+    let _arr3 = []            //三室临时数组
+    let _arr4 = []            //四室临时数组
+    let _arr5 = []           //其他房型临时数组
 
-    // let point=[]        //全部亮点
-    // let point1=[]       //一室亮点
-    // let point2=[]       //二室亮点
-    // let point3 = []     //三室亮点
-    // let point4 = []     //四室亮点
-    // let point5 = []     //其他房型亮点
-    // hourselist
     for (let i = 0; i < hourselist.length; i++) {
       //绑定优势卖点
       let _point = hourselist[i].buyingpoint
@@ -145,21 +137,16 @@ Page({
       }
       hourselist[i].buyingpoint = _point
       _arr0 = hourselist
-      if (hourselist[i].housetype == this.data.hourseTypeList[0]) {    //一室
+      if (hourselist[i].housetype == this.data.hourseTypeList[0]) {           //一室
         _arr1.push(hourselist[i])
-        // _arr0.push(hourselist[i])
-      } else if (hourselist[i].housetype == this.data.hourseTypeList[1]) {   //二室
+      } else if (hourselist[i].housetype == this.data.hourseTypeList[1]) {    //二室
         _arr2.push(hourselist[i])
-        // _arr0.push(hourselist[i])
       } else if (hourselist[i].housetype == this.data.hourseTypeList[2]) {    //三室
         _arr3.push(hourselist[i])
-        // _arr0.push(hourselist[i])
       } else if (hourselist[i].housetype == this.data.hourseTypeList[3]) {    //四室
         _arr4.push(hourselist[i])
-        // _arr0.push(hourselist[i])
       } else if (hourselist[i].housetype == this.data.hourseTypeList[4]) {    //其他
         _arr5.push(hourselist[i])
-        // _arr0.push(hourselist[i])
       }
     }
     this.setData({

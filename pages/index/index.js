@@ -15,22 +15,19 @@ const {
 } = require('../../dist/base/index');
 Page({
   data: {
-    defaultImg:'../../images/defaultImg.png',
+    defaultImg:'../../images/defaultImg.png',     //默认图才能相对路径
     isLoading:false,    //是否加载数据中
-    // 授权窗口
-    showBgpack: false,
-    // 是否显示优惠券
-    isHaveCoupon: true,
-    // 是否有使用权限
-    isPermit: false,
-    imgpath: fileUrl,
+    showBgpack: false,    // 授权窗口
+    isHaveCoupon: true, // 是否显示优惠券
+    isPermit: false,    // 是否有使用权限
+    imgpath: fileUrl,   
     cityNametext: '',
-    imgUrls: [],
+    imgUrls: [],      //轮播图数组
     autoplay: true,
     interval: 5000,
     duration: 1000,
-    swiperCurrent: 0,
-
+    swiperCurrent: 0,   //轮播图下标
+    
     // 查询城市参数
     cityInfo: {
       latitude: '',
@@ -53,8 +50,7 @@ Page({
       perpage: 10,
       isPage: true
     },
-    // 周边楼盘信息图片
-    rimbuildinfoimg: ''
+    rimbuildinfoimg: '',    // 周边楼盘信息图片
   },
   // 切换城市
   changeCity() {
@@ -99,7 +95,6 @@ Page({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        // console.log(res.code)
         let promise = {
           code: res.code
         }
@@ -117,7 +112,6 @@ Page({
           } else {
             app.globalData.isCheck = false
           }
-
           if (data.data.status == 401) {
             that.setData({
               isPermit: true
@@ -146,7 +140,6 @@ Page({
     // 判断本地是否有数据
     if (app.globalData.storLocalCity) {
       that.data.cityInfo.cityName = app.globalData.storLocalCity.city
-      // console.log(app.globalData)
       that.getCityFindBuildInfoByCity()
     } else {
       wx.getSetting({
@@ -175,9 +168,6 @@ Page({
     wx.getLocation({
       type: 'wgs84',
       success: function(res) {
-        // console.log(res)
-        // console.log(res.latitude)
-        // console.log(res.longitude)
         that.data.cityInfo.latitude = res.latitude.toString()
         that.data.cityInfo.longitude = res.longitude.toString()
         //经纬度逆解析获取城市名
@@ -221,8 +211,6 @@ Page({
         that.setData({ 'cityInfo.cityName': cityList[0].city })
         wx.setStorageSync('storLocalCity', cityList[0])
         app.globalData.storLocalCity = cityList[0]
-        // currentCity = 当前选择城市，positionCity = 当前定位城市
-        // wx.setStorageSync('cityPromise', { currentCity: cityList[0].city, positionCity:''})
         let _storage = wx.getStorageSync('cityPromise') || {}
         _storage.currentCity = cityList[0].city
         wx.setStorageSync('cityPromise', _storage)
@@ -239,7 +227,6 @@ Page({
     let that = this
     let promise = that.data.cityInfo
     let cityPromise = wx.getStorageSync("cityPromise")
-    // promise.currentCity = cityPromise.currentCity
     promise.positionCity = cityPromise.positionCity
     promise.loginby = app.globalData.userId
     $http(apiSetting.cityFindBuildInfoByCity, promise).then((data) => {
@@ -292,7 +279,6 @@ Page({
       city: app.globalData.storLocalCity.id
     }
     let cityPromise = wx.getStorageSync("cityPromise")
-    // promise.currentCity = cityPromise.currentCity
     promise.positionCity = cityPromise.positionCity
     promise.loginby = app.globalData.userId
     $http(apiSetting.projectApiFindProjectListByCity, promise).then((data) => {

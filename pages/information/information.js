@@ -6,7 +6,8 @@ const app = getApp()
 
 Page({
   data: {
-    defaultImg: '../../images/defaultImg.png',
+    defaultImg: '../../images/defaultImg.png',    
+    // 打开导航的需要参数
     mapInfo: {
       name: '',
       salesLongitude: '',
@@ -17,31 +18,26 @@ Page({
       showAddress:'',
     },
     project_id:'',
-    optionsObj: null,
-    imgpath: fileUrl, //图片根路径
-    isAttention: false,
-    /*是否关注*/
-    imgUrls: [], //轮播图列表 
-    bannerlength: 0,
-    /*轮播图个数 */
-    bannerindex: 0,
-    /*轮播下标*/
-    indicatorDots: false,
+    optionsObj: null,       //首页传递的参数
+    imgpath: fileUrl,       //图片根路径
+    isAttention: false,     //是否关注
+    imgUrls: [],            //轮播图列表 
+    bannerlength: 0,        //轮播图个数
+    bannerindex: 0,         //轮播下标
+    visible2: false,        //主力均价提示框
+    ishaveall: false,       //是否大于5条亮点
+    islookall: false,       //是否查看全部亮点
     autoplay: false,
     interval: 5000,
     duration: 1000,
-    visible2: false,
-    ishaveall: false,
-    /*是否大于5条亮点 */
-    islookall: false,
-    /*是否查看全部*/
-
+    
     mainpriceOrCommission: 0, //0代表显示主力均价提示，1表示佣金规则
+    phone: '',                //联系我们-电话
 
-    phone: '', //联系我们-电话
     /*
       项目信息
      */
+    
     projectname_cswx: '',
     /*案名（项目名）*/
     issale: '',
@@ -50,13 +46,6 @@ Page({
     /*售楼地址*/
     showhall: '',
     /*展厅地址*/
-    mapObj:{
-      latitude: '',
-      longitude: '',
-      name: '',
-      address: '',
-    },
-    /*地图请求参数*/
     couponinfo: '',
     /*优惠信息*/
     mainprice: '',
@@ -79,8 +68,9 @@ Page({
     city_id: '',
     /*城市id*/
 
-    //楼盘主图,实景图,效果图,配套图,规划图
-    buildsRequestArr: ['项目主图', '实景图', '效果图', '配套图', '规划图'],
+    //楼盘主图,实景图,效果图,配套图,规划图字典
+    buildsRequestArr: ['项目主图', '实景图', '效果图', '配套图', '规划图'],     
+    //楼盘主图,实景图,效果图,配套图,规划图数据
     buildsimg: [
       {
         name: '实景图',
@@ -103,18 +93,19 @@ Page({
     /*
     项目详情
     */
-    projectInfo: [], //项目详情
-    isMoreInfo: false, //是否有更多详情
-    projectInfoNum: 0, //项目详情条数
-    lightspot: '', //亮点概述
-    spots: 0, //亮点条数
-    exemption: '',
-    /*免责条款*/
-    // commissionRule: '',     //佣金规则  
-    commissioninfo:'',      //佣金信息
+
+    projectInfo: [],          //项目详情
+    isMoreInfo: false,        //是否有更多详情
+    projectInfoNum: 0,        //项目详情条数
+    lightspot: '',            //亮点概述
+    spots: 0,                 //亮点条数
+    exemption: '',            //免责条款
+    commissioninfo:'',        //佣金规则
+    
     /*
       房型列表
     */
+
     hourselist: [],
     /*户型列表 */
     upload_file_path: '',
@@ -140,10 +131,11 @@ Page({
 
     /*
     关注请求数据
-  */
+   */
+
     attentionList: {
-      login_by: '', //用户登录id
-      project_id: '', //项目id
+      login_by: '',         //用户登录id
+      project_id: '',       //项目id
     },
   },
 
@@ -175,9 +167,9 @@ Page({
     this.getProjectInfo(project_id);            // 通过id获取项目信息
     this.getProjectDetails(project_id)          //通过id获取项目详情
     this.getProjectHouserholdList(project_id);  //通过id查询户型列表
-    this.getHourseImgList(project_id);         //通过类型查询楼盘图
-    this.getClauseAndRule();                  //获取免责条款
-    this.isAttentionProject();                //判断是否关注项目
+    this.getHourseImgList(project_id);          //通过类型查询楼盘图
+    this.getClauseAndRule();                    //获取免责条款
+    this.isAttentionProject();                  //判断是否关注项目
     
   },
   //查询免责条款
@@ -417,13 +409,6 @@ Page({
           name: '物业费',
           value: projectdetails.propertyexpenses 
         },
-        // {
-        //   name: '佣金信息',
-        //   value: projectdetails.commissioninfo
-        // }, {
-        //   name: '优惠信息',
-        //   value: projectdetails.couponinfo
-        // }, 
         {
           name: '所属区县',
           value: projectdetails.district
@@ -488,13 +473,11 @@ Page({
       this.data.mapInfo.showLongitude = data.data.showhally
       this.data.mapInfo.showLlatitude = data.data.showhallx
       this.data.mapInfo.showAddress = data.data.showhall
-      console.log()
 
       this.setData({
-        projectInfo: _arr,                        //项目详情列表
-        //exemption: projectdetails.exemption,      //免责条款
-        phone: projectdetails.phone,              //联系电话
-        projectname_cswx: projectdetails.projectname_cswx       //项目名
+        projectInfo: _arr,                          //项目详情列表
+        phone: projectdetails.phone,                //联系电话
+        projectname_cswx: projectdetails.projectname_cswx    //项目名
       })
 
       this.stopRefresh()
@@ -524,17 +507,14 @@ Page({
       }
       this.setData({
         project_id: projectinfo.id,
-        // projectname_hk: projectinfo.projectname_hk,
         issale: projectinfo.issale,
         salesaddr: projectinfo.salesaddr,
         showhall: projectinfo.showhall,
         couponinfo: projectinfo.couponinfo,
-        // mainprice: projectinfo.mainprice,
         mainpricedescription: projectinfo.mainpricedescription,
         mainhouseholdList: projectinfo.mainhouseholdList,
         labelsList: projectinfo.labelsList,
         mainpriceType: projectinfo.mainpriceType,
-        // brightspotsList: projectinfo.brightspotsList,
         city_id: projectinfo.city
       })
       //判断亮点信息是否为空，并筛选有数据的项
@@ -551,7 +531,7 @@ Page({
   },
   // 查看更多户型，跳转到户型列表页
   goHousetype() {
-    wx.navigateTo({   //hourselist=' + JSON.stringify(this.data.hourselist) + '&&
+    wx.navigateTo({   
       url: '../housestype/housestype?project_id=' + this.data.project_id + '&&projectname_cswx=' + this.data.projectname_cswx,
     })
   },
@@ -577,7 +557,7 @@ Page({
   goBuildimg(e) {
     let obj = this.data.imgUrls
     let bannerObj = { name: '项目主图', imgs: this.data.imgUrls}
-    let _imgArr = JSON.parse(JSON.stringify(this.data.buildsimg))     //切除引用关系
+    let _imgArr = JSON.parse(JSON.stringify(this.data.buildsimg))      //切除引用关系
     _imgArr.unshift(bannerObj)
     let _t=0
     let selIndex = e.currentTarget.dataset.selindex;
@@ -592,17 +572,17 @@ Page({
     this.setData({
       isAttention: !this.data.isAttention
     })
-    if (this.data.isAttention) { //isAttention为true,则发起关注请求
+    if (this.data.isAttention) {   //isAttention为true,则发起关注请求
       let promise = this.data.attentionList
       let cityPromise = wx.getStorageSync("cityPromise")
       promise.currentCity = cityPromise.currentCity
       promise.positionCity = cityPromise.positionCity
       $http(apiSetting.projectApiInsertMyConc, promise).then((data) => {
-        // console.log(data)
+        
       }, (error) => {
         console.log(error)
       });
-    } else { //isAttention为false,则发起取消关注请求
+    } else {   //isAttention为false,则发起取消关注请求
       let promise = this.data.attentionList
       let cityPromise = wx.getStorageSync("cityPromise")
       promise.currentCity = cityPromise.currentCity
@@ -621,7 +601,7 @@ Page({
     promise.currentCity = cityPromise.currentCity
     promise.positionCity = cityPromise.positionCity
     $http(apiSetting.projectApiUpdateMyConc, promise).then((data) => {
-      if (data.code === -1) { //返回值为-1，表示项目暂时没有被关注
+      if (data.code === -1) {    //返回值为-1，表示项目暂时没有被关注
         this.setData({
           isAttention: false
         })
@@ -671,15 +651,13 @@ Page({
   },
   // 初始化轮播图
   resetBanner(url) {
-    // let _arr = this.data.imgUrls
-    // _arr.splice(1)
-    // _arr.push(...url)
     this.setData({
       imgUrls: url
     })
+    //初始化轮播展示图数量
     this.setData({
       bannerlength: this.data.imgUrls.length
-    }) //初始化轮播展示图数量
+    }) 
   },
   //图片轮播
   bannerChange(e) {
@@ -787,11 +765,6 @@ Page({
       this.setData({
         imgUrls: this.data.imgUrls
       })
-    }
-
-    if (e.type == 'error') {
-      var _errImg = e.target.dataset.index
-
     }
   },
   //楼盘图错误

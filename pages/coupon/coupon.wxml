@@ -7,11 +7,9 @@
       <view class='info'>
         <view class='num' wx:if='{{item.couponname}}'>
           {{item.couponname}}<text>折</text>
-          <!-- {{item.couponname}} -->
         </view>
         <view class='num' wx:else>
           <text>暂无优惠</text>
-          <!-- {{item.couponname}} -->
         </view>
         <view class='explain' bindtap='getCoupon' data-couponId='{{item.couponid}}' data-index='{{index}}'>
           <view class='top'>
@@ -20,9 +18,7 @@
               <text>·</text>
               <text>{{item.projectName}}</text>
             </view>
-            <!-- <text wx:if='{{item.currentStock==0}}' style="color:{{'#9699a9'}}">已领光</text> -->
             <text wx:if='{{item.receivedStatus}}' style="color:{{'#9699a9'}}">已领取</text>
-            <!-- <text wx:else bindtap='getCoupon' data-couponId='{{item.couponid}}' data-index='{{index}}'>点击领取</text> -->
             <text wx:else>点击领取</text>
           </view>
           <view class='bottom'>
@@ -41,7 +37,7 @@
 
 
 
-<!-- 新增-----》用户授权弹窗 -->
+<!--用户授权弹窗 -->
 <view wx:if="{{showBgpack}}" class='bgpack'>
   <view class='wicket'>
     <view style='text-align:center;margin-bottom:16rpx;font-size:36rpx'>温馨提示</view>

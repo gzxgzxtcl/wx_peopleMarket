@@ -9,52 +9,43 @@ Page({
    * 页面的初始数据
    */
   data: {
-    visible:false,
-    showRight: false,
-    //citySelArr:[true,false,false] ,  /*城市是否选中列表*/
-    // planSelArr:[true,false,false,false,false],   /*进度是否选中*/
-    // array: ['项目1', '项目2', '项目3', '项目4'],
-    itemPakerIndex: null,
-    dataIntervalStart:null,
-    dataIntervalEnd:null,
+    visible:false,                //是否显示绑定用户模态窗
+    showRight: false,             //是否点击了筛选弹出右侧抽屉
+    itemPakerIndex: null,         //所选项目下标
+    dataIntervalStart:null,       //时间区间-开始时间
+    dataIntervalEnd:null,         // 事件区间-结束时间
 
     peoplesArray:null,            //人数数组
-    drawerList:[],              //筛选条目列表
-    cityInfo:[],              //城市列表
-    itemInfo:[],              //项目列表
-    recommendInfo: [],      //进度列表   
-    planDefaultIndex:0,       //进度默认下标
-    cityDefaultIndex: -1,       //城市默认下标
+    drawerList:[],                //筛选条目列表
+    cityInfo:[],                  //城市列表
+    itemInfo:[],                  //项目列表
+    recommendInfo: [],            //进度列表   
+    planDefaultIndex:0,           //进度默认下标
+    cityDefaultIndex: -1,         //城市默认下标
 
     recommendPersonList:[],     //推荐人信息列表
-    
     _val:'',                    //搜索框临时数据
     //筛选条件
     selectList:{
       startRow: 1,        
       perRow: 3,
       searchType: "",                  //进度
-      startDate: "",                 //开始时间
-      endDate: "",                    //结束时间
-      cityId: "",                     //城市id
-      projectID: "",                  //项目id
-      searchVal: "",                  //搜索框条件                
+      startDate: "",                   //开始时间
+      endDate: "",                     //结束时间
+      cityId: "",                      //城市id
+      projectID: "",                   //项目id
+      searchVal: "",                   //搜索框条件                
       openID: "" ,
     },    
-    isPage: true                    //是否允许触底加载新页面
-             
-
+    isPage: true                       //是否允许触底加载新页面
   },
 
   //项目选择
   bindPickerChange(e) {
-    // console.log(e.detail.value)
-    // console.log(this.data.itemInfo)
     this.setData({
       itemPakerIndex: e.detail.value
     })
     this.setData({ 'selectList.projectID': this.data.itemInfo[e.detail.value].projectId})
-    // console.log(this.data.selectList)
   },
   // 时间区间选择
   bindDateChangeStart(e) {
@@ -126,7 +117,6 @@ Page({
       console.log(error)
     });
     this.setData({ showRight: false });
-    // this.resetParameter();
   },
   //搜索图标点击
   selItem(){
@@ -145,7 +135,6 @@ Page({
     }, (error) => {
       console.log(error)
     });
-    // this.resetParameter();
   },
   //文本框监听
   valueChange(e){
@@ -170,14 +159,13 @@ Page({
     this.setData({
       'selectList.searchType': '',              //进度
       'selectList.startDate': '',               //开始时间
-      'selectList.endDate': '',                //结束时间
+      'selectList.endDate': '',                 //结束时间
       'selectList.cityId': '',                  //城市id
-      'selectList.projectID': '',                  //项目id
-      'selectList.searchVal': '',                  //搜索框条件     
+      'selectList.projectID': '',               //项目id
+      'selectList.searchVal': '',               //搜索框条件     
       'selectList.startRow': 1, 
       'selectList.perRow': 3,
     })
-    // console.log(this.data.selectList)
     this.setData({
       isPage: true,
     })
